@@ -1,0 +1,11 @@
+{
+  "name": "sfk-verify",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Headless Ruffle smoke test for SFK builds",
+  "type": "module",
+  "dependencies": {
+    "@ruffle-rs/ruffle": "0.7.0-nightly.2026.10.3",
+    "playwright-core": "1.64.0"
+  }
+}

@@ -1,0 +1,18 @@
+method
+name null
+param QName(PackageNamespace("flash.display"),"Sprite")
+param QName(PackageNamespace(""),"String")
+returns QName(PackageNamespace(""),"class_62")
+
+body
+maxstack 1
+localcount 3
+initscopedepth 8
+maxscopedepth 9
+
+code
+pushnull
+returnvalue
+end ; code
+end ; body
+end ; method

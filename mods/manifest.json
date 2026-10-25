@@ -1,0 +1,18 @@
+{
+  "_doc": "Patches applied on top of build/SFK_clean.swf by tools/patch.py. Paths are relative to mods/. Data tables in mods/data/ are picked up automatically.",
+  "pcode": [
+    {
+      "class": "class_62",
+      "method": "method_341",
+      "file": "pcode/mochibot_disable.pcode",
+      "why": "MochiBot beacon: return null instead of POSTing to the dead core.mochibot.com"
+    },
+    {
+      "class": "class_149",
+      "method": "method_216",
+      "file": "pcode/load_button_guard.pcode",
+      "why": "Load button: only load a used, selected slot (fixes TypeError #1009/#1010 numRegions on empty slots) and drop the GamerSafe.instance.showLogin() null call"
+    }
+  ],
+  "as3": []
+}

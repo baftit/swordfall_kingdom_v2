@@ -1,0 +1,49 @@
+method
+name null
+param QName(PackageNamespace("flash.events"),"MouseEvent")
+returns QName(PackageNamespace(""),"void")
+
+body
+maxstack 3
+localcount 2
+initscopedepth 10
+maxscopedepth 11
+
+code
+getlocal0
+pushscope
+getlex QName(PackageNamespace(""),"loadWindow")
+getproperty QName(PackageNamespace(""),"var_324")
+getproperty QName(PackageNamespace(""),"isOn")
+iffalse err
+getlex QName(PackageInternalNs(""),"var_99")
+iffalse err
+getlex QName(PackageNamespace(""),"loadWindow")
+getproperty QName(PackageNamespace(""),"var_116")
+iftrue err
+getlex QName(PackageNamespace(""),"loadWindow")
+getproperty QName(PackageNamespace(""),"var_10")
+getlex QName(PackageNamespace(""),"loadWindow")
+getproperty QName(PackageNamespace(""),"var_86")
+callproperty QName(PackageNamespace(""),"getChildAt"), 1
+getproperty QName(PackageNamespace(""),"isUsed")
+iffalse err
+getlex QName(PackageNamespace(""),"loadWindow")
+callpropvoid QName(PackageNamespace(""),"turnOff"), 0
+getlex QName(PackageNamespace(""),"var_89")
+getproperty QName(PackageNamespace(""),"var_289")
+pushfalse
+setproperty QName(PackageNamespace(""),"visible")
+findpropstrict QName(PackageInternalNs(""),"loadGame")
+callpropvoid QName(PackageInternalNs(""),"loadGame"), 0
+jump click
+err:
+getlex QName(PackageNamespace(""),"audioController")
+callpropvoid QName(PackageNamespace(""),"playErrorSound"), 0
+click:
+getlex QName(PackageNamespace(""),"audioController")
+callpropvoid QName(PackageNamespace(""),"playClickMinSound"), 0
+returnvoid
+end ; code
+end ; body
+end ; method

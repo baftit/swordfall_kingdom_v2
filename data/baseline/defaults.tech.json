@@ -1,0 +1,25 @@
+[
+ {
+  "researchMultiplier": 1,
+  "selfIndex": 0,
+  "targetType": "",
+  "goldBonus": 0,
+  "foodBonus": 0,
+  "armorBonus": 0,
+  "prereq2": -1,
+  "rangeBonus": 0,
+  "selfName": "",
+  "locX": 0,
+  "hpBonus": 0,
+  "attackBonus": 0,
+  "__class": "class_32",
+  "prereq1": -1,
+  "cavAttackBonus": 0,
+  "xpMultiplier": 1,
+  "cost": 0,
+  "dscr": "",
+  "locY": 0,
+  "goldMultiplier": 1,
+  "costOriginal": 0
+ }
+]
