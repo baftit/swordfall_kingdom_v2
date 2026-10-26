@@ -1,0 +1,56 @@
+method
+name null
+param QName(PackageNamespace("flash.events"),"TimerEvent")
+returns QName(PackageNamespace(""),"void")
+
+body
+maxstack 3
+localcount 3
+initscopedepth 10
+maxscopedepth 11
+
+code
+getlocal0
+pushscope
+getlocal0
+getproperty QName(PackageNamespace(""),"ud")
+getproperty QName(PackageNamespace(""),"var_123")
+pushbyte 0
+ifngt regen_done
+pushbyte 1
+setlocal2
+getlocal0
+getproperty QName(PackageNamespace(""),"stage")
+iffalse regen_add
+getlocal0
+getproperty QName(PackageNamespace(""),"stage")
+getproperty QName(PackageNamespace(""),"frameRate")
+pushbyte 30
+divide
+convert_i
+setlocal2
+regen_add:
+getlocal0
+getlocal0
+getproperty QName(PackageInternalNs(""),"var_163")
+getlocal2
+add
+setproperty QName(PackageInternalNs(""),"var_163")
+getlocal0
+getproperty QName(PackageInternalNs(""),"var_163")
+getlocal0
+getproperty QName(PackageInternalNs(""),"var_491")
+ifngt regen_done
+getlocal0
+pushbyte 0
+setproperty QName(PackageInternalNs(""),"var_163")
+getlocal0
+getlocal0
+getproperty QName(PackageNamespace(""),"ud")
+getproperty QName(PackageNamespace(""),"var_123")
+callpropvoid QName(PackageInternalNs(""),"method_142"), 1
+regen_done:
+returnvoid
+end ; code
+end ; body
+end ; method

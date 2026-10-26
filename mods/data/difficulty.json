@@ -1,7 +1,46 @@
 {
-  "_doc": "Campaign difficulty knobs, compiled into class_95.method_34 (setDifficulty). See GAME_DATA.md#difficulty for what each knob does.",
-  "easy":   {"aiAttackCaution": 0.95, "playerThreatScale": 1.0,  "aiIncomeMultiplier": 0.8,  "victoryGangUp": 0.5},
-  "normal": {"aiAttackCaution": 0.93, "playerThreatScale": 0.8,  "aiIncomeMultiplier": 1.0,  "victoryGangUp": 0.35},
-  "hard":   {"aiAttackCaution": 0.91, "playerThreatScale": 0.7,  "aiIncomeMultiplier": 1.32, "victoryGangUp": 0.3},
-  "insane": {"aiAttackCaution": 0.88, "playerThreatScale": 0.58, "aiIncomeMultiplier": 1.65, "victoryGangUp": 0.25}
+ "_doc": "Campaign difficulty, compiled into class_95.method_34 (setDifficulty) and method_109 (AI income catch-up). See GAME_DATA.md#difficulty.",
+ "levels": {
+  "easy": {
+   "aiAttackCaution": 0.95,
+   "playerThreatScale": 1.0,
+   "aiIncomeMultiplier": 0.8,
+   "victoryGangUp": 0.75
+  },
+  "normal": {
+   "aiAttackCaution": 0.93,
+   "playerThreatScale": 0.8,
+   "aiIncomeMultiplier": 1.0,
+   "victoryGangUp": 0.65
+  },
+  "hard": {
+   "aiAttackCaution": 0.91,
+   "playerThreatScale": 0.7,
+   "aiIncomeMultiplier": 1.32,
+   "victoryGangUp": 0.55
+  },
+  "insane": {
+   "aiAttackCaution": 0.88,
+   "playerThreatScale": 0.58,
+   "aiIncomeMultiplier": 1.65,
+   "victoryGangUp": 0.5
+  }
+ },
+ "catchUp": {
+  "_doc": "Each AI turn every AI gains playerIncome / divisor, using the first tier whose minAiIncomeMultiplier <= the level's aiIncomeMultiplier (none below the lowest tier).",
+  "tiers": [
+   {
+    "minAiIncomeMultiplier": 1.8,
+    "divisor": 3
+   },
+   {
+    "minAiIncomeMultiplier": 1.4,
+    "divisor": 5
+   },
+   {
+    "minAiIncomeMultiplier": 1.0,
+    "divisor": 6
+   }
+  ]
+ }
 }

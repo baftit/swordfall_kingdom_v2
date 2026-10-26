@@ -1,0 +1,40 @@
+; Prefix for class_68.method_54 (battle KEY_DOWN). F (keyCode 70) while the battle is
+; running cycles stage.frameRate 30 -> 60 -> 90 -> 30 (1x/2x/3x) and swallows the key;
+; every other key falls through to the original handler below.
+; maxstack 3
+getlocal1
+getproperty QName(PackageNamespace(""),"keyCode")
+pushbyte 70
+ifne spd_orig
+getlocal0
+getproperty QName(PackageInternalNs(""),"selfMode")
+pushstring "on"
+ifne spd_orig
+getlocal0
+getproperty QName(PackageNamespace(""),"stage")
+iffalse spd_orig
+getlocal0
+getproperty QName(PackageNamespace(""),"stage")
+getproperty QName(PackageNamespace(""),"frameRate")
+pushbyte 30
+add
+setlocal2
+getlocal2
+pushbyte 95
+ifngt spd_set
+pushbyte 30
+setlocal2
+spd_set:
+getlocal0
+getproperty QName(PackageNamespace(""),"stage")
+getlocal2
+setproperty QName(PackageNamespace(""),"frameRate")
+findpropstrict QName(PackageNamespace(""),"trace")
+pushstring "battleSpeed: x"
+getlocal2
+pushbyte 30
+divide
+add
+callpropvoid QName(PackageNamespace(""),"trace"), 1
+returnvoid
+spd_orig:

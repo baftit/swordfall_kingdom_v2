@@ -1,0 +1,12 @@
+[
+xmin 1464
+ymin 26
+xmax 2175
+ymax 297
+][
+font 7
+height 280
+color #ffffff
+x 1451
+y 280
+]v2.1

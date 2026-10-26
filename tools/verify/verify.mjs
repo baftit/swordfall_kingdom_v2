@@ -3,7 +3,8 @@
 // Usage: node verify.mjs <swf> [--steps steps.json] [--out dir] [--wait ms]
 //
 // Loads the SWF in headless Chromium + self-hosted Ruffle, runs an optional
-// list of steps ({"click":[x,y]} | {"wait":ms} | {"shot":"name"} | {"key":"Enter"}),
+// list of steps ({"click":[x,y]} | {"wait":ms} | {"shot":"name"} | {"key":"Enter"} |
+// {"expect":"trace text"}),
 // and exits non-zero if Ruffle logged an AVM2 error / panic.
 import http from "node:http";
 import fs from "node:fs";
@@ -72,6 +73,11 @@ for (const s of steps) {
   if (s.wait) await tab.waitForTimeout(s.wait);
   if (s.shot) await tab.screenshot({ path: path.join(outDir, `${String(n++).padStart(2, "0")}_${s.shot}.png`) });
   if (s.eval) log.push(`[eval] ${JSON.stringify(await tab.evaluate(s.eval))}`);
+  if (s.expect) {
+    const hit = log.some((l) => l.includes(s.expect));
+    console.log(`  expect ${JSON.stringify(s.expect)}: ${hit ? "ok" : "MISSING"}`);
+    if (!hit) errors.push(`expected trace not seen: ${s.expect}`);
+  }
 }
 fs.writeFileSync(path.join(outDir, "console.log"), log.join("\n") + "\n");
 await browser.close();

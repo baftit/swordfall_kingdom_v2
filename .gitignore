@@ -3,3 +3,6 @@ build/
 tools/verify/node_modules/
 tools/verify/out/
 .DS_Store
+tools/verify/out_speed/
+__pycache__/
+tools/verify/out_*/

@@ -1,0 +1,29 @@
+method
+name null
+param QName(PackageNamespace("flash.events"),"MouseEvent")
+returns QName(PackageNamespace(""),"void")
+
+body
+maxstack 2
+localcount 2
+initscopedepth 10
+maxscopedepth 11
+
+code
+getlocal0
+pushscope
+getlex QName(PackageNamespace(""),"var_89")
+pushfalse
+setproperty QName(PackageNamespace(""),"visible")
+getlex QName(PackageNamespace(""),"var_31")
+pushfalse
+setproperty QName(PackageNamespace(""),"visible")
+getlex QName(PackageNamespace(""),"var_35")
+pushtrue
+setproperty QName(PackageNamespace(""),"visible")
+getlex QName(PackageNamespace(""),"audioController")
+callpropvoid QName(PackageNamespace(""),"method_16"), 0
+returnvoid
+end ; code
+end ; body
+end ; method

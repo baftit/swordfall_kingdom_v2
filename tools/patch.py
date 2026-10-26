@@ -6,7 +6,7 @@
   patch.py dump [swf] [out_dir]   dump live game tables of a build to JSON
   patch.py extract                refresh data/baseline/ from the original game
                                   and seed mods/data/*.json if missing
-  patch.py all                    build + verify + dump-check of modded tables
+  patch.py all                    build + smoke / battle-speed / Grand Europe tests + dump-check
 
 Order of operations in build:
   1. rename obfuscated identifiers (cached in build/SFK_clean.swf)
@@ -65,27 +65,99 @@ def clean_base():
 
 # ---------------------------------------------------------------- step 2
 
+_EXPORT_CACHE = {}
+
+
+def _export(swf, cls, fmt):
+    """Exported source of one class ('as' or 'pcode'), cached per build."""
+    key = (str(swf), Path(swf).stat().st_mtime, cls, fmt)
+    if key not in _EXPORT_CACHE:
+        with tempfile.TemporaryDirectory() as tmp:
+            # some obfuscated methods crash the decompiler; the rest of the export survives
+            extra = ["-config", "showMethodBodyId=true"] if fmt == "as" else ["-format", "script:pcode"]
+            ffdec(*extra, "-selectclass", cls, "-export", "script", tmp, swf, strict=False)
+            name = cls.split(".")[-1] + (".as" if fmt == "as" else ".pcode")
+            _EXPORT_CACHE[key] = next(Path(tmp).rglob(name)).read_text(encoding="utf-8")
+    return _EXPORT_CACHE[key]
+
+
 def body_index(swf, cls, method):
-    """Method body index of cls.method in swf (read from an annotated export)."""
-    with tempfile.TemporaryDirectory() as tmp:
-        # some obfuscated methods crash the decompiler; the index comments survive
-        ffdec("-config", "showMethodBodyId=true", "-selectclass", cls,
-              "-export", "script", tmp, swf, strict=False)
-        src = next(Path(tmp).rglob(f"{cls.split('.')[-1]}.as")).read_text(encoding="utf-8")
-    # signature line, "{" line, then FFDec's "// method body index: N" comment
-    m = re.search(r"function (?:get |set )?%s\([^\n]*\n[^\n]*\n\s*// method body index: (\d+)"
-                  % re.escape(method), src)
-    if not m:
+    """Method body index of cls.method in swf, read from the ABC bytecode."""
+    sys.path.insert(0, str(ROOT / "tools"))
+    import abcindex
+    key = (str(swf), Path(swf).stat().st_mtime)
+    if key not in _EXPORT_CACHE:
+        _EXPORT_CACHE[key] = abcindex.body_indices(swf)
+    idx = _EXPORT_CACHE[key].get((cls, method))
+    if idx is None:
         sys.exit(f"method {cls}.{method} not found")
-    return int(m.group(1))
+    return idx
+
+
+def method_pcode(swf, cls, method):
+    """Original P-code block ("method" ... "end ; method") of cls.method."""
+    lines = [l.strip() for l in _export(swf, cls, "pcode").splitlines()]
+    pat = re.compile(r'trait (?:method|getter|setter) QName\([^)]*\),"%s"\)$' % re.escape(method))
+    start = next(i for i, l in enumerate(lines) if pat.search(l))
+    begin = lines.index("method", start)
+    return "\n".join(lines[begin:lines.index("end ; method", begin) + 1]) + "\n"
+
+
+def with_prefix(original, prefix_file):
+    """Insert prefix P-code at the top of an original method body (labels must be unique)."""
+    prefix = Path(prefix_file).read_text(encoding="utf-8")
+    need = int(re.search(r"^;\s*maxstack\s+(\d+)", prefix, re.M).group(1))
+    body = re.sub(r"^maxstack (\d+)$", lambda m: f"maxstack {max(int(m.group(1)), need)}", original, flags=re.M)
+    code = [l for l in prefix.splitlines() if l.strip() and not l.lstrip().startswith(";")]
+    return body.replace("\ncode\n", "\ncode\n" + "\n".join(code) + "\n", 1)
+
+
+def with_edits(original, edits):
+    """Line-level find/replace in an original method body; each edit must match."""
+    lines = original.split("\n")
+    for e in edits:
+        hits = [i for i, l in enumerate(lines) if l == e["find"]]
+        want = e.get("occurrence")
+        if not hits or (want and len(hits) < want):
+            sys.exit(f"edit target not found: {e['find']!r} (occurrence {want})")
+        for i in ([hits[want - 1]] if want else hits):
+            lines[i] = e["replace"]
+    return "\n".join(lines)
+
+
+BRANCH = re.compile(r"^(jump|if\w+)\s+(\S+)$")
+
+
+def lint_pcode(text, where):
+    """AVM2 rule: a backward branch must land on a `label` instruction (VerifyError #1021)."""
+    lines = [l.strip() for l in text.splitlines()]
+    labels = {l[:-1]: i for i, l in enumerate(lines) if l.endswith(":") and " " not in l}
+    for i, l in enumerate(lines):
+        m = BRANCH.match(l)
+        if m and m.group(2) in labels and labels[m.group(2)] < i:
+            nxt = next((x for x in lines[labels[m.group(2)] + 1:] if not x.endswith(":")), "")
+            if nxt != "label":
+                sys.exit(f"{where}: backward branch to {m.group(2)} needs a `label` instruction there")
 
 
 def apply_pcode(swf_in, swf_out, patches):
     args = []
+    gen_dir = BUILD / "gen"
+    gen_dir.mkdir(parents=True, exist_ok=True)
     for p in patches:
         idx = body_index(swf_in, p["class"], p["method"])
-        log(f"pcode  {p['class']}.{p['method']} (body {idx}) <- {p['file']}")
-        args += [p["class"], p["path"], idx]
+        path, mode = p.get("path"), p.get("mode")
+        if mode in ("prefix", "edit"):
+            original = method_pcode(swf_in, p["class"], p["method"])
+            path = gen_dir / f"{p['class']}.{p['method']}.{mode}.pcode"
+            text = with_prefix(original, p["path"]) if mode == "prefix" else with_edits(original, p["edits"])
+            path.write_text(text, encoding="utf-8")
+        if mode is None:
+            lint_pcode(Path(path).read_text(encoding="utf-8"), p["file"])
+        elif mode == "prefix":
+            lint_pcode(Path(p["path"]).read_text(encoding="utf-8"), p["file"])
+        log(f"pcode  {p['class']}.{p['method']} (body {idx}) <- {p.get('file', 'inline edits')}{f' [{mode}]' if mode else ''}")
+        args += [p["class"], path, idx]
     ffdec("-replace", swf_in, swf_out, *args)
 
 
@@ -152,6 +224,33 @@ def gen_techs(rows):
         "var_1[i].costOriginal = var_1[i].cost;")
 
 
+PUB = lambda n: f'QName(PackageNamespace(""),"{n}")'
+INTERNAL = lambda n: f'QName(PackageInternalNs(""),"{n}")'
+IDX = 'MultinameL([PackageNamespace("")])'
+
+
+def method_block(params, returns, maxstack, localcount, scope, code):
+    return "\n".join([
+        "method", "name null", *(f"param {p}" for p in params), f"returns {returns}", "",
+        "body", f"maxstack {maxstack}", f"localcount {localcount}",
+        f"initscopedepth {scope}", f"maxscopedepth {scope + 1}", "",
+        "code", *code, "end ; code", "end ; body", "end ; method", ""])
+
+
+def push(v):
+    if isinstance(v, bool):
+        return "pushtrue" if v else "pushfalse"
+    if isinstance(v, int) and -128 <= v <= 127:
+        return f"pushbyte {v}"
+    if isinstance(v, int) and -32768 <= v <= 32767:
+        return f"pushshort {v}"
+    if isinstance(v, (int, float)):
+        return f"pushdouble {float(v)!r}"
+    return f"pushstring {json.dumps(v)}"
+
+
+# ------------------------------------------------ difficulty -> class_95.method_34 / method_109
+
 DIFF_FIELDS = {  # friendly name -> class_95 field
     "aiAttackCaution": "var_153",
     "playerThreatScale": "var_158",
@@ -160,35 +259,444 @@ DIFF_FIELDS = {  # friendly name -> class_95 field
 }
 
 
-def gen_difficulty_pcode(table):
-    pub = lambda n: f'QName(PackageNamespace(""),"{n}")'
-    internal = lambda n: f'QName(PackageInternalNs(""),"{n}")'
+def gen_difficulty_pcode(data):
+    levels = data["levels"]
     code = ["getlocal0", "pushscope",
-            f"findpropstrict {pub('trace')}", 'pushstring "setDifficulty: "',
-            "getlocal1", "add", f"callpropvoid {pub('trace')}, 1"]
-    levels = [k for k in table if not k.startswith("_")]
+            f"findpropstrict {PUB('trace')}", 'pushstring "setDifficulty: "',
+            "getlocal1", "add", f"callpropvoid {PUB('trace')}, 1"]
     for n, level in enumerate(levels):
         code += ["getlocal1", f"pushstring {json.dumps(level)}", f"ifne next{n}"]
         for name, field in DIFF_FIELDS.items():
-            code += ["getlocal0", f"pushdouble {float(table[level][name])!r}",
-                     f"setproperty {pub(field)}"]
+            code += ["getlocal0", f"pushdouble {float(levels[level][name])!r}",
+                     f"setproperty {PUB(field)}"]
         code += ["jump done", f"next{n}:"]
     code += ["done:",
-             "getlocal0", "getlocal1", f"setproperty {pub('var_358')}",
-             "getlocal0", "getlocal0", f"getproperty {pub('var_153')}", f"setproperty {internal('var_361')}",
-             "getlocal0", "getlocal0", f"getproperty {pub('var_158')}", f"setproperty {internal('var_329')}",
+             "getlocal0", "getlocal1", f"setproperty {PUB('var_358')}",
+             "getlocal0", "getlocal0", f"getproperty {PUB('var_153')}", f"setproperty {INTERNAL('var_361')}",
+             "getlocal0", "getlocal0", f"getproperty {PUB('var_158')}", f"setproperty {INTERNAL('var_329')}",
              "returnvoid"]
-    return "\n".join([
-        "method", "name null", f"param {pub('String')}", f"returns {pub('void')}", "",
-        "body", "maxstack 3", "localcount 2", "initscopedepth 10", "maxscopedepth 11", "",
-        "code", *code, "end ; code", "end ; body", "end ; method", ""])
+    return method_block([PUB("String")], PUB("void"), 3, 2, 10, code)
+
+
+def gen_catchup_pcode(data):
+    """class_95.method_109: AI gold += goldIncome * aiIncomeMultiplier + playerIncome / divisor."""
+    tiers = sorted(data["catchUp"]["tiers"], key=lambda t: -t["minAiIncomeMultiplier"])
+    code = ["getlocal0", "pushscope", "pushbyte 0", "setlocal2"]
+    for n, tier in enumerate(tiers):
+        code += [f"getlex {PUB('var_119')}", push(float(tier["minAiIncomeMultiplier"])), f"ifnge tier{n + 1}",
+                 f"getlex {PUB('playerFaction')}", f"getproperty {PUB('goldIncome')}",
+                 push(int(tier["divisor"])), "divide", "convert_i", "setlocal2", "jump loop_start",
+                 f"tier{n + 1}:"]
+    code += ["loop_start:", "pushbyte 0", "setlocal1",
+             "loop_cond:", "label", "getlocal1", f"getlex {PUB('var_4')}", f"getproperty {PUB('numFactions')}", "ifnlt loop_end",
+             f"getlex {PUB('var_4')}", f"getproperty {PUB('factions')}", "getlocal1", f"getproperty {IDX}",
+             "dup", f"getproperty {PUB('gold')}",
+             f"getlex {PUB('var_4')}", f"getproperty {PUB('factions')}", "getlocal1", f"getproperty {IDX}",
+             f"getproperty {PUB('goldIncome')}", f"getlex {PUB('var_119')}", "multiply", "add",
+             "getlocal2", "add", f"setproperty {PUB('gold')}",
+             "getlocal1", "increment_i", "setlocal1", "jump loop_cond",
+             "loop_end:", "returnvoid"]
+    return method_block([], PUB("void"), 6, 3, 10, code)
+
+
+# ------------------------------------------------ tech effects -> setTech x2, economy x2
+
+def cond_code(cond, skip):
+    """Code that jumps to `skip` unless cond holds on `this` (getlocal0)."""
+    if cond is None:
+        return []
+    if len(cond) == 1:  # boolean field
+        return ["getlocal0", f"getproperty {PUB(cond[0])}", f"iffalse {skip}"]
+    field, op, val = cond
+    if field == "ability":
+        assert op == "in"
+        out, match = [], f"{skip}_m"
+        for slot in (1, 2, 3):
+            for name in val:
+                out += ["getlocal0", f"getproperty {PUB(f'ability{slot}')}", push(name), f"ifeq {match}"]
+        return out + [f"jump {skip}", f"{match}:"]
+    neg = {"<": "ifnlt", "<=": "ifnle", ">": "ifngt", ">=": "ifnge", "==": "ifne", "!=": "ifeq"}[op]
+    return ["getlocal0", f"getproperty {PUB(field)}", push(val), f"{neg} {skip}"]
+
+
+def gen_settech(rules):
+    """setTech(hasTechs:Array) applying `rules` in order to `this`."""
+    code = ["getlocal0", "pushscope"]
+    for n, r in enumerate(rules):
+        skip = f"rule_skip{n}"
+        code += ["getlocal1", push(int(r["tech"])), f"getproperty {IDX}", f"iffalse {skip}"]
+        code += cond_code(r.get("if"), skip)
+        for k, v in r.get("add", {}).items():
+            code += ["getlocal0", "getlocal0", f"getproperty {PUB(k)}", push(v), "add", f"setproperty {PUB(k)}"]
+        for k, v in r.get("set", {}).items():
+            code += ["getlocal0", push(v), f"setproperty {PUB(k)}"]
+        code += [f"{skip}:"]
+    code += ["returnvoid"]
+    return method_block([PUB("Array")], PUB("void"), 4, 2, 4, code)
+
+
+def _econ_body(get_faction, econ, research_call):
+    """Shared income/supply tech code; get_faction pushes the faction object."""
+    code = [*get_faction, "pushbyte 1", f"setproperty {PUB('incomeMultiplier')}",
+            *get_faction, "pushbyte 0", f"setproperty {PUB('bonusFood')}"]
+    steps = [("income", t, v) for t, v in econ["income"].items()] + \
+            [("supply", t, v) for t, v in econ["supply"].items()]
+    if research_call:
+        steps.append(("research", econ["researchTech"], None))
+    for n, (kind, tech, v) in enumerate(steps):
+        skip = f"econ_skip{n}"
+        code += [*get_faction, f"getproperty {PUB('hasTechs')}", push(int(tech)), f"getproperty {IDX}", f"iffalse {skip}"]
+        if kind == "income":
+            code += [*get_faction, *get_faction, f"getproperty {PUB('incomeMultiplier')}",
+                     push(float(v)), "multiply", f"setproperty {PUB('incomeMultiplier')}"]
+        elif kind == "supply":
+            code += [*get_faction, *get_faction, f"getproperty {PUB('bonusFood')}",
+                     push(int(v)), "add", f"setproperty {PUB('bonusFood')}"]
+        else:
+            code += research_call
+        code += [f"{skip}:"]
+    return code
+
+
+def gen_ai_econ(econ):
+    """class_95.method_129: recompute every faction's income multiplier and bonus supply."""
+    fac = [f"getlex {PUB('var_4')}", f"getproperty {PUB('factions')}", "getlocal1", f"getproperty {IDX}"]
+    code = ["getlocal0", "pushscope", "pushbyte 0", "setlocal1",
+            "loop_cond:", "label", "getlocal1", f"getlex {PUB('var_4')}", f"getproperty {PUB('numFactions')}", "ifnlt loop_end",
+            *_econ_body(fac, econ, None),
+            "getlocal1", "increment_i", "setlocal1", "jump loop_cond", "loop_end:", "returnvoid"]
+    return method_block([], PUB("void"), 5, 2, 10, code)
+
+
+def gen_player_econ(econ):
+    """class_95.method_76: same for the player, plus the research discount, then refresh UI."""
+    fac = [f"getlex {PUB('playerFaction')}"]
+    research = [f'findpropstrict QName(PackageNamespace("flash.display"),"MovieClip")',
+                f"getlex {PUB('parent')}", 'callproperty QName(PackageNamespace("flash.display"),"MovieClip"), 1',
+                f"getproperty {PUB('techMenu')}", f"callpropvoid {PUB('reduceTechCost')}, 0"]
+    mirror = [f"getlex {PUB('var_4')}", f"getproperty {PUB('factions')}", f"getlex {PUB('playerFactionIndex')}",
+              f"getproperty {IDX}"]
+    code = ["getlocal0", "pushscope", *_econ_body(fac, econ, research),
+            *mirror, *fac, f"getproperty {PUB('incomeMultiplier')}", f"setproperty {PUB('incomeMultiplier')}",
+            *mirror, *fac, f"getproperty {PUB('bonusFood')}", f"setproperty {PUB('bonusFood')}",
+            f"findpropstrict {PUB('method_11')}", f"callpropvoid {PUB('method_11')}, 0", "returnvoid"]
+    return method_block([], PUB("void"), 5, 1, 10, code)
+
+
+# ------------------------------------------------ campaign maps -> region/map clip classes
+
+MAP_TEXTURE = r"""
+      private static var tex:BitmapData;
+
+      // grey stone texture matching the original region art (avg RGB 133,128,118)
+      internal static function texture() : BitmapData
+      {
+         if(tex == null)
+         {
+            try
+            {
+               tex = new BitmapData(256,256,false,0);
+               tex.perlinNoise(40,40,4,7331,true,true,7,true);
+               tex.colorTransform(tex.rect,new ColorTransform(0.45,0.45,0.45,1,78,73,63,0));
+            }
+            catch(e:Error)
+            {
+               tex = null;
+            }
+         }
+         return tex;
+      }
+
+      internal static function drawRings(g:Graphics, data:String, ox:Number, oy:Number, sc:Number = 1) : void
+      {
+         var rings:Array = data.split("|");
+         var i:int = 0;
+         var j:int;
+         var p:Array;
+         while(i < rings.length)
+         {
+            p = String(rings[i]).split(",");
+            if(p.length >= 6)
+            {
+               g.moveTo((Number(p[0]) + ox) * sc,(Number(p[1]) + oy) * sc);
+               j = 2;
+               while(j < p.length)
+               {
+                  g.lineTo((Number(p[j]) + ox) * sc,(Number(p[j + 1]) + oy) * sc);
+                  j += 2;
+               }
+               g.lineTo((Number(p[0]) + ox) * sc,(Number(p[1]) + oy) * sc);
+            }
+            i++;
+         }
+      }
+"""
+
+
+def _rings(rings):
+    return "|".join(",".join(map(str, r)) for r in rings)
+
+
+def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview):
+    """Region clip class (class_113 layout) that draws its territory on gotoAndStop,
+    plus a static syncPreview() that paints the map-select / kingdom-select thumbnail."""
+    data = ",\n         ".join(json.dumps(s) for s in symbol_shapes)
+    pv_frame, pv_w, pv_h, map_w, map_h = preview
+    return f"""package
+{{
+   // GENERATED by tools/patch.py from mods/maps - do not edit by hand.
+   import flash.display.BitmapData;
+   import flash.display.Graphics;
+   import flash.display.MovieClip;
+   import flash.display.Shape;
+   import flash.geom.ColorTransform;
+
+   public class {cls} extends MovieClip
+   {{
+      public var selfName:String = "";
+      public var factionIndex:int = 0;
+      public var var_13:Number = 1;
+      public var locX:int = 0;
+      public var locY:int = 0;
+      public var var_74:int = 0;
+      public var colorIndex:int = 1;
+      public var var_11:Number = 1;
+      public var var_65:Array;
+      public var var_12:Number = 1;
+      internal var var_14:class_1;
+      public var var_78:int = 0;
+      public var baseGold:int = 0;
+      public var var_21:Number = 0.12;
+      public var isSelected:Boolean = false;
+      public var selfIndex:int = 0;
+
+      // one entry per timeline frame: "x,y,x,y,...|ring2..." relative to the clip origin
+      internal static const SHAPES:Array = [
+         {data}
+      ];
+      internal static const ORIGINS:Array = {json.dumps(origins)};
+      internal static const OWNER_COLORS:Array = {json.dumps(owners)};
+      internal static const PREVIEW_LAND:String = {json.dumps(_rings(land))};
+
+      // Thumbnail on frame {pv_frame} of the shared map preview clip (its art was stripped too).
+      public static function syncPreview(clip:MovieClip) : void
+      {{
+         var s:Shape;
+         var sc:Number;
+         var oy:Number;
+         var i:int;
+         var c:class_1;
+         var ci:int;
+         if(clip == null)
+         {{
+            return;
+         }}
+         s = clip.getChildByName("sfkPreview") as Shape;
+         if(clip.currentFrame != {pv_frame})
+         {{
+            if(s != null)
+            {{
+               clip.removeChild(s);
+            }}
+            return;
+         }}
+         if(s != null)
+         {{
+            return;
+         }}
+         s = new Shape();
+         s.name = "sfkPreview";
+         sc = Math.min({pv_w} / {map_w},{pv_h} / {map_h});
+         oy = ({pv_h} - {map_h} * sc) / 2;
+         s.graphics.beginFill(0x4262BE);
+         s.graphics.drawRect(0,0,{pv_w},{pv_h});
+         s.graphics.endFill();
+         s.graphics.beginFill(0x5F5B54);
+         drawRings(s.graphics,PREVIEW_LAND,0,oy / sc,sc);
+         s.graphics.endFill();
+         c = new class_1();
+         i = 0;
+         while(i < SHAPES.length)
+         {{
+            ci = int(OWNER_COLORS[i]);
+            s.graphics.lineStyle(0.5,0x1E1C1A,0.5);
+            s.graphics.beginFill(tint(c.var_49[ci],c.var_50[ci],c.var_51[ci]));
+            drawRings(s.graphics,SHAPES[i],ORIGINS[i][0],ORIGINS[i][1] + oy / sc,sc);
+            s.graphics.endFill();
+            i++;
+         }}
+         clip.addChild(s);
+      }}
+
+      internal static function tint(r:Number, g:Number, b:Number) : uint
+      {{
+         return (Math.min(255,int(133 * r)) << 16) | (Math.min(255,int(128 * g)) << 8) | Math.min(255,int(118 * b));
+      }}
+{MAP_TEXTURE}
+      public function {cls}()
+      {{
+         var_65 = new Array();
+         var_14 = new class_1();
+         super();
+         stop();
+         this.mouseChildren = false;
+      }}
+
+      override public function gotoAndStop(frame:Object, scene:String = null) : void
+      {{
+         super.gotoAndStop(frame,scene);
+         drawTerritory(int(frame) - 1);
+      }}
+
+      internal function drawTerritory(index:int) : void
+      {{
+         var t:BitmapData;
+         graphics.clear();
+         if(index < 0 || index >= SHAPES.length)
+         {{
+            return;
+         }}
+         t = texture();
+         graphics.lineStyle(1,0x1E1C1A,0.6);
+         if(t != null)
+         {{
+            graphics.beginBitmapFill(t,null,true,false);
+         }}
+         else
+         {{
+            graphics.beginFill(0x85807A);
+         }}
+         drawRings(graphics,SHAPES[index],0,0);
+         graphics.endFill();
+      }}
+
+      public function setTargetColor(param1:int) : void
+      {{
+         var c:ColorTransform;
+         colorIndex = param1;
+         var_13 = var_14.var_49[param1];
+         var_12 = var_14.var_50[param1];
+         var_11 = var_14.var_51[param1];
+         c = this.transform.colorTransform;
+         c.redMultiplier = var_13;
+         c.greenMultiplier = var_12;
+         c.blueMultiplier = var_11;
+         this.transform.colorTransform = c;
+      }}
+
+      public function setHighlightOff() : void
+      {{
+         var c:ColorTransform = this.transform.colorTransform;
+         c.redMultiplier = var_13;
+         c.greenMultiplier = var_12;
+         c.blueMultiplier = var_11;
+         this.transform.colorTransform = c;
+      }}
+
+      public function setHighlightOn() : void
+      {{
+         var c:ColorTransform = this.transform.colorTransform;
+         c.redMultiplier = var_13 + var_21;
+         c.greenMultiplier = var_12 + var_21;
+         c.blueMultiplier = var_11 + var_21;
+         this.transform.colorTransform = c;
+      }}
+
+      public function removeSelf() : void
+      {{
+         MovieClip(parent).removeChild(this);
+      }}
+   }}
+}}
+"""
+
+
+def gen_map_clip(cls, region_cls, land):
+    """Campaign map class (class_98 layout) with a neutral land layer under the regions."""
+    return f"""package
+{{
+   // GENERATED by tools/patch.py from mods/maps - do not edit by hand.
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.display.Shape;
+   import flash.geom.ColorTransform;
+
+   public class {cls} extends MovieClip
+   {{
+      public var selectorContainer:MovieClip;
+      public var armyContainer:MovieClip;
+      public var regionContainer:MovieClip;
+
+      internal static const LAND:String = {json.dumps(_rings(land))};
+
+      public function {cls}()
+      {{
+         var s:Shape;
+         var t:BitmapData;
+         super();
+         s = new Shape();
+         t = {region_cls}.texture();
+         if(t != null)
+         {{
+            s.graphics.beginBitmapFill(t,null,true,false);
+         }}
+         else
+         {{
+            s.graphics.beginFill(0x85807A);
+         }}
+         {region_cls}.drawRings(s.graphics,LAND,0,0);
+         s.graphics.endFill();
+         s.transform.colorTransform = new ColorTransform(0.72,0.72,0.72,1,0,0,0,0);
+         addChildAt(s,regionContainer != null ? getChildIndex(regionContainer) : 1);
+      }}
+   }}
+}}
+"""
+
+
+MAP_CLASSES = {  # mods/maps/<name>.json -> (region clip, map clip, campaign ref, preview frame)
+    "europe": ("class_113", "class_98", "Europe", 2),
+}
+PREVIEW_SIZE = (410, 265)  # map preview sprite 8346 (frame 1 art is 8200x5300 twips)
+
+
+def map_changes():
+    out = []
+    gen_dir = BUILD / "gen"
+    gen_dir.mkdir(parents=True, exist_ok=True)
+    for name, (region_cls, map_cls, ref, frame) in MAP_CLASSES.items():
+        f = MODS / "maps" / f"{name}.json"
+        if not f.exists():
+            continue
+        m = load_json(f)
+        regions = load_json(BASELINE / f"regions.{ref}.json")
+        factions = load_json(BASELINE / f"factions.{ref}.json")
+        owners = [factions[0]["colorIndex"]] * len(regions)
+        for fac in factions[1:]:
+            for i in fac["regions"]:
+                owners[i] = fac["colorIndex"]
+        origins = [[r["locX"], r["locY"]] for r in regions]
+        clip = gen_region_clip(region_cls, [_rings(r["rings"]) for r in m["regions"]], origins, owners,
+                               m["land"], (frame, *PREVIEW_SIZE, m["width"], m["height"]))
+        for cls, src in ((region_cls, clip),
+                         (map_cls, gen_map_clip(map_cls, region_cls, m["land"]))):
+            path = gen_dir / f"{cls}.as"
+            path.write_text(src, encoding="utf-8")
+            log(f"map    {f.relative_to(ROOT)} -> {path.relative_to(ROOT)}")
+            out.append({"class": cls, "file": str(path.relative_to(ROOT)), "path": path})
+    return out
 
 
 DATA_TABLES = {
-    # name: (kind, target class, target method or None, generator)
-    "units": ("as3", "class_3", None, gen_units),
-    "techs": ("as3", "class_7", None, gen_techs),
-    "difficulty": ("pcode", "class_95", "method_34", gen_difficulty_pcode),
+    # name: ("as3", class, generator) | ("pcode", {"class.method": generator})
+    "units": ("as3", "class_3", gen_units),
+    "techs": ("as3", "class_7", gen_techs),
+    "difficulty": ("pcode", {"class_95.method_34": gen_difficulty_pcode,
+                             "class_95.method_109": gen_catchup_pcode}),
+    "tech_effects": ("pcode", {"class_11.setTech": lambda d: gen_settech(d["unit"]),
+                               "class_8.setTech": lambda d: gen_settech(d["general"]),
+                               "class_95.method_129": lambda d: gen_ai_econ(d["economy"]),
+                               "class_95.method_76": lambda d: gen_player_econ(d["economy"])}),
 }
 
 
@@ -209,7 +717,7 @@ def data_changes(force):
     pcode, as3 = [], []
     gen_dir = BUILD / "gen"
     gen_dir.mkdir(parents=True, exist_ok=True)
-    for name, (kind, cls, method, gen) in DATA_TABLES.items():
+    for name, (kind, target, *gen) in DATA_TABLES.items():
         mod_file = MODS / "data" / f"{name}.json"
         base_file = BASELINE / f"{name}.json"
         if not mod_file.exists():
@@ -217,14 +725,18 @@ def data_changes(force):
         mod = strip_doc(load_json(mod_file))
         if not force and base_file.exists() and _normalise(name, mod) == _normalise(name, strip_doc(load_json(base_file))):
             continue
-        out = gen_dir / (f"{cls}.as" if kind == "as3" else f"{cls}.{method}.pcode")
-        out.write_text(gen(mod), encoding="utf-8")
-        log(f"data   {name}.json -> {out.relative_to(ROOT)}")
-        entry = {"class": cls, "file": str(out.relative_to(ROOT)), "path": out}
         if kind == "as3":
-            as3.append(entry)
-        else:
-            pcode.append({**entry, "method": method})
+            out = gen_dir / f"{target}.as"
+            out.write_text(gen[0](mod), encoding="utf-8")
+            log(f"data   {name}.json -> {out.relative_to(ROOT)}")
+            as3.append({"class": target, "file": str(out.relative_to(ROOT)), "path": out})
+            continue
+        for qual, g in target.items():
+            cls, method = qual.split(".")
+            out = gen_dir / f"{qual}.pcode"
+            out.write_text(g(mod), encoding="utf-8")
+            log(f"data   {name}.json -> {out.relative_to(ROOT)}")
+            pcode.append({"class": cls, "method": method, "file": str(out.relative_to(ROOT)), "path": out})
     return pcode, as3
 
 
@@ -240,11 +752,11 @@ def _normalise(name, data):
 def build(force_data=False):
     manifest = load_json(MODS / "manifest.json")
     swf = clean_base()
-    pcode = [{**p, "path": MODS / p["file"]} for p in manifest.get("pcode", [])]
+    pcode = [{**p, "path": MODS / p["file"]} if "file" in p else dict(p) for p in manifest.get("pcode", [])]
     as3 = [{**p, "path": MODS / p["file"]} for p in manifest.get("as3", [])]
     gen_pcode, gen_as3 = data_changes(force_data)
     pcode += gen_pcode
-    as3 += gen_as3
+    as3 += gen_as3 + map_changes()
 
     replaced = {p["class"] for p in as3}
     clash = [p for p in pcode if p["class"] in replaced]
@@ -264,6 +776,14 @@ def build(force_data=False):
             args += [p["class"], p["path"]]
         ffdec("-replace", stage, work / "stage_as3.swf", *args)
         stage = work / "stage_as3.swf"
+    texts = manifest.get("text", [])
+    if texts:
+        args = []
+        for x in texts:
+            log(f"text   #{x['id']} <- {x['file']}")
+            args += [x["id"], MODS / x["file"]]
+        ffdec("-replace", stage, work / "stage_text.swf", *args)
+        stage = work / "stage_text.swf"
     shutil.copyfile(stage, OUTPUT)
     log(f"wrote {OUTPUT.name} ({OUTPUT.stat().st_size:,} bytes)")
 
@@ -334,6 +854,13 @@ def check_mods(swf):
                 if l.get(k) != v and not (isinstance(v, float) and abs(l.get(k, 0) - v) < 1e-9):
                     print(f"  MISMATCH {name}[{i}].{k}: mods={v!r} live={l.get(k)!r}")
                     ok = False
+    fx = MODS / "data" / "tech_effects.json"
+    if fx.exists():
+        sys.path.insert(0, str(ROOT / "tools"))
+        import techsim
+        bad = techsim.compare(strip_doc(load_json(fx)), strip_doc(load_json(MODS / "data" / "units.json")), out_dir)
+        log(f"tech effects: {bad} mismatches between tech_effects.json rules and live setTech()")
+        ok = ok and bad == 0
     log("live tables match mods/data" if ok else "live tables DIFFER from mods/data")
     return ok
 
@@ -354,6 +881,10 @@ def main(argv):
         build(force_data="--force-data" in argv)
         if run_verify(OUTPUT, steps=VERIFY / "smoke.json") != 0:
             sys.exit("smoke test failed")
+        if run_verify(OUTPUT, steps=VERIFY / "speed.json", out=VERIFY / "out_speed") != 0:
+            sys.exit("battle speed test failed")
+        if run_verify(OUTPUT, steps=VERIFY / "europe.json", out=VERIFY / "out_europe") != 0:
+            sys.exit("Grand Europe test failed")
         sys.exit(0 if check_mods(OUTPUT) else 1)
     else:
         sys.exit(__doc__)

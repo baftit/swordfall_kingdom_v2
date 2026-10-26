@@ -36,8 +36,46 @@ package
          emit("regions.East", new class_24().regions);
          emit("defaults.unit", [new class_11()]);
          emit("defaults.tech", [new class_32()]);
+         emit("techfx.units", techEffects(false));
+         emit("techfx.general", techEffects(true));
          trace("SFKDUMP-END");
          return null;
+      }
+
+      // [tech][record] -> stats after setTech() with only that tech owned; index 29 = no tech
+      private static function techEffects(general:Boolean) : Array
+      {
+         var out:Array = [];
+         var t:int;
+         var i:int;
+         var owned:Array;
+         var recs:Array;
+         var row:Array;
+         var r:*;
+         t = 0;
+         while(t <= 29)
+         {
+            owned = [];
+            i = 0;
+            while(i < 29)
+            {
+               owned.push(i == t);
+               i++;
+            }
+            recs = general ? [new class_8()] : new class_3().units;
+            row = [];
+            i = 0;
+            while(i < recs.length)
+            {
+               r = recs[i];
+               r.setTech(owned);
+               row.push([r.attack, r.hitPoints, r.armor, r.range, general ? r.xpMultiplier : 0]);
+               i++;
+            }
+            out.push(row);
+            t++;
+         }
+         return out;
       }
 
       private static function emit(name:String, data:*) : void

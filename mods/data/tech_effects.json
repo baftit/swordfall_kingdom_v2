@@ -1,0 +1,241 @@
+{
+ "_doc": "Runtime tech effects (source of truth). 'unit' compiles to class_11.setTech, 'general' to class_8.setTech, 'economy' to class_95.method_129 (AI) and method_76 (player). Rules run in order; 'if' is [field, op, value], [boolField] or ['ability','in',[names]]. The bonus fields in techs.json are display-only.",
+ "unit": [
+  {
+   "tech": 2,
+   "name": "Tempered Steel",
+   "if": [
+    "range",
+    "<",
+    3
+   ],
+   "add": {
+    "attack": 1
+   }
+  },
+  {
+   "tech": 3,
+   "name": "Horse Breeding",
+   "if": [
+    "selftype",
+    "==",
+    "Cavalry"
+   ],
+   "add": {
+    "hitPoints": 15
+   }
+  },
+  {
+   "tech": 6,
+   "name": "Composite Bow",
+   "if": [
+    "range",
+    ">",
+    4
+   ],
+   "add": {
+    "range": 1,
+    "attack": 1
+   }
+  },
+  {
+   "tech": 8,
+   "name": "Fine Chainmail",
+   "add": {
+    "armor": 1
+   }
+  },
+  {
+   "tech": 11,
+   "name": "Arbalest",
+   "if": [
+    "selfName",
+    "==",
+    "Crossbowman"
+   ],
+   "add": {
+    "range": 1,
+    "attack": 1
+   }
+  },
+  {
+   "tech": 14,
+   "name": "Destrier Horses",
+   "if": [
+    "selftype",
+    "==",
+    "Cavalry"
+   ],
+   "add": {
+    "hitPoints": 10,
+    "attack": 2
+   }
+  },
+  {
+   "tech": 17,
+   "name": "Langets",
+   "if": [
+    "cavBonus",
+    ">=",
+    4
+   ],
+   "add": {
+    "attack": 2
+   }
+  },
+  {
+   "tech": 18,
+   "name": "Swordsmithy",
+   "if": [
+    "ability",
+    "in",
+    [
+     "Heavy Weapon",
+     "Great Weapon"
+    ]
+   ],
+   "add": {
+    "attack": 2
+   }
+  },
+  {
+   "tech": 22,
+   "name": "Combined Arms (ranged)",
+   "if": [
+    "range",
+    ">=",
+    3
+   ],
+   "add": {
+    "attack": 1
+   }
+  },
+  {
+   "tech": 22,
+   "name": "Combined Arms (melee)",
+   "if": [
+    "range",
+    "<",
+    3
+   ],
+   "add": {
+    "hitPoints": 15
+   }
+  },
+  {
+   "tech": 23,
+   "name": "Pike Formations",
+   "if": [
+    "cavBonus",
+    ">=",
+    10
+   ],
+   "add": {
+    "attack": 2,
+    "hitPoints": 10
+   }
+  },
+  {
+   "tech": 25,
+   "name": "Damascus Steel",
+   "if": [
+    "range",
+    "<",
+    3
+   ],
+   "add": {
+    "attack": 2
+   }
+  },
+  {
+   "tech": 26,
+   "name": "Plate Armor",
+   "if": [
+    "isElite"
+   ],
+   "add": {
+    "armor": 1
+   }
+  }
+ ],
+ "general": [
+  {
+   "tech": 2,
+   "name": "Tempered Steel",
+   "add": {
+    "attack": 1
+   }
+  },
+  {
+   "tech": 3,
+   "name": "Horse Breeding",
+   "add": {
+    "hitPoints": 15
+   }
+  },
+  {
+   "tech": 8,
+   "name": "Fine Chainmail",
+   "add": {
+    "armor": 1
+   }
+  },
+  {
+   "tech": 14,
+   "name": "Destrier Horses",
+   "add": {
+    "hitPoints": 10,
+    "attack": 2
+   }
+  },
+  {
+   "tech": 22,
+   "name": "Combined Arms",
+   "add": {
+    "attack": 1
+   }
+  },
+  {
+   "tech": 24,
+   "name": "Royal Armory",
+   "add": {
+    "armor": 2,
+    "hitPoints": 40
+   }
+  },
+  {
+   "tech": 25,
+   "name": "Damascus Steel",
+   "add": {
+    "attack": 2
+   }
+  },
+  {
+   "tech": 26,
+   "name": "Plate Armor",
+   "add": {
+    "armor": 1
+   }
+  },
+  {
+   "tech": 28,
+   "name": "Military Academy",
+   "set": {
+    "xpMultiplier": 2
+   }
+  }
+ ],
+ "economy": {
+  "income": {
+   "4": 1.1,
+   "15": 1.15,
+   "20": 1.2,
+   "27": 1.3
+  },
+  "supply": {
+   "10": 30,
+   "16": 35
+  },
+  "researchTech": 21
+ }
+}

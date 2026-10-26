@@ -12,7 +12,65 @@
       "method": "method_216",
       "file": "pcode/load_button_guard.pcode",
       "why": "Load button: only load a used, selected slot (fixes TypeError #1009/#1010 numRegions on empty slots) and drop the GamerSafe.instance.showLogin() null call"
+    },
+    {
+      "class": "package_1.class_139",
+      "method": "method_54",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "callpropvoid QName(PackageNamespace(\"\"),\"method_54\"), 1",
+          "replace": "pop\npop",
+          "occurrence": 2
+        }
+      ],
+      "why": "v2.1: the stage KEY_DOWN handler called battlefield.method_54 twice per key press; drop the redundant second call so F advances one speed step"
+    },
+    {
+      "class": "class_68",
+      "method": "method_54",
+      "file": "pcode/battle_speed_key.prefix",
+      "mode": "prefix",
+      "why": "v2.1 battle speed: F cycles stage.frameRate 30/60/90 while a battle is running"
+    },
+    {
+      "class": "class_68",
+      "method": "method_3",
+      "file": "pcode/battle_tick.pcode",
+      "why": "v2.1 battle speed: reset to 30 fps whenever no battle is running; keep the enemy deployment Timer (class_154.var_419, 100 ms) scaled to 3000/frameRate"
+    },
+    {
+      "class": "Unit",
+      "method": "method_174",
+      "file": "pcode/iron_will_regen.pcode",
+      "why": "v2.1 battle speed: Iron Will regen counter advances frameRate/30 per 30 ms tick so regen per battle-second is speed-independent"
+    },
+    {
+      "class": "class_149",
+      "method": "method_213",
+      "file": "pcode/new_campaign_map_select.pcode",
+      "why": "v2.1: New Campaign opens the Select a Map screen (var_35) instead of jumping to Western Europe's kingdom list"
+    },
+    {
+      "class": "class_149",
+      "method": "method_364",
+      "file": "pcode/kingdom_back_to_map_select.pcode",
+      "why": "v2.1: Back on the kingdom list returns to Select a Map"
+    },
+    {
+      "class": "class_149",
+      "method": "method_3",
+      "file": "pcode/menu_preview_sync.prefix",
+      "mode": "prefix",
+      "why": "v2.1: draw generated map thumbnails (class_113.syncPreview) and hide the dead overworldlabs link on the kingdom list"
     }
   ],
-  "as3": []
+  "as3": [],
+  "text": [
+    {
+      "id": 8501,
+      "file": "text/8501_version.txt",
+      "why": "main-menu version label v1.067k -> v2.1"
+    }
+  ]
 }

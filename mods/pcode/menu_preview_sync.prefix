@@ -1,0 +1,27 @@
+; Prefix for class_149.method_3 (GameManager ENTER_FRAME): keep the generated map
+; thumbnails in sync on Select a Map (var_35) and Select Your Kingdom (var_31), and hide
+; the dead "Find more maps at overworldlabs.com" link that overlaps a 10-kingdom list.
+; maxstack 3
+getlocal0
+getproperty QName(PackageNamespace(""),"var_35")
+iffalse pv_k
+getlex QName(PackageNamespace(""),"class_113")
+getlocal0
+getproperty QName(PackageNamespace(""),"var_35")
+getproperty QName(PackageNamespace(""),"var_321")
+callpropvoid QName(PackageNamespace(""),"syncPreview"), 1
+pv_k:
+getlocal0
+getproperty QName(PackageNamespace(""),"var_31")
+iffalse pv_done
+getlex QName(PackageNamespace(""),"class_113")
+getlocal0
+getproperty QName(PackageNamespace(""),"var_31")
+getproperty QName(PackageNamespace(""),"var_321")
+callpropvoid QName(PackageNamespace(""),"syncPreview"), 1
+getlocal0
+getproperty QName(PackageNamespace(""),"var_31")
+getproperty QName(PackageNamespace(""),"var_571")
+pushfalse
+setproperty QName(PackageNamespace(""),"visible")
+pv_done:
