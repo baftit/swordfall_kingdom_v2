@@ -1,5 +1,5 @@
 {
- "_doc": "Campaign difficulty, compiled into class_95.method_34 (setDifficulty) and method_109 (AI income catch-up). See GAME_DATA.md#difficulty.",
+ "_doc": "Campaign difficulty, compiled into class_95.method_34 (setDifficulty) and method_109 (AI income catch-up). See docs/GAME_DATA.md#difficulty.",
  "levels": {
   "easy": {
    "aiAttackCaution": 0.95,

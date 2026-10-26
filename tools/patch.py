@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""SFK mod pipeline: SFK.swf -> build/SFK_clean.swf -> SFK_v2.swf.
+"""SFK mod pipeline: game/SFK.swf -> build/SFK_clean.swf -> game/SFK_v2.swf.
 
-  patch.py build [--force-data]   rebuild SFK_v2.swf from mods/manifest.json
-  patch.py verify [swf]           headless Ruffle smoke test (default SFK_v2.swf)
+  patch.py build [--force-data]   rebuild game/SFK_v2.swf from mods/manifest.json
+  patch.py verify [swf]           headless Ruffle smoke test (default game/SFK_v2.swf)
   patch.py dump [swf] [out_dir]   dump live game tables of a build to JSON
   patch.py extract                refresh data/baseline/ from the original game
                                   and seed mods/data/*.json if missing
+  patch.py export [fmt] [out_dir] decompile the renamed base for reading
+                                  (fmt as3 or pcode, default as3 -> build/src)
   patch.py all                    build + smoke / battle-speed / Grand Europe tests + dump-check
 
 Order of operations in build:
@@ -30,8 +32,8 @@ BUILD = ROOT / "build"
 MODS = ROOT / "mods"
 BASELINE = ROOT / "data/baseline"
 VERIFY = ROOT / "tools/verify"
-ORIGINAL = ROOT / "SFK.swf"
-OUTPUT = ROOT / "SFK_v2.swf"
+ORIGINAL = ROOT / "game/SFK.swf"
+OUTPUT = ROOT / "game/SFK_v2.swf"
 
 
 def ffdec(*args, strict=True):
@@ -794,7 +796,7 @@ def run_verify(swf, steps=None, out=None, wait=10000):
     if not (VERIFY / "node_modules").exists():
         subprocess.run(["npm", "ci", "--no-audit", "--no-fund"], cwd=VERIFY, check=True)
     cmd = ["node", "verify.mjs", str(Path(swf).resolve()), "--wait", str(wait),
-           "--out", str(out or VERIFY / "out")]
+           "--out", str(out or BUILD / "verify/smoke")]
     if steps:
         cmd += ["--steps", str(steps)]
     return subprocess.run(cmd, cwd=VERIFY).returncode
@@ -824,6 +826,14 @@ def extract():
         if not target.exists():
             target.write_text(json.dumps(slim, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
             log(f"seeded {target.relative_to(ROOT)}")
+
+
+def export(fmt="as3", out_dir=None):
+    out = Path(out_dir or BUILD / ("src" if fmt == "as3" else "pcode"))
+    shutil.rmtree(out, ignore_errors=True)
+    extra = [] if fmt == "as3" else ["-format", "script:pcode"]
+    ffdec(*extra, "-export", "script", out, clean_base(), strict=False)
+    log(f"exported {fmt} sources -> {out.relative_to(ROOT) if out.is_relative_to(ROOT) else out}")
 
 
 PREFERRED = ["selfName", "selftype", "combatType", "attackType", "abCombatType", "weaponType",
@@ -875,15 +885,17 @@ def main(argv):
         dump(argv[1] if len(argv) > 1 else OUTPUT, argv[2] if len(argv) > 2 else BUILD / "dump")
     elif cmd == "extract":
         extract()
+    elif cmd == "export":
+        export(*argv[1:3])
     elif cmd == "check":
         sys.exit(0 if check_mods(argv[1] if len(argv) > 1 else OUTPUT) else 1)
     elif cmd == "all":
         build(force_data="--force-data" in argv)
         if run_verify(OUTPUT, steps=VERIFY / "smoke.json") != 0:
             sys.exit("smoke test failed")
-        if run_verify(OUTPUT, steps=VERIFY / "speed.json", out=VERIFY / "out_speed") != 0:
+        if run_verify(OUTPUT, steps=VERIFY / "speed.json", out=BUILD / "verify/speed") != 0:
             sys.exit("battle speed test failed")
-        if run_verify(OUTPUT, steps=VERIFY / "europe.json", out=VERIFY / "out_europe") != 0:
+        if run_verify(OUTPUT, steps=VERIFY / "europe.json", out=BUILD / "verify/europe") != 0:
             sys.exit("Grand Europe test failed")
         sys.exit(0 if check_mods(OUTPUT) else 1)
     else:

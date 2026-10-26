@@ -18,8 +18,8 @@ const opt = (name, def) => {
   const i = args.indexOf(name);
   return i >= 0 ? args[i + 1] : def;
 };
-const swf = path.resolve(args[0] ?? "SFK_v2.swf");
-const outDir = path.resolve(opt("--out", path.join(here, "out")));
+const swf = path.resolve(args[0] ?? "game/SFK_v2.swf");
+const outDir = path.resolve(opt("--out", path.join(here, "../../build/verify/smoke")));
 const steps = opt("--steps") ? JSON.parse(fs.readFileSync(opt("--steps"), "utf8")) : [];
 const initialWait = Number(opt("--wait", 8000));
 fs.mkdirSync(outDir, { recursive: true });

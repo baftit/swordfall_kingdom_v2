@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Render GAME_DATA.md from runtime-dumped tables.
 
-Usage: gamedata.py [data_dir=data/baseline] [out=GAME_DATA.md]
+Usage: gamedata.py [data_dir=data/baseline] [out=docs/GAME_DATA.md]
 """
 import json
 import sys
@@ -279,5 +279,5 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    main(a[0] if a else ROOT / "data/baseline", a[1] if len(a) > 1 else ROOT / "GAME_DATA.md",
+    main(a[0] if a else ROOT / "data/baseline", a[1] if len(a) > 1 else ROOT / "docs/GAME_DATA.md",
          a[2] if len(a) > 2 else None)

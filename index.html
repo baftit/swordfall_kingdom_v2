@@ -85,20 +85,20 @@
     <div id="controls">
         <label for="swf-select">SWF:</label>
         <select id="swf-select">
-            <option value="SFK_v2.swf" selected>SFK_v2.swf (modded build)</option>
+            <option value="game/SFK_v2.swf" selected>SFK_v2.swf (modded build)</option>
             <option value="build/SFK_clean.swf">SFK_clean.swf (renamed, unpatched)</option>
-            <option value="SFK.swf">SFK.swf (original)</option>
+            <option value="game/SFK.swf">SFK.swf (original)</option>
         </select>
         <button id="reload-btn">🔄 Reload</button>
         <button id="fullscreen-btn">⛶ Fullscreen</button>
     </div>
     <main>
         <div id="player-container">
-            <ruffle-embed id="ruffle-player" src="SFK_v2.swf" width="800" height="600"></ruffle-embed>
+            <ruffle-embed id="ruffle-player" src="game/SFK_v2.swf" width="800" height="600"></ruffle-embed>
         </div>
     </main>
     <footer>
-        Ruffle Flash Emulator · Local dev only · Rebuild SFK_v2.swf with ./patch.sh
+        Ruffle Flash Emulator · Local dev only · Rebuild game/SFK_v2.swf with ./patch.sh
     </footer>
 
     <!-- Ruffle CDN -->
