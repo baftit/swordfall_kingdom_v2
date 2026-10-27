@@ -13,6 +13,7 @@ import sys
 
 import numpy as np
 from scipy.interpolate import RBFInterpolator
+from shapely import set_precision
 from shapely.ops import voronoi_diagram
 from shapely.geometry import MultiPoint, Point, Polygon, box, shape
 import warnings
@@ -55,33 +56,36 @@ def lonlat_to_plane(lon, lat):
     return np.c_[lon * np.cos(np.radians(47.0)), -lat]
 
 
-def main(ne_file, regions_file, out_file):
+def main(ne_file, regions_file, out_file, *, lonlat=LONLAT, width=MAP_W, height=MAP_H,
+         view_bounds=(-30, 15, 80, 75), smoothing=2.0, snap_coordinates=False):
     regions = json.load(open(regions_file))
     names = [r["refName"] for r in regions]
-    missing = [n for n in names if n not in LONLAT]
+    missing = [n for n in names if n not in lonlat]
     if missing:
         sys.exit(f"no lon/lat for {missing}")
-    src = lonlat_to_plane(*np.array([LONLAT[n] for n in names]).T)
+    src = lonlat_to_plane(*np.array([lonlat[n] for n in names]).T)
     dst = np.array([[r["armyLocX"], r["armyLocY"]] for r in regions], float)
-    warp = RBFInterpolator(src, dst, kernel="thin_plate_spline", smoothing=2.0)
+    warp = RBFInterpolator(src, dst, kernel="thin_plate_spline", smoothing=smoothing)
     resid = np.linalg.norm(warp(src) - dst, axis=1)
 
     def project(x, y, z=None):
         pts = warp(lonlat_to_plane(np.asarray(x), np.asarray(y)))
         return pts[:, 0], pts[:, 1]
 
-    view = box(-30, 15, 80, 75)
+    view = box(*view_bounds)
     land = []
     for f in json.load(open(ne_file))["features"]:
         g = shape(f["geometry"]).intersection(view)
         if not g.is_empty:
             land.append(g.segmentize(0.25))
     land = unary_union(land)
-    land = transform(project, land).buffer(0).intersection(box(0, 0, MAP_W, MAP_H))
+    land = transform(project, land).buffer(0).intersection(box(0, 0, width, height))
     land = land.simplify(0.6)
+    if snap_coordinates:
+        land = set_precision(land, 1.0)
 
     seeds = MultiPoint([Point(x, y) for x, y in dst])
-    cells = voronoi_diagram(seeds, envelope=box(-500, -500, MAP_W + 500, MAP_H + 500))
+    cells = voronoi_diagram(seeds, envelope=box(-500, -500, width + 500, height + 500))
     d = np.linalg.norm(dst[:, None] - dst[None], axis=2)
     np.fill_diagonal(d, np.inf)
     nearest = d.min(axis=1)
@@ -89,11 +93,15 @@ def main(ne_file, regions_file, out_file):
     for i, (r, p) in enumerate(zip(regions, dst)):
         cell = next(c for c in cells.geoms if c.contains(Point(p)))
         geom = cell.intersection(land).buffer(0)
+        if snap_coordinates:
+            geom = set_precision(geom, 1.0)
         # keep pieces near the marker; far fragments (e.g. Greenland slivers) stay neutral land
         reach = max(120.0, 2.5 * nearest[i])
         parts = [g for g in getattr(geom, "geoms", [geom])
                  if g.area >= 12 and g.distance(Point(p)) <= reach]
         on_land = land.buffer(2).contains(Point(p))
+        if snap_coordinates and (not parts or not unary_union(parts).covers(Point(p))):
+            raise ValueError(f"{r['refName']}: territory must contain its army marker")
         rings = []
         for g in parts:
             for ring in [g.exterior, *g.interiors]:
@@ -107,7 +115,7 @@ def main(ne_file, regions_file, out_file):
             continue
         for ring in [g.exterior, *g.interiors]:
             outline.append(np.round(np.asarray(ring.coords)[:-1]).astype(int).ravel().tolist())
-    json.dump({"width": MAP_W, "height": MAP_H, "land": outline, "regions": out_regions},
+    json.dump({"width": width, "height": height, "land": outline, "regions": out_regions},
               open(out_file, "w"), separators=(",", ":"))
     for row in report:
         if row[1] > 8 or not row[3] or row[2] < 400:

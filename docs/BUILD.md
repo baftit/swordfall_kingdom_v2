@@ -11,7 +11,7 @@ How to go from a fresh clone to a verified `game/SFK_v2.swf`.
 | Node.js | 24 | headless verifier (`tools/verify/`) |
 | Google Chrome | current | browser the verifier drives; set `CHROME=/path/to/chrome` if not in `/Applications` |
 
-Optional, only to regenerate the Grand Europe map: `pip install -r tools/mapgen/requirements.txt`
+Optional, only to regenerate the campaign maps: `pip install -r tools/mapgen/requirements.txt`
 (numpy, scipy, shapely).
 
 `tools/verify/node_modules` (Ruffle + playwright-core, pinned in `package.json`) is installed
@@ -20,7 +20,7 @@ automatically with `npm ci` on the first test run.
 ## 2. Build
 
 ```
-./patch.sh            # build + smoke / battle-speed / Grand Europe tests + live data check
+./patch.sh            # build + smoke / battle-speed / Grand Europe / restored-campaign tests + live data check
 ./patch.sh build      # build only -> game/SFK_v2.swf
 ```
 
@@ -34,7 +34,8 @@ What `build` does (`tools/patch.py`):
 3. **Data tables** — every `mods/data/*.json` that differs from `data/baseline/` is compiled
    into generated AS3 / P-code (unit library, tech library, difficulty, tech effects). Unchanged
    tables keep the original bytecode. `--force-data` regenerates all of them.
-4. **Map** — `mods/maps/europe.json` → generated region and map clips for Grand Europe.
+4. **Maps** — `mods/maps/*.json` → generated territory clips, map clips, and previews. Each
+   store campaign is unlocked only when its art is present and valid.
 5. **Text** — `mods/text/*.txt` replace static text tags (menu version label).
 
 Intermediate SWFs go to `build/work/`; nothing outside `build/` and `game/SFK_v2.swf` is written.
@@ -48,6 +49,7 @@ Intermediate SWFs go to `build/work/`; nothing outside `build/` and `game/SFK_v2
 | smoke | `tools/verify/smoke.json` | menu → load window → map select → Western Europe → END TURN → lane battle, 0 AVM2 errors |
 | speed | `tools/verify/speed.json` | F key gives x2 / x3 / x1 / x2, reset to x1 after retreat |
 | europe | `tools/verify/europe.json` | Grand Europe select, start, two AI turns, 0 errors |
+| restored campaigns | `tools/verify/{britain,ireland,spain,italy,east}.json` | each map select, preview switching, start, two AI turns, 0 errors |
 | check | live data dump | tables in the running game equal `mods/data`, 0 tech-effect mismatches |
 
 Screenshots and console logs: `build/verify/<scenario>/`. Run a single smoke test against any

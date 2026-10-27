@@ -1,5 +1,21 @@
 # Changelog — SFK_v2.swf
 
+## Store campaign map restoration — 2026-10-28
+
+- Invasion of Britain is playable: generated coastline and 33 territory polygons reuse the
+  Grand Europe pipeline (`tools/mapgen/britain.py` → `mods/maps/britain.json` →
+  `class_111` territory art / `class_96` map art). `class_28` remains the region data library.
+- Both selection screens show Britain's starting-ownership thumbnail. Preview shapes are
+  separate per campaign and removed when switching maps.
+- Isle of Kings (26 territories), Hispania (30), Conquest of Italy (25) and Storm in the East
+  (54) use the same pipeline through `tools/mapgen/campaigns.py`, with matching map previews.
+- Each store campaign unlocks during the build only when its art is present and valid.
+  Missing art keeps its campaign locked. Victory progression is unchanged.
+- Integer-coordinate snapping preserves valid territory geometry; every restored territory
+  contains its army marker. Region data, faction data and connections are unchanged.
+- The full `./patch.sh` suite includes all five restored campaigns' map selection, preview
+  switching, start and two END TURNs.
+
 ## v2.1 — 2026-10-26
 
 ### Grand Europe playable, with a generated map
@@ -18,6 +34,14 @@
   from a `class_149.method_3` prefix), coloured by starting ownership.
 - The dead "Find more maps at overworldlabs.com" link overlapping the 10-kingdom list is hidden.
 - **Main-menu version label** `v1.067k` → `v2.1` (text tag 8501, `mods/text/`).
+
+### Fixed after play-testing
+- **Dead kingdoms stayed in the Kingdoms list** (`class_83.updateDisplay` prefix): the rows were only built at
+  campaign start, so an eliminated faction stayed listed and every stats line shifted up one row. The list is now
+  rebuilt whenever the number of enabled factions changes.
+- **Results screen button** (`class_149.method_243`): after Total Victory / Utter Defeat it now opens Select a Map
+  instead of the bare title screen. The five other campaigns stay locked (store-only, and they ship with no map art:
+  unlocking them gives a blank ocean).
 
 ### Fixed during this pass
 - **END TURN was broken in v2.1's first build**: the generated AI catch-up method

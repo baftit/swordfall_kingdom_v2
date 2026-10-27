@@ -146,6 +146,11 @@ Europe's (Neutral + 10 kingdoms).
 | `class_149.method_213` / `method_364` | New Campaign → Select a Map (`var_35`); kingdom-list Back → Select a Map |
 | `class_149.method_3` | GameManager ENTER_FRAME — prefix syncs map thumbnails, hides `var_31.var_571` promo link |
 | `class_113` / `class_98` | Grand Europe region clip / map clip — regenerated with drawn territories |
+| `class_111` / `class_96` | Britain territory clip / map clip — regenerated from `mods/maps/britain.json`; `class_28` holds region data |
+| `class_114` / `class_99` | Ireland territory clip / map clip |
+| `class_116` / `class_101` | Spain territory clip / map clip |
+| `class_115` / `class_100` | Italy territory clip / map clip |
+| `class_112` / `class_97` | East territory clip / map clip |
 | sprite 8346 (`var_321` on `var_35`/`var_31`) | shared map preview, 7 frames; only frame 1 has art |
 | text 8501 | main-menu version label |
 
@@ -158,4 +163,5 @@ Europe's (Neutral + 10 kingdoms).
 - Difficulty values: easy 0.95/1.0/0.8/0.5, normal 0.93/0.8/1.0/0.35, hard
   0.91/0.7/1.32/0.3, insane 0.88/0.58/1.65/0.25 (caution / player-threat / AI income /
   gang-up) — see GAME_DATA.md.
-- Campaigns: Western Europe *and* Grand Europe are open; the other five are locked.
+- Campaigns: all seven are playable with the recovered map JSON files. A store campaign stays locked
+  if its art file is absent; malformed or incomplete art stops the build.
