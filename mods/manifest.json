@@ -63,6 +63,13 @@
       "file": "pcode/menu_preview_sync.prefix",
       "mode": "prefix",
       "why": "v2.1: draw generated map thumbnails (class_113.syncPreview) and hide the dead overworldlabs link on the kingdom list"
+    },
+    {
+      "class": "class_83",
+      "method": "updateDisplay",
+      "file": "pcode/kingdom_list_resync.prefix",
+      "mode": "prefix",
+      "why": "v2.1: rebuild the Kingdoms list when a faction is eliminated by an AI, so the dead kingdom disappears and stats stay aligned"
     }
   ],
   "as3": [],
