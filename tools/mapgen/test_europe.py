@@ -45,7 +45,9 @@ class Europe1070Tests(unittest.TestCase):
     def test_geographic_reference_points(self):
         for lon,lat,expected in [(-.12,51.5,'england'),(1.1,49.4,'normandy'),(2.35,48.85,'burgundy'),
            (12.5,41.9,'s_italy'),(32.85,39.93,'anatolia'),(28.85,41.1,'greece'),
-           (31.2,30,'nile_delta'),(44.4,33.3,'iraq'),(18.1,59.3,'sweden'),(-3.15,59.04,'norway')]:
+           (31.2,30,'nile_delta'),(44.4,33.3,'iraq'),(18.1,59.3,'sweden'),(-3.15,59.04,'norway'),
+           (-9.13,38.77,'andalusia'),(-8.43,41.55,'portugal'),(-8.43,40.21,'portugal'),
+           (-4.03,39.86,'andalusia'),(-3.7,40.42,'andalusia')]:
             self.assertEqual(self.province_at(lon,lat),[expected],(lon,lat))
 
     def test_1070_ownership_and_rulers(self):

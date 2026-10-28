@@ -1,5 +1,25 @@
 # Changelog — SFK_v2.swf
 
+## Grand Europe 1070 reconstruction — 2026-10-28
+
+- Replaced the marker-warped map with real projected coastlines and 67 authored geographic
+  provinces on a 2200×1600 map. Labels, army anchors, ocean, previews and polygon selectors
+  use the same coordinates; shared borders retain the bold coast/dashed interior style.
+- Added campaign-specific region/faction overrides with ten playable historical powers,
+  corrected 1070 ownership and rulers, and regenerated symmetric movement connections.
+  Byzantium retains most Anatolia before Manzikert; Almoravids do not start in Iberia;
+  England retains Normandy; Denmark does not own Sweden; Sancho II rules Castile.
+  Portucale is restricted to the north/Coimbra, with Lisbon and Toledo in al-Andalus.
+- Removed several later-era starting units and unique-unit choices in this campaign.
+  Global unit statistics remain unchanged. Smaller polities share neutral grey as a game
+  convention; no fictional Illyrian empire is added.
+- Added reproducible geometry/historical-data tests, western and eastern province/sea
+  selection checks, completed-player-turn assertions through 1072, and live override checks.
+- Preserved other campaign generators via `tools/mapgen/coastline.py`. Existing saves
+  retain their saved state; use a new Grand Europe campaign for the reconstructed position.
+- Documented sources and the limits of this macro-province reconstruction in
+  [EUROPE_1070.md](EUROPE_1070.md); refreshed the live game-data reference.
+
 ## Britain authored territories — 2026-10-28
 
 - Replaced Britain's equal-distance cells with 33 authored vector territories in

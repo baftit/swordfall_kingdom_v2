@@ -3,7 +3,7 @@
 // Usage: node verify.mjs <swf> [--steps steps.json] [--out dir] [--wait ms]
 //
 // Loads the SWF in headless Chromium + self-hosted Ruffle, runs an optional
-// list of steps ({"click":[x,y]} | {"wait":ms} | {"shot":"name"} | {"key":"Enter"} |
+// list of steps ({"click":[x,y]} | {"wait":ms} | {"shot":"name"} | {"key":"Enter","duration":ms} |
 // {"expect":"trace text"} | {"countFromHere":true} |
 // {"expectCount":{"text":"trace text","count":2}}),
 // and exits non-zero if Ruffle logged an AVM2 error / panic.
@@ -74,7 +74,7 @@ try {
   for (const s of steps) {
     if (s.countFromHere) countFrom = log.length;
     if (s.click) await tab.mouse.click(s.click[0], s.click[1]);
-    if (s.key) await tab.keyboard.press(s.key);
+    if (s.key) await tab.keyboard.press(s.key, { delay: s.duration ?? 0 });
     if (s.wait) await tab.waitForTimeout(s.wait);
     if (s.shot) await tab.screenshot({ path: path.join(outDir, `${String(n++).padStart(2, "0")}_${s.shot}.png`) });
     if (s.eval) log.push(`[eval] ${JSON.stringify(await tab.evaluate(s.eval))}`);

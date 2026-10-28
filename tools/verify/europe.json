@@ -21,6 +21,7 @@
  {"click": [400, 461]},
  {"wait": 1500},
  {"shot": "ge_map"},
+ {"expect": "Europe player turn ready: 1070"},
  {"countFromHere": true},
  {"click": [400, 250]},
  {"wait": 150},
@@ -69,10 +70,12 @@
  {"wait": 12000},
  {"click": [400, 461]},
  {"wait": 1000},
+ {"expect": "Europe player turn ready: 1071"},
  {"shot": "ge_after_turn"},
  {"click": [755, 21]},
  {"wait": 12000},
  {"click": [400, 461]},
  {"wait": 1000},
+ {"expect": "Europe player turn ready: 1072"},
  {"shot": "ge_after_turn2"}
 ]

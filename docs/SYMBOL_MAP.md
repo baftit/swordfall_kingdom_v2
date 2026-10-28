@@ -145,7 +145,9 @@ Europe's (Neutral + 10 kingdoms).
 | `class_95.method_109` | AI income + catch-up — generated from `difficulty.json` |
 | `class_149.method_213` / `method_364` | New Campaign → Select a Map (`var_35`); kingdom-list Back → Select a Map |
 | `class_149.method_3` | GameManager ENTER_FRAME — prefix syncs map thumbnails, hides `var_31.var_571` promo link |
-| `class_113` / `class_98` | Grand Europe region clip / map clip — regenerated with drawn territories |
+| `class_113` / `class_98` | Grand Europe territory / map clips — projected 1070 geography, labels, polygon hit areas and player-turn readiness traces |
+| `class_20.method_8`, `class_29.method_7` | Grand Europe region / faction initializers — sparse 1070 overrides inserted before return |
+| `class_9.method_91` | Campaign metadata — Grand Europe 1070 dimensions/description combined with recovered-campaign unlock edits |
 | `class_111` / `class_96` | Britain territory clip / map clip — regenerated from `mods/maps/britain.json`; `class_28` holds region data |
 | `class_114` / `class_99` | Ireland territory clip / map clip |
 | `class_116` / `class_101` | Spain territory clip / map clip |

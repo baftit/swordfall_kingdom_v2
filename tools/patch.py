@@ -812,8 +812,24 @@ def gen_map_clip(cls, region_cls, land, selector_names=None, layout=None):
       }}
 """
     if layout:
+        hit_declarations += "\n      private var lastReadyDate:int = -1;"
+        hit_handler += """
+      // Trace a completed AI round only after control returns to the player.
+      // Advancing the date alone also happens before invasion dialogs resolve.
+      private function traceReadyTurn(event:Event) : void
+      {
+         if(parent == null || !(parent.parent is class_149)) return;
+         var game:class_149 = parent.parent as class_149;
+         if(game.gameMode == "player" && !game.var_83.visible && game.currentDate != lastReadyDate)
+         {
+            lastReadyDate = game.currentDate;
+            trace("Europe player turn ready: " + lastReadyDate);
+         }
+      }
+"""
         labels = json.dumps(layout["labels"])
         map_setup = f"""
+         addEventListener(Event.ENTER_FRAME,traceReadyTurn,false,0,true);
          // Reproject the whole strategic map, not just its coloured territory art.
          var ocean:DisplayObject = getChildAt(0);
          var child:DisplayObject;
@@ -866,6 +882,7 @@ def gen_map_clip(cls, region_cls, land, selector_names=None, layout=None):
    import flash.display.Shape;
    import flash.display.Sprite;
    import flash.events.MouseEvent;
+   import flash.events.Event;
    import flash.geom.Matrix;
    import flash.geom.ColorTransform;
 
@@ -1264,6 +1281,8 @@ def main(argv):
             sys.exit("battle speed test failed")
         if run_verify(OUTPUT, steps=VERIFY / "europe.json", out=BUILD / "verify/europe") != 0:
             sys.exit("Grand Europe test failed")
+        if run_verify(OUTPUT, steps=VERIFY / "europe-east.json", out=BUILD / "verify/europe-east") != 0:
+            sys.exit("Grand Europe eastern test failed")
         for name, (_, _, ref, _) in MAP_CLASSES.items():
             if name != "europe" and (MODS / "maps" / f"{name}.json").exists():
                 if run_verify(OUTPUT, steps=VERIFY / f"{name}.json", out=BUILD / f"verify/{name}") != 0:

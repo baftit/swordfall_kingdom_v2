@@ -29,6 +29,7 @@ data/
 docs/
   BUILD.md             build, test, release manual
   CHANGELOG.md         what v2 changes vs. the original
+  EUROPE_1070.md      Grand Europe reconstruction, sources and limitations
   GAME_DATA.md         all game tables + formulas (generated)
   SYMBOL_MAP.md        class/method roles under the renamed identifiers
   ARCHITECTURE.md      original reverse-engineering report
