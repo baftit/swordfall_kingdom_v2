@@ -113,5 +113,5 @@ padding is retained; the existing camera allows 100px extra downward travel. The
 compares every Europe override and campaign field with the running SWF. Screenshots
 are under `build/verify/europe/` and `build/verify/europe-east/`.
 
-Britain uses its separate authored SVG. The other recovered maps continue to use the
-previous procedural pipeline, preserved in `tools/mapgen/coastline.py`.
+The other six maps now have their own [regional geographic reconstructions](MAP_RECONSTRUCTION.md).
+The previous procedural pipeline is archived in `tools/mapgen/coastline.py`.

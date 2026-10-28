@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Generate the remaining store campaigns with the shared coastline/Voronoi pipeline.
+"""Regenerate regional campaigns with authored geographic envelopes and real coastlines.
 
 Usage: campaigns.py <Ireland|Spain|Italy|East> <ne_50m_land.geojson> <regions.json> <out.json>
-Approximate historical centres map real geography onto the existing army markers.
+The centre catalogue below supplies authoring anchors; regional.py performs projection.
 """
 import sys
-from coastline import main
 
 CAMPAIGNS = {
     'Ireland': ((791, 786), (-11, 50, -2, 57), {
@@ -65,7 +64,11 @@ CAMPAIGNS = {
 }
 
 if __name__ == '__main__':
+    from pathlib import Path
+    from regional import ROOT, main
     campaign, ne_file, regions_file, out_file = sys.argv[1:]
-    (width, height), view, lonlat = CAMPAIGNS[campaign]
-    main(ne_file, regions_file, out_file, lonlat=lonlat, width=width, height=height,
-         view_bounds=view, smoothing=0.0, snap_coordinates=True)
+    if Path(regions_file).resolve() != (ROOT/f'data/baseline/regions.{campaign}.json').resolve():
+        raise SystemExit('Use the stable baseline region IDs; edit geographic source assets instead.')
+    main(ne_file, [campaign])
+    canonical=ROOT/f'mods/maps/{campaign.lower()}.json'
+    if Path(out_file).resolve()!=canonical.resolve():Path(out_file).write_text(canonical.read_text())

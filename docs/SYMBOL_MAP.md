@@ -148,7 +148,8 @@ Europe's (Neutral + 10 kingdoms).
 | `class_113` / `class_98` | Grand Europe territory / map clips — projected 1070 geography, labels, polygon hit areas and player-turn readiness traces |
 | `class_20.method_8`, `class_29.method_7` | Grand Europe region / faction initializers — sparse 1070 overrides inserted before return |
 | `class_9.method_91` | Campaign metadata — Grand Europe 1070 dimensions/description combined with recovered-campaign unlock edits |
-| `class_111` / `class_96` | Britain territory clip / map clip — regenerated from `mods/maps/britain.json`; `class_28` holds region data |
+| `class_117` / `class_102` | Western Europe territory/map clips — regenerated geography and polygon selectors |
+| `class_111` / `class_96` | Britain territory/map clips — geographic province envelopes replace the archived SVG layout |
 | `class_114` / `class_99` | Ireland territory clip / map clip |
 | `class_116` / `class_101` | Spain territory clip / map clip |
 | `class_115` / `class_100` | Italy territory clip / map clip |
@@ -167,3 +168,8 @@ Europe's (Neutral + 10 kingdoms).
   gang-up) — see GAME_DATA.md.
 - Campaigns: all seven are playable with the recovered map JSON files. A store campaign stays locked
   if its art file is absent; malformed or incomplete art stops the build.
+
+Regional campaign tables now apply `mods/data/regional_campaigns.json` at each region
+`method_8` / faction `method_7` return point. Campaign dimensions and descriptions are
+patched together in `class_9.method_91`. All seven generated map classes report camera
+positions, invasion visibility and completed player turns for verification.

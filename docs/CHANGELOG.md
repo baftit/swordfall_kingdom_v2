@@ -1,5 +1,25 @@
 # Changelog — SFK_v2.swf
 
+## All regional maps reprojected and corrected — 2026-10-28
+
+- Rebuilt Western Europe, Britain, Ireland, Hispania, Italy and Storm in the East from
+  authored WGS84 envelopes and unwarped Natural Earth coastlines. All 202 regional IDs
+  remain stable. Labels, army markers, previews, camera positions and polygon selectors
+  share one coordinate system; the old rectangular click surfaces are removed.
+  Subdued non-playable land provides context beyond the campaign provinces.
+- Corrected each campaign's own starting year and political setup: William I's Normandy,
+  Sancho II's Castile, independent Denmark, Mathgamain and Fergal in 965, the 1180 Iberian
+  crowns and Almohads, Drogo's 1050 Norman marches, and pre-Manzikert Byzantine provinces.
+- All seven campaigns now compile sparse overrides through the original initializers and
+  validate them against runtime dumps. Global unit statistics and combat rules remain.
+- Added shared-boundary, geographic reference, landmass, inland-gap, roster and ownership
+  validation. Regional Ruffle scenarios pan through actual controls, reject sea clicks and
+  require two completed AI rounds, resolving invasion dialogs when necessary.
+- Updated manual battle checks to attack independent Wales, since Normandy now belongs
+  to England. Archived the old Britain SVG compiler and procedural coastline pipeline.
+- Documented sources, coarse province/faction groupings and regeneration in
+  [MAP_RECONSTRUCTION.md](MAP_RECONSTRUCTION.md). Start new campaigns for the revised data.
+
 ## Grand Europe 1070 reconstruction — 2026-10-28
 
 - Replaced the marker-warped map with real projected coastlines and 67 authored geographic

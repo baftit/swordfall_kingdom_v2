@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile Britain's authored SVG territories into the existing map JSON format.
+"""Compile the archived game-coordinate Britain SVG (superseded by regional.py).
 
 Usage: britain.py [--source assets/britain.svg] <regions.Britain.json> <out.json>
 The former <coastline.geojson> <regions.json> <out.json> command remains accepted;
@@ -154,6 +154,18 @@ def compile_svg(source, regions):
 
 
 def main():
+    # Keep explicit --source compilation for archived SVG editing and validation.
+    # Normal regeneration uses geographic envelopes, matching the other maps.
+    if '--source' not in sys.argv:
+        from regional import ROOT, main as geographic_main
+        paths=sys.argv[1:]
+        if len(paths) not in (2,3):
+            raise SystemExit('provide [coastline.geojson] regions.Britain.json out.json')
+        coast=Path(paths[0]) if len(paths)==3 else ROOT/'build/ne_50m_land.geojson'
+        geographic_main(coast,['Britain'])
+        target=Path(paths[-1]);canonical=ROOT/'mods/maps/britain.json'
+        if target.resolve()!=canonical.resolve():target.write_text(canonical.read_text())
+        return
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source', type=Path, default=SOURCE)
     parser.add_argument('paths', nargs='+', metavar='PATH')

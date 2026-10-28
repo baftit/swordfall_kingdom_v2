@@ -20,7 +20,7 @@ mods/                  ← everything that makes v2 different; edit here
   manifest.json        list of bytecode patches (P-code, AS3, text)
   data/*.json          unit / tech / difficulty / tech-effect tables
   pcode/               hand-written method patches
-  maps/europe.json     generated Grand Europe territories
+  maps/*.json          generated geographic territories for all seven campaigns
   text/                static text replacements (menu version label)
   README.md            how each mods/ file is applied
 data/
@@ -29,6 +29,7 @@ data/
 docs/
   BUILD.md             build, test, release manual
   CHANGELOG.md         what v2 changes vs. the original
+  MAP_RECONSTRUCTION.md regional maps, historical sources and limitations
   EUROPE_1070.md      Grand Europe reconstruction, sources and limitations
   GAME_DATA.md         all game tables + formulas (generated)
   SYMBOL_MAP.md        class/method roles under the renamed identifiers

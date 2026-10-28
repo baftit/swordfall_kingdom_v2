@@ -62,11 +62,11 @@ def main(data_dir, out_file, rules_dir=None):
     w("Editable: **units** (`mods/data/units.json` → `class_3`), **techs** "
       "(`mods/data/techs.json` → `class_7`), **tech effects** (`mods/data/tech_effects.json` → "
       "`class_11.setTech`, `class_8.setTech`, `class_95.method_129`/`method_76`), **difficulty** "
-      "(`mods/data/difficulty.json` → `class_95.method_34`/`method_109`), and **Grand Europe** "
-      "(`mods/data/europe_1070.json` → campaign metadata, factions and regions). "
-      "Europe is a historically grounded 67-province reconstruction; see "
-      "[sources and limitations](EUROPE_1070.md). Abilities and other campaigns' starting "
-      "tables retain their original data. Changes vs the original game: `CHANGELOG.md`.\n")
+      "(`mods/data/difficulty.json` → `class_95.method_34`/`method_109`), and **campaign reconstructions** "
+      "(`mods/data/europe_1070.json` / `regional_campaigns.json` → campaign metadata, factions and regions). "
+      "These are historically grounded strategy reconstructions; see "
+      "[sources and limitations](MAP_RECONSTRUCTION.md) and [Grand Europe](EUROPE_1070.md). Abilities retain their original "
+      "data. Changes vs the original game: `CHANGELOG.md`.\n")
 
     # ------------------------------------------------------------ campaigns
     w("## Campaigns (`class_9`)\n")

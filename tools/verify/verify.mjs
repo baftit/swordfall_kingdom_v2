@@ -65,6 +65,47 @@ tab.on("requestfailed", (r) => log.push(`[netfail] ${r.url()}`));
 tab.on("response", (r) => { if (r.status() >= 400) log.push(`[http ${r.status()}] ${r.url()}`); });
 
 tab.on("crash", () => log.push("[browser] page crashed"));
+// Pan through the actual keyboard controls; SFKVIEW traces only report camera state.
+const camera = (campaign) => {
+  const line = log.findLast((l) => l.includes(`SFKVIEW ${campaign} `));
+  const match = line?.match(new RegExp(`SFKVIEW ${campaign} (-?\\d+) (-?\\d+)`));
+  if (!match) throw new Error(`No camera trace for ${campaign}`);
+  return [Number(match[1]), Number(match[2])];
+};
+const panTo = async ({ campaign, x, y, width, height }) => {
+  const target = [Math.max(800 - width, Math.min(0, 400 - x)),
+                  Math.max(500 - height, Math.min(34, 250 - y))];
+  for (let i = 0; i < 60; i++) {
+    const pos = camera(campaign);
+    const delta = target.map((v, j) => v - pos[j]);
+    if (delta.every((v) => Math.abs(v) <= 14)) return pos;
+    const axis = Math.abs(delta[0]) > Math.abs(delta[1]) ? 0 : 1;
+    const key = axis === 0 ? (delta[0] > 0 ? "ArrowLeft" : "ArrowRight")
+                           : (delta[1] > 0 ? "ArrowUp" : "ArrowDown");
+    await tab.keyboard.press(key, { delay: Math.min(500, Math.max(40, Math.abs(delta[axis]) / 0.36)) });
+    await tab.waitForTimeout(100);
+  }
+  throw new Error(`Camera did not reach ${campaign} world point ${x},${y}`);
+};
+const completeTurn = async ({ campaign, year, timeout = 60000 }) => {
+  const checkpoint = log.length;
+  await tab.mouse.click(755, 21);
+  const deadline = Date.now() + timeout;
+  while (Date.now() < deadline) {
+    if (log.slice(checkpoint).some((l) => l.includes(`${campaign} player turn ready: ${year}`))) {
+      console.log(`  completed ${campaign} turn: ${year}`);
+      return;
+    }
+    const dialog = log.findLast((l) => l.includes(`SFKDIALOG ${campaign} `));
+    if (dialog?.includes(`SFKDIALOG ${campaign} true`)) await tab.mouse.click(245, 434); // Auto-Battle
+    else {
+      await tab.mouse.click(400, 384); // battle-result acknowledgement
+      await tab.mouse.click(400, 461); // campaign message acknowledgement
+    }
+    await tab.waitForTimeout(500);
+  }
+  throw new Error(`${campaign} failed to return player control in ${year}`);
+};
 try {
   await tab.goto(`http://127.0.0.1:${port}/`);
   await tab.waitForTimeout(initialWait);
@@ -75,6 +116,11 @@ try {
     if (s.countFromHere) countFrom = log.length;
     if (s.click) await tab.mouse.click(s.click[0], s.click[1]);
     if (s.key) await tab.keyboard.press(s.key, { delay: s.duration ?? 0 });
+    if (s.worldClick) {
+      const [x, y] = await panTo(s.worldClick);
+      await tab.mouse.click(s.worldClick.x + x, s.worldClick.y + y);
+    }
+    if (s.completeTurn) await completeTurn(s.completeTurn);
     if (s.wait) await tab.waitForTimeout(s.wait);
     if (s.shot) await tab.screenshot({ path: path.join(outDir, `${String(n++).padStart(2, "0")}_${s.shot}.png`) });
     if (s.eval) log.push(`[eval] ${JSON.stringify(await tab.evaluate(s.eval))}`);

@@ -761,7 +761,7 @@ def gen_map_clip(cls, region_cls, land, selector_names=None, layout=None):
     """Campaign map class (class_98 layout) with a neutral land layer under the regions."""
     hit_declarations = hit_setup = hit_handler = ""
     map_setup = ""
-    campaign = "Europe" if layout else "Britain"
+    campaign = layout.get("campaign", "Europe") if layout else "Britain"
     if selector_names is not None:
         hit_declarations = "internal static const SELECTOR_NAMES:Array = " + json.dumps(selector_names) + ";"
         hit_setup = f"""
@@ -812,20 +812,32 @@ def gen_map_clip(cls, region_cls, land, selector_names=None, layout=None):
       }}
 """
     if layout:
-        hit_declarations += "\n      private var lastReadyDate:int = -1;"
-        hit_handler += """
+        hit_declarations += "\n      private var lastReadyDate:int = -1;\n      private var lastView:String = \"\";\n      private var lastDialog:String = \"\";"
+        hit_handler += f"""
       // Trace a completed AI round only after control returns to the player.
       // Advancing the date alone also happens before invasion dialogs resolve.
       private function traceReadyTurn(event:Event) : void
-      {
+      {{
          if(parent == null || !(parent.parent is class_149)) return;
          var game:class_149 = parent.parent as class_149;
+         var view:String = int(parent.x) + " " + int(parent.y);
+         if(view != lastView)
+         {{
+            lastView = view;
+            trace("SFKVIEW {campaign} " + view);
+         }}
+         var dialog:String = String(game.var_83.visible);
+         if(dialog != lastDialog)
+         {{
+            lastDialog = dialog;
+            trace("SFKDIALOG {campaign} " + dialog);
+         }}
          if(game.gameMode == "player" && !game.var_83.visible && game.currentDate != lastReadyDate)
-         {
+         {{
             lastReadyDate = game.currentDate;
-            trace("Europe player turn ready: " + lastReadyDate);
-         }
-      }
+            trace("{campaign} player turn ready: " + lastReadyDate);
+         }}
+      }}
 """
         labels = json.dumps(layout["labels"])
         map_setup = f"""
@@ -925,6 +937,7 @@ def gen_map_clip(cls, region_cls, land, selector_names=None, layout=None):
 
 MAP_CLASSES = {  # mods/maps/<name>.json -> (region clip, map clip, campaign ref, preview frame)
     "europe": ("class_113", "class_98", "Europe", 2),
+    "west": ("class_117", "class_102", "West", 1),
     "britain": ("class_111", "class_96", "Britain", 3),
     "ireland": ("class_114", "class_99", "Ireland", 4),
     "spain": ("class_116", "class_101", "Spain", 5),
@@ -939,17 +952,24 @@ def europe_config():
     return load_json(path) if path.exists() else None
 
 
+def campaign_config(ref):
+    if ref == "Europe":
+        return europe_config()
+    path = MODS / "data/regional_campaigns.json"
+    return load_json(path).get(ref) if path.exists() else None
+
+
 def campaign_rows(ref, kind):
     rows = load_json(BASELINE / f"{kind}.{ref}.json")
-    config = europe_config() if ref == "Europe" else None
+    config = campaign_config(ref)
     if config:
         overrides = config[kind]
         if len(overrides) != len(rows):
-            sys.exit(f"Europe {kind}: keep the stable baseline record count")
+            sys.exit(f"{ref} {kind}: keep the stable baseline record count")
         for row, changes in zip(rows, overrides):
             identity = "refName" if kind == "regions" else "selfIndex"
             if row[identity] != changes[identity]:
-                sys.exit(f"Europe {kind}: record order/IDs must match the baseline")
+                sys.exit(f"{ref} {kind}: record order/IDs must match the baseline")
             for key, value in changes.items():
                 if isinstance(value, dict):
                     row[key].update(value)
@@ -984,18 +1004,26 @@ def campaign_assignments(table, rows):
     return code
 
 
-def europe_patches():
-    config = europe_config()
-    if not config:
-        return []
+CAMPAIGN_DATA_CLASSES = {
+    "West": ("class_21", "class_23"), "Europe": ("class_20", "class_29"),
+    "Britain": ("class_28", "class_25"), "Ireland": ("class_17", "class_15"),
+    "Spain": ("class_22", "class_18"), "Italy": ("class_16", "class_26"),
+    "East": ("class_24", "class_27"),
+}
+
+
+def campaign_patches():
     patches = []
-    for kind, cls, table, method in [("regions", "class_20", "regions", "method_8"),
-                                      ("factions", "class_29", "factions", "method_7")]:
-        # Validate identities before compiling overrides into original initialization.
-        campaign_rows("Europe", kind)
-        code = campaign_assignments(table, config[kind])
-        patches.append({"class": cls, "method": method, "mode": "edit", "maxstack": 64,
-                        "edits": [{"find": "returnvoid", "replace": "\n".join(code + ["returnvoid"])}]})
+    for ref, (rc, fc) in CAMPAIGN_DATA_CLASSES.items():
+        config = campaign_config(ref)
+        if not config:
+            continue
+        for kind, cls, table, method in [("regions", rc, "regions", "method_8"),
+                                          ("factions", fc, "factions", "method_7")]:
+            campaign_rows(ref, kind)
+            code = campaign_assignments(table, config[kind])
+            patches.append({"class": cls, "method": method, "mode": "edit", "maxstack": 64,
+                            "edits": [{"find": "returnvoid", "replace": "\n".join(code + ["returnvoid"])}]})
     return patches
 
 
@@ -1019,16 +1047,16 @@ def map_changes():
             for i in fac["regions"]:
                 owners[i] = fac["colorIndex"]
         origins = [[r["locX"], r["locY"]] for r in regions]
-        coasts, borders = territory_edges(m["regions"], origins, continuous=name in ("britain", "europe"))
+        coasts, borders = territory_edges(m["regions"], origins, continuous=True)
         clip = gen_region_clip(region_cls, [_rings(r["rings"]) for r in m["regions"]], origins, owners,
-                               m["land"], (frame, *PREVIEW_SIZE, m["width"], m["height"]), coasts, borders,
+                               m.get("contextLand", m["land"]), (frame, *PREVIEW_SIZE, m["width"], m["height"]), coasts, borders,
                                [v[0] for k, v in MAP_CLASSES.items()
                                 if k != "europe" and (MODS / "maps" / f"{k}.json").exists()]
                                if name == "europe" else ())
         for cls, src in ((region_cls, clip),
-                         (map_cls, gen_map_clip(map_cls, region_cls, m["land"],
-                                                [r["refName"] for r in regions] if name in ("britain", "europe") else None,
-                                                m if name == "europe" and "labels" in m else None))):
+                         (map_cls, gen_map_clip(map_cls, region_cls, m.get("contextLand", m["land"]),
+                                                [r["refName"] for r in regions],
+                                                m if "labels" in m else None))):
             path = gen_dir / f"{cls}.as"
             path.write_text(src, encoding="utf-8")
             log(f"map    {f.relative_to(ROOT)} -> {path.relative_to(ROOT)}")
@@ -1104,7 +1132,7 @@ def build(force_data=False):
     pcode = [{**p, "path": MODS / p["file"]} if "file" in p else dict(p) for p in manifest.get("pcode", [])]
     as3 = [{**p, "path": MODS / p["file"]} for p in manifest.get("as3", [])]
     gen_pcode, gen_as3 = data_changes(force_data)
-    pcode += gen_pcode + europe_patches()
+    pcode += gen_pcode + campaign_patches()
     as3 += gen_as3 + map_changes()
     # Every store map stays locked unless map_changes compiled its complete art.
     campaigns = load_json(BASELINE / "campaigns.json")
@@ -1121,9 +1149,9 @@ def build(force_data=False):
                for k, v in MAP_CLASSES.items()):
             edits.append({"find": locks[i], "replace": "pop\npushtrue\n" + locks[i],
                           "occurrence": i + 1})
-    config = europe_config()
-    if config:
-        code = campaign_assignments("var_17", [{}, config["campaign"]])
+    metadata = [campaign_config(c["refName"]) for c in campaigns]
+    if any(metadata):
+        code = campaign_assignments("var_17", [c["campaign"] if c else {} for c in metadata])
         edits.append({"find": "returnvoid", "replace": "\n".join(code + ["returnvoid"])})
     if edits:
         pcode.append({"class": "class_9", "method": "method_91", "mode": "edit", "maxstack": 64, "edits": edits})
@@ -1232,21 +1260,28 @@ def check_mods(swf):
                 if l.get(k) != v and not (isinstance(v, float) and abs(l.get(k, 0) - v) < 1e-9):
                     print(f"  MISMATCH {name}[{i}].{k}: mods={v!r} live={l.get(k)!r}")
                     ok = False
-    config = europe_config()
-    if config:
+    live_campaigns = load_json(out_dir / "campaigns.json")
+    for ref in CAMPAIGN_DATA_CLASSES:
+        config = campaign_config(ref)
+        if not config:
+            continue
         for kind in ("regions", "factions"):
-            live = load_json(out_dir / f"{kind}.Europe.json")
+            live = load_json(out_dir / f"{kind}.{ref}.json")
+            if len(live) != len(config[kind]):
+                log(f"MISMATCH {ref} {kind} record count")
+                ok = False
+                continue
             for i, changes in enumerate(config[kind]):
                 for key, value in changes.items():
                     got = live[i].get(key)
-                    equal = all(got.get(k) == v for k, v in value.items()) if isinstance(value, dict) else got == value
+                    equal = (isinstance(got, dict) and all(got.get(k) == v for k, v in value.items())) if isinstance(value, dict) else got == value
                     if not equal:
-                        log(f"MISMATCH Europe {kind}[{i}].{key}")
+                        log(f"MISMATCH {ref} {kind}[{i}].{key}")
                         ok = False
-        campaign = load_json(out_dir / "campaigns.json")[1]
+        campaign = next(c for c in live_campaigns if c["refName"] == ref)
         for key, value in config["campaign"].items():
             if campaign.get(key) != value:
-                log(f"MISMATCH Europe campaign.{key}")
+                log(f"MISMATCH {ref} campaign.{key}")
                 ok = False
     fx = MODS / "data" / "tech_effects.json"
     if fx.exists():
