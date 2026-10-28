@@ -63,6 +63,130 @@
       "file": "pcode/menu_preview_sync.prefix",
       "mode": "prefix",
       "why": "v2.1: draw generated map thumbnails (class_113.syncPreview) and hide the dead overworldlabs link on the kingdom list"
+    },
+    {
+      "class": "class_83",
+      "method": "updateDisplay",
+      "file": "pcode/kingdom_list_resync.prefix",
+      "mode": "prefix",
+      "why": "v2.1: rebuild the Kingdoms list when a faction is eliminated by an AI, so the dead kingdom disappears and stats stay aligned"
+    },
+    {
+      "class": "class_149",
+      "method": "method_243",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "callpropvoid QName(PackageInternalNs(\"\"),\"method_62\"), 0",
+          "replace": "callpropvoid QName(PackageInternalNs(\"\"),\"method_62\"), 0\ngetlex QName(PackageNamespace(\"\"),\"var_89\")\npushfalse\nsetproperty QName(PackageNamespace(\"\"),\"visible\")\ngetlex QName(PackageNamespace(\"\"),\"var_31\")\npushfalse\nsetproperty QName(PackageNamespace(\"\"),\"visible\")\ngetlex QName(PackageNamespace(\"\"),\"var_35\")\npushtrue\nsetproperty QName(PackageNamespace(\"\"),\"visible\")\ngetlex QName(PackageNamespace(\"\"),\"audioController\")\ncallpropvoid QName(PackageNamespace(\"\"),\"method_16\"), 0"
+        }
+      ],
+      "why": "v2.1: the victory / defeat results button goes to Select a Map (start another campaign) instead of the bare title screen"
+    },
+    {
+      "class": "class_149",
+      "method": "method_195",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"http://www.overworldlabs.com\"",
+          "replace": "pushstring \"https://btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "class_149",
+      "method": "method_359",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"http://www.overworldlabs.com\"",
+          "replace": "pushstring \"https://btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "class_149",
+      "method": "method_274",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"http://www.overworldlabs.com/sfk.html\"",
+          "replace": "pushstring \"https://btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "class_94",
+      "method": "method_324",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"http://www.overworldlabs.com\"",
+          "replace": "pushstring \"https://btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "package_1.class_139",
+      "method": "method_84",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"www.overworldlabs.com\"",
+          "replace": "pushstring \"btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "class_8",
+      "method": "addExperience",
+      "file": "pcode/general_experience.pcode",
+      "why": "Cumulative XP progression through level 15, including large awards and legacy XP floors."
+    },
+    {
+      "class": "class_8",
+      "method": "method_12",
+      "file": "pcode/general_veteran.prefix",
+      "mode": "prefix",
+      "why": "Guaranteed veteran stat growth at levels 10-15; ability and deployment costs stop inflating after level 9."
+    },
+    {
+      "class": "class_8",
+      "method": "initExperience",
+      "file": "pcode/general_experience_init.pcode",
+      "why": "Initialize XP consistently with the extended thresholds without erasing banked experience."
+    },
+    {
+      "class": "class_8",
+      "method": "setSelf",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "returnvoid",
+          "replace": "getlocal0\ngetlocal1\ngetproperty QName(PackageNamespace(\"\"),\"var_107\")\nsetproperty QName(PackageNamespace(\"\"),\"var_107\")\ngetlocal0\ngetlocal1\ngetproperty QName(PackageNamespace(\"\"),\"powerRating\")\nsetproperty QName(PackageNamespace(\"\"),\"powerRating\")\nreturnvoid"
+        }
+      ],
+      "why": "Keep general XP and veteran power when cloning commanders."
+    },
+    {
+      "class": "class_68",
+      "method": "method_278",
+      "file": "pcode/breakthrough_player.prefix",
+      "mode": "prefix",
+      "why": "A surviving breakthrough earns five deployment morale points, capped at the existing maximum."
+    },
+    {
+      "class": "class_68",
+      "method": "method_236",
+      "file": "pcode/breakthrough_enemy.prefix",
+      "mode": "prefix",
+      "why": "A surviving breakthrough earns five deployment morale points, capped at the existing maximum."
     }
   ],
   "as3": [],
@@ -71,6 +195,31 @@
       "id": 8501,
       "file": "text/8501_version.txt",
       "why": "main-menu version label v1.067k -> v2.1"
+    },
+    {
+      "id": 8502,
+      "file": "text/8502_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    },
+    {
+      "id": 8503,
+      "file": "text/8503_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    },
+    {
+      "id": 8504,
+      "file": "text/8504_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    },
+    {
+      "id": 8402,
+      "file": "text/8402_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    },
+    {
+      "id": 8403,
+      "file": "text/8403_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
     }
   ]
 }

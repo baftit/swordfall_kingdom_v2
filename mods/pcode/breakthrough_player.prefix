@@ -1,0 +1,31 @@
+; Award only a live unit breakthrough, never a death or battle cleanup.
+; maxstack 5
+getlocal0
+getproperty QName(PackageInternalNs(""),"selfMode")
+pushstring "on"
+ifne breakthrough_original
+getlocal1
+getproperty QName(PackageNamespace(""),"var_347")
+iffalse breakthrough_original
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty QName(PackageNamespace(""),"selfStatus")
+pushstring "alive"
+ifne breakthrough_original
+getlocal0
+getlex QName(PackageNamespace(""),"Math")
+getlocal0
+getproperty QName(PackageInternalNs(""),"var_332")
+getlocal0
+getproperty QName(PackageInternalNs(""),"var_68")
+pushbyte 5
+add
+callproperty QName(PackageNamespace(""),"min"), 2
+convert_i
+setproperty QName(PackageInternalNs(""),"var_68")
+getlocal0
+callpropvoid QName(PackageInternalNs(""),"updateDisplay"), 0
+findpropstrict QName(PackageNamespace(""),"trace")
+pushstring "SFKBREAKTHROUGH player +5"
+callpropvoid QName(PackageNamespace(""),"trace"), 1
+breakthrough_original:

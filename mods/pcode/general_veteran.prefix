@@ -1,0 +1,49 @@
+; Level 10-15 veteran growth; preserve the original level-up logic through level 9.
+; maxstack 4
+getlocal0
+getproperty QName(PackageNamespace(""),"selfLevel")
+pushbyte 9
+iflt veteran_original
+getlocal0
+getproperty QName(PackageNamespace(""),"selfLevel")
+pushbyte 15
+ifge veteran_done
+getlocal0
+getlocal0
+getproperty QName(PackageNamespace(""),"selfLevel")
+pushbyte 1
+add
+setproperty QName(PackageNamespace(""),"selfLevel")
+getlocal0
+getlocal0
+getproperty QName(PackageNamespace(""),"attack")
+pushbyte 2
+add
+setproperty QName(PackageNamespace(""),"attack")
+getlocal0
+getlocal0
+getproperty QName(PackageNamespace(""),"hitPoints")
+pushbyte 20
+add
+setproperty QName(PackageNamespace(""),"hitPoints")
+getlocal0
+getlocal0
+getproperty QName(PackageNamespace(""),"powerRating")
+pushbyte 100
+add
+setproperty QName(PackageNamespace(""),"powerRating")
+getlocal0
+getproperty QName(PackageNamespace(""),"selfLevel")
+pushbyte 2
+modulo
+pushbyte 0
+ifne veteran_done
+getlocal0
+getlocal0
+getproperty QName(PackageNamespace(""),"armor")
+pushbyte 1
+add
+setproperty QName(PackageNamespace(""),"armor")
+veteran_done:
+returnvoid
+veteran_original:

@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""SFK mod pipeline: SFK.swf -> build/SFK_clean.swf -> SFK_v2.swf.
+"""SFK mod pipeline: game/SFK.swf -> build/SFK_clean.swf -> game/SFK_v2.swf.
 
-  patch.py build [--force-data]   rebuild SFK_v2.swf from mods/manifest.json
-  patch.py verify [swf]           headless Ruffle smoke test (default SFK_v2.swf)
+  patch.py build [--force-data]   rebuild game/SFK_v2.swf from mods/manifest.json
+  patch.py verify [swf]           headless Ruffle smoke test (default game/SFK_v2.swf)
   patch.py dump [swf] [out_dir]   dump live game tables of a build to JSON
   patch.py extract                refresh data/baseline/ from the original game
                                   and seed mods/data/*.json if missing
+  patch.py export [fmt] [out_dir] decompile the renamed base for reading
+                                  (fmt as3 or pcode, default as3 -> build/src)
   patch.py all                    build + smoke / battle-speed / Grand Europe tests + dump-check
 
 Order of operations in build:
@@ -15,6 +17,8 @@ Order of operations in build:
      generated data classes for every mods/data table that differs from
      data/baseline (or all of them with --force-data)
 """
+from collections import Counter
+import copy
 import hashlib
 import json
 import re
@@ -30,8 +34,8 @@ BUILD = ROOT / "build"
 MODS = ROOT / "mods"
 BASELINE = ROOT / "data/baseline"
 VERIFY = ROOT / "tools/verify"
-ORIGINAL = ROOT / "SFK.swf"
-OUTPUT = ROOT / "SFK_v2.swf"
+ORIGINAL = ROOT / "game/SFK.swf"
+OUTPUT = ROOT / "game/SFK_v2.swf"
 
 
 def ffdec(*args, strict=True):
@@ -151,6 +155,8 @@ def apply_pcode(swf_in, swf_out, patches):
             original = method_pcode(swf_in, p["class"], p["method"])
             path = gen_dir / f"{p['class']}.{p['method']}.{mode}.pcode"
             text = with_prefix(original, p["path"]) if mode == "prefix" else with_edits(original, p["edits"])
+            if p.get("maxstack"):
+                text = re.sub(r"^maxstack (\d+)$", lambda m: f"maxstack {max(int(m.group(1)), p['maxstack'])}", text, flags=re.M)
             path.write_text(text, encoding="utf-8")
         if mode is None:
             lint_pcode(Path(path).read_text(encoding="utf-8"), p["file"])
@@ -407,6 +413,68 @@ MAP_TEXTURE = r"""
          return tex;
       }
 
+      // Keep a single 6px dash / 4px gap phase across each shared polyline.
+      internal static function drawEdges(g:Graphics, data:String, ox:Number, oy:Number, sc:Number, dashed:Boolean) : void
+      {
+         var p:Array;
+         var x:Number;
+         var y:Number;
+         var dx:Number;
+         var dy:Number;
+         var length:Number;
+         var at:Number;
+         var end:Number;
+         var travelled:Number;
+         var phase:Number;
+         var step:Number;
+         var j:int;
+         for each(var segment:String in data.split("|"))
+         {
+            p = segment.split(",");
+            if(p.length < 4 || p.length % 2 != 0)
+            {
+               continue;
+            }
+            travelled = 0;
+            j = 2;
+            while(j < p.length)
+            {
+               x = Number(p[j - 2]) + ox;
+               y = Number(p[j - 1]) + oy;
+               dx = Number(p[j]) - Number(p[j - 2]);
+               dy = Number(p[j + 1]) - Number(p[j - 1]);
+               length = Math.sqrt(dx * dx + dy * dy);
+               if(length > 0)
+               {
+                  if(!dashed)
+                  {
+                     g.moveTo(x * sc,y * sc);
+                     g.lineTo((x + dx) * sc,(y + dy) * sc);
+                  }
+                  else
+                  {
+                     at = 0;
+                     while(at < length)
+                     {
+                        phase = (travelled + at) % 10;
+                        step = phase < 6 ? 6 - phase : 10 - phase;
+                        end = Math.min(at + step,length);
+                        if(phase < 6)
+                        {
+                           g.moveTo((x + dx * at / length) * sc,(y + dy * at / length) * sc);
+                           g.lineTo((x + dx * end / length) * sc,(y + dy * end / length) * sc);
+                        }
+                        // Guard against sub-pixel floating point stalls at dash joins.
+                        at = end > at ? end : at + 0.000001;
+                     }
+                  }
+                  travelled += length;
+               }
+               j += 2;
+            }
+         }
+      }
+
       internal static function drawRings(g:Graphics, data:String, ox:Number, oy:Number, sc:Number = 1) : void
       {
          var rings:Array = data.split("|");
@@ -437,11 +505,90 @@ def _rings(rings):
     return "|".join(",".join(map(str, r)) for r in rings)
 
 
-def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview):
+def territory_edges(map_regions, origins, continuous=False, physical_land=None):
+    """Separate shared territory edges from coastlines without geometry dependencies.
+
+    Canonical endpoint order gives both neighbouring clips the same dash phase.
+    """
+    # Unshared edges can border inland context, not just the sea.
+    coast_grid = {}
+    if physical_land is not None:
+        for ring in physical_land:
+            points = list(zip(ring[::2],ring[1::2]))
+            for a,b in zip(points,points[1:]+points[:1]):
+                for gx in range(int(min(a[0],b[0])-2)//64,int(max(a[0],b[0])+2)//64+1):
+                    for gy in range(int(min(a[1],b[1])-2)//64,int(max(a[1],b[1])+2)//64+1):
+                        coast_grid.setdefault((gx,gy),[]).append((a,b))
+    def is_coast(edge):
+        if physical_land is None:return True
+        (ax,ay),(bx,by)=edge;x,y=(ax+bx)/2,(ay+by)/2
+        for (u,v),(w,z) in coast_grid.get((int(x)//64,int(y)//64),[]):
+            dx,dy=w-u,z-v;den=dx*dx+dy*dy
+            t=max(0,min(1,((x-u)*dx+(y-v)*dy)/den)) if den else 0
+            if (x-u-t*dx)**2+(y-v-t*dy)**2<=4:return True
+        return False
+    edges = []
+    for region, (ox, oy) in zip(map_regions, origins):
+        local = []
+        for ring in region["rings"]:
+            points = [(ring[i] + ox, ring[i + 1] + oy) for i in range(0, len(ring), 2)]
+            for a, b in zip(points, points[1:] + points[:1]):
+                if a != b:
+                    local.append(tuple(sorted((a, b))))
+        edges.append(local)
+    if continuous:
+        # Chain by owner pair so each curved shared border has one dash phase.
+        owners = {}
+        for i, local in enumerate(edges):
+            for edge in set(local):
+                owners.setdefault(edge, []).append(i)
+        groups = {}
+        for edge, indices in owners.items():
+            groups.setdefault((tuple(indices),len(indices)==1 and is_coast(edge)), set()).add(edge)
+        coasts, borders = [[] for _ in origins], [[] for _ in origins]
+        for (indices, coast), remaining in sorted(groups.items()):
+            while remaining:
+                adjacency = {}
+                for a, b in remaining:
+                    adjacency.setdefault(a, set()).add(b)
+                    adjacency.setdefault(b, set()).add(a)
+                ends = [v for v, neighbours in adjacency.items() if len(neighbours) != 2]
+                at = min(ends or adjacency)
+                path = [at]
+                while True:
+                    candidates = sorted(v for v in adjacency.get(at, ())
+                                        if tuple(sorted((at, v))) in remaining)
+                    if not candidates:
+                        break
+                    nxt = candidates[0]
+                    remaining.remove(tuple(sorted((at, nxt))))
+                    path.append(nxt)
+                    at = nxt
+                    if len(adjacency[at]) != 2:
+                        break
+                for i in indices:
+                    ox, oy = origins[i]
+                    target = coasts if coast else borders
+                    target[i].append([v for x, y in path for v in (x - ox, y - oy)])
+        return [_rings(paths) for paths in coasts], [_rings(paths) for paths in borders]
+    counts = Counter(edge for local in edges for edge in set(local))
+    coasts, borders = [], []
+    for local, (ox, oy) in zip(edges, origins):
+        coast, border = [], []
+        for a, b in local:
+            segment = [a[0] - ox, a[1] - oy, b[0] - ox, b[1] - oy]
+            (border if counts[(a, b)] > 1 else coast).append(segment)
+        coasts.append(_rings(coast))
+        borders.append(_rings(border))
+    return coasts, borders
+
+
+def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, coasts, borders, preview_peers=(), routes=()):
     """Region clip class (class_113 layout) that draws its territory on gotoAndStop,
     plus a static syncPreview() that paints the map-select / kingdom-select thumbnail."""
     data = ",\n         ".join(json.dumps(s) for s in symbol_shapes)
     pv_frame, pv_w, pv_h, map_w, map_h = preview
+    sync_peers = "\n".join(f"         {peer}.syncPreview(clip);" for peer in preview_peers)
     return f"""package
 {{
    // GENERATED by tools/patch.py from mods/maps - do not edit by hand.
@@ -474,15 +621,19 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview):
       internal static const SHAPES:Array = [
          {data}
       ];
+      internal static const COASTS:Array = {json.dumps(coasts)};
+      internal static const BORDERS:Array = {json.dumps(borders)};
       internal static const ORIGINS:Array = {json.dumps(origins)};
       internal static const OWNER_COLORS:Array = {json.dumps(owners)};
       internal static const PREVIEW_LAND:String = {json.dumps(_rings(land))};
+      internal static const SEA_ROUTES:String = {json.dumps(_rings([r['points'] for r in routes]))};
 
       // Thumbnail on frame {pv_frame} of the shared map preview clip (its art was stripped too).
       public static function syncPreview(clip:MovieClip) : void
       {{
          var s:Shape;
          var sc:Number;
+         var ox:Number;
          var oy:Number;
          var i:int;
          var c:class_1;
@@ -491,7 +642,8 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview):
          {{
             return;
          }}
-         s = clip.getChildByName("sfkPreview") as Shape;
+         {sync_peers}
+         s = clip.getChildByName("sfkPreview{pv_frame}") as Shape;
          if(clip.currentFrame != {pv_frame})
          {{
             if(s != null)
@@ -505,24 +657,35 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview):
             return;
          }}
          s = new Shape();
-         s.name = "sfkPreview";
+         s.name = "sfkPreview{pv_frame}";
          sc = Math.min({pv_w} / {map_w},{pv_h} / {map_h});
+         ox = ({pv_w} - {map_w} * sc) / 2;
          oy = ({pv_h} - {map_h} * sc) / 2;
          s.graphics.beginFill(0x4262BE);
          s.graphics.drawRect(0,0,{pv_w},{pv_h});
          s.graphics.endFill();
          s.graphics.beginFill(0x5F5B54);
-         drawRings(s.graphics,PREVIEW_LAND,0,oy / sc,sc);
+         drawRings(s.graphics,PREVIEW_LAND,ox / sc,oy / sc,sc);
          s.graphics.endFill();
          c = new class_1();
          i = 0;
          while(i < SHAPES.length)
          {{
             ci = int(OWNER_COLORS[i]);
-            s.graphics.lineStyle(0.5,0x1E1C1A,0.5);
+            s.graphics.lineStyle();
             s.graphics.beginFill(tint(c.var_49[ci],c.var_50[ci],c.var_51[ci]));
-            drawRings(s.graphics,SHAPES[i],ORIGINS[i][0],ORIGINS[i][1] + oy / sc,sc);
+            drawRings(s.graphics,SHAPES[i],ORIGINS[i][0] + ox / sc,ORIGINS[i][1] + oy / sc,sc);
             s.graphics.endFill();
+            i++;
+         }}
+         i = 0;
+         s.graphics.lineStyle(0.8,0xE7DEC9,0.85);
+         drawEdges(s.graphics,SEA_ROUTES,ox / sc,oy / sc,sc,true);
+         s.graphics.lineStyle(0.6,0x000000,1);
+         while(i < SHAPES.length)
+         {{
+            drawEdges(s.graphics,COASTS[i],ORIGINS[i][0] + ox / sc,ORIGINS[i][1] + oy / sc,sc,false);
+            drawEdges(s.graphics,BORDERS[i],ORIGINS[i][0] + ox / sc,ORIGINS[i][1] + oy / sc,sc,true);
             i++;
          }}
          clip.addChild(s);
@@ -557,7 +720,7 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview):
             return;
          }}
          t = texture();
-         graphics.lineStyle(1,0x1E1C1A,0.6);
+         graphics.lineStyle();
          if(t != null)
          {{
             graphics.beginBitmapFill(t,null,true,false);
@@ -568,6 +731,9 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview):
          }}
          drawRings(graphics,SHAPES[index],0,0);
          graphics.endFill();
+         graphics.lineStyle(2,0x000000,1,false,"normal","none","round");
+         drawEdges(graphics,COASTS[index],0,0,1,false);
+         drawEdges(graphics,BORDERS[index],0,0,1,true);
       }}
 
       public function setTargetColor(param1:int) : void
@@ -611,14 +777,145 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview):
 """
 
 
-def gen_map_clip(cls, region_cls, land):
+def gen_map_clip(cls, region_cls, land, selector_names=None, layout=None):
     """Campaign map class (class_98 layout) with a neutral land layer under the regions."""
+    hit_declarations = hit_setup = hit_handler = ""
+    map_setup = ""
+    campaign = layout.get("campaign", "Europe") if layout else "Britain"
+    if selector_names is not None:
+        hit_declarations = "internal static const SELECTOR_NAMES:Array = " + json.dumps(selector_names) + ";"
+        hit_setup = f"""
+         // Keep original selector instances/handlers, replacing their rectangular
+         // hit areas with the same map-space polygons used for the territory art.
+         var i:int = 0;
+         var selector:MovieClip;
+         var hit:Sprite;
+         while(i < SELECTOR_NAMES.length)
+         {{
+            selector = selectorContainer.getChildByName(SELECTOR_NAMES[i]) as MovieClip;
+            if(selector == null)
+            {{
+               throw new Error("Missing {campaign} selector: " + SELECTOR_NAMES[i]);
+            }}
+            // The original class_120 timeline contains only an invisible
+            // rectangle (labels are separate map children). Remove it so
+            // renderers cannot retain its obsolete rectangular click surface.
+            selector.stop();
+            while(selector.numChildren > 0)
+            {{
+               selector.removeChildAt(0);
+            }}
+            selector.graphics.clear();
+            hit = new Sprite();
+            hit.graphics.beginFill(0);
+            {region_cls}.drawRings(hit.graphics,{region_cls}.SHAPES[i],{region_cls}.ORIGINS[i][0],{region_cls}.ORIGINS[i][1]);
+            hit.graphics.endFill();
+            hit.mouseEnabled = false;
+            hit.alpha = 0;
+            // A child hit sprite also expands the selector's broad-phase bounds.
+            // Cancel its original per-marker scale/translation so paths stay in
+            // the shared selector-container/map coordinate system.
+            var inverse:Matrix = selector.transform.matrix.clone();
+            inverse.invert();
+            hit.transform.matrix = inverse;
+            selector.addChild(hit);
+            selector.hitArea = hit;
+            selector.mouseChildren = false;
+            selector.addEventListener(MouseEvent.CLICK,traceSelection,false,0,true);
+            i++;
+         }}
+"""
+        hit_handler = f"""
+      internal function traceSelection(event:MouseEvent) : void
+      {{
+         trace("{campaign} territory selected: " + event.currentTarget.name);
+      }}
+"""
+    if layout:
+        hit_declarations += "\n      private var lastReadyDate:int = -1;\n      private var lastView:String = \"\";\n      private var lastDialog:String = \"\";"
+        hit_handler += f"""
+      // Trace a completed AI round only after control returns to the player.
+      // Advancing the date alone also happens before invasion dialogs resolve.
+      private function traceReadyTurn(event:Event) : void
+      {{
+         if(parent == null || !(parent.parent is class_149)) return;
+         var game:class_149 = parent.parent as class_149;
+         var view:String = int(parent.x) + " " + int(parent.y);
+         if(view != lastView)
+         {{
+            lastView = view;
+            trace("SFKVIEW {campaign} " + view);
+         }}
+         var dialog:String = String(game.var_83.visible);
+         if(dialog != lastDialog)
+         {{
+            lastDialog = dialog;
+            trace("SFKDIALOG {campaign} " + dialog);
+         }}
+         if(game.gameMode == "player" && !game.var_83.visible && game.currentDate != lastReadyDate)
+         {{
+            lastReadyDate = game.currentDate;
+            trace("{campaign} player turn ready: " + lastReadyDate);
+         }}
+      }}
+"""
+        labels = json.dumps(layout["labels"])
+        map_setup = f"""
+         addEventListener(Event.ENTER_FRAME,traceReadyTurn,false,0,true);
+         // Reproject the whole strategic map, not just its coloured territory art.
+         var ocean:DisplayObject = getChildAt(0);
+         var child:DisplayObject;
+         var index:int = numChildren - 1;
+         while(index >= 0)
+         {{
+            child = getChildAt(index);
+            if(child != ocean && child != selectorContainer && child != armyContainer && child != regionContainer)
+            {{
+               removeChildAt(index);
+            }}
+            index--;
+         }}
+         ocean.width = {layout['width']};
+         ocean.height = {layout['height']};
+         var labelLayer:Sprite = new Sprite();
+         labelLayer.mouseEnabled = false;
+         labelLayer.mouseChildren = false;
+         var labelData:Array = {labels};
+         var entry:Object;
+         var field:TextField;
+         var format:TextFormat;
+         for each(entry in labelData)
+         {{
+            field = new TextField();
+            format = new TextFormat("_sans",entry.size,0xFAF3DF,true,true);
+            format.align = "center";
+            field.defaultTextFormat = format;
+            field.text = entry.text;
+            field.x = entry.x;
+            field.y = entry.y;
+            field.width = entry.width;
+            field.height = 21;
+            field.selectable = false;
+            field.mouseEnabled = false;
+            field.filters = [new DropShadowFilter(1,45,0,0.8,2,2)];
+            labelLayer.addChild(field);
+         }}
+         addChildAt(labelLayer,getChildIndex(armyContainer));
+"""
     return f"""package
 {{
    // GENERATED by tools/patch.py from mods/maps - do not edit by hand.
    import flash.display.BitmapData;
+   import flash.display.DisplayObject;
+   import flash.text.TextField;
+   import flash.text.TextFormat;
+   import flash.filters.DropShadowFilter;
    import flash.display.MovieClip;
    import flash.display.Shape;
+   import flash.display.Sprite;
+   import flash.events.MouseEvent;
+   import flash.events.Event;
+   import flash.geom.Matrix;
    import flash.geom.ColorTransform;
 
    public class {cls} extends MovieClip
@@ -627,6 +924,7 @@ def gen_map_clip(cls, region_cls, land):
       public var armyContainer:MovieClip;
       public var regionContainer:MovieClip;
 
+      {hit_declarations}
       internal static const LAND:String = {json.dumps(_rings(land))};
 
       public function {cls}()
@@ -634,6 +932,7 @@ def gen_map_clip(cls, region_cls, land):
          var s:Shape;
          var t:BitmapData;
          super();
+{map_setup}
          s = new Shape();
          t = {region_cls}.texture();
          if(t != null)
@@ -648,7 +947,13 @@ def gen_map_clip(cls, region_cls, land):
          s.graphics.endFill();
          s.transform.colorTransform = new ColorTransform(0.72,0.72,0.72,1,0,0,0,0);
          addChildAt(s,regionContainer != null ? getChildIndex(regionContainer) : 1);
+         var sea:Shape = new Shape();
+         sea.graphics.lineStyle(2,0xE7DEC9,0.85);
+         {region_cls}.drawEdges(sea.graphics,{region_cls}.SEA_ROUTES,0,0,1,true);
+         addChildAt(sea,regionContainer != null ? getChildIndex(regionContainer) : 1);
+{hit_setup}
       }}
+{hit_handler}
    }}
 }}
 """
@@ -656,8 +961,122 @@ def gen_map_clip(cls, region_cls, land):
 
 MAP_CLASSES = {  # mods/maps/<name>.json -> (region clip, map clip, campaign ref, preview frame)
     "europe": ("class_113", "class_98", "Europe", 2),
+    "west": ("class_117", "class_102", "West", 1),
+    "britain": ("class_111", "class_96", "Britain", 3),
+    "ireland": ("class_114", "class_99", "Ireland", 4),
+    "spain": ("class_116", "class_101", "Spain", 5),
+    "italy": ("class_115", "class_100", "Italy", 6),
+    "east": ("class_112", "class_97", "East", 7),
 }
 PREVIEW_SIZE = (410, 265)  # map preview sprite 8346 (frame 1 art is 8200x5300 twips)
+
+
+def europe_config():
+    path = MODS / "data/europe_1070.json"
+    return load_json(path) if path.exists() else None
+
+
+def campaign_config(ref):
+    if ref == "Europe":
+        return europe_config()
+    path = MODS / "data/regional_campaigns.json"
+    return load_json(path).get(ref) if path.exists() else None
+
+
+def campaign_rows(ref, kind):
+    rows = load_json(BASELINE / f"{kind}.{ref}.json")
+    config = campaign_config(ref)
+    if config:
+        overrides = config[kind]
+        if len(overrides) != len(rows):
+            sys.exit(f"{ref} {kind}: keep the stable baseline record count")
+        for row, changes in zip(rows, overrides):
+            identity = "refName" if kind == "regions" else "selfIndex"
+            if row[identity] != changes[identity]:
+                sys.exit(f"{ref} {kind}: record order/IDs must match the baseline")
+            for key, value in changes.items():
+                if isinstance(value, dict):
+                    row[key].update(value)
+                else:
+                    row[key] = value
+    return rows
+
+
+def push_campaign_value(value):
+    if isinstance(value, list):
+        return [line for item in value for line in push_campaign_value(item)] + [f"newarray {len(value)}"]
+    if value is None:
+        return ["pushnull"]
+    return [push(value)]
+
+
+def campaign_assignments(table, rows):
+    code = []
+    for i, row in enumerate(rows):
+        def assign(fields, chain=()):
+            for key, value in fields.items():
+                if key.startswith("_") or key in {"selfIndex", "refName"}:
+                    continue
+                if isinstance(value, dict):
+                    assign(value, chain + (key,))
+                else:
+                    code.extend(["getlocal0", f"getproperty {PUB(table)}", push(i), f"getproperty {IDX}"])
+                    code.extend(f"getproperty {PUB(part)}" for part in chain)
+                    code.extend(push_campaign_value(value))
+                    code.append(f"setproperty {PUB(key)}")
+        assign(row)
+    return code
+
+
+CAMPAIGN_DATA_CLASSES = {
+    "West": ("class_21", "class_23"), "Europe": ("class_20", "class_29"),
+    "Britain": ("class_28", "class_25"), "Ireland": ("class_17", "class_15"),
+    "Spain": ("class_22", "class_18"), "Italy": ("class_16", "class_26"),
+    "East": ("class_24", "class_27"),
+}
+
+
+def campaign_patches():
+    patches = []
+    income_floors = []
+    for ref, (rc, fc) in CAMPAIGN_DATA_CLASSES.items():
+        config = campaign_config(ref)
+        if not config:
+            continue
+        for i,row in enumerate(config['regions']):
+            if 'baseGold' not in row:continue
+            at=["getlocal0",f"getproperty {PUB('var_2')}",f"getproperty {PUB('regions')}",push(i),f"getproperty {IDX}"]
+            skip=f'sfkIncomeFloor{len(income_floors)}'
+            income_floors += [*at,f"getproperty {PUB('refName')}",push(row['refName']),f'ifne {skip}',
+                              *at,f"getproperty {PUB('totalGold')}",push(row['baseGold']),f'ifge {skip}',
+                              *at,push(row['baseGold']),f"setproperty {PUB('totalGold')}",
+                              'getlocal0',f"callpropvoid {PUB('method_11')}, 0",f'{skip}:','label']
+        for kind, cls, table, method in [("regions", rc, "regions", "method_8"),
+                                          ("factions", fc, "factions", "method_7")]:
+            campaign_rows(ref, kind)
+            code = campaign_assignments(table, config[kind])
+            patches.append({"class": cls, "method": method, "mode": "edit", "maxstack": 64,
+                            "edits": [{"find": "returnvoid", "replace": "\n".join(code + ["returnvoid"])}]})
+    # Restore XP with the saved commanders; older saves with zero XP are brought
+    # to the floor for their existing level without resetting combat stats.
+    if (MODS/'pcode/general_experience.pcode').exists():
+        restored = ['pushbyte 0','setlocal3','sfkXPRegion:','label','getlocal3','getlocal2',
+                    f'getproperty {PUB("length")}','ifge sfkXPRestored','pushbyte 0','setlocal 4',
+                    'sfkXPGeneral:','label','getlocal 4','getlocal2','getlocal3',f'getproperty {IDX}',
+                    f'getproperty {PUB("generals")}',f'getproperty {PUB("length")}','ifge sfkXPNextRegion']
+        dst=['getlocal0',f'getproperty {PUB("var_2")}',f'getproperty {PUB("regions")}',
+             'getlocal3',f'getproperty {IDX}',f'getproperty {PUB("generals")}','getlocal 4',f'getproperty {IDX}']
+        src=['getlocal2','getlocal3',f'getproperty {IDX}',f'getproperty {PUB("generals")}',
+             'getlocal 4',f'getproperty {IDX}']
+        for field in ('var_107','powerRating'):
+            restored += dst+src+[f'getproperty {PUB(field)}','convert_i',f'setproperty {PUB(field)}']
+        restored += dst+[f'callpropvoid {PUB("initExperience")}, 0','inclocal_i 4','jump sfkXPGeneral',
+                        'sfkXPNextRegion:','inclocal_i 3','jump sfkXPRegion','sfkXPRestored:','label']
+        income_floors=restored+income_floors
+    if income_floors:
+        patches.append({'class':'class_95','method':'method_248','mode':'edit','maxstack':64,
+                        'edits':[{'find':'returnvoid','replace':'\n'.join(income_floors+['returnvoid'])}]})
+    return patches
 
 
 def map_changes():
@@ -669,17 +1088,27 @@ def map_changes():
         if not f.exists():
             continue
         m = load_json(f)
-        regions = load_json(BASELINE / f"regions.{ref}.json")
-        factions = load_json(BASELINE / f"factions.{ref}.json")
+        regions = campaign_rows(ref, "regions")
+        if [r["refName"] for r in m["regions"]] != [r["refName"] for r in regions]:
+            sys.exit(f"{f}: map territories must match the baseline region frame order")
+        if not m["land"] or any(not r["rings"] for r in m["regions"]):
+            sys.exit(f"{f}: missing land or territory art; campaign cannot be unlocked")
+        factions = campaign_rows(ref, "factions")
         owners = [factions[0]["colorIndex"]] * len(regions)
         for fac in factions[1:]:
             for i in fac["regions"]:
                 owners[i] = fac["colorIndex"]
         origins = [[r["locX"], r["locY"]] for r in regions]
+        coasts, borders = territory_edges(m["regions"], origins, continuous=True,physical_land=m.get("contextLand"))
         clip = gen_region_clip(region_cls, [_rings(r["rings"]) for r in m["regions"]], origins, owners,
-                               m["land"], (frame, *PREVIEW_SIZE, m["width"], m["height"]))
+                               m.get("previewLand", m.get("contextLand", m["land"])), (frame, *PREVIEW_SIZE, m["width"], m["height"]), coasts, borders,
+                               [v[0] for k, v in MAP_CLASSES.items()
+                                if k != "europe" and (MODS / "maps" / f"{k}.json").exists()]
+                               if name == "europe" else (),routes=m.get("seaRoutes",()))
         for cls, src in ((region_cls, clip),
-                         (map_cls, gen_map_clip(map_cls, region_cls, m["land"]))):
+                         (map_cls, gen_map_clip(map_cls, region_cls, m.get("contextLand", m["land"]),
+                                                [r["refName"] for r in regions],
+                                                m if "labels" in m else None))):
             path = gen_dir / f"{cls}.as"
             path.write_text(src, encoding="utf-8")
             log(f"map    {f.relative_to(ROOT)} -> {path.relative_to(ROOT)}")
@@ -755,8 +1184,29 @@ def build(force_data=False):
     pcode = [{**p, "path": MODS / p["file"]} if "file" in p else dict(p) for p in manifest.get("pcode", [])]
     as3 = [{**p, "path": MODS / p["file"]} for p in manifest.get("as3", [])]
     gen_pcode, gen_as3 = data_changes(force_data)
-    pcode += gen_pcode
+    pcode += gen_pcode + campaign_patches()
     as3 += gen_as3 + map_changes()
+    # Every store map stays locked unless map_changes compiled its complete art.
+    campaigns = load_json(BASELINE / "campaigns.json")
+    store_maps = [c["refName"] for c in campaigns if not c["isOpen"]]
+    locks = [line for line in method_pcode(swf, "class_9", "method_91").splitlines()
+             if line.startswith("setproperty ") and '"isOpen"' in line]
+    if len(locks) != len(store_maps) or len(set(locks)) != 1:
+        sys.exit("campaign lock assignments changed; check class_9.method_91 before unlocking")
+    edits = []
+    # Replace last first so earlier occurrence numbers remain stable.
+    for i in reversed(range(len(store_maps))):
+        ref = store_maps[i]
+        if any(v[2] == ref and (MODS / "maps" / f"{k}.json").exists()
+               for k, v in MAP_CLASSES.items()):
+            edits.append({"find": locks[i], "replace": "pop\npushtrue\n" + locks[i],
+                          "occurrence": i + 1})
+    metadata = [campaign_config(c["refName"]) for c in campaigns]
+    if any(metadata):
+        code = campaign_assignments("var_17", [c["campaign"] if c else {} for c in metadata])
+        edits.append({"find": "returnvoid", "replace": "\n".join(code + ["returnvoid"])})
+    if edits:
+        pcode.append({"class": "class_9", "method": "method_91", "mode": "edit", "maxstack": 64, "edits": edits})
 
     replaced = {p["class"] for p in as3}
     clash = [p for p in pcode if p["class"] in replaced]
@@ -794,7 +1244,7 @@ def run_verify(swf, steps=None, out=None, wait=10000):
     if not (VERIFY / "node_modules").exists():
         subprocess.run(["npm", "ci", "--no-audit", "--no-fund"], cwd=VERIFY, check=True)
     cmd = ["node", "verify.mjs", str(Path(swf).resolve()), "--wait", str(wait),
-           "--out", str(out or VERIFY / "out")]
+           "--out", str(out or BUILD / "verify/smoke")]
     if steps:
         cmd += ["--steps", str(steps)]
     return subprocess.run(cmd, cwd=VERIFY).returncode
@@ -826,6 +1276,14 @@ def extract():
             log(f"seeded {target.relative_to(ROOT)}")
 
 
+def export(fmt="as3", out_dir=None):
+    out = Path(out_dir or BUILD / ("src" if fmt == "as3" else "pcode"))
+    shutil.rmtree(out, ignore_errors=True)
+    extra = [] if fmt == "as3" else ["-format", "script:pcode"]
+    ffdec(*extra, "-export", "script", out, clean_base(), strict=False)
+    log(f"exported {fmt} sources -> {out.relative_to(ROOT) if out.is_relative_to(ROOT) else out}")
+
+
 PREFERRED = ["selfName", "selftype", "combatType", "attackType", "abCombatType", "weaponType",
              "attack", "hitPoints", "armor", "meleeArmor", "rangedArmor", "defense", "speed", "range",
              "morale", "recruitCost", "upkeepCost", "supplyCost", "castleLevel", "unlockTech",
@@ -854,6 +1312,29 @@ def check_mods(swf):
                 if l.get(k) != v and not (isinstance(v, float) and abs(l.get(k, 0) - v) < 1e-9):
                     print(f"  MISMATCH {name}[{i}].{k}: mods={v!r} live={l.get(k)!r}")
                     ok = False
+    live_campaigns = load_json(out_dir / "campaigns.json")
+    for ref in CAMPAIGN_DATA_CLASSES:
+        config = campaign_config(ref)
+        if not config:
+            continue
+        for kind in ("regions", "factions"):
+            live = load_json(out_dir / f"{kind}.{ref}.json")
+            if len(live) != len(config[kind]):
+                log(f"MISMATCH {ref} {kind} record count")
+                ok = False
+                continue
+            for i, changes in enumerate(config[kind]):
+                for key, value in changes.items():
+                    got = live[i].get(key)
+                    equal = (isinstance(got, dict) and all(got.get(k) == v for k, v in value.items())) if isinstance(value, dict) else got == value
+                    if not equal:
+                        log(f"MISMATCH {ref} {kind}[{i}].{key}")
+                        ok = False
+        campaign = next(c for c in live_campaigns if c["refName"] == ref)
+        for key, value in config["campaign"].items():
+            if campaign.get(key) != value:
+                log(f"MISMATCH {ref} campaign.{key}")
+                ok = False
     fx = MODS / "data" / "tech_effects.json"
     if fx.exists():
         sys.path.insert(0, str(ROOT / "tools"))
@@ -875,16 +1356,33 @@ def main(argv):
         dump(argv[1] if len(argv) > 1 else OUTPUT, argv[2] if len(argv) > 2 else BUILD / "dump")
     elif cmd == "extract":
         extract()
+    elif cmd == "export":
+        export(*argv[1:3])
     elif cmd == "check":
         sys.exit(0 if check_mods(argv[1] if len(argv) > 1 else OUTPUT) else 1)
     elif cmd == "all":
         build(force_data="--force-data" in argv)
         if run_verify(OUTPUT, steps=VERIFY / "smoke.json") != 0:
             sys.exit("smoke test failed")
-        if run_verify(OUTPUT, steps=VERIFY / "speed.json", out=VERIFY / "out_speed") != 0:
+        if run_verify(OUTPUT, steps=VERIFY / "speed.json", out=BUILD / "verify/speed") != 0:
             sys.exit("battle speed test failed")
-        if run_verify(OUTPUT, steps=VERIFY / "europe.json", out=VERIFY / "out_europe") != 0:
+        if (MODS/'pcode/general_experience.pcode').exists():
+            result=subprocess.run([sys.executable,str(VERIFY/'progression.py'),str(OUTPUT)],cwd=ROOT)
+            if result.returncode != 0:sys.exit('battle/general progression test failed')
+        if run_verify(OUTPUT, steps=VERIFY / "europe.json", out=BUILD / "verify/europe") != 0:
             sys.exit("Grand Europe test failed")
+        if run_verify(OUTPUT, steps=VERIFY / "europe-east.json", out=BUILD / "verify/europe-east") != 0:
+            sys.exit("Grand Europe eastern test failed")
+        for name, (_, _, ref, _) in MAP_CLASSES.items():
+            if name != "europe" and (MODS / "maps" / f"{name}.json").exists():
+                if run_verify(OUTPUT, steps=VERIFY / f"{name}.json", out=BUILD / f"verify/{name}") != 0:
+                    sys.exit(f"{ref} campaign test failed")
+                if name == "britain":
+                    if run_verify(OUTPUT, steps=VERIFY / "britain-north.json", out=BUILD / "verify/britain-north") != 0:
+                        sys.exit("Britain northern border test failed")
+                if name == "italy":
+                    if run_verify(OUTPUT, steps=VERIFY / "adriatic.json", out=BUILD / "verify/adriatic") != 0:
+                        sys.exit("Cross-Adriatic movement test failed")
         sys.exit(0 if check_mods(OUTPUT) else 1)
     else:
         sys.exit(__doc__)
