@@ -1,0 +1,2474 @@
+{
+  "type": "FeatureCollection",
+  "year": 1070,
+  "size": [
+    2300,
+    1800
+  ],
+  "center": [
+    35,
+    36
+  ],
+  "view": [
+    18.5,
+    23,
+    50.5,
+    46.5
+  ],
+  "description": "The eastern Mediterranean in 1070, before Manzikert: Byzantium retains its Balkan and Anatolian provinces, the Great Seljuqs advance in the east, and the Fatimids hold Egypt and Palestine. Approximate geographic provinces; grey lands are separate independent polities.",
+  "names": {
+    "bulgaria": "Western Bulgaria",
+    "dardania": "Balkan Interior",
+    "dacia": "Danubian Lands",
+    "shahr_zor": "Shahrizor",
+    "chaldea": "Chaldia"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "crete",
+        "armyCenter": [
+          24.9,
+          35.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.5,
+              34
+            ],
+            [
+              27,
+              34
+            ],
+            [
+              27,
+              35.9
+            ],
+            [
+              22.5,
+              35.9
+            ],
+            [
+              22.5,
+              34
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "cyprus",
+        "armyCenter": [
+          33.2,
+          35.0
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32,
+              34
+            ],
+            [
+              35,
+              34
+            ],
+            [
+              35,
+              35.8
+            ],
+            [
+              32,
+              35.8
+            ],
+            [
+              32,
+              34
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "argos",
+        "armyCenter": [
+          22.4,
+          37.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.5,
+              35.8
+            ],
+            [
+              23.6,
+              35.8
+            ],
+            [
+              23.6,
+              37.7
+            ],
+            [
+              22.6,
+              37.7
+            ],
+            [
+              22.4,
+              38.1
+            ],
+            [
+              20.5,
+              38.1
+            ],
+            [
+              20.5,
+              35.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "corinth",
+        "armyCenter": [
+          22.9,
+          38
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.4,
+              38.1
+            ],
+            [
+              22.6,
+              37.7
+            ],
+            [
+              23.6,
+              37.7
+            ],
+            [
+              23.6,
+              38.3
+            ],
+            [
+              22.5,
+              38.7
+            ],
+            [
+              22.4,
+              38.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "athens",
+        "armyCenter": [
+          23.8,
+          38.1
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              26.4,
+              38.8
+            ],
+            [
+              25.8,
+              37.0
+            ],
+            [
+              23.6,
+              37.0
+            ],
+            [
+              23.6,
+              38.3
+            ],
+            [
+              24.0,
+              38.8
+            ],
+            [
+              24.549682682270333,
+              38.8
+            ],
+            [
+              24.564551,
+              38.819434
+            ],
+            [
+              24.566406,
+              38.832373
+            ],
+            [
+              24.461035,
+              38.888623
+            ],
+            [
+              24.473438,
+              38.96167
+            ],
+            [
+              24.485645,
+              38.980273
+            ],
+            [
+              24.564063,
+              38.942236
+            ],
+            [
+              24.58125,
+              38.878857
+            ],
+            [
+              24.674707,
+              38.809229
+            ],
+            [
+              24.634765445381927,
+              38.8
+            ],
+            [
+              26.4,
+              38.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "nicopolis",
+        "armyCenter": [
+          20.9,
+          39.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.5,
+              38.1
+            ],
+            [
+              22.4,
+              38.1
+            ],
+            [
+              22.5,
+              38.7
+            ],
+            [
+              21.7,
+              40.2
+            ],
+            [
+              18.5,
+              40.2
+            ],
+            [
+              18.5,
+              38.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "larissa",
+        "armyCenter": [
+          22.4,
+          39.6
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.5,
+              38.7
+            ],
+            [
+              23.6,
+              38.3
+            ],
+            [
+              24,
+              38.8
+            ],
+            [
+              24.3,
+              40.2
+            ],
+            [
+              21.7,
+              40.2
+            ],
+            [
+              22.5,
+              38.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "thessalonica",
+        "armyCenter": [
+          22.9,
+          40.6
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                24.315081172926497,
+                40.2
+              ],
+              [
+                24.343359,
+                40.147705
+              ],
+              [
+                24.295086114804327,
+                40.17706853575353
+              ],
+              [
+                24.3,
+                40.2
+              ],
+              [
+                24.315081172926497,
+                40.2
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.7,
+                41.2
+              ],
+              [
+                23.8,
+                41.2
+              ],
+              [
+                23.8,
+                40.2
+              ],
+              [
+                21.7,
+                40.2
+              ],
+              [
+                21.7,
+                41.2
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "macedonia",
+        "armyCenter": [
+          24.0,
+          41.1
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                25.062207,
+                39.852393
+              ],
+              [
+                25.065234,
+                39.909863
+              ],
+              [
+                25.052344,
+                39.976367
+              ],
+              [
+                25.058008,
+                39.999658
+              ],
+              [
+                25.23418,
+                40.00542
+              ],
+              [
+                25.285742,
+                39.956299
+              ],
+              [
+                25.348047,
+                39.984766
+              ],
+              [
+                25.373633,
+                40.015527
+              ],
+              [
+                25.449121,
+                40.034814
+              ],
+              [
+                25.437695,
+                39.983301
+              ],
+              [
+                25.399902,
+                39.949561
+              ],
+              [
+                25.37207,
+                39.891309
+              ],
+              [
+                25.357031,
+                39.808105
+              ],
+              [
+                25.29873,
+                39.806104
+              ],
+              [
+                25.263379,
+                39.822949
+              ],
+              [
+                25.251758,
+                39.854395
+              ],
+              [
+                25.249414,
+                39.894141
+              ],
+              [
+                25.223828,
+                39.892578
+              ],
+              [
+                25.203223,
+                39.849414
+              ],
+              [
+                25.185156,
+                39.829932
+              ],
+              [
+                25.126465,
+                39.82583
+              ],
+              [
+                25.062207,
+                39.852393
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                23.8,
+                42.6
+              ],
+              [
+                25.6,
+                42.6
+              ],
+              [
+                25.6,
+                40.2
+              ],
+              [
+                23.8,
+                40.2
+              ],
+              [
+                23.8,
+                42.6
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "thrace",
+        "armyCenter": [
+          26.5,
+          42.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              25.6,
+              40
+            ],
+            [
+              28.2,
+              40
+            ],
+            [
+              28.2,
+              41.5
+            ],
+            [
+              27.5,
+              42.6
+            ],
+            [
+              25.6,
+              42.6
+            ],
+            [
+              25.6,
+              40
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "constantinople",
+        "armyCenter": [
+          28.8,
+          41.1
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              28.2,
+              40
+            ],
+            [
+              29.25,
+              40.6
+            ],
+            [
+              29.25,
+              41.5
+            ],
+            [
+              28.2,
+              41.5
+            ],
+            [
+              28.2,
+              40
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "servia",
+        "armyCenter": [
+          20.5,
+          44.0
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.5,
+              42.5
+            ],
+            [
+              21.2,
+              42.5
+            ],
+            [
+              21.2,
+              45.5
+            ],
+            [
+              18.5,
+              45.5
+            ],
+            [
+              18.5,
+              42.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "dardania",
+        "armyCenter": [
+          22.4,
+          42.7
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.2,
+              41.2
+            ],
+            [
+              23.8,
+              41.2
+            ],
+            [
+              23.8,
+              43.8
+            ],
+            [
+              21.2,
+              43.8
+            ],
+            [
+              21.2,
+              41.2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "bulgaria",
+        "armyCenter": [
+          20.8,
+          41.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.5,
+              40.2
+            ],
+            [
+              21.7,
+              40.2
+            ],
+            [
+              21.7,
+              41.2
+            ],
+            [
+              21.2,
+              41.2
+            ],
+            [
+              21.2,
+              42.5
+            ],
+            [
+              18.5,
+              42.5
+            ],
+            [
+              18.5,
+              40.2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "dacia",
+        "armyCenter": [
+          25.1,
+          44.7
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.2,
+              43.8
+            ],
+            [
+              23.8,
+              43.8
+            ],
+            [
+              23.8,
+              42.6
+            ],
+            [
+              29,
+              42.6
+            ],
+            [
+              29,
+              46.5
+            ],
+            [
+              21.2,
+              46.5
+            ],
+            [
+              21.2,
+              43.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "optimaton",
+        "armyCenter": [
+          30.2,
+          40.7
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              29.25,
+              40.65
+            ],
+            [
+              31.2,
+              40.65
+            ],
+            [
+              31.2,
+              41.6
+            ],
+            [
+              29.25,
+              41.6
+            ],
+            [
+              29.25,
+              40.65
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "nicaea",
+        "armyCenter": [
+          29.7,
+          40.4
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              29.25,
+              39.5
+            ],
+            [
+              31.2,
+              39.5
+            ],
+            [
+              31.2,
+              40.65
+            ],
+            [
+              29.25,
+              40.65
+            ],
+            [
+              29.25,
+              39.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "mysia",
+        "armyCenter": [
+          28,
+          39.7
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              26,
+              38.8
+            ],
+            [
+              29.25,
+              38.8
+            ],
+            [
+              29.25,
+              40.6
+            ],
+            [
+              26,
+              40.6
+            ],
+            [
+              26,
+              38.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "ephesus",
+        "armyCenter": [
+          27.5,
+          38.1
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                25.8,
+                38.8
+              ],
+              [
+                28.6,
+                38.8
+              ],
+              [
+                28.6,
+                36.8
+              ],
+              [
+                25.8,
+                36.8
+              ],
+              [
+                25.8,
+                38.8
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                25.90625,
+                39.138965
+              ],
+              [
+                25.855469,
+                39.178662
+              ],
+              [
+                25.844141,
+                39.200049
+              ],
+              [
+                25.90957,
+                39.287549
+              ],
+              [
+                26.0,
+                39.28528235129817
+              ],
+              [
+                26.0,
+                39.11449370636254
+              ],
+              [
+                25.90625,
+                39.138965
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "lycia",
+        "armyCenter": [
+          29.7,
+          36.9
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              28.6,
+              35.5
+            ],
+            [
+              30.8,
+              35.5
+            ],
+            [
+              30.8,
+              37.7
+            ],
+            [
+              28.6,
+              37.7
+            ],
+            [
+              28.6,
+              35.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "seleucia",
+        "armyCenter": [
+          33.4,
+          36.6
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              30.8,
+              35.5
+            ],
+            [
+              34.6,
+              35.5
+            ],
+            [
+              34.6,
+              37.3
+            ],
+            [
+              30.8,
+              37.3
+            ],
+            [
+              30.8,
+              35.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "anatolia",
+        "armyCenter": [
+          30.9,
+          38.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              28.6,
+              37.7
+            ],
+            [
+              30.8,
+              37.7
+            ],
+            [
+              30.8,
+              37.3
+            ],
+            [
+              32.6,
+              37.3
+            ],
+            [
+              32.6,
+              39.5
+            ],
+            [
+              29.25,
+              39.5
+            ],
+            [
+              29.25,
+              38.8
+            ],
+            [
+              28.6,
+              38.8
+            ],
+            [
+              28.6,
+              37.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "ancyra",
+        "armyCenter": [
+          32.8,
+          40
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.2,
+              39.5
+            ],
+            [
+              33.8,
+              39.5
+            ],
+            [
+              33.8,
+              40.9
+            ],
+            [
+              31.2,
+              40.9
+            ],
+            [
+              31.2,
+              39.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "paphlagonia",
+        "armyCenter": [
+          33.6,
+          41.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.2,
+              40.9
+            ],
+            [
+              33.8,
+              40.9
+            ],
+            [
+              34.8,
+              40.7
+            ],
+            [
+              34.8,
+              42.3
+            ],
+            [
+              31.2,
+              42.3
+            ],
+            [
+              31.2,
+              40.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "cappadocia",
+        "armyCenter": [
+          34.8,
+          38.6
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.6,
+              37.3
+            ],
+            [
+              34.6,
+              37.3
+            ],
+            [
+              35.6,
+              37.7
+            ],
+            [
+              36.7,
+              37.7
+            ],
+            [
+              36.7,
+              39.3
+            ],
+            [
+              33.8,
+              39.5
+            ],
+            [
+              32.6,
+              39.5
+            ],
+            [
+              32.6,
+              37.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "cilicia",
+        "armyCenter": [
+          35.5,
+          37.1
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34.6,
+              35.8
+            ],
+            [
+              36.7,
+              35.8
+            ],
+            [
+              36.7,
+              37.7
+            ],
+            [
+              35.6,
+              37.7
+            ],
+            [
+              34.6,
+              37.3
+            ],
+            [
+              34.6,
+              35.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "charsianon",
+        "armyCenter": [
+          35.4,
+          40
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.8,
+              39.5
+            ],
+            [
+              35.6,
+              39.3
+            ],
+            [
+              36.7,
+              39.3
+            ],
+            [
+              36.7,
+              40.7
+            ],
+            [
+              34.8,
+              40.7
+            ],
+            [
+              33.8,
+              40.9
+            ],
+            [
+              33.8,
+              39.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "sebastea",
+        "armyCenter": [
+          37.6,
+          39.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              36.7,
+              39.3
+            ],
+            [
+              39.7,
+              39.3
+            ],
+            [
+              39.7,
+              40.7
+            ],
+            [
+              36.7,
+              40.7
+            ],
+            [
+              36.7,
+              39.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "chaldea",
+        "armyCenter": [
+          39.5,
+          40.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34.8,
+              40.2
+            ],
+            [
+              41.5,
+              40.2
+            ],
+            [
+              41.5,
+              42.3
+            ],
+            [
+              34.8,
+              42.3
+            ],
+            [
+              34.8,
+              40.2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "melitene",
+        "armyCenter": [
+          38.4,
+          38.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              36.7,
+              37.7
+            ],
+            [
+              39.7,
+              37.7
+            ],
+            [
+              39.7,
+              39.3
+            ],
+            [
+              36.7,
+              39.3
+            ],
+            [
+              36.7,
+              37.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "antioch",
+        "armyCenter": [
+          36.3,
+          36.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.5,
+              35
+            ],
+            [
+              37.3,
+              35
+            ],
+            [
+              37.3,
+              37.7
+            ],
+            [
+              35.5,
+              37.7
+            ],
+            [
+              35.5,
+              35
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "edessa",
+        "armyCenter": [
+          38.8,
+          37.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.3,
+              36.6
+            ],
+            [
+              39.7,
+              36.6
+            ],
+            [
+              39.7,
+              37.7
+            ],
+            [
+              37.3,
+              37.7
+            ],
+            [
+              37.3,
+              36.6
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "georgia",
+        "armyCenter": [
+          43.5,
+          42.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              40,
+              41.5
+            ],
+            [
+              46.3,
+              41.5
+            ],
+            [
+              46.3,
+              43.8
+            ],
+            [
+              40,
+              43.8
+            ],
+            [
+              40,
+              41.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "caucasus",
+        "armyCenter": [
+          46,
+          43
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              38.5,
+              43.8
+            ],
+            [
+              46.3,
+              43.8
+            ],
+            [
+              46.3,
+              41.5
+            ],
+            [
+              50.5,
+              41.5
+            ],
+            [
+              50.5,
+              46.5
+            ],
+            [
+              38.5,
+              46.5
+            ],
+            [
+              38.5,
+              43.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "kelat",
+        "armyCenter": [
+          42.4,
+          38.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              41,
+              38
+            ],
+            [
+              43.7,
+              38
+            ],
+            [
+              43.7,
+              40.2
+            ],
+            [
+              41,
+              40.2
+            ],
+            [
+              41,
+              38
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "armenia",
+        "armyCenter": [
+          44.3,
+          40.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              41.5,
+              40.2
+            ],
+            [
+              46.3,
+              40.2
+            ],
+            [
+              46.3,
+              41.5
+            ],
+            [
+              41.5,
+              41.5
+            ],
+            [
+              41.5,
+              40.2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "amida",
+        "armyCenter": [
+          40.2,
+          37.9
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              39.7,
+              36.6
+            ],
+            [
+              41,
+              36.6
+            ],
+            [
+              41,
+              40.2
+            ],
+            [
+              39.7,
+              40.2
+            ],
+            [
+              39.7,
+              36.6
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "tabriz",
+        "armyCenter": [
+          46.3,
+          38.1
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              43.7,
+              37.7
+            ],
+            [
+              47,
+              37.7
+            ],
+            [
+              47,
+              40.2
+            ],
+            [
+              43.7,
+              40.2
+            ],
+            [
+              43.7,
+              37.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "azerbaijan",
+        "armyCenter": [
+          48.2,
+          39
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              46.3,
+              37.7
+            ],
+            [
+              50.5,
+              37.7
+            ],
+            [
+              50.5,
+              41.5
+            ],
+            [
+              46.3,
+              41.5
+            ],
+            [
+              46.3,
+              37.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "mosul",
+        "armyCenter": [
+          43.1,
+          36.3
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              41,
+              34.8
+            ],
+            [
+              44.2,
+              34.8
+            ],
+            [
+              44.2,
+              36.7
+            ],
+            [
+              41,
+              36.7
+            ],
+            [
+              41,
+              34.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "kurdistan",
+        "armyCenter": [
+          44,
+          36.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              41,
+              35.7
+            ],
+            [
+              45.5,
+              35.7
+            ],
+            [
+              45.5,
+              38
+            ],
+            [
+              41,
+              38
+            ],
+            [
+              41,
+              35.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "shahr_zor",
+        "armyCenter": [
+          46.2,
+          35.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              44.2,
+              34.8
+            ],
+            [
+              50.5,
+              34.8
+            ],
+            [
+              50.5,
+              37.7
+            ],
+            [
+              44.2,
+              37.7
+            ],
+            [
+              44.2,
+              34.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "baghdad",
+        "armyCenter": [
+          44.4,
+          33.3
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              43,
+              32.3
+            ],
+            [
+              46.3,
+              32.3
+            ],
+            [
+              46.3,
+              34.8
+            ],
+            [
+              43,
+              34.8
+            ],
+            [
+              43,
+              32.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "iraq",
+        "armyCenter": [
+          46,
+          31.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              46.3,
+              32.3
+            ],
+            [
+              43,
+              32.3
+            ],
+            [
+              43,
+              29
+            ],
+            [
+              50.5,
+              29
+            ],
+            [
+              50.5,
+              34.8
+            ],
+            [
+              46.3,
+              34.8
+            ],
+            [
+              46.3,
+              32.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "jerusalem",
+        "armyCenter": [
+          35.15,
+          31.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34,
+              30.7
+            ],
+            [
+              35.8,
+              30.7
+            ],
+            [
+              35.8,
+              32.1
+            ],
+            [
+              34,
+              32.1
+            ],
+            [
+              34,
+              30.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "palestine",
+        "armyCenter": [
+          35.35,
+          33.1
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34,
+              32.1
+            ],
+            [
+              35.8,
+              32.1
+            ],
+            [
+              35.8,
+              34.6
+            ],
+            [
+              34,
+              34.6
+            ],
+            [
+              34,
+              32.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "damascus",
+        "armyCenter": [
+          36.3,
+          33.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.8,
+              32.1
+            ],
+            [
+              37.3,
+              32.1
+            ],
+            [
+              37.3,
+              35
+            ],
+            [
+              35.8,
+              35
+            ],
+            [
+              35.8,
+              32.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "syria",
+        "armyCenter": [
+          38,
+          35.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.5,
+              35
+            ],
+            [
+              37.3,
+              35
+            ],
+            [
+              37.3,
+              34.8
+            ],
+            [
+              41,
+              34.8
+            ],
+            [
+              41,
+              36.6
+            ],
+            [
+              37.3,
+              36.6
+            ],
+            [
+              37.3,
+              35.8
+            ],
+            [
+              35.5,
+              35.8
+            ],
+            [
+              35.5,
+              35
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "sinai",
+        "armyCenter": [
+          33.7,
+          29.3
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.3,
+              27.5
+            ],
+            [
+              34.9,
+              27.5
+            ],
+            [
+              34.9,
+              30.7
+            ],
+            [
+              32.3,
+              30.7
+            ],
+            [
+              32.3,
+              27.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "alexandria",
+        "armyCenter": [
+          30.3,
+          30.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              28,
+              30
+            ],
+            [
+              32.3,
+              30
+            ],
+            [
+              32.3,
+              31.8
+            ],
+            [
+              28,
+              31.8
+            ],
+            [
+              28,
+              30
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "egypt",
+        "armyCenter": [
+          31.1,
+          27.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              28,
+              23
+            ],
+            [
+              34,
+              23
+            ],
+            [
+              34,
+              30
+            ],
+            [
+              28,
+              30
+            ],
+            [
+              28,
+              23
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "libya",
+        "armyCenter": [
+          25.4,
+          29.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.5,
+              23
+            ],
+            [
+              28,
+              23
+            ],
+            [
+              28,
+              31.8
+            ],
+            [
+              23.5,
+              31.8
+            ],
+            [
+              23.5,
+              23
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "cyrenaica",
+        "armyCenter": [
+          21.8,
+          31.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.5,
+              23
+            ],
+            [
+              23.5,
+              23
+            ],
+            [
+              23.5,
+              33.3
+            ],
+            [
+              18.5,
+              33.3
+            ],
+            [
+              18.5,
+              23
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "arabia",
+        "armyCenter": [
+          40,
+          29.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34,
+              23
+            ],
+            [
+              50.5,
+              23
+            ],
+            [
+              50.5,
+              29
+            ],
+            [
+              43,
+              29
+            ],
+            [
+              43,
+              34.8
+            ],
+            [
+              37.3,
+              34.8
+            ],
+            [
+              37.3,
+              32.1
+            ],
+            [
+              35.8,
+              32.1
+            ],
+            [
+              35.8,
+              30.7
+            ],
+            [
+              34.9,
+              30.7
+            ],
+            [
+              34.9,
+              27.5
+            ],
+            [
+              34,
+              27.5
+            ],
+            [
+              34,
+              23
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "seaLinks": [
+    [
+      "crete",
+      "argos"
+    ],
+    [
+      "crete",
+      "lycia"
+    ],
+    [
+      "cyprus",
+      "cilicia"
+    ],
+    [
+      "cyprus",
+      "antioch"
+    ],
+    [
+      "constantinople",
+      "optimaton"
+    ],
+    [
+      "alexandria",
+      "cyrenaica"
+    ]
+  ],
+  "factions": [
+    {
+      "name": "Byzantium",
+      "longName": "Byzantine Empire",
+      "ruler": "Romanos IV Diogenes",
+      "regions": [
+        "constantinople",
+        "argos",
+        "corinth",
+        "athens",
+        "nicopolis",
+        "larissa",
+        "thessalonica",
+        "bulgaria",
+        "dardania",
+        "thrace",
+        "macedonia",
+        "ephesus",
+        "crete",
+        "cyprus",
+        "nicaea",
+        "mysia",
+        "lycia",
+        "seleucia",
+        "anatolia",
+        "optimaton",
+        "ancyra",
+        "cappadocia",
+        "cilicia",
+        "charsianon",
+        "paphlagonia",
+        "sebastea",
+        "chaldea",
+        "melitene",
+        "antioch",
+        "edessa"
+      ],
+      "unit": 17,
+      "description": "Before Manzikert in 1071, the empire retains most Anatolia, the Balkan imperial provinces and its eastern cities. Frontier control remains contested."
+    },
+    {
+      "name": "Seljuks",
+      "longName": "Great Seljuq Empire",
+      "ruler": "Alp Arslan",
+      "regions": [
+        "armenia",
+        "kelat",
+        "amida",
+        "tabriz",
+        "azerbaijan",
+        "kurdistan",
+        "shahr_zor",
+        "mosul",
+        "baghdad",
+        "iraq"
+      ],
+      "unit": 13,
+      "description": "Alp Arslan's sphere includes Iran, eastern frontier lands and Seljuq suzerainty in Iraq. Local dynasties and Abbasid Baghdad are grouped for campaign play."
+    },
+    {
+      "name": "Fatimids",
+      "longName": "Fatimid Caliphate",
+      "ruler": "al-Mustansir",
+      "regions": [
+        "alexandria",
+        "egypt",
+        "sinai",
+        "palestine",
+        "jerusalem",
+        "damascus"
+      ],
+      "unit": 2,
+      "description": "The Fatimid core is Egypt and Palestine with a contested Syrian frontier. Arabian lands are independent; Damascus is not assigned to the later Seljuq conquest."
+    }
+  ],
+  "frontierGapNotes": "Enclosed land fragments are explicitly assigned by reviewed WGS84 probes in author_regional.py; no inland water is invented."
+}

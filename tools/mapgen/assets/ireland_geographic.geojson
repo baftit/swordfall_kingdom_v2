@@ -1,0 +1,1235 @@
+{
+  "type": "FeatureCollection",
+  "year": 965,
+  "size": [
+    1400,
+    1600
+  ],
+  "center": [
+    -7,
+    54
+  ],
+  "view": [
+    -11,
+    50.8,
+    -2,
+    56.5
+  ],
+  "description": "Ireland in 965: Dalcassian Munster, Leinster, Connacht, Ulaid and the Norse towns compete. Brian Boru is not yet king; the Norse towns share a playable grouping. Approximate geographic provinces; grey lands are separate independent polities.",
+  "names": {
+    "arann": "East Munster",
+    "ulidia": "Ulaid",
+    "laoighis": "Laois"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "kerry",
+        "armyCenter": [
+          -9.6,
+          52.1
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -11,
+              51
+            ],
+            [
+              -9,
+              51
+            ],
+            [
+              -9,
+              52.6
+            ],
+            [
+              -11,
+              52.6
+            ],
+            [
+              -11,
+              51
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "cork",
+        "armyCenter": [
+          -8.5,
+          51.9
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9,
+              51
+            ],
+            [
+              -7.7,
+              51
+            ],
+            [
+              -7.7,
+              52.3
+            ],
+            [
+              -8.4,
+              52.5
+            ],
+            [
+              -9,
+              52.6
+            ],
+            [
+              -9,
+              51
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "waterford",
+        "armyCenter": [
+          -7.1,
+          52.2
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.7,
+              51
+            ],
+            [
+              -6.7,
+              51
+            ],
+            [
+              -6.7,
+              52.5
+            ],
+            [
+              -7.7,
+              52.5
+            ],
+            [
+              -7.7,
+              51
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "limerick",
+        "armyCenter": [
+          -8.6,
+          52.6
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9,
+              52.6
+            ],
+            [
+              -8.4,
+              52.5
+            ],
+            [
+              -7.7,
+              52.3
+            ],
+            [
+              -7.7,
+              52.8
+            ],
+            [
+              -9,
+              52.8
+            ],
+            [
+              -9,
+              52.6
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "thomond",
+        "armyCenter": [
+          -8.9,
+          52.9
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9.8,
+              52.6
+            ],
+            [
+              -9,
+              52.6
+            ],
+            [
+              -9,
+              52.8
+            ],
+            [
+              -8.3,
+              52.8
+            ],
+            [
+              -8.3,
+              53.1
+            ],
+            [
+              -9.8,
+              53.1
+            ],
+            [
+              -9.8,
+              52.6
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "arann",
+        "armyCenter": [
+          -7.9,
+          52.85
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -8.3,
+              52.5
+            ],
+            [
+              -7.7,
+              52.5
+            ],
+            [
+              -7.7,
+              52.3
+            ],
+            [
+              -7.4,
+              52.5
+            ],
+            [
+              -7.4,
+              53.1
+            ],
+            [
+              -8.3,
+              53.1
+            ],
+            [
+              -8.3,
+              52.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "wexford",
+        "armyCenter": [
+          -6.5,
+          52.3
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.7,
+              51.5
+            ],
+            [
+              -5.6,
+              51.5
+            ],
+            [
+              -5.6,
+              52.7
+            ],
+            [
+              -6.7,
+              52.7
+            ],
+            [
+              -6.7,
+              51.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "kilkenny",
+        "armyCenter": [
+          -7.2,
+          52.7
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.4,
+              52.5
+            ],
+            [
+              -6.7,
+              52.5
+            ],
+            [
+              -6.7,
+              52.9
+            ],
+            [
+              -7.4,
+              52.9
+            ],
+            [
+              -7.4,
+              52.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "wicklow",
+        "armyCenter": [
+          -6.1,
+          53.0
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.7,
+              52.7
+            ],
+            [
+              -5.6,
+              52.7
+            ],
+            [
+              -5.6,
+              53.2
+            ],
+            [
+              -6.7,
+              53.2
+            ],
+            [
+              -6.7,
+              52.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "dublin",
+        "armyCenter": [
+          -6.3,
+          53.4
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.6,
+              53.2
+            ],
+            [
+              -5.6,
+              53.2
+            ],
+            [
+              -5.6,
+              53.65
+            ],
+            [
+              -6.6,
+              53.65
+            ],
+            [
+              -6.6,
+              53.2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "kildare",
+        "armyCenter": [
+          -6.9,
+          53.2
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.4,
+              52.9
+            ],
+            [
+              -6.7,
+              52.9
+            ],
+            [
+              -6.7,
+              53.2
+            ],
+            [
+              -6.6,
+              53.2
+            ],
+            [
+              -6.6,
+              53.5
+            ],
+            [
+              -7.2,
+              53.5
+            ],
+            [
+              -7.4,
+              52.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "laoighis",
+        "armyCenter": [
+          -7.5,
+          53.1
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.7,
+              52.9
+            ],
+            [
+              -7.4,
+              52.9
+            ],
+            [
+              -7.2,
+              53.5
+            ],
+            [
+              -7.7,
+              53.5
+            ],
+            [
+              -7.7,
+              52.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "galway",
+        "armyCenter": [
+          -9,
+          53.4
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -11,
+              53.1
+            ],
+            [
+              -8.3,
+              53.1
+            ],
+            [
+              -8.3,
+              53.8
+            ],
+            [
+              -9.5,
+              53.8
+            ],
+            [
+              -11,
+              53.7
+            ],
+            [
+              -11,
+              53.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "mayo",
+        "armyCenter": [
+          -9.2,
+          53.9
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -11,
+              53.7
+            ],
+            [
+              -9.5,
+              53.8
+            ],
+            [
+              -8.8,
+              53.8
+            ],
+            [
+              -8.8,
+              54.4
+            ],
+            [
+              -11,
+              54.5
+            ],
+            [
+              -11,
+              53.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "sligo",
+        "armyCenter": [
+          -8.5,
+          54.2
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -8.8,
+              53.8
+            ],
+            [
+              -8.1,
+              53.9
+            ],
+            [
+              -8.1,
+              54.5
+            ],
+            [
+              -8.8,
+              54.4
+            ],
+            [
+              -8.8,
+              53.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "roscommon",
+        "armyCenter": [
+          -8.15,
+          53.6
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -8.8,
+              53.8
+            ],
+            [
+              -8.3,
+              53.8
+            ],
+            [
+              -8.3,
+              53.1
+            ],
+            [
+              -7.7,
+              53.1
+            ],
+            [
+              -7.7,
+              53.9
+            ],
+            [
+              -8.1,
+              53.9
+            ],
+            [
+              -8.8,
+              53.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "meath",
+        "armyCenter": [
+          -6.9,
+          53.7
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.7,
+              53.5
+            ],
+            [
+              -7.2,
+              53.5
+            ],
+            [
+              -6.6,
+              53.5
+            ],
+            [
+              -6.6,
+              53.65
+            ],
+            [
+              -5.6,
+              53.65
+            ],
+            [
+              -5.6,
+              53.95
+            ],
+            [
+              -7.7,
+              53.95
+            ],
+            [
+              -7.7,
+              53.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "breifne",
+        "armyCenter": [
+          -7.4,
+          54.1
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.014159821153108,
+              54.05353995528828
+            ],
+            [
+              -6.019043,
+              54.05127
+            ],
+            [
+              -6.119531,
+              54.058887
+            ],
+            [
+              -6.218018,
+              54.088721
+            ],
+            [
+              -6.175732,
+              54.053516
+            ],
+            [
+              -6.156934,
+              54.017236
+            ],
+            [
+              -6.230664,
+              54.003613
+            ],
+            [
+              -6.307617,
+              54.011035
+            ],
+            [
+              -6.345166,
+              53.987207
+            ],
+            [
+              -6.347144785284762,
+              53.95
+            ],
+            [
+              -6.6,
+              53.95
+            ],
+            [
+              -7.7,
+              53.95
+            ],
+            [
+              -7.7,
+              53.9
+            ],
+            [
+              -8.1,
+              53.9
+            ],
+            [
+              -8.1,
+              54.3
+            ],
+            [
+              -6.6,
+              54.2
+            ],
+            [
+              -6.014159821153108,
+              54.05353995528828
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "fermanagh",
+        "armyCenter": [
+          -7.5,
+          54.4
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -8.1,
+              54.3
+            ],
+            [
+              -6.9,
+              54.2
+            ],
+            [
+              -6.9,
+              54.6
+            ],
+            [
+              -8.1,
+              54.6
+            ],
+            [
+              -8.1,
+              54.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "armagh",
+        "armyCenter": [
+          -6.5,
+          54.3
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.9,
+              54.2
+            ],
+            [
+              -6.6,
+              54.2
+            ],
+            [
+              -5.6,
+              53.95
+            ],
+            [
+              -5.6,
+              54.6
+            ],
+            [
+              -6.9,
+              54.6
+            ],
+            [
+              -6.9,
+              54.2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "ulidia",
+        "armyCenter": [
+          -6.2,
+          54.9
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.6,
+              54.6
+            ],
+            [
+              -5.2,
+              54.6
+            ],
+            [
+              -5.2,
+              55.4
+            ],
+            [
+              -6.6,
+              55.4
+            ],
+            [
+              -6.6,
+              54.6
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "tyrone",
+        "armyCenter": [
+          -7.2,
+          54.8
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -8.1,
+              54.6
+            ],
+            [
+              -6.6,
+              54.6
+            ],
+            [
+              -6.6,
+              55.4
+            ],
+            [
+              -7.4,
+              55.4
+            ],
+            [
+              -7.4,
+              55
+            ],
+            [
+              -8.1,
+              55
+            ],
+            [
+              -8.1,
+              54.6
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "donegal",
+        "armyCenter": [
+          -8,
+          54.9
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9,
+              54.5
+            ],
+            [
+              -8.1,
+              54.5
+            ],
+            [
+              -8.1,
+              55
+            ],
+            [
+              -7.4,
+              55
+            ],
+            [
+              -7.4,
+              55.6
+            ],
+            [
+              -9,
+              55.6
+            ],
+            [
+              -9,
+              54.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "dyfed",
+        "armyCenter": [
+          -4.5,
+          51.9
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.8,
+              51.3
+            ],
+            [
+              -4,
+              51.3
+            ],
+            [
+              -4,
+              52.35
+            ],
+            [
+              -5.8,
+              52.35
+            ],
+            [
+              -5.8,
+              51.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "gwynedd",
+        "armyCenter": [
+          -4.0,
+          53.0
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.8,
+              52.35
+            ],
+            [
+              -3.2,
+              52.35
+            ],
+            [
+              -3.2,
+              53.6
+            ],
+            [
+              -5.8,
+              53.6
+            ],
+            [
+              -5.8,
+              52.35
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "strathclyde",
+        "armyCenter": [
+          -4.8,
+          55.3
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6,
+              54.7
+            ],
+            [
+              -3.5,
+              54.7
+            ],
+            [
+              -3.5,
+              56.3
+            ],
+            [
+              -6,
+              56.3
+            ],
+            [
+              -6,
+              54.7
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "seaLinks": [
+    [
+      "dyfed",
+      "waterford"
+    ],
+    [
+      "gwynedd",
+      "dublin"
+    ],
+    [
+      "strathclyde",
+      "ulidia"
+    ]
+  ],
+  "factions": [
+    {
+      "name": "Dalcassians",
+      "longName": "Dalcassian Munster",
+      "ruler": "Mathgamain mac Cennetig",
+      "regions": [
+        "thomond",
+        "arann"
+      ],
+      "unit": 5,
+      "description": "Mathgamain, Brian Boru's elder brother, leads the Dalcassians in 965. Southern Munster remains separately governed."
+    },
+    {
+      "name": "Leinster",
+      "longName": "Kingdom of Leinster",
+      "ruler": "Cellach mac Faelain",
+      "regions": [
+        "kilkenny",
+        "kildare",
+        "laoighis",
+        "wicklow"
+      ],
+      "unit": 5,
+      "description": "Leinster is divided among dynastic branches. These provinces are a coarse playable grouping."
+    },
+    {
+      "name": "Connacht",
+      "longName": "Kingdom of Connacht",
+      "ruler": "Fergal mac Airt Ua Ruairc",
+      "regions": [
+        "roscommon",
+        "mayo",
+        "sligo",
+        "galway",
+        "breifne"
+      ],
+      "unit": 5,
+      "description": "Connacht is represented as a provincial kingdom under Fergal mac Airt Ua Ruairc, before the later Ua Conchobair succession."
+    },
+    {
+      "name": "Ulaid",
+      "longName": "Kingdom of Ulaid",
+      "ruler": "Ardgal mac Matudain",
+      "regions": [
+        "ulidia",
+        "armagh"
+      ],
+      "unit": 9,
+      "description": "Ulaid is the eastern kingdom, not all modern Ulster. Northern Ui Neill lands in Tyrone and Donegal remain separate."
+    },
+    {
+      "name": "Norse Towns",
+      "longName": "Norse Towns of Ireland",
+      "ruler": "Amlaib Cuaran",
+      "regions": [
+        "dublin",
+        "waterford",
+        "limerick",
+        "wexford"
+      ],
+      "unit": 12,
+      "description": "Amlaib Cuaran rules Dublin. Limerick, Waterford and Wexford are separate Norse centres grouped for play, not a single unified kingdom."
+    }
+  ],
+  "landmasses": {
+    "Ireland": [
+      -7.5,
+      53
+    ],
+    "Britain": [
+      -2,
+      53
+    ],
+    "Europe": [
+      4,
+      49
+    ]
+  },
+  "frontierGapNotes": "Enclosed land fragments are explicitly assigned by reviewed WGS84 probes in author_regional.py; no inland water is invented."
+}

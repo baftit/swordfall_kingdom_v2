@@ -1,0 +1,1389 @@
+{
+  "type": "FeatureCollection",
+  "year": 1180,
+  "size": [
+    1600,
+    1650
+  ],
+  "center": [
+    -3,
+    39
+  ],
+  "view": [
+    -10.2,
+    32.5,
+    4.5,
+    44.4
+  ],
+  "description": "Iberia in 1180: Leon, Castile, Aragon and Portugal face the Almohad caliphate. The Balearic Banu Ghaniya and Navarre remain separate. Approximate geographic provinces; grey lands are separate independent polities.",
+  "names": {
+    "castille": "Castile",
+    "badajos": "Badajoz",
+    "alentejo": "Evora Frontier",
+    "huelva": "Huelva-Algarve"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "balearic_isles",
+        "armyCenter": [
+          2.9,
+          39.6
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              0.5,
+              38
+            ],
+            [
+              4.5,
+              38
+            ],
+            [
+              4.5,
+              40.5
+            ],
+            [
+              0.5,
+              40.5
+            ],
+            [
+              0.5,
+              38
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "galicia",
+        "armyCenter": [
+          -8.0,
+          42.8
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -10,
+              41.8
+            ],
+            [
+              -8.1,
+              41.8
+            ],
+            [
+              -7,
+              41.9
+            ],
+            [
+              -6.8,
+              43.8
+            ],
+            [
+              -10,
+              44.4
+            ],
+            [
+              -10,
+              41.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "asturias",
+        "armyCenter": [
+          -5.8,
+          43.3
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.8,
+              42.8
+            ],
+            [
+              -5.5,
+              42.7
+            ],
+            [
+              -4.5,
+              43
+            ],
+            [
+              -4.5,
+              44.4
+            ],
+            [
+              -6.8,
+              44.4
+            ],
+            [
+              -6.8,
+              42.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "beira",
+        "armyCenter": [
+          -7.8,
+          40.5
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -10,
+              39.8
+            ],
+            [
+              -7.2,
+              39.8
+            ],
+            [
+              -6.8,
+              41.4
+            ],
+            [
+              -7,
+              41.9
+            ],
+            [
+              -8.1,
+              41.8
+            ],
+            [
+              -10,
+              41.8
+            ],
+            [
+              -10,
+              39.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "estremadura",
+        "armyCenter": [
+          -8.8,
+          39.3
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -10,
+              38.5
+            ],
+            [
+              -8,
+              38.5
+            ],
+            [
+              -7.7,
+              39.2
+            ],
+            [
+              -7.2,
+              39.8
+            ],
+            [
+              -10,
+              39.8
+            ],
+            [
+              -10,
+              38.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "alentejo",
+        "armyCenter": [
+          -7.9,
+          38.6
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9,
+              38.1
+            ],
+            [
+              -7.2,
+              38.1
+            ],
+            [
+              -7,
+              39
+            ],
+            [
+              -7.2,
+              39.8
+            ],
+            [
+              -7.7,
+              39.2
+            ],
+            [
+              -8,
+              38.5
+            ],
+            [
+              -9,
+              38.5
+            ],
+            [
+              -9,
+              38.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "salamanca",
+        "armyCenter": [
+          -5.7,
+          40.9
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.2,
+              39.8
+            ],
+            [
+              -5.3,
+              40
+            ],
+            [
+              -5.2,
+              41.2
+            ],
+            [
+              -6.8,
+              41.4
+            ],
+            [
+              -7.2,
+              39.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "zamora",
+        "armyCenter": [
+          -5.7,
+          41.5
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.8,
+              41.2
+            ],
+            [
+              -5.2,
+              41.2
+            ],
+            [
+              -5.2,
+              42.2
+            ],
+            [
+              -7,
+              41.9
+            ],
+            [
+              -6.8,
+              41.2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "leon",
+        "armyCenter": [
+          -5.7,
+          42.5
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.5,
+              42.7
+            ],
+            [
+              -4.5,
+              43.0
+            ],
+            [
+              -4.5,
+              42.2
+            ],
+            [
+              -5.2,
+              42.2
+            ],
+            [
+              -7.0,
+              41.9
+            ],
+            [
+              -6.822367681828227,
+              43.58750702263184
+            ],
+            [
+              -6.8,
+              43.58803882916665
+            ],
+            [
+              -6.8,
+              42.8
+            ],
+            [
+              -5.5,
+              42.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "navarre",
+        "armyCenter": [
+          -1.65,
+          42.7
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.6,
+              41.9
+            ],
+            [
+              -0.7,
+              42
+            ],
+            [
+              -0.7,
+              43.6
+            ],
+            [
+              -2.6,
+              43.6
+            ],
+            [
+              -2.6,
+              41.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "aragon",
+        "armyCenter": [
+          -0.1,
+          42.4
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.7,
+              41.9
+            ],
+            [
+              1,
+              41.9
+            ],
+            [
+              1,
+              43.1
+            ],
+            [
+              -0.7,
+              43.1
+            ],
+            [
+              -0.7,
+              41.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "catalonia",
+        "armyCenter": [
+          1.7,
+          41.8
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              1,
+              40.5
+            ],
+            [
+              3.6,
+              40.5
+            ],
+            [
+              3.6,
+              43.1
+            ],
+            [
+              1,
+              43.1
+            ],
+            [
+              1,
+              40.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "france",
+        "armyCenter": [
+          2.0,
+          43.3
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.6,
+              43.1
+            ],
+            [
+              4.5,
+              43.1
+            ],
+            [
+              4.5,
+              44.4
+            ],
+            [
+              -2.6,
+              44.4
+            ],
+            [
+              -2.6,
+              43.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "zaragoza",
+        "armyCenter": [
+          -0.9,
+          41.6
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              1.0,
+              41.9
+            ],
+            [
+              1.0,
+              40.8
+            ],
+            [
+              -2.4,
+              40.8
+            ],
+            [
+              -2.6,
+              41.9
+            ],
+            [
+              -0.7,
+              42.0
+            ],
+            [
+              -0.7,
+              41.9
+            ],
+            [
+              1.0,
+              41.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "castille",
+        "armyCenter": [
+          -3.7,
+          41.9
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.2,
+              41.2
+            ],
+            [
+              -4.8,
+              40.8
+            ],
+            [
+              -2.4,
+              40.8
+            ],
+            [
+              -2.6,
+              41.9
+            ],
+            [
+              -2.6,
+              44.4
+            ],
+            [
+              -4.5,
+              44.4
+            ],
+            [
+              -4.5,
+              42.2
+            ],
+            [
+              -5.2,
+              42.2
+            ],
+            [
+              -5.2,
+              41.2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "cuenca",
+        "armyCenter": [
+          -2.1,
+          40.1
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.4,
+              39.5
+            ],
+            [
+              -1.1,
+              39.5
+            ],
+            [
+              -1.1,
+              40.8
+            ],
+            [
+              -2.4,
+              40.8
+            ],
+            [
+              -2.4,
+              39.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "toledo",
+        "armyCenter": [
+          -4.1,
+          39.9
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.4,
+              40.8
+            ],
+            [
+              -2.4,
+              39.0
+            ],
+            [
+              -5.3,
+              39.0
+            ],
+            [
+              -5.3,
+              40.0
+            ],
+            [
+              -5.2,
+              41.2
+            ],
+            [
+              -4.8,
+              40.8
+            ],
+            [
+              -2.4,
+              40.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "valencia",
+        "armyCenter": [
+          -0.4,
+          39.5
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -1.1,
+              38.1
+            ],
+            [
+              1.5,
+              38.1
+            ],
+            [
+              1.5,
+              40.8
+            ],
+            [
+              -1.1,
+              40.8
+            ],
+            [
+              -1.1,
+              38.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "badajos",
+        "armyCenter": [
+          -6.8,
+          38.9
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.2,
+              38.1
+            ],
+            [
+              -5.3,
+              38.1
+            ],
+            [
+              -5.3,
+              40
+            ],
+            [
+              -7.2,
+              39.8
+            ],
+            [
+              -7,
+              39
+            ],
+            [
+              -7.2,
+              38.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "huelva",
+        "armyCenter": [
+          -6.9,
+          37.4
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -10.2,
+              36.7
+            ],
+            [
+              -6.4,
+              36.7
+            ],
+            [
+              -6.4,
+              38.1
+            ],
+            [
+              -9,
+              38.1
+            ],
+            [
+              -10.2,
+              36.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "seville",
+        "armyCenter": [
+          -5.9,
+          37.4
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.4,
+              35.8
+            ],
+            [
+              -5.1,
+              35.8
+            ],
+            [
+              -5.1,
+              38.1
+            ],
+            [
+              -6.4,
+              38.1
+            ],
+            [
+              -6.4,
+              35.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "cordoba",
+        "armyCenter": [
+          -4.8,
+          38
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.3,
+              38.1
+            ],
+            [
+              -5.1,
+              37.3
+            ],
+            [
+              -3.3,
+              37.3
+            ],
+            [
+              -3.3,
+              39
+            ],
+            [
+              -5.3,
+              39
+            ],
+            [
+              -5.3,
+              38.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "malaga",
+        "armyCenter": [
+          -4.4,
+          36.8
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.8,
+              35.8
+            ],
+            [
+              -3.8,
+              35.8
+            ],
+            [
+              -3.8,
+              37.3
+            ],
+            [
+              -5.1,
+              37.3
+            ],
+            [
+              -5.1,
+              36.5
+            ],
+            [
+              -5.8,
+              36.5
+            ],
+            [
+              -5.8,
+              35.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "granada",
+        "armyCenter": [
+          -3.6,
+          37.2
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.8,
+              36.4
+            ],
+            [
+              -2.7,
+              36.4
+            ],
+            [
+              -2.7,
+              38
+            ],
+            [
+              -3.3,
+              38
+            ],
+            [
+              -3.3,
+              37.3
+            ],
+            [
+              -3.8,
+              37.3
+            ],
+            [
+              -3.8,
+              36.4
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "almeria",
+        "armyCenter": [
+          -2.5,
+          36.9
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.7,
+              36
+            ],
+            [
+              -1.6,
+              36
+            ],
+            [
+              -1.6,
+              38
+            ],
+            [
+              -2.7,
+              38
+            ],
+            [
+              -2.7,
+              36
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "murcia",
+        "armyCenter": [
+          -1.2,
+          38.0
+        ],
+        "landmass": "Europe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.3,
+              38
+            ],
+            [
+              -1.6,
+              38
+            ],
+            [
+              -1.6,
+              36
+            ],
+            [
+              1.5,
+              36
+            ],
+            [
+              1.5,
+              38.1
+            ],
+            [
+              -1.1,
+              38.1
+            ],
+            [
+              -1.1,
+              39.5
+            ],
+            [
+              -2.4,
+              39.5
+            ],
+            [
+              -2.4,
+              39
+            ],
+            [
+              -3.3,
+              39
+            ],
+            [
+              -3.3,
+              38
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "tangier",
+        "armyCenter": [
+          -5.8,
+          35.7
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.2,
+              34.8
+            ],
+            [
+              -4.5,
+              34.8
+            ],
+            [
+              -4.5,
+              36.5
+            ],
+            [
+              -7.2,
+              36.5
+            ],
+            [
+              -7.2,
+              34.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "fes",
+        "armyCenter": [
+          -5.0,
+          34.0
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.5,
+              32.5
+            ],
+            [
+              -4.5,
+              32.5
+            ],
+            [
+              -4.5,
+              34.8
+            ],
+            [
+              -7.5,
+              34.8
+            ],
+            [
+              -7.5,
+              32.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "morocco",
+        "armyCenter": [
+          -2.5,
+          34.4
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.5,
+              32.5
+            ],
+            [
+              -1.2,
+              32.5
+            ],
+            [
+              -1.2,
+              36.5
+            ],
+            [
+              -4.5,
+              36.5
+            ],
+            [
+              -4.5,
+              32.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "algeria",
+        "armyCenter": [
+          2.0,
+          35.4
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -1.2,
+              32.5
+            ],
+            [
+              4.5,
+              32.5
+            ],
+            [
+              4.5,
+              37.3
+            ],
+            [
+              -1.2,
+              37.3
+            ],
+            [
+              -1.2,
+              32.5
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "seaLinks": [
+    [
+      "balearic_isles",
+      "valencia"
+    ],
+    [
+      "balearic_isles",
+      "catalonia"
+    ],
+    [
+      "tangier",
+      "huelva"
+    ],
+    [
+      "morocco",
+      "almeria"
+    ]
+  ],
+  "factions": [
+    {
+      "name": "Leon",
+      "longName": "Kingdom of Leon",
+      "ruler": "Ferdinand II",
+      "regions": [
+        "leon",
+        "galicia",
+        "asturias",
+        "zamora",
+        "salamanca"
+      ],
+      "unit": 10,
+      "description": "Leon and Galicia form Ferdinand II's realm; Castile remains a separate crown."
+    },
+    {
+      "name": "Castile",
+      "longName": "Kingdom of Castile",
+      "ruler": "Alfonso VIII",
+      "regions": [
+        "castille",
+        "toledo",
+        "cuenca"
+      ],
+      "unit": 10,
+      "description": "Alfonso VIII holds Toledo and Cuenca, captured in 1177. Southern Iberia remains Almohad."
+    },
+    {
+      "name": "Aragon",
+      "longName": "Crown of Aragon",
+      "ruler": "Alfonso II",
+      "regions": [
+        "aragon",
+        "zaragoza",
+        "catalonia"
+      ],
+      "unit": 8,
+      "description": "Aragon and the county of Barcelona are united under Alfonso II. Navarre is separate."
+    },
+    {
+      "name": "Portugal",
+      "longName": "Kingdom of Portugal",
+      "ruler": "Afonso I",
+      "regions": [
+        "estremadura",
+        "beira",
+        "alentejo"
+      ],
+      "unit": 10,
+      "description": "Portugal holds Lisbon and the Evora frontier. The Algarve remains outside its starting realm; the frontier is coarse."
+    },
+    {
+      "name": "Almohads",
+      "longName": "Almohad Caliphate",
+      "ruler": "Abu Yaqub Yusuf",
+      "regions": [
+        "seville",
+        "huelva",
+        "malaga",
+        "granada",
+        "almeria",
+        "cordoba",
+        "murcia",
+        "valencia",
+        "badajos",
+        "tangier",
+        "fes",
+        "morocco",
+        "algeria"
+      ],
+      "unit": 14,
+      "description": "The Almohads hold much of al-Andalus and the Maghrib. The Balearic Banu Ghaniya remain independent."
+    }
+  ],
+  "landmasses": {
+    "Europe": [
+      -3,
+      40
+    ]
+  },
+  "frontierGapNotes": "Enclosed land fragments are explicitly assigned by reviewed WGS84 probes in author_regional.py; no inland water is invented."
+}
