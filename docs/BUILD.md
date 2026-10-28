@@ -32,13 +32,13 @@ What `build` does (`tools/patch.py`):
    line-edits) one method body. Each file is linted first: backward jumps must land on a
    `label`, or the AVM2 rejects the method with `VerifyError #1021`.
 3. **Data tables** — every `mods/data/*.json` that differs from `data/baseline/` is compiled
-   into generated AS3 / P-code (unit library, tech library, difficulty, tech effects). Grand Europe sparse campaign/region/faction
-   overrides in `mods/data/europe_1070.json` patch the original initializers. Unchanged
+   into generated AS3 / P-code (unit library, tech library, difficulty, tech effects).
+   Grand Europe sparse campaign/region/faction overrides in `mods/data/europe_1070.json` patch the original initializers. Unchanged
    tables keep the original bytecode. `--force-data` regenerates all of them.
 4. **Maps** — `mods/maps/*.json` → generated territory clips, map clips, and previews. Britain
    is compiled from an authored SVG (`tools/mapgen/britain.py`). Grand Europe uses authored
-   WGS84 provinces and projected real coastlines (`tools/mapgen/europe.py`). Both use matching polygon hit areas. Each
-   store campaign is unlocked only when its art is present and valid.
+   WGS84 provinces and projected real coastlines (`tools/mapgen/europe.py`). Both use matching
+   polygon hit areas. Each store campaign is unlocked only when its art is present and valid.
 5. **Text** — `mods/text/*.txt` replace static text tags (menu version label).
 
 Intermediate SWFs go to `build/work/`; nothing outside `build/` and `game/SFK_v2.swf` is written.

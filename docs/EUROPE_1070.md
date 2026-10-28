@@ -107,7 +107,9 @@ for review. Natural Earth input is pinned to the v5.1.2 URL in `mods/README.md`.
 Tests check reproducibility, land partitioning, overlap, army placement, geographic
 reference points, historical ownership, rulers, roster restrictions and connected,
 symmetric movement routes. Ruffle scenarios check western/eastern selection and sea
-rejection, then require player control to return in 1071 and 1072. The live data check
+rejection, then require player control to return in 1071 and 1072. The eastern scenario
+also holds the down arrow to inspect the southern map edge above the HUD. The 65px map
+padding is retained; the existing camera allows 100px extra downward travel. The live data check
 compares every Europe override and campaign field with the running SWF. Screenshots
 are under `build/verify/europe/` and `build/verify/europe-east/`.
 

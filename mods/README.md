@@ -84,8 +84,8 @@ python3 tools/mapgen/campaigns.py East ne_50m_land.geojson data/baseline/regions
 `patch.py` unlocks only store campaigns whose map JSON is present and has nonempty art in
 baseline frame order. Removing a map JSON keeps that campaign locked in the next build.
 The other generators use procedural Voronoi divisions clipped to coastlines. Britain uses
-its authored SVG. The recovered campaign generators retain baseline region data and require every army
-marker to be inside its territory. Grand Europe regenerates army anchors, connections,
+its authored SVG. The recovered campaign generators retain baseline region data and
+require every army marker to be inside its territory. Grand Europe regenerates army anchors, connections,
 faction ownership and campaign metadata from the authored 1070 reconstruction; see
 [historical sources, limitations and verification](../docs/EUROPE_1070.md). The other
 procedural campaign maps do not claim historical accuracy.
