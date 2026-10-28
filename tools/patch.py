@@ -486,6 +486,7 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, preview_
       {{
          var s:Shape;
          var sc:Number;
+         var ox:Number;
          var oy:Number;
          var i:int;
          var c:class_1;
@@ -511,12 +512,13 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, preview_
          s = new Shape();
          s.name = "sfkPreview{pv_frame}";
          sc = Math.min({pv_w} / {map_w},{pv_h} / {map_h});
+         ox = ({pv_w} - {map_w} * sc) / 2;
          oy = ({pv_h} - {map_h} * sc) / 2;
          s.graphics.beginFill(0x4262BE);
          s.graphics.drawRect(0,0,{pv_w},{pv_h});
          s.graphics.endFill();
          s.graphics.beginFill(0x5F5B54);
-         drawRings(s.graphics,PREVIEW_LAND,0,oy / sc,sc);
+         drawRings(s.graphics,PREVIEW_LAND,ox / sc,oy / sc,sc);
          s.graphics.endFill();
          c = new class_1();
          i = 0;
@@ -525,7 +527,7 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, preview_
             ci = int(OWNER_COLORS[i]);
             s.graphics.lineStyle(0.5,0x1E1C1A,0.5);
             s.graphics.beginFill(tint(c.var_49[ci],c.var_50[ci],c.var_51[ci]));
-            drawRings(s.graphics,SHAPES[i],ORIGINS[i][0],ORIGINS[i][1] + oy / sc,sc);
+            drawRings(s.graphics,SHAPES[i],ORIGINS[i][0] + ox / sc,ORIGINS[i][1] + oy / sc,sc);
             s.graphics.endFill();
             i++;
          }}
