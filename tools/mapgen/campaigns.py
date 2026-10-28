@@ -5,7 +5,7 @@ Usage: campaigns.py <Ireland|Spain|Italy|East> <ne_50m_land.geojson> <regions.js
 Approximate historical centres map real geography onto the existing army markers.
 """
 import sys
-from europe import main
+from coastline import main
 
 CAMPAIGNS = {
     'Ireland': ((791, 786), (-11, 50, -2, 57), {
