@@ -1,10 +1,10 @@
 method
 name null
-param int
-returns void
+param QName(PackageNamespace(""),"int")
+returns QName(PackageNamespace(""),"void")
 
 body
-maxstack 6
+maxstack 16
 localcount 4
 initscopedepth 4
 maxscopedepth 5

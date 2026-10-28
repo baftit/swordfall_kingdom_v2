@@ -51,6 +51,7 @@ Intermediate SWFs go to `build/work/`; nothing outside `build/` and `game/SFK_v2
 |---|---|---|
 | smoke | `tools/verify/smoke.json` | menu → load window → map select → Western Europe → END TURN → lane battle, 0 AVM2 errors |
 | speed | `tools/verify/speed.json` | F key gives x2 / x3 / x1 / x2, reset to x1 after retreat |
+| progression | `python3 tools/verify/progression.py` | XP thresholds/cap/stat gains, banked XP through save/load, player/enemy breakthrough rewards, cap and death exclusions |
 | europe | `tools/verify/europe.json` | England view, nine province clicks, sea rejection, player control restored in 1071 and 1072, 0 errors |
 | europe east | `tools/verify/europe-east.json` | Byzantium view, seven province clicks, sea rejection, player control restored in 1071 and 1072, 0 errors |
 | regional campaigns | `tools/verify/{west,britain,ireland,spain,italy,east}.json` | geographic province clicks, sea rejection, two completed AI rounds, 0 errors |

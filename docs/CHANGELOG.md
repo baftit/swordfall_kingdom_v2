@@ -1,5 +1,18 @@
 # Changelog — SFK_v2.swf
 
+## Breakthrough morale and veteran generals — 2026-10-28
+
+- A living troop reaching the opposing edge earns its side +5 deployment morale
+  points, capped at the existing 150. Victory-bar scoring and kill rewards remain.
+- Extended cumulative general progression from level 9 to level 15. Levels 2–9
+  retain their original thresholds and growth; levels 10–15 require 600, 750, 930,
+  1140, 1380 and 1650 total XP. Each veteran level gives +2 attack and +20 HP;
+  even veteran levels also give +1 armor. Deployment cost stops growing at level 9.
+- Preserved XP and veteran power when copying and loading field commanders. Legacy
+  saves retain levels/stats and receive the XP floor for their existing level.
+- Added deterministic Ruffle checks for progression, save/load and real unit
+  breakthrough/death events in a separate test SWF, never the release artifact.
+
 ## Taifa recruitment slot restored — 2026-10-28
 
 - Restored the Taifas' Berber Archer unique unit. Replacing it with the already

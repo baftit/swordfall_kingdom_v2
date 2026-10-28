@@ -1057,6 +1057,22 @@ def campaign_patches():
             code = campaign_assignments(table, config[kind])
             patches.append({"class": cls, "method": method, "mode": "edit", "maxstack": 64,
                             "edits": [{"find": "returnvoid", "replace": "\n".join(code + ["returnvoid"])}]})
+    # Restore XP with the saved commanders; older saves with zero XP are brought
+    # to the floor for their existing level without resetting combat stats.
+    if (MODS/'pcode/general_experience.pcode').exists():
+        restored = ['pushbyte 0','setlocal3','sfkXPRegion:','label','getlocal3','getlocal2',
+                    f'getproperty {PUB("length")}','ifge sfkXPRestored','pushbyte 0','setlocal 4',
+                    'sfkXPGeneral:','label','getlocal 4','getlocal2','getlocal3',f'getproperty {IDX}',
+                    f'getproperty {PUB("generals")}',f'getproperty {PUB("length")}','ifge sfkXPNextRegion']
+        dst=['getlocal0',f'getproperty {PUB("var_2")}',f'getproperty {PUB("regions")}',
+             'getlocal3',f'getproperty {IDX}',f'getproperty {PUB("generals")}','getlocal 4',f'getproperty {IDX}']
+        src=['getlocal2','getlocal3',f'getproperty {IDX}',f'getproperty {PUB("generals")}',
+             'getlocal 4',f'getproperty {IDX}']
+        for field in ('var_107','powerRating'):
+            restored += dst+src+[f'getproperty {PUB(field)}','convert_i',f'setproperty {PUB(field)}']
+        restored += dst+[f'callpropvoid {PUB("initExperience")}, 0','inclocal_i 4','jump sfkXPGeneral',
+                        'sfkXPNextRegion:','inclocal_i 3','jump sfkXPRegion','sfkXPRestored:','label']
+        income_floors=restored+income_floors
     if income_floors:
         patches.append({'class':'class_95','method':'method_248','mode':'edit','maxstack':64,
                         'edits':[{'find':'returnvoid','replace':'\n'.join(income_floors+['returnvoid'])}]})
@@ -1350,6 +1366,9 @@ def main(argv):
             sys.exit("smoke test failed")
         if run_verify(OUTPUT, steps=VERIFY / "speed.json", out=BUILD / "verify/speed") != 0:
             sys.exit("battle speed test failed")
+        if (MODS/'pcode/general_experience.pcode').exists():
+            result=subprocess.run([sys.executable,str(VERIFY/'progression.py'),str(OUTPUT)],cwd=ROOT)
+            if result.returncode != 0:sys.exit('battle/general progression test failed')
         if run_verify(OUTPUT, steps=VERIFY / "europe.json", out=BUILD / "verify/europe") != 0:
             sys.exit("Grand Europe test failed")
         if run_verify(OUTPUT, steps=VERIFY / "europe-east.json", out=BUILD / "verify/europe-east") != 0:
