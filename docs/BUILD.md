@@ -76,8 +76,8 @@ SWF with `./patch.sh verify path/to.swf`.
 | unit / tech stats, costs, text | `mods/data/units.json`, `techs.json` | `./patch.sh` |
 | difficulty, AI catch-up | `mods/data/difficulty.json` | `./patch.sh` |
 | what techs actually do | `mods/data/tech_effects.json` | `./patch.sh` (the check step verifies it) |
-| Regional geography / starting positions | `tools/mapgen/author_regional.py`, `assets/*_geographic.geojson` | regenerate; see [MAP_RECONSTRUCTION.md](MAP_RECONSTRUCTION.md) |
-| Grand Europe position / geography | `tools/mapgen/assets/europe_1070.geojson`, `tools/mapgen/europe.py` | regenerate assets, then `./patch.sh`; see [EUROPE_1070.md](EUROPE_1070.md) |
+| Regional geography / starting positions | `tools/mapgen/author_regional.py`, `assets/*_geographic.geojson`, `tools/mapgen/frontiers.py` | regenerate; see [MAP_RECONSTRUCTION.md](MAP_RECONSTRUCTION.md) |
+| Grand Europe position / geography | `tools/mapgen/assets/europe_1070.geojson`, `tools/mapgen/europe.py`, `tools/mapgen/frontiers.py` | regenerate assets, then `./patch.sh`; see [EUROPE_1070.md](EUROPE_1070.md) |
 | game logic | new file in `mods/pcode/` + entry in `mods/manifest.json` | `./patch.sh` |
 | version label | `mods/text/8501_version.txt` | `./patch.sh` |
 

@@ -12,9 +12,10 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 import numpy as np
-from shapely import set_precision, transform
+from shapely import normalize, set_precision, transform
 from shapely.geometry import Point, Polygon, box, shape
 from shapely.ops import polylabel, polygonize, unary_union
+from frontiers import geographic_frontiers
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = Path(__file__).with_name('assets') / 'europe_1070.geojson'
@@ -74,6 +75,7 @@ def polygon_parts(g):
 
 
 def rings(g):
+    g=normalize(g)
     def number(x):
         x=round(x,4)
         return int(x) if x==int(x) else x
@@ -144,6 +146,7 @@ def build(ne_file, regions_file, source=SOURCE):
             owner=min(shapes,key=lambda n:probe.distance(shapes[n]))
         assigned[owner].append(face)
     shapes={n:unary_union(parts) for n,parts in assigned.items()}
+    shapes=geographic_frontiers(shapes,land,project,'Europe',centres)
     units=json.loads((ROOT/'mods/data/units.json').read_text())
     region_rows=[];labels=[];label_boxes=[]
     for r0 in baseline:

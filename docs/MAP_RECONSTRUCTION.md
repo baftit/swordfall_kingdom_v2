@@ -79,6 +79,32 @@ supply the authored province boundaries.
 - Western Europe's 1070 rulers and starting position also follow the sources and limits
   documented in [EUROPE_1070.md](EUROPE_1070.md).
 
+## Inland border style
+
+`tools/mapgen/frontiers.py` replaces the coarse envelope cuts with geographically
+shaped county/province aggregations. Ireland follows county and district outlines,
+including the Shannon-side divisions, rather than latitude/longitude rectangles.
+Britain, Spain and Italy use corresponding geographic groupings; other frontiers
+use reference-area overlap and authored city anchors. Normandy's two British-campaign
+provinces are explicitly grouped from the Norman departments, rather than spreading
+into the French interior. Where a game region is smaller than a reference area, its
+authored subdivision remains the guide.
+
+The reference is Natural Earth **v5.1.2 10m admin-1**, clipped to this project's extent
+in `tools/mapgen/assets/admin_reference.geojson`. That file records the pinned source
+URL and original download SHA-256 and retains only geometry, names and geographic
+grouping fields. Natural Earth vector geometry is [public domain](https://www.naturalearthdata.com/about/terms-of-use/).
+These modern outlines guide readable geography; they are not assertions of medieval
+administrative boundaries. Campaign years, faction IDs, rulers and starting-ownership
+lists remain as documented above.
+
+All regions are reconstructed on one shared boundary mesh, then generalized together
+at 2.2 game pixels. This removes the rectangular tile appearance while keeping adjacent
+borders identical. Coastlines and the subdued geographic context remain on the original
+Natural Earth land mask. Ownership art, dashed borders, previews and click areas all
+consume the same final polygons. A regression check specifically rejects straight cuts
+between the Irish provinces visible in the reported screenshot.
+
 ## Authoring and regeneration
 
 `tools/mapgen/author_regional.py` contains the reviewed envelope coordinates, anchors,

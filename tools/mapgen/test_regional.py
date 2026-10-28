@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import unittest
 from shapely.geometry import Point, Polygon, shape
-from shapely.ops import unary_union
+from shapely.ops import linemerge, unary_union
 from regional import ROOT, REFS, build, polygon_parts
 
 POINTS={
@@ -26,8 +26,8 @@ class RegionalTests(unittest.TestCase):
   configs=json.loads((ROOT/'mods/data/regional_campaigns.json').read_text())
   for ref,(m,c,*_) in self.results.items():
    with self.subTest(ref=ref):
-    self.assertEqual(m,json.loads((ROOT/f'mods/maps/{ref.lower()}.json').read_text()))
-    self.assertEqual(c,configs[ref])
+    self.assertTrue(m==json.loads((ROOT/f'mods/maps/{ref.lower()}.json').read_text()),f'{ref}: generated map differs')
+    self.assertTrue(c==configs[ref],f'{ref}: generated campaign differs')
 
  def test_partition_and_markers(self):
   for ref,(_,c,gs,_,land,_) in self.results.items():
@@ -64,6 +64,19 @@ class RegionalTests(unittest.TestCase):
     context=context.symmetric_difference(Polygon(list(zip(ring[::2],ring[1::2]))))
    self.assertTrue(context.covers(p),ref)
    self.assertFalse(any(g.covers(p) for g in gs.values()),ref)
+
+ def test_ireland_frontiers_are_not_rectangular_cuts(self):
+  shapes=self.results['Ireland'][2]
+  for a,b in [('meath','kildare'),('kildare','dublin'),('tyrone','fermanagh')]:
+   edge=shapes[a].boundary.intersection(shapes[b].boundary)
+   if edge.geom_type=='MultiLineString':edge=linemerge(edge)
+   lines=[g for g in getattr(edge,'geoms',[edge]) if g.geom_type=='LineString']
+   line=max(lines,key=lambda g:g.length)
+   points=list(line.coords);self.assertGreater(len(points),6,(a,b))
+   x0,y0=points[0];x1,y1=points[-1];length=((x1-x0)**2+(y1-y0)**2)**.5
+   self.assertGreater(length,0,(a,b))
+   deviation=max(abs((x1-x0)*(y-y0)-(y1-y0)*(x-x0))/length for x,y in points)
+   self.assertGreater(deviation,8,(a,b))
 
  def test_connections(self):
   for ref,(_,c,*_) in self.results.items():

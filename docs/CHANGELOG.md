@@ -1,5 +1,17 @@
 # Changelog — SFK_v2.swf
 
+## Geographic inland frontiers — 2026-10-28
+
+- Replaced the rectangular province divisions with irregular geographic county/province
+  outlines across all seven campaigns. Ireland's Dublin, Meath, Kildare and western/northern
+  regions now follow geographic contours rather than horizontal and vertical tile edges.
+- Added a pinned, public-domain Natural Earth v5.1.2 boundary reference and explicit regional
+  groupings. These are geographic drawing guides, not claims that modern administrative
+  boundaries existed in the campaign's starting year. Starting factions and rulers remain.
+- Generalized all shared borders together, preserving coastlines, matching dash paths,
+  polygon hit areas and previews. Added an appearance regression for Irish border contours.
+- Regenerated world-space click probes for both Grand Europe views and all regional maps.
+
 ## All regional maps reprojected and corrected — 2026-10-28
 
 - Rebuilt Western Europe, Britain, Ireland, Hispania, Italy and Storm in the East from

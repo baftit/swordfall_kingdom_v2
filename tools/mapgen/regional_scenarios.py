@@ -59,6 +59,22 @@ def main():
   for y in (year+1,year+2):
    steps += [{'completeTurn':{'campaign':ref,'year':y}},{'wait':800},{'shot':ref.lower()+f'_{y}'}]
   write(ROOT/f'tools/verify/{ref.lower()}.json',steps)
+ # Grand Europe uses the same world-space checks after its inland contours change.
+ from europe import build as build_europe, project_land
+ m,c,gs,_=build_europe(ROOT/'build/ne_50m_land.geojson',ROOT/'data/baseline/regions.Europe.json')
+ _,project=project_land(ROOT/'build/ne_50m_land.geojson')
+ for player,picks,sea,filename in [(1,['england','normandy','burgundy','frisia','saxony','bavaria','denmark','scotland','ireland'],(3,56),'europe'),
+                                   (4,['greece','anatolia','bulgaria','celicia','trabzon','s_italy','syria'],(30,34),'europe-east')]:
+  steps=start('Europe',player)+[{'expect':'Europe player turn ready: 1070'},{'countFromHere':True}]
+  for name in picks:
+   x,y=probe(gs,c['regions'],name)
+   steps += [{'worldClick':dict(campaign='Europe',x=x,y=y,width=m['width'],height=m['height'])},{'wait':200},{'expect':f'Europe territory selected: {name}'}]
+  x,y=project(*sea)
+  steps += [{'worldClick':dict(campaign='Europe',x=round(float(x)),y=round(float(y)),width=m['width'],height=m['height'])},
+            {'wait':200},{'expectCount':{'text':'Europe territory selected:','count':len(picks)}},{'shot':filename+'_selection'}]
+  for year in (1071,1072):steps += [{'completeTurn':{'campaign':'Europe','year':year}},{'wait':800},{'shot':filename+f'_{year}'}]
+  if player==4:steps += [{'key':'ArrowDown','duration':2500},{'wait':250},{'shot':'ge_southern_edge'}]
+  write(ROOT/f'tools/verify/{filename}.json',steps)
  # A second Britain start/camera covers the Scottish frontier independently.
  m,c,gs,*_=results['Britain'];steps=start('Britain',4)+[{'countFromHere':True}]
  for name in ['lorne','perth','lothian','durham']:

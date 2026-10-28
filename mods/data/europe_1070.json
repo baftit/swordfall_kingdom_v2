@@ -124,8 +124,8 @@
       "refName": "leon",
       "selfName": "Leon-Galicia",
       "peopleName": "Leon-Galicia",
-      "armyLocX": 436,
-      "armyLocY": 861,
+      "armyLocX": 424,
+      "armyLocY": 848,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -179,12 +179,13 @@
       "refName": "castille",
       "selfName": "Castile",
       "peopleName": "Castile",
-      "armyLocX": 465,
-      "armyLocY": 907,
+      "armyLocX": 480,
+      "armyLocY": 882,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
         "andalusia",
+        "aquitaine",
         "aragon",
         "leon"
       ],
@@ -296,6 +297,7 @@
       "connectionNames": [
         "aragon",
         "burgundy",
+        "castille",
         "n_italy"
       ],
       "units": [
@@ -344,14 +346,13 @@
       "refName": "normandy",
       "selfName": "Normandy",
       "peopleName": "Normandy",
-      "armyLocX": 615,
-      "armyLocY": 724,
+      "armyLocX": 591,
+      "armyLocY": 715,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
         "burgundy",
-        "england",
-        "frisia"
+        "england"
       ],
       "units": [
         4,
@@ -406,7 +407,6 @@
       "connectionNames": [
         "bavaria",
         "burgundy",
-        "normandy",
         "saxony"
       ],
       "units": [
@@ -627,8 +627,8 @@
       "refName": "n_italy",
       "selfName": "Northern Italy",
       "peopleName": "Northern Italy",
-      "armyLocX": 784,
-      "armyLocY": 884,
+      "armyLocX": 792,
+      "armyLocY": 917,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -743,7 +743,6 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "england",
         "scotland",
         "wales"
       ],
@@ -848,7 +847,7 @@
       "selfName": "Wales",
       "peopleName": "Wales",
       "armyLocX": 577,
-      "armyLocY": 612,
+      "armyLocY": 616,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -906,7 +905,6 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "ireland",
         "normandy",
         "scotland",
         "wales"
@@ -957,13 +955,12 @@
       "refName": "denmark",
       "selfName": "Denmark",
       "peopleName": "Denmark",
-      "armyLocX": 813,
+      "armyLocX": 814,
       "armyLocY": 560,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
         "norway",
-        "prussia",
         "saxony",
         "sweden"
       ],
@@ -1019,6 +1016,7 @@
       "locY": 0,
       "connectionNames": [
         "denmark",
+        "finland",
         "sweden"
       ],
       "units": [
@@ -1131,7 +1129,7 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "latvia",
+        "norway",
         "novgorod",
         "siberia",
         "sweden"
@@ -1189,6 +1187,7 @@
       "connectionNames": [
         "austria",
         "bavaria",
+        "hungary",
         "poland",
         "saxony"
       ],
@@ -1238,8 +1237,8 @@
       "refName": "austria",
       "selfName": "Alpine Marches",
       "peopleName": "Alpine Marches",
-      "armyLocX": 884,
-      "armyLocY": 819,
+      "armyLocX": 872,
+      "armyLocY": 854,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -1302,6 +1301,7 @@
       "connectionNames": [
         "bohemia",
         "hungary",
+        "lithuania",
         "prussia",
         "saxony",
         "sweden",
@@ -1415,6 +1415,7 @@
       "locY": 0,
       "connectionNames": [
         "austria",
+        "bohemia",
         "bulgaria",
         "galicia",
         "poland",
@@ -1530,8 +1531,7 @@
         "galicia",
         "greece",
         "hungary",
-        "serbia",
-        "ukraine"
+        "serbia"
       ],
       "units": [
         5,
@@ -1579,12 +1579,11 @@
       "refName": "prussia",
       "selfName": "Prussia",
       "peopleName": "Prussia",
-      "armyLocX": 1041,
-      "armyLocY": 620,
+      "armyLocX": 1049,
+      "armyLocY": 615,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "denmark",
         "lithuania",
         "poland",
         "sweden"
@@ -1635,14 +1634,14 @@
       "refName": "latvia",
       "selfName": "Livonia",
       "peopleName": "Livonia",
-      "armyLocX": 1092,
-      "armyLocY": 515,
+      "armyLocX": 1085,
+      "armyLocY": 527,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "finland",
         "lithuania",
         "novgorod",
+        "smolensk",
         "sweden"
       ],
       "units": [
@@ -1691,12 +1690,13 @@
       "refName": "lithuania",
       "selfName": "Lithuania",
       "peopleName": "Lithuania",
-      "armyLocX": 1099,
-      "armyLocY": 609,
+      "armyLocX": 1109,
+      "armyLocY": 618,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
         "latvia",
+        "poland",
         "prussia",
         "smolensk",
         "sweden",
@@ -1806,8 +1806,8 @@
       "refName": "galicia",
       "selfName": "Galicia",
       "peopleName": "Galicia",
-      "armyLocX": 1130,
-      "armyLocY": 842,
+      "armyLocX": 1120,
+      "armyLocY": 846,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -1867,7 +1867,6 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "bulgaria",
         "chernigov",
         "galicia",
         "ryazan",
@@ -1926,6 +1925,7 @@
       "locY": 0,
       "connectionNames": [
         "chernigov",
+        "latvia",
         "lithuania",
         "novgorod",
         "suzdal",
@@ -1978,8 +1978,8 @@
       "refName": "chernigov",
       "selfName": "Chernigov",
       "peopleName": "Chernigov",
-      "armyLocX": 1263,
-      "armyLocY": 673,
+      "armyLocX": 1260,
+      "armyLocY": 692,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -2043,7 +2043,8 @@
         "latvia",
         "siberia",
         "smolensk",
-        "suzdal"
+        "suzdal",
+        "volga"
       ],
       "units": [
         9,
@@ -2210,6 +2211,8 @@
       "connectionNames": [
         "khazan",
         "khwarezm",
+        "novgorod",
+        "ryazan",
         "siberia",
         "suzdal"
       ],
@@ -2268,7 +2271,8 @@
         "chernigov",
         "khazan",
         "suzdal",
-        "ukraine"
+        "ukraine",
+        "volga"
       ],
       "units": [
         4,
@@ -2321,9 +2325,9 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
+        "azerbaijan",
         "georgia",
         "khazan",
-        "khwarezm",
         "ryazan"
       ],
       "units": [
@@ -2372,8 +2376,8 @@
       "refName": "khazan",
       "selfName": "Volga Bulgaria",
       "peopleName": "Volga Bulgaria",
-      "armyLocX": 1564,
-      "armyLocY": 641,
+      "armyLocX": 1470,
+      "armyLocY": 573,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -2433,7 +2437,6 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "caucasus",
         "khazan",
         "persia",
         "volga"
@@ -2540,8 +2543,8 @@
       "refName": "georgia",
       "selfName": "Georgia",
       "peopleName": "Georgia",
-      "armyLocX": 1534,
-      "armyLocY": 956,
+      "armyLocX": 1531,
+      "armyLocY": 955,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -2602,6 +2605,7 @@
       "locY": 0,
       "connectionNames": [
         "armenia",
+        "caucasus",
         "georgia",
         "iraq",
         "mosul",
@@ -2718,9 +2722,7 @@
         "iraq",
         "judea",
         "persia",
-        "sinai",
-        "syria",
-        "upper_egypt"
+        "syria"
       ],
       "units": [
         6,
@@ -2768,12 +2770,13 @@
       "refName": "armenia",
       "selfName": "Armenia",
       "peopleName": "Armenia",
-      "armyLocX": 1500,
-      "armyLocY": 979,
+      "armyLocX": 1479,
+      "armyLocY": 1030,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
         "azerbaijan",
+        "celicia",
         "georgia",
         "mosul",
         "trabzon"
@@ -2824,8 +2827,8 @@
       "refName": "mosul",
       "selfName": "Mosul",
       "peopleName": "Mosul",
-      "armyLocX": 1498,
-      "armyLocY": 1099,
+      "armyLocX": 1513,
+      "armyLocY": 1120,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -2881,8 +2884,8 @@
       "refName": "syria",
       "selfName": "Syria",
       "peopleName": "Syria",
-      "armyLocX": 1385,
-      "armyLocY": 1218,
+      "armyLocX": 1378,
+      "armyLocY": 1224,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -2938,12 +2941,13 @@
       "refName": "judea",
       "selfName": "Judea",
       "peopleName": "Judea",
-      "armyLocX": 1332,
-      "armyLocY": 1300,
+      "armyLocX": 1314,
+      "armyLocY": 1306,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
         "arabia",
+        "nile_delta",
         "sinai",
         "syria"
       ],
@@ -3048,12 +3052,13 @@
       "refName": "celicia",
       "selfName": "Cilicia",
       "peopleName": "Cilicia",
-      "armyLocX": 1320,
-      "armyLocY": 1099,
+      "armyLocX": 1339,
+      "armyLocY": 1089,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
         "anatolia",
+        "armenia",
         "mosul",
         "syria",
         "trabzon"
@@ -3160,15 +3165,13 @@
       "refName": "sinai",
       "selfName": "Sinai",
       "peopleName": "Sinai",
-      "armyLocX": 1306,
-      "armyLocY": 1356,
+      "armyLocX": 1307,
+      "armyLocY": 1349,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "arabia",
         "judea",
-        "nile_delta",
-        "upper_egypt"
+        "nile_delta"
       ],
       "units": [
         5,
@@ -3222,6 +3225,7 @@
       "locY": 0,
       "connectionNames": [
         "cyrenaica",
+        "judea",
         "sinai",
         "upper_egypt"
       ],
@@ -3276,10 +3280,9 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "arabia",
+        "cyrenaica",
         "libya",
-        "nile_delta",
-        "sinai"
+        "nile_delta"
       ],
       "units": [
         5,
@@ -3383,14 +3386,14 @@
       "refName": "cyrenaica",
       "selfName": "Cyrenaica",
       "peopleName": "Cyrenaica",
-      "armyLocX": 994,
-      "armyLocY": 1266,
+      "armyLocX": 1122,
+      "armyLocY": 1340,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
         "libya",
         "nile_delta",
-        "tripolitania"
+        "upper_egypt"
       ],
       "units": [
         4,
@@ -3443,7 +3446,6 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "cyrenaica",
         "libya",
         "sahara",
         "tunisia"
@@ -3494,14 +3496,15 @@
       "refName": "sahara",
       "selfName": "Sahara",
       "peopleName": "Sahara",
-      "armyLocX": 670,
-      "armyLocY": 1384,
+      "armyLocX": 607,
+      "armyLocY": 1376,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
         "algeria",
         "libya",
         "mauretania",
+        "morocco",
         "tripolitania",
         "tunisia"
       ],
@@ -3607,8 +3610,8 @@
       "refName": "algeria",
       "selfName": "Algeria",
       "peopleName": "Algeria",
-      "armyLocX": 525,
-      "armyLocY": 1204,
+      "armyLocX": 543,
+      "armyLocY": 1168,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -3670,7 +3673,8 @@
       "connectionNames": [
         "algeria",
         "andalusia",
-        "mauretania"
+        "mauretania",
+        "sahara"
       ],
       "units": [
         9,
@@ -3718,8 +3722,8 @@
       "refName": "mauretania",
       "selfName": "Western Sahara",
       "peopleName": "Western Sahara",
-      "armyLocX": 199,
-      "armyLocY": 1294,
+      "armyLocX": 220,
+      "armyLocY": 1314,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -3935,7 +3939,7 @@
         1,
         1
       ],
-      "tutTargetRegion": "Ireland",
+      "tutTargetRegion": "Scotland",
       "startGeneral": {
         "selfName": "William I"
       }
@@ -4554,7 +4558,7 @@
         1,
         1.15
       ],
-      "tutTargetRegion": "Bulgaria",
+      "tutTargetRegion": "Kiev Lands",
       "startGeneral": {
         "selfName": "Iziaslav of Kiev"
       }
@@ -4668,7 +4672,7 @@
       ],
       "dscr": "Sweyn II rules Denmark, including Scania at this period. Norway and Sweden are separate kingdoms and are not Danish starting possessions.",
       "capitalRegion": "Denmark",
-      "startX": -413,
+      "startX": -414,
       "startY": -330,
       "victoryMessage": "Kingdom of Denmark prevails across Grand Europe!",
       "uuIndex": 12,
@@ -4767,8 +4771,8 @@
       ],
       "dscr": "Sancho II rules Castile in 1070. Leon and Galicia are separate crowns, Portucale is not an independent Portuguese kingdom, and southern Iberia is divided into taifas.",
       "capitalRegion": "Castile",
-      "startX": -65,
-      "startY": -677,
+      "startX": -80,
+      "startY": -652,
       "victoryMessage": "Kingdom of Castile prevails across Grand Europe!",
       "uuIndex": 10,
       "uuName": "Knight",

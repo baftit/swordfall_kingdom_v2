@@ -42,7 +42,9 @@ Portugal. Lisbon and Toledo lie in the independent al-Andalus grouping in 1070.
   modern geographic data, not a reconstruction of medieval shorelines or river courses.
 - The generator projects the entire map with Lambert azimuthal equal-area centred on
   24E / 47N into 2200×1600 game coordinates. It does not warp coasts to old army markers.
-- Authored envelopes are clipped to land and resolved in source order. Small gaps and
+- Authored envelopes define broad scope and province identity; inland frontiers are
+  refined with the geographic guides described in [MAP_RECONSTRUCTION.md](MAP_RECONSTRUCTION.md).
+  Envelopes are clipped to land and resolved in source order. Small gaps and
   islands are assigned by boundary contact or nearest province, then all faces share one
   boundary mesh. These are deliberate coarse game provinces, not surveyed frontiers.
 - `mods/maps/europe.json` stores geometry and labels. The same polygons drive ownership

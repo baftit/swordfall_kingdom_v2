@@ -15,6 +15,7 @@ from shapely import set_precision, transform
 from shapely.geometry import Point, Polygon, box, shape
 from shapely.ops import polylabel, polygonize, unary_union
 from europe import ROOT, polygon_parts, rings, PERIOD_UNITS
+from frontiers import geographic_frontiers
 
 ASSETS = Path(__file__).with_name('assets')
 REFS = ['West', 'Britain', 'Ireland', 'Spain', 'Italy', 'East']
@@ -83,6 +84,7 @@ def build(coastline, ref):
         if owner is None:owner=min(shapes,key=lambda n:probe.distance(shapes[n]))
         assigned[owner].append(face)
     shapes={n:unary_union(parts) for n,parts in assigned.items()}
+    shapes=geographic_frontiers(shapes,land,project,ref,anchors)
     rows=[];labels=[];boxes=[]
     replacements=PERIOD_UNITS if spec['year']<1100 else {18:10,20:13,30:5,35:7,36:5}
     for original in baseline:

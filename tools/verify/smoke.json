@@ -31,7 +31,7 @@
  {"wait": 1200},
  {"shot": "sword"},
  {"worldClick": {"campaign": "West", "region": "england", "x": 649, "y": 759, "width": 1800, "height": 1900}},
- {"worldClick": {"campaign": "West", "region": "wales", "x": 576, "y": 787, "width": 1800, "height": 1900}},
+ {"worldClick": {"campaign": "West", "region": "wales", "x": 575, "y": 788, "width": 1800, "height": 1900}},
  {"wait": 2000},
  {"shot": "target"},
  {"click": [400, 434]},

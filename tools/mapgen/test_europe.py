@@ -24,7 +24,7 @@ class Europe1070Tests(unittest.TestCase):
         return [n for n,g in self.shapes.items() if g.covers(p)]
 
     def test_generation_reproduces_assets(self):
-        self.assertEqual(self.m,json.loads((ROOT/'mods/maps/europe.json').read_text()))
+        self.assertTrue(self.m==json.loads((ROOT/'mods/maps/europe.json').read_text()),'Europe map differs from regenerated output')
         self.assertEqual(self.config,json.loads((ROOT/'mods/data/europe_1070.json').read_text()))
 
     def test_land_partition_and_army_markers(self):
@@ -37,10 +37,10 @@ class Europe1070Tests(unittest.TestCase):
         # Whole-map union can round a handful of shared integer-grid junctions.
         # Actual pair overlaps are checked explicitly, not inferred from area sums.
         from shapely import set_precision
-        values=list(self.shapes.values())
+        values=[set_precision(g,0) for g in self.shapes.values()]
         for i,a in enumerate(values):
             for b in values[i+1:]:
-                self.assertLess(set_precision(a,0).intersection(set_precision(b,0)).area,0.01)
+                self.assertLess(a.intersection(b).area,0.01)
 
     def test_geographic_reference_points(self):
         for lon,lat,expected in [(-.12,51.5,'england'),(1.1,49.4,'normandy'),(2.35,48.85,'burgundy'),
