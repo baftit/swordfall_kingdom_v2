@@ -38,7 +38,9 @@ Backward branches must target labels or AVM2 will reject the method.
 
 All maps use real projected coastlines and authored scope envelopes refined into
 irregular geographic frontiers by `tools/mapgen/frontiers.py` and the pinned
-`assets/admin_reference.geojson` county/province guide. Their
+`assets/admin_reference.geojson` county/province guide.
+North-up presentation is shared through `tools/mapgen/projection.py`; geographic
+backgrounds fill both the rectangular game canvas and the wider preview panel. The
 matching polygon hit areas replace the old invisible rectangular click surfaces.
 Shared borders have continuous dash phases; coastlines remain bold black. Army
 positions, labels, movement connections and faction camera positions use the same

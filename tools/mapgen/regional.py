@@ -16,19 +16,16 @@ from shapely.geometry import Point, Polygon, box, shape
 from shapely.ops import polylabel, polygonize, unary_union
 from europe import ROOT, polygon_parts, rings, PERIOD_UNITS
 from frontiers import geographic_frontiers
+from projection import north_up, backdrop
 
 ASSETS = Path(__file__).with_name('assets')
 REFS = ['West', 'Britain', 'Ireland', 'Spain', 'Italy', 'East']
 
 
 def project_land(coastline, spec):
-    lon0,lat0=np.radians(spec['center'])
-    def laea(lon,lat):
-        lon,lat=np.radians(lon),np.radians(lat);d=lon-lon0
-        k=np.sqrt(2/(1+np.sin(lat0)*np.sin(lat)+np.cos(lat0)*np.cos(lat)*np.cos(d)))
-        return k*np.cos(lat)*np.sin(d),-k*(np.cos(lat0)*np.sin(lat)-np.sin(lat0)*np.cos(lat)*np.cos(d))
-    raw=unary_union([shape(f['geometry']).intersection(box(*spec['view']))
-                     for f in json.loads(Path(coastline).read_text())['features']])
+    def flat(lon,lat):return north_up(lon,lat,spec['center'])
+    world=unary_union([shape(f['geometry']) for f in json.loads(Path(coastline).read_text())['features']])
+    raw=world.intersection(box(*spec['view']))
     domains={}
     for name,anchor in spec.get('landmasses',{}).items():
         if not any(f['properties'].get('landmass')==name for f in spec['features']):continue
@@ -41,15 +38,15 @@ def project_land(coastline, spec):
         coast=domains.get(f['properties'].get('landmass'),raw)
         footprints.append(coast.intersection(shape(f['geometry'])))
     geo=unary_union(footprints)
-    projected=transform(geo.segmentize(.1),laea,interleaved=False)
+    projected=transform(geo,flat,interleaved=False)
     x0,y0,x1,y1=projected.bounds;w,h=spec['size'];pad=80
     scale=min((w-2*pad)/(x1-x0),(h-2*pad)/(y1-y0))
     dx,dy=(w-(x1-x0)*scale)/2,(h-(y1-y0)*scale)/2
     def project(x,y):
-        a,b=laea(np.asarray(x),np.asarray(y));return (a-x0)*scale+dx,(b-y0)*scale+dy
+        a,b=flat(x,y);return (a-x0)*scale+dx,(b-y0)*scale+dy
     projected_domains={n:set_precision(transform(g.segmentize(.08),project,interleaved=False),1) for n,g in domains.items()}
-    context=set_precision(transform(raw.segmentize(.08),project,interleaved=False).simplify(.5),1).intersection(box(0,0,w,h))
-    return set_precision(transform(geo.segmentize(.08),project,interleaved=False).simplify(.5),1),project,projected_domains,context
+    context=backdrop(world,project,w,h)
+    return set_precision(transform(geo.segmentize(.08),project,interleaved=False).simplify(.5),1),project,projected_domains,context,backdrop(world,project,w,h,preview=True)
 
 
 def build(coastline, ref):
@@ -59,7 +56,7 @@ def build(coastline, ref):
     features=spec['features']
     if len(features)!=len(expected) or {f['properties']['refName'] for f in features}!=set(expected):
         raise ValueError(f'{ref}: province IDs must match baseline exactly')
-    land,project,domains,context=project_land(coastline,spec);occupied=Polygon();shapes={};anchors={}
+    land,project,domains,context,preview=project_land(coastline,spec);occupied=Polygon();shapes={};anchors={}
     for f in features:
         name=f['properties']['refName'];geo=shape(f['geometry'])
         if not geo.is_valid:raise ValueError(f'{ref}/{name}: invalid envelope')
@@ -142,8 +139,8 @@ def build(coastline, ref):
     config={'campaign':dict(startDate=spec['year'],dimX=w,dimY=h,dscr=spec['description']),
             'regions':[{k:r[k] for k in rf} for r in rows],
             'factions':[{**{k:f[k] for k in ff},'startGeneral':{'selfName':f['startGeneral']['selfName']}} for f in fs]}
-    m=dict(width=w,height=h,land=rings(land),contextLand=rings(context),regions=[dict(refName=n,rings=rings(shapes[n])) for n in expected],
-           labels=labels,projection=f"Lambert azimuthal equal-area, {spec['center'][0]}E / {spec['center'][1]}N",campaign=ref)
+    m=dict(width=w,height=h,land=rings(land),contextLand=rings(context),previewLand=rings(preview),regions=[dict(refName=n,rings=rings(shapes[n])) for n in expected],
+           labels=labels,projection=f"North-up equirectangular, standard parallel {spec['center'][1]}N",campaign=ref)
     return m,config,shapes,owners,land,project
 
 

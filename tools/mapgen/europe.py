@@ -3,7 +3,7 @@
 
 Usage: europe.py <ne_50m_land.geojson> <regions.Europe.json> <out.json>
 Optional --campaign-out and --svg-out select generated campaign data/review assets.
-Lambert azimuthal equal-area projection, centred on Europe; no marker-based warping.
+North-up equirectangular projection; no marker-based warping or curved crop edges.
 """
 import argparse
 import copy
@@ -16,6 +16,7 @@ from shapely import normalize, set_precision, transform
 from shapely.geometry import Point, Polygon, box, shape
 from shapely.ops import polylabel, polygonize, unary_union
 from frontiers import geographic_frontiers
+from projection import north_up, backdrop
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = Path(__file__).with_name('assets') / 'europe_1070.geojson'
@@ -58,12 +59,8 @@ FACTIONS = [
 ]
 
 
-def laea(lon, lat):
-    lon, lat = np.radians(lon), np.radians(lat)
-    lon0, lat0 = np.radians(24), np.radians(47)
-    d = lon - lon0
-    k = np.sqrt(2 / (1 + np.sin(lat0)*np.sin(lat) + np.cos(lat0)*np.cos(lat)*np.cos(d)))
-    return k*np.cos(lat)*np.sin(d), -k*(np.cos(lat0)*np.sin(lat)-np.sin(lat0)*np.cos(lat)*np.cos(d))
+def flat(lon, lat):
+    return north_up(lon,lat,(24,47))
 
 
 def polygon_parts(g):
@@ -86,12 +83,12 @@ def rings(g):
 def project_land(ne_file):
     view = box(*VIEW)
     geo = unary_union([shape(f['geometry']).intersection(view) for f in json.loads(Path(ne_file).read_text())['features']])
-    projected = transform(geo.segmentize(.2), laea, interleaved=False)
+    projected = transform(geo, flat, interleaved=False)
     x0,y0,x1,y1 = projected.bounds
     scale = min((WIDTH-2*PAD)/(x1-x0),(HEIGHT-2*PAD)/(y1-y0))
     dx,dy = (WIDTH-(x1-x0)*scale)/2,(HEIGHT-(y1-y0)*scale)/2
     def project(x,y,z=None):
-        a,b=laea(np.asarray(x),np.asarray(y))
+        a,b=flat(x,y)
         return (a-x0)*scale+dx,(b-y0)*scale+dy
     land = set_precision(transform(geo.segmentize(.15), project, interleaved=False).simplify(.6),1)
     return land,project
@@ -207,9 +204,12 @@ def build(ne_file, regions_file, source=SOURCE):
         for i in f['regions']:
             if owners[i]:raise ValueError('Duplicate starting ownership')
             owners[i]=f['selfIndex']
-    m={'width':WIDTH,'height':HEIGHT,'land':rings(land),
+    world=unary_union([shape(f['geometry']) for f in json.loads(Path(ne_file).read_text())['features']])
+    context=backdrop(world,project,WIDTH,HEIGHT)
+    m={'width':WIDTH,'height':HEIGHT,'land':rings(land),'contextLand':rings(context),
+       'previewLand':rings(backdrop(world,project,WIDTH,HEIGHT,preview=True)),
        'regions':[{'refName':r['refName'],'rings':rings(shapes[r['refName']])} for r in baseline],
-       'labels':labels,'projection':'Lambert azimuthal equal-area, 24E / 47N'}
+       'labels':labels,'projection':'North-up equirectangular, standard parallel 47N'}
     region_fields=['refName','selfName','peopleName','armyLocX','armyLocY','locX','locY','connectionNames','units','regionUnit']
     faction_fields=['selfIndex','selfName','longName','regions','dscr','capitalRegion','startX','startY','victoryMessage','uuIndex','uuName','hasUnits','unitPrefs','tutTargetRegion']
     campaign={'_doc':'Grand Europe 1070 reconstruction: approximate macro-regions, major powers and independent minor states. Stable 67 region / 11 faction IDs; new campaign ownership only.',
@@ -226,6 +226,8 @@ def write_svg(path,m,shapes,owners):
     ET.SubElement(root,'title').text='Grand Europe, 1070 AD — reconstructed macro-regions'
     ET.SubElement(root,'rect',width=str(WIDTH),height=str(HEIGHT),fill='#4262a7')
     colors=['#aaa79c','#b82e2e','#3937a0','#4b4a47','#75338c','#865f3f','#2f863d','#8b5555','#7b7e20','#c5af1d','#bd7123']
+    data=' '.join('M'+' L'.join(f'{p[j]},{p[j+1]}' for j in range(0,len(p),2))+' Z' for p in m['contextLand'])
+    ET.SubElement(root,'path',d=data,fill='#605d56',**{'fill-rule':'evenodd'})
     for i,r in enumerate(m['regions']):
         data=' '.join('M'+' L'.join(f'{p[j]},{p[j+1]}' for j in range(0,len(p),2))+' Z' for p in r['rings'])
         ET.SubElement(root,'path',id=r['refName'],d=data,fill=colors[owners[i]],stroke='#222',**{'stroke-width':'1.4','fill-rule':'evenodd'})

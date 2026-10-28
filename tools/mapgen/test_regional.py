@@ -57,13 +57,28 @@ class RegionalTests(unittest.TestCase):
    self.assertLess(holes.difference(envelope).intersection(coast).area,.0001,ref)
 
  def test_unplayable_borderlands_remain_land(self):
-  for ref,lon,lat in [('Ireland',-2.7,53.5),('West',-5,34)]:
+  for ref,lon,lat in [('Ireland',-3.1,53.3),('West',-5,34),('West',12,65)]:
    m,_,gs,_,_,project=self.results[ref];x,y=project(lon,lat);p=Point(float(x),float(y))
    context=Polygon()
    for ring in m['contextLand']:
     context=context.symmetric_difference(Polygon(list(zip(ring[::2],ring[1::2]))))
    self.assertTrue(context.covers(p),ref)
    self.assertFalse(any(g.covers(p) for g in gs.values()),ref)
+
+ def test_north_up_rectangular_projection(self):
+  for ref,(_,_,_,_,_,project) in self.results.items():
+   x0,y0=project(0,45);x1,y1=project(10,45);x2,y2=project(0,55)
+   self.assertAlmostEqual(float(y0),float(y1),places=8,msg=ref)
+   self.assertAlmostEqual(float(x0),float(x2),places=8,msg=ref)
+   self.assertGreater(x1,x0,ref);self.assertLess(y2,y0,ref)
+
+ def test_preview_land_continues_across_side_margins(self):
+  m,_,_,_,_,project=self.results['West'];x,y=project(35,55);p=Point(float(x),float(y))
+  self.assertGreater(x,m['width'])
+  preview=Polygon()
+  for ring in m['previewLand']:
+   preview=preview.symmetric_difference(Polygon(list(zip(ring[::2],ring[1::2]))))
+  self.assertTrue(preview.covers(p),'Land east of the game canvas must continue into preview side margins')
 
  def test_ireland_frontiers_are_not_rectangular_cuts(self):
   shapes=self.results['Ireland'][2]

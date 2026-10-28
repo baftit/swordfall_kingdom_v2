@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import unittest
 
-from shapely.geometry import Point
+from shapely.geometry import Point, Polygon
 from shapely.ops import unary_union
 from europe import ROOT, SOURCE, build, project_land
 
@@ -26,6 +26,18 @@ class Europe1070Tests(unittest.TestCase):
     def test_generation_reproduces_assets(self):
         self.assertTrue(self.m==json.loads((ROOT/'mods/maps/europe.json').read_text()),'Europe map differs from regenerated output')
         self.assertEqual(self.config,json.loads((ROOT/'mods/data/europe_1070.json').read_text()))
+
+    def test_north_up_projection_and_uncut_context(self):
+        x0,y0=self.project(0,45);x1,y1=self.project(10,45);x2,y2=self.project(0,55)
+        self.assertAlmostEqual(float(y0),float(y1),places=8)
+        self.assertAlmostEqual(float(x0),float(x2),places=8)
+        self.assertGreater(x1,x0);self.assertLess(y2,y0)
+        context=Polygon()
+        for ring in self.m['contextLand']:
+            context=context.symmetric_difference(Polygon(list(zip(ring[::2],ring[1::2]))))
+        x,y=self.project(70,60);p=Point(float(x),float(y))
+        self.assertTrue(context.covers(p))
+        self.assertFalse(self.land.covers(p))
 
     def test_land_partition_and_army_markers(self):
         union=unary_union(list(self.shapes.values()))

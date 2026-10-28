@@ -1,5 +1,14 @@
 # Changelog — SFK_v2.swf
 
+## Upright maps and clean canvas edges — 2026-10-28
+
+- Replaced the curved, tilted projection with a north-up equirectangular presentation
+  across all seven maps. Parallels stay horizontal and meridians vertical.
+- Projected surrounding land through to the rectangular canvas edges, removing the
+  wedge-shaped background crop and false ocean edges in previews and gameplay.
+- Regenerated province polygons, markers, labels, camera positions and click scenarios
+  together; retained irregular geographic frontiers and historical starting ownership.
+
 ## Geographic inland frontiers — 2026-10-28
 
 - Replaced the rectangular province divisions with irregular geographic county/province

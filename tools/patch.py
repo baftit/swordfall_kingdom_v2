@@ -1049,7 +1049,7 @@ def map_changes():
         origins = [[r["locX"], r["locY"]] for r in regions]
         coasts, borders = territory_edges(m["regions"], origins, continuous=True)
         clip = gen_region_clip(region_cls, [_rings(r["rings"]) for r in m["regions"]], origins, owners,
-                               m.get("contextLand", m["land"]), (frame, *PREVIEW_SIZE, m["width"], m["height"]), coasts, borders,
+                               m.get("previewLand", m.get("contextLand", m["land"])), (frame, *PREVIEW_SIZE, m["width"], m["height"]), coasts, borders,
                                [v[0] for k, v in MAP_CLASSES.items()
                                 if k != "europe" and (MODS / "maps" / f"{k}.json").exists()]
                                if name == "europe" else ())

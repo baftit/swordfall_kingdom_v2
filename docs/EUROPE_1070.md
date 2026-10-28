@@ -40,8 +40,10 @@ Portugal. Lisbon and Toledo lie in the independent al-Andalus grouping in 1070.
   Northern Forests. These IDs are not claims about the historical boundaries of those names.
 - Natural Earth 1:50m land supplies the coastline, clipped to 13W–66E / 23N–72N. It is
   modern geographic data, not a reconstruction of medieval shorelines or river courses.
-- The generator projects the entire map with Lambert azimuthal equal-area centred on
-  24E / 47N into 2200×1600 game coordinates. It does not warp coasts to old army markers.
+- The generator uses a north-up equirectangular projection with longitude scaled at
+  47N into 2200×1600 game coordinates. Parallel meridians keep the rectangular map
+  upright. Background land extends to the canvas edges beyond the playable scope;
+  it does not end in a curved crop. Coasts are not warped to old army markers.
 - Authored envelopes define broad scope and province identity; inland frontiers are
   refined with the geographic guides described in [MAP_RECONSTRUCTION.md](MAP_RECONSTRUCTION.md).
   Envelopes are clipped to land and resolved in source order. Small gaps and

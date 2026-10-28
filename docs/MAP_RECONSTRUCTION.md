@@ -1,7 +1,7 @@
 # Regional campaign reconstructions
 
 All six regional campaigns use unwarped Natural Earth coastlines with authored WGS84
-province envelopes, projected as a whole with Lambert azimuthal equal-area. Grand Europe
+province envelopes, projected as a whole with a north-up equirectangular projection. Grand Europe
 retains its separate reviewed [1070 reconstruction](EUROPE_1070.md).
 
 These are geographically grounded strategy maps with historically informed starting
@@ -24,6 +24,15 @@ scripted historical chronology.
 All original region IDs and faction slots remain stable. Displayed names distinguish
 coarse groupings from misleading old labels: e.g. East Munster uses the `arann` ID,
 Norman Marches uses `lucania`, and Northern Italy uses `lombardy`.
+
+Map presentation uses parallel meridians and horizontal latitude lines, with longitude
+scaled at each campaign's central latitude. This keeps the map upright without a curved,
+tilted outer crop. Background land is projected beyond the playable scope and clipped
+only at the rectangular canvas, so scope limits do not create false ocean edges.
+Previews and gameplay use this same projection, including selectors and army positions.
+`tools/mapgen/projection.py` defines it. `contextLand` covers the game canvas;
+`previewLand` also covers the side margins created when a tall map fits the wider
+410×265 preview panel, avoiding a false vertical ocean edge inside the thumbnail.
 
 ## Explicit political abstractions
 

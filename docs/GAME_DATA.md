@@ -315,7 +315,7 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 13 | Frisia | Imperials | 34 | 16 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 2 | burgundy, lorraine, saxony |
 | 14 | Northern Italy | Imperials | 42 | 19 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 2, Horseman 3 | bavaria, burgundy, carinthia, croatia, latium |
 | 15 | Papal-Lombard Lands | Independent | 40 | 12 | 1 | 1 | 1 | 0 | Horseman 6, Spearman 5, Archer 3, Pikeman 3 | apulia, croatia, lombardy |
-| 16 | Apulia | Independent | 44 | 16 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3, Spearman 1 | latium, sicily |
+| 16 | Apulia | Independent | 44 | 16 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3, Spearman 1 | croatia, latium, sicily |
 | 17 | Sicily | Independent | 38 | 15 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 2, Berber Archer 2 | apulia, tunisia |
 | 18 | Wales | Independent | 36 | 19 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 1 | england, ireland |
 | 19 | England | England | 50 | 25 | 1 | 1 | 1 | 0 | Militia 9, Skirmisher 6, Horseman 4, Spearman 2 | normandy, scotland, wales |
@@ -330,7 +330,7 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 28 | Bohemia | Imperials | 30 | 17 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 2 | bavaria, carinthia, hungary, poland, saxony |
 | 29 | Carinthia | Imperials | 32 | 16 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 3 | bavaria, bohemia, croatia, hungary, lombardy |
 | 30 | Hungary | Independent | 48 | 17 | 1 | 1 | 1 | 0 | Militia 4, Spearman 3, Horse Archer 4, Mercenary Druzhina 3 | bohemia, carinthia, croatia, poland |
-| 31 | Croatia | Independent | 28 | 15 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3, Horse Archer 2 | carinthia, hungary, latium, lombardy |
+| 31 | Croatia | Independent | 28 | 15 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3, Horse Archer 2 | apulia, carinthia, hungary, latium, lombardy |
 | 32 | Norway | Independent | 24 | 12 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 2, Swordsman 2, Viking Mercenary 2 | denmark, sweden |
 | 33 | Sweden | Independent | 32 | 14 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Swordsman 3, Viking Raider 2, Viking Mercenary 3 | denmark, norway, poland |
 
@@ -378,11 +378,11 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 35 | Chernigov | Rus' | 30 | 18 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 5, Horseman 3 | ryazan, smolensk, suzdal, ukraine |
 | 36 | Novgorod | Rus' | 50 | 24 | 1 | 1 | 1 | 0 | Militia 9, Skirmisher 6, Horseman 4 | finland, latvia, siberia, smolensk, suzdal, volga |
 | 37 | Northern Forests | Independent | 20 | 9 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 3 | finland, novgorod, volga |
-| 38 | Suzdal | Rus' | 30 | 14 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 2 | chernigov, novgorod, ryazan, smolensk, volga |
-| 39 | Upper Kama | Independent | 36 | 14 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 3 | khazan, khwarezm, novgorod, ryazan, siberia, suzdal |
-| 40 | Oka Lands | Rus' | 40 | 17 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 4 | caucasus, chernigov, khazan, suzdal, ukraine, volga |
+| 38 | Suzdal | Rus' | 30 | 14 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 2 | chernigov, khazan, novgorod, ryazan, smolensk, volga |
+| 39 | Upper Kama | Independent | 36 | 14 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 3 | khazan, khwarezm, novgorod, siberia, suzdal |
+| 40 | Oka Lands | Rus' | 40 | 17 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 4 | caucasus, chernigov, khazan, suzdal, ukraine |
 | 41 | Caucasus | Independent | 34 | 15 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 3, Horse Archer 3 | azerbaijan, georgia, khazan, ryazan |
-| 42 | Volga Bulgaria | Independent | 54 | 20 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 4, Horse Archer 4 | caucasus, khwarezm, ryazan, volga |
+| 42 | Volga Bulgaria | Independent | 54 | 20 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 4, Horse Archer 4 | caucasus, khwarezm, ryazan, suzdal, volga |
 | 43 | Khwarezm | Seljuks | 50 | 16 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3, Lancer 3, Horse Archer 3 | khazan, persia, volga |
 | 44 | Persia | Seljuks | 70 | 19 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 6, Horseman 4, Swordsman 3, Horse Archer 2 | arabia, azerbaijan, iraq, khwarezm |
 | 45 | Georgia | Independent | 36 | 20 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 2, Horseman 2 | armenia, azerbaijan, caucasus, trabzon |
@@ -558,9 +558,9 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 |---|---|---|---|---|---|---|---|---|---|---|
 | 0 | Argos | Byzantium | 36 | 9 | 1 | 1 | 1 | 0 | — | corinth, crete |
 | 1 | Corinth | Byzantium | 38 | 8 | 1 | 1 | 1 | 0 | — | argos, athens, nicopolis |
-| 2 | Athens | Byzantium | 48 | 8 | 1 | 1 | 1 | 0 | — | corinth, nicopolis |
+| 2 | Athens | Byzantium | 48 | 8 | 1 | 1 | 1 | 0 | — | corinth, larissa, nicopolis |
 | 3 | Nicopolis | Byzantium | 38 | 8 | 1 | 1 | 1 | 0 | — | athens, bulgaria, corinth, larissa |
-| 4 | Larissa | Byzantium | 34 | 8 | 1 | 1 | 1 | 0 | — | bulgaria, nicopolis, thessalonica |
+| 4 | Larissa | Byzantium | 34 | 8 | 1 | 1 | 1 | 0 | — | athens, bulgaria, nicopolis, thessalonica |
 | 5 | Thessalonica | Byzantium | 28 | 9 | 1 | 1 | 1 | 0 | — | bulgaria, dardania, larissa, macedonia |
 | 6 | Western Bulgaria | Byzantium | 34 | 16 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 4, Mercenary Druzhina 3 | dardania, larissa, nicopolis, servia, thessalonica |
 | 7 | Servia | Independent | 32 | 13 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 6, Horseman 6, Mercenary Druzhina 4 | bulgaria, dacia, dardania |
@@ -583,14 +583,14 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 24 | Cilicia | Byzantium | 20 | 11 | 1 | 1 | 1 | 6 | Militia 7, Skirmisher 5, Horseman 4, Archer 3 | antioch, cappadocia, cyprus, edessa, melitene, seleucia, syria |
 | 25 | Charsianon | Byzantium | 26 | 10 | 1 | 1 | 1 | 6 | Militia 9, Skirmisher 5 | ancyra, cappadocia, chaldea, paphlagonia, sebastea |
 | 26 | Paphlagonia | Byzantium | 28 | 14 | 1 | 1 | 1 | 4 | Militia 8, Skirmisher 4, Horseman 6 | ancyra, chaldea, charsianon, optimaton |
-| 27 | Sebastea | Byzantium | 26 | 11 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 4, Spearman 4 | cappadocia, chaldea, charsianon, kelat, melitene |
+| 27 | Sebastea | Byzantium | 26 | 11 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 4, Spearman 4 | amida, cappadocia, chaldea, charsianon, kelat, melitene |
 | 28 | Chaldia | Byzantium | 36 | 13 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 2, Horseman 2, Spearman 3, Archer 3 | armenia, charsianon, kelat, paphlagonia, sebastea |
 | 29 | Melitene | Byzantium | 24 | 9 | 1 | 1 | 1 | 0 | Militia 8, Skirmisher 6, Horseman 7, Spearman 5 | amida, cappadocia, cilicia, edessa, sebastea |
 | 30 | Antioch | Byzantium | 40 | 10 | 1 | 1 | 1 | 0 | Horseman 8, Spearman 6, Archer 6, Swordsman 5 | arabia, cilicia, cyprus, damascus, edessa, syria |
 | 31 | Edessa | Byzantium | 38 | 11 | 1 | 1 | 1 | 0 | Skirmisher 6, Horseman 5, Spearman 8 | amida, antioch, cilicia, melitene, syria |
 | 32 | Georgia | Independent | 50 | 20 | 1 | 1 | 1 | 0 | Horseman 8, Archer 5, Horse Archer 6 | armenia, azerbaijan, caucasus |
 | 33 | Caucasus | Independent | 66 | 26 | 1 | 1 | 1 | 0 | Skirmisher 4, Horseman 6, Swordsman 5, Horse Archer 7 | azerbaijan, georgia |
-| 34 | Amida | Seljuks | 48 | 13 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 7, Archer 5 | edessa, kelat, kurdistan, melitene, syria |
+| 34 | Amida | Seljuks | 48 | 13 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 7, Archer 5 | edessa, kelat, kurdistan, melitene, sebastea, syria |
 | 35 | Kelat | Seljuks | 50 | 15 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 2, Horseman 2 | amida, armenia, chaldea, kurdistan, sebastea, tabriz |
 | 36 | Armenia | Seljuks | 110 | 41 | 1 | 1 | 1 | 0 | Militia 10, Skirmisher 5, Horseman 8, Horse Archer 9 | azerbaijan, chaldea, georgia, kelat, tabriz |
 | 37 | Tabriz | Seljuks | 66 | 14 | 1 | 1 | 1 | 0 | — | armenia, azerbaijan, kelat, kurdistan, shahr_zor |
@@ -604,8 +604,8 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 45 | Palestine | Fatimids | 50 | 18 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 5, Spearman 5 | arabia, damascus, jerusalem |
 | 46 | Damascus | Fatimids | 40 | 10 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 2, Horseman 2, Spearman 5, Archer 3 | antioch, arabia, jerusalem, palestine |
 | 47 | Jerusalem | Fatimids | 48 | 12 | 1 | 1 | 1 | 0 | — | arabia, damascus, palestine, sinai |
-| 48 | Arabia | Independent | 120 | 50 | 1 | 1 | 1 | 0 | Militia 8, Skirmisher 3, Horseman 6 | antioch, baghdad, damascus, iraq, jerusalem, mosul, palestine, syria |
-| 49 | Sinai | Fatimids | 36 | 10 | 1 | 1 | 1 | 0 | — | alexandria, egypt, jerusalem |
+| 48 | Arabia | Independent | 120 | 50 | 1 | 1 | 1 | 0 | Militia 8, Skirmisher 3, Horseman 6 | antioch, baghdad, damascus, iraq, jerusalem, mosul, palestine, sinai, syria |
+| 49 | Sinai | Fatimids | 36 | 10 | 1 | 1 | 1 | 0 | — | alexandria, arabia, egypt, jerusalem |
 | 50 | Alexandria | Fatimids | 54 | 16 | 1 | 1 | 1 | 0 | Militia 8, Skirmisher 4, Spearman 5, Archer 5 | cyrenaica, egypt, libya, sinai |
 | 51 | Egypt | Fatimids | 90 | 32 | 1 | 1 | 1 | 0 | Militia 10, Skirmisher 5, Horseman 5, Spearman 4, Archer 5 | alexandria, cyrenaica, libya, sinai |
 | 52 | Libya | Independent | 50 | 22 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 7, Horseman 5 | alexandria, cyrenaica, egypt |
