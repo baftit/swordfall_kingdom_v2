@@ -302,11 +302,18 @@ for original in europe['features']:
 west_aragon=next(f for f in s['features'] if f['properties']['refName']=='aragon')
 west_aragon['geometry']=json.loads(json.dumps(ge['aragon']['geometry']))
 s['names']={'portugal':'Portucale','leon':'Leon-Galicia','castille':'Castile','andalusia':'Al-Andalus','burgundy':'Royal France','latium':'Papal-Lombard Lands','aragon':'Eastern Iberia','lombardy':'Northern Italy'}
+s['mercenaryUnits']={'latium':35}  # Preserve the original regional Swiss Mercenary recruitment slot.
+s.update(size=[1600,1550],view=[-11.5,35,25,64],padding=50,
+         scopeCountries=['Italy','Morocco','Algeria','Tunisia'],scopeRegions=[['France','Corse']],
+         incomeBonuses={'lombardy':5},seaGateways={
+          'andalusia/algeria':{'andalusia':[-5.6,36.02],'algeria':[-5.72,35.9]},
+          'apulia/croatia':{'apulia':[16.18,41.9],'croatia':[16.95,43.3]}})
+s['names']['algeria']='Maghreb'
 links(s,'england/normandy','ireland/wales','ireland/scotland','denmark/norway','denmark/sweden','sicily/apulia','sicily/tunisia','andalusia/algeria')
 f(s,'England','Kingdom of England','William I','england normandy',5,'William I rules England and Normandy after 1066. Wales and Scotland remain independent.')
 f(s,'France','Kingdom of France','Philip I','burgundy aquitaine toulouse',8,'Philip I\'s realm groups the great southern fiefs under nominal Capetian sovereignty, without implying direct royal administration.')
 f(s,'Imperials','Holy Roman Empire','Henry IV','saxony bavaria lorraine frisia lombardy bohemia carinthia',9,'Henry IV is King of the Romans, not yet emperor. Duchies and imperial Italy are grouped under one playable faction.')
-f(s,'Taifas','Taifas of al-Andalus','al-Mutamid of Seville','andalusia',4,'Separate Iberian taifas share a playable colour. Al-Mutamid rules Seville, not a united al-Andalus; the Almoravid intervention lies in the future.')
+f(s,'Taifas','Taifas of al-Andalus','al-Mutamid of Seville','andalusia',14,'Separate Iberian taifas share a playable colour. Al-Mutamid rules Seville, not a united al-Andalus; the Almoravid intervention lies in the future.')
 f(s,'Castile','Kingdom of Castile','Sancho II','castille',10,'Sancho II rules Castile in 1070. Leon and Galicia are separate crowns; Portucale is not an independent Portuguese kingdom.')
 
 # Keep each island province on the correct landmass across narrow straits.

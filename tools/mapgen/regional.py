@@ -15,8 +15,9 @@ from shapely import set_precision, transform
 from shapely.geometry import Point, Polygon, box, shape
 from shapely.ops import polylabel, polygonize, unary_union
 from europe import ROOT, polygon_parts, rings, PERIOD_UNITS
-from frontiers import geographic_frontiers
+from frontiers import geographic_frontiers, complete_scope
 from projection import north_up, backdrop
+from routes import crossings, sea_lanes
 
 ASSETS = Path(__file__).with_name('assets')
 REFS = ['West', 'Britain', 'Ireland', 'Spain', 'Italy', 'East']
@@ -39,7 +40,7 @@ def project_land(coastline, spec):
         footprints.append(coast.intersection(shape(f['geometry'])))
     geo=unary_union(footprints)
     projected=transform(geo,flat,interleaved=False)
-    x0,y0,x1,y1=projected.bounds;w,h=spec['size'];pad=80
+    x0,y0,x1,y1=projected.bounds;w,h=spec['size'];pad=spec.get('padding',80)
     scale=min((w-2*pad)/(x1-x0),(h-2*pad)/(y1-y0))
     dx,dy=(w-(x1-x0)*scale)/2,(h-(y1-y0)*scale)/2
     def project(x,y):
@@ -81,6 +82,7 @@ def build(coastline, ref):
         if owner is None:owner=min(shapes,key=lambda n:probe.distance(shapes[n]))
         assigned[owner].append(face)
     shapes={n:unary_union(parts) for n,parts in assigned.items()}
+    land=complete_scope(land,context,project,anchors,spec.get('scopeCountries',()),spec.get('scopeRegions',()))
     shapes=geographic_frontiers(shapes,land,project,ref,anchors)
     rows=[];labels=[];boxes=[]
     replacements=PERIOD_UNITS if spec['year']<1100 else {18:10,20:13,30:5,35:7,36:5}
@@ -96,7 +98,11 @@ def build(coastline, ref):
         r.update(selfName=title,peopleName=title,locX=0,locY=0,armyLocX=x,armyLocY=y)
         roster=[0]*38
         for i,count in enumerate(r['units']):roster[replacements.get(i,i)]+=count
-        r['units']=roster;r['regionUnit']=replacements.get(r['regionUnit'],r['regionUnit'])
+        r['units']=roster
+        r['regionUnit']=spec.get('mercenaryUnits',{}).get(name,replacements.get(r['regionUnit'],r['regionUnit']))
+        if name in spec.get('incomeBonuses',{}):
+            r['baseGold']+=spec['incomeBonuses'][name]
+            r['totalGold']+=spec['incomeBonuses'][name]
         width=max(58,min(155,len(title)*7+12));options=[]
         for ox in (0,-35,35):
             for oy in (20,36,-57):
@@ -111,7 +117,8 @@ def build(coastline, ref):
             if shapes[a].intersection(shapes[b]).area>.01:raise ValueError(f'{ref}: overlap {a}/{b}')
             if shapes[a].boundary.intersection(shapes[b].boundary).length>3:
                 neighbours[a].add(b);neighbours[b].add(a)
-    for a,b in spec['seaLinks']:
+    links=crossings(ref,spec['seaLinks'])
+    for a,b in links:
         neighbours[a].add(b);neighbours[b].add(a)
     for r in rows:r['connectionNames']=sorted(neighbours[r['refName']])
     seen=set();todo=[expected[0]]
@@ -137,9 +144,10 @@ def build(coastline, ref):
     rf=['refName','selfName','peopleName','armyLocX','armyLocY','locX','locY','connectionNames','units','regionUnit']
     ff=['selfIndex','selfName','longName','regions','capitalRegion','dscr','uuIndex','uuName','startX','startY','hasUnits','unitPrefs','victoryMessage','tutTargetRegion']
     config={'campaign':dict(startDate=spec['year'],dimX=w,dimY=h,dscr=spec['description']),
-            'regions':[{k:r[k] for k in rf} for r in rows],
+            'regions':[{k:r[k] for k in rf+(['baseGold','totalGold'] if r['refName'] in spec.get('incomeBonuses',{}) else [])} for r in rows],
             'factions':[{**{k:f[k] for k in ff},'startGeneral':{'selfName':f['startGeneral']['selfName']}} for f in fs]}
-    m=dict(width=w,height=h,land=rings(land),contextLand=rings(context),previewLand=rings(preview),regions=[dict(refName=n,rings=rings(shapes[n])) for n in expected],
+    gateways={tuple(sorted(pair.split('/'))):[project(*ports[n]) for n in sorted(pair.split('/'))] for pair,ports in spec.get('seaGateways',{}).items()}
+    m=dict(width=w,height=h,land=rings(land),contextLand=rings(context),previewLand=rings(preview),seaRoutes=sea_lanes(shapes,context,links,gateways),regions=[dict(refName=n,rings=rings(shapes[n])) for n in expected],
            labels=labels,projection=f"North-up equirectangular, standard parallel {spec['center'][1]}N",campaign=ref)
     return m,config,shapes,owners,land,project
 
@@ -152,6 +160,9 @@ def write_svg(path,m,owners):
     factions=json.loads((ROOT/f'data/baseline/factions.{m["campaign"]}.json').read_text())
     backdrop=' '.join('M'+' L'.join(f'{p[j]},{p[j+1]}' for j in range(0,len(p),2))+' Z' for p in m['contextLand'])
     ET.SubElement(root,'path',d=backdrop,fill='#605d56',stroke='#222',**{'stroke-width':'1.4','fill-rule':'evenodd'})
+    for route in m.get('seaRoutes',[]):
+        p=route['points'];d='M'+' L'.join(f'{p[j]},{p[j+1]}' for j in range(0,len(p),2))
+        ET.SubElement(root,'path',d=d,fill='none',stroke='#e7dec9',**{'stroke-width':'2','stroke-dasharray':'6 4'})
     for i,r in enumerate(m['regions']):
         d=' '.join('M'+' L'.join(f'{p[j]},{p[j+1]}' for j in range(0,len(p),2))+' Z' for p in r['rings'])
         ET.SubElement(root,'path',id=r['refName'],d=d,fill=colors[factions[owners[i]]["colorIndex"]],stroke='#222',**{'stroke-width':'1.4','fill-rule':'evenodd'})

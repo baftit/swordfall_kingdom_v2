@@ -31,7 +31,7 @@
  {"worldClick": {"campaign": "East", "x": 1020, "y": 508, "width": 2300, "height": 1800}},
  {"wait": 200},
  {"expect": "East territory selected: ancyra"},
- {"worldClick": {"campaign": "East", "x": 354, "y": 462, "width": 2300, "height": 1800}},
+ {"worldClick": {"campaign": "East", "x": 354, "y": 464, "width": 2300, "height": 1800}},
  {"wait": 200},
  {"expect": "East territory selected: bulgaria"},
  {"worldClick": {"campaign": "East", "x": 1421, "y": 728, "width": 2300, "height": 1800}},

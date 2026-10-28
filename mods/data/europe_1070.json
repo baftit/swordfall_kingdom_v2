@@ -17,7 +17,6 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "algeria",
         "aragon",
         "castille",
         "leon",
@@ -407,6 +406,7 @@
       "connectionNames": [
         "bavaria",
         "burgundy",
+        "england",
         "saxony"
       ],
       "units": [
@@ -627,8 +627,8 @@
       "refName": "n_italy",
       "selfName": "Northern Italy",
       "peopleName": "Northern Italy",
-      "armyLocX": 793,
-      "armyLocY": 913,
+      "armyLocX": 779,
+      "armyLocY": 878,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -690,6 +690,7 @@
       "locY": 0,
       "connectionNames": [
         "n_italy",
+        "serbia",
         "tunisia"
       ],
       "units": [
@@ -846,8 +847,8 @@
       "refName": "wales",
       "selfName": "Wales",
       "peopleName": "Wales",
-      "armyLocX": 489,
-      "armyLocY": 667,
+      "armyLocX": 484,
+      "armyLocY": 664,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -905,6 +906,7 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
+        "frisia",
         "normandy",
         "scotland",
         "wales"
@@ -1237,8 +1239,8 @@
       "refName": "austria",
       "selfName": "Alpine Marches",
       "peopleName": "Alpine Marches",
-      "armyLocX": 864,
-      "armyLocY": 835,
+      "armyLocX": 869,
+      "armyLocY": 823,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -1361,7 +1363,8 @@
         "austria",
         "bulgaria",
         "greece",
-        "hungary"
+        "hungary",
+        "s_italy"
       ],
       "units": [
         4,
@@ -2941,13 +2944,12 @@
       "refName": "judea",
       "selfName": "Judea",
       "peopleName": "Judea",
-      "armyLocX": 1260,
-      "armyLocY": 1310,
+      "armyLocX": 1279,
+      "armyLocY": 1290,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
         "arabia",
-        "nile_delta",
         "sinai",
         "syria"
       ],
@@ -3165,8 +3167,8 @@
       "refName": "sinai",
       "selfName": "Sinai",
       "peopleName": "Sinai",
-      "armyLocX": 1251,
-      "armyLocY": 1349,
+      "armyLocX": 1249,
+      "armyLocY": 1331,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -3224,8 +3226,7 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "cyrenaica",
-        "judea",
+        "libya",
         "sinai",
         "upper_egypt"
       ],
@@ -3280,7 +3281,6 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "cyrenaica",
         "libya",
         "nile_delta"
       ],
@@ -3336,6 +3336,7 @@
       "locY": 0,
       "connectionNames": [
         "cyrenaica",
+        "nile_delta",
         "sahara",
         "tripolitania",
         "upper_egypt"
@@ -3386,14 +3387,12 @@
       "refName": "cyrenaica",
       "selfName": "Cyrenaica",
       "peopleName": "Cyrenaica",
-      "armyLocX": 1111,
-      "armyLocY": 1330,
+      "armyLocX": 1000,
+      "armyLocY": 1253,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "libya",
-        "nile_delta",
-        "upper_egypt"
+        "libya"
       ],
       "units": [
         4,
@@ -3615,7 +3614,6 @@
       "locX": 0,
       "locY": 0,
       "connectionNames": [
-        "andalusia",
         "morocco",
         "sahara",
         "tunisia"
@@ -3722,8 +3720,8 @@
       "refName": "mauretania",
       "selfName": "Western Sahara",
       "peopleName": "Western Sahara",
-      "armyLocX": 384,
-      "armyLocY": 1474,
+      "armyLocX": 369,
+      "armyLocY": 1476,
       "locX": 0,
       "locY": 0,
       "connectionNames": [
@@ -3939,7 +3937,7 @@
         1,
         1
       ],
-      "tutTargetRegion": "Scotland",
+      "tutTargetRegion": "Frisia",
       "startGeneral": {
         "selfName": "William I"
       }
@@ -4452,7 +4450,7 @@
         1,
         1
       ],
-      "tutTargetRegion": "Cyrenaica",
+      "tutTargetRegion": "Libya",
       "startGeneral": {
         "selfName": "al-Mustansir"
       }

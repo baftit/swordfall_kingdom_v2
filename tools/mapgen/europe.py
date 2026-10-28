@@ -15,8 +15,9 @@ import numpy as np
 from shapely import normalize, set_precision, transform
 from shapely.geometry import Point, Polygon, box, shape
 from shapely.ops import polylabel, polygonize, unary_union
-from frontiers import geographic_frontiers
+from frontiers import geographic_frontiers, complete_scope
 from projection import north_up, backdrop
+from routes import crossings, sea_lanes
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = Path(__file__).with_name('assets') / 'europe_1070.geojson'
@@ -143,6 +144,9 @@ def build(ne_file, regions_file, source=SOURCE):
             owner=min(shapes,key=lambda n:probe.distance(shapes[n]))
         assigned[owner].append(face)
     shapes={n:unary_union(parts) for n,parts in assigned.items()}
+    world=unary_union([shape(f['geometry']) for f in json.loads(Path(ne_file).read_text())['features']])
+    context=backdrop(world,project,WIDTH,HEIGHT)
+    land=complete_scope(land,context,project,centres)
     shapes=geographic_frontiers(shapes,land,project,'Europe',centres)
     units=json.loads((ROOT/'mods/data/units.json').read_text())
     region_rows=[];labels=[];label_boxes=[]
@@ -180,7 +184,8 @@ def build(ne_file, regions_file, source=SOURCE):
                 neighbours[a].add(b);neighbours[b].add(a)
             if shapes[a].intersection(shapes[b]).area>.01:
                 raise ValueError(f'Overlapping provinces: {a}/{b}')
-    for a,b in SEA:neighbours[a].add(b);neighbours[b].add(a)
+    links=crossings('Europe',SEA)
+    for a,b in links:neighbours[a].add(b);neighbours[b].add(a)
     for r in region_rows:
         r['connectionNames']=sorted(neighbours[r['refName']])
         if not r['connectionNames']:raise ValueError(f'{r["refName"]}: isolated province')
@@ -204,9 +209,8 @@ def build(ne_file, regions_file, source=SOURCE):
         for i in f['regions']:
             if owners[i]:raise ValueError('Duplicate starting ownership')
             owners[i]=f['selfIndex']
-    world=unary_union([shape(f['geometry']) for f in json.loads(Path(ne_file).read_text())['features']])
-    context=backdrop(world,project,WIDTH,HEIGHT)
     m={'width':WIDTH,'height':HEIGHT,'land':rings(land),'contextLand':rings(context),
+       'seaRoutes':sea_lanes(shapes,context,links),
        'previewLand':rings(backdrop(world,project,WIDTH,HEIGHT,preview=True)),
        'regions':[{'refName':r['refName'],'rings':rings(shapes[r['refName']])} for r in baseline],
        'labels':labels,'projection':'North-up equirectangular, standard parallel 47N'}
@@ -228,6 +232,9 @@ def write_svg(path,m,shapes,owners):
     colors=['#aaa79c','#b82e2e','#3937a0','#4b4a47','#75338c','#865f3f','#2f863d','#8b5555','#7b7e20','#c5af1d','#bd7123']
     data=' '.join('M'+' L'.join(f'{p[j]},{p[j+1]}' for j in range(0,len(p),2))+' Z' for p in m['contextLand'])
     ET.SubElement(root,'path',d=data,fill='#605d56',**{'fill-rule':'evenodd'})
+    for route in m.get('seaRoutes',[]):
+        p=route['points'];data='M'+' L'.join(f'{p[j]},{p[j+1]}' for j in range(0,len(p),2))
+        ET.SubElement(root,'path',d=data,fill='none',stroke='#e7dec9',**{'stroke-width':'2','stroke-dasharray':'6 4'})
     for i,r in enumerate(m['regions']):
         data=' '.join('M'+' L'.join(f'{p[j]},{p[j+1]}' for j in range(0,len(p),2))+' Z' for p in r['rings'])
         ET.SubElement(root,'path',id=r['refName'],d=data,fill=colors[owners[i]],stroke='#222',**{'stroke-width':'1.4','fill-rule':'evenodd'})

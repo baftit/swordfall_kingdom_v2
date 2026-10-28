@@ -505,11 +505,28 @@ def _rings(rings):
     return "|".join(",".join(map(str, r)) for r in rings)
 
 
-def territory_edges(map_regions, origins, continuous=False):
+def territory_edges(map_regions, origins, continuous=False, physical_land=None):
     """Separate shared territory edges from coastlines without geometry dependencies.
 
     Canonical endpoint order gives both neighbouring clips the same dash phase.
     """
+    # Unshared edges can border inland context, not just the sea.
+    coast_grid = {}
+    if physical_land is not None:
+        for ring in physical_land:
+            points = list(zip(ring[::2],ring[1::2]))
+            for a,b in zip(points,points[1:]+points[:1]):
+                for gx in range(int(min(a[0],b[0])-2)//64,int(max(a[0],b[0])+2)//64+1):
+                    for gy in range(int(min(a[1],b[1])-2)//64,int(max(a[1],b[1])+2)//64+1):
+                        coast_grid.setdefault((gx,gy),[]).append((a,b))
+    def is_coast(edge):
+        if physical_land is None:return True
+        (ax,ay),(bx,by)=edge;x,y=(ax+bx)/2,(ay+by)/2
+        for (u,v),(w,z) in coast_grid.get((int(x)//64,int(y)//64),[]):
+            dx,dy=w-u,z-v;den=dx*dx+dy*dy
+            t=max(0,min(1,((x-u)*dx+(y-v)*dy)/den)) if den else 0
+            if (x-u-t*dx)**2+(y-v-t*dy)**2<=4:return True
+        return False
     edges = []
     for region, (ox, oy) in zip(map_regions, origins):
         local = []
@@ -527,9 +544,9 @@ def territory_edges(map_regions, origins, continuous=False):
                 owners.setdefault(edge, []).append(i)
         groups = {}
         for edge, indices in owners.items():
-            groups.setdefault(tuple(indices), set()).add(edge)
+            groups.setdefault((tuple(indices),len(indices)==1 and is_coast(edge)), set()).add(edge)
         coasts, borders = [[] for _ in origins], [[] for _ in origins]
-        for indices, remaining in sorted(groups.items()):
+        for (indices, coast), remaining in sorted(groups.items()):
             while remaining:
                 adjacency = {}
                 for a, b in remaining:
@@ -551,7 +568,7 @@ def territory_edges(map_regions, origins, continuous=False):
                         break
                 for i in indices:
                     ox, oy = origins[i]
-                    target = borders if len(indices) > 1 else coasts
+                    target = coasts if coast else borders
                     target[i].append([v for x, y in path for v in (x - ox, y - oy)])
         return [_rings(paths) for paths in coasts], [_rings(paths) for paths in borders]
     counts = Counter(edge for local in edges for edge in set(local))
@@ -566,7 +583,7 @@ def territory_edges(map_regions, origins, continuous=False):
     return coasts, borders
 
 
-def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, coasts, borders, preview_peers=()):
+def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, coasts, borders, preview_peers=(), routes=()):
     """Region clip class (class_113 layout) that draws its territory on gotoAndStop,
     plus a static syncPreview() that paints the map-select / kingdom-select thumbnail."""
     data = ",\n         ".join(json.dumps(s) for s in symbol_shapes)
@@ -609,6 +626,7 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, coasts, 
       internal static const ORIGINS:Array = {json.dumps(origins)};
       internal static const OWNER_COLORS:Array = {json.dumps(owners)};
       internal static const PREVIEW_LAND:String = {json.dumps(_rings(land))};
+      internal static const SEA_ROUTES:String = {json.dumps(_rings([r['points'] for r in routes]))};
 
       // Thumbnail on frame {pv_frame} of the shared map preview clip (its art was stripped too).
       public static function syncPreview(clip:MovieClip) : void
@@ -661,6 +679,8 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, coasts, 
             i++;
          }}
          i = 0;
+         s.graphics.lineStyle(0.8,0xE7DEC9,0.85);
+         drawEdges(s.graphics,SEA_ROUTES,ox / sc,oy / sc,sc,true);
          s.graphics.lineStyle(0.6,0x000000,1);
          while(i < SHAPES.length)
          {{
@@ -927,6 +947,10 @@ def gen_map_clip(cls, region_cls, land, selector_names=None, layout=None):
          s.graphics.endFill();
          s.transform.colorTransform = new ColorTransform(0.72,0.72,0.72,1,0,0,0,0);
          addChildAt(s,regionContainer != null ? getChildIndex(regionContainer) : 1);
+         var sea:Shape = new Shape();
+         sea.graphics.lineStyle(2,0xE7DEC9,0.85);
+         {region_cls}.drawEdges(sea.graphics,{region_cls}.SEA_ROUTES,0,0,1,true);
+         addChildAt(sea,regionContainer != null ? getChildIndex(regionContainer) : 1);
 {hit_setup}
       }}
 {hit_handler}
@@ -1014,16 +1038,28 @@ CAMPAIGN_DATA_CLASSES = {
 
 def campaign_patches():
     patches = []
+    income_floors = []
     for ref, (rc, fc) in CAMPAIGN_DATA_CLASSES.items():
         config = campaign_config(ref)
         if not config:
             continue
+        for i,row in enumerate(config['regions']):
+            if 'baseGold' not in row:continue
+            at=["getlocal0",f"getproperty {PUB('var_2')}",f"getproperty {PUB('regions')}",push(i),f"getproperty {IDX}"]
+            skip=f'sfkIncomeFloor{len(income_floors)}'
+            income_floors += [*at,f"getproperty {PUB('refName')}",push(row['refName']),f'ifne {skip}',
+                              *at,f"getproperty {PUB('totalGold')}",push(row['baseGold']),f'ifge {skip}',
+                              *at,push(row['baseGold']),f"setproperty {PUB('totalGold')}",
+                              'getlocal0',f"callpropvoid {PUB('method_11')}, 0",f'{skip}:','label']
         for kind, cls, table, method in [("regions", rc, "regions", "method_8"),
                                           ("factions", fc, "factions", "method_7")]:
             campaign_rows(ref, kind)
             code = campaign_assignments(table, config[kind])
             patches.append({"class": cls, "method": method, "mode": "edit", "maxstack": 64,
                             "edits": [{"find": "returnvoid", "replace": "\n".join(code + ["returnvoid"])}]})
+    if income_floors:
+        patches.append({'class':'class_95','method':'method_248','mode':'edit','maxstack':64,
+                        'edits':[{'find':'returnvoid','replace':'\n'.join(income_floors+['returnvoid'])}]})
     return patches
 
 
@@ -1047,12 +1083,12 @@ def map_changes():
             for i in fac["regions"]:
                 owners[i] = fac["colorIndex"]
         origins = [[r["locX"], r["locY"]] for r in regions]
-        coasts, borders = territory_edges(m["regions"], origins, continuous=True)
+        coasts, borders = territory_edges(m["regions"], origins, continuous=True,physical_land=m.get("contextLand"))
         clip = gen_region_clip(region_cls, [_rings(r["rings"]) for r in m["regions"]], origins, owners,
                                m.get("previewLand", m.get("contextLand", m["land"])), (frame, *PREVIEW_SIZE, m["width"], m["height"]), coasts, borders,
                                [v[0] for k, v in MAP_CLASSES.items()
                                 if k != "europe" and (MODS / "maps" / f"{k}.json").exists()]
-                               if name == "europe" else ())
+                               if name == "europe" else (),routes=m.get("seaRoutes",()))
         for cls, src in ((region_cls, clip),
                          (map_cls, gen_map_clip(map_cls, region_cls, m.get("contextLand", m["land"]),
                                                 [r["refName"] for r in regions],
@@ -1325,6 +1361,9 @@ def main(argv):
                 if name == "britain":
                     if run_verify(OUTPUT, steps=VERIFY / "britain-north.json", out=BUILD / "verify/britain-north") != 0:
                         sys.exit("Britain northern border test failed")
+                if name == "italy":
+                    if run_verify(OUTPUT, steps=VERIFY / "adriatic.json", out=BUILD / "verify/adriatic") != 0:
+                        sys.exit("Cross-Adriatic movement test failed")
         sys.exit(0 if check_mods(OUTPUT) else 1)
     else:
         sys.exit(__doc__)

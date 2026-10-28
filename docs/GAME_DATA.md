@@ -8,7 +8,7 @@ Editable: **units** (`mods/data/units.json` → `class_3`), **techs** (`mods/dat
 
 | # | Campaign | ref | Start | VP to win | Open | Regions | Factions | Σ base gold | Region / faction class |
 |---|---|---|---|---|---|---|---|---|---|
-| 0 | Western Europe | `West` | 1070 | 20 | yes | 34 | 5 | 1342 | `class_21` / `class_23` |
+| 0 | Western Europe | `West` | 1070 | 20 | yes | 34 | 5 | 1347 | `class_21` / `class_23` |
 | 1 | Grand Europe (1070) | `Europe` | 1070 | 36 | yes | 67 | 10 | 2580 | `class_20` / `class_29` |
 | 2 | Invasion of Britain | `Britain` | 1050 | 24 | yes | 33 | 4 | 1274 | `class_28` / `class_25` |
 | 3 | Isle of Kings | `Ireland` | 965 | 20 | yes | 26 | 5 | 1200 | `class_17` / `class_15` |
@@ -31,8 +31,8 @@ Per faction: starting gold, starting regions (ownership is assigned from the fac
 |---|---|---|---|---|---|---|---|
 | England | 80 | England, Normandy | 88 | Militia 14, Skirmisher 10, Horseman 6, Spearman 4 | Swordsman | William I (Lv3; Leadership 1, Cavalry Tactics 1, Warlord 1) | Swordsman ×1.15 |
 | France | 100 | Royal France, Aquitaine, Toulouse | 134 | Militia 19, Skirmisher 15, Horseman 9, Spearman 5 | Lancer | Philip I (Lv3; Cautious Advance 1, Leadership 1, Royal Blood 1) | Lancer ×1.15 |
-| Imperials | 100 | Saxony, Bavaria, Lorraine, Frisia, Northern Italy, Bohemia, Carinthia | 260 | Militia 40, Skirmisher 28, Horseman 17 | Man-at-Arms | Henry IV (Lv3; Iron Will 1, Assault Tactics 1, Royal Blood 1) | Man-at-Arms ×1.15 |
-| Taifas | 60 | Al-Andalus | 68 | Militia 10, Skirmisher 9, Horseman 6, Archer 4, Berber Archer 2 | Archer | al-Mutamid of Seville (Lv3; Leadership 2, Spear Wall 1, Royal Blood 0) | Archer ×1.15 |
+| Imperials | 100 | Saxony, Bavaria, Lorraine, Frisia, Northern Italy, Bohemia, Carinthia | 265 | Militia 40, Skirmisher 28, Horseman 17 | Man-at-Arms | Henry IV (Lv3; Iron Will 1, Assault Tactics 1, Royal Blood 1) | Man-at-Arms ×1.15 |
+| Taifas | 60 | Al-Andalus | 68 | Militia 10, Skirmisher 9, Horseman 6, Archer 4, Berber Archer 2 | Berber Archer | al-Mutamid of Seville (Lv3; Leadership 2, Spear Wall 1, Royal Blood 0) | Berber Archer ×1.15 |
 | Castile | 140 | Castile | 50 | Militia 8, Skirmisher 6, Horseman 3, Spearman 2 | Knight | Sancho II (Lv3; Leadership 1, Iron Discipline 1, Royal Blood 1) | Knight ×1.15 |
 
 ### Grand Europe (1070) (`Europe`)
@@ -299,26 +299,26 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 
 | # | Region | Owner | Gold | Food | City | Farm | Castle | Threat | Garrison | Connections |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 0 | Portucale | Independent | 40 | 14 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 2, Spearman 2 | andalusia, leon |
+| 0 | Portucale | Independent | 40 | 14 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 2, Spearman 2 | andalusia, leon, poland, sweden |
 | 1 | Leon-Galicia | Independent | 48 | 22 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 2, Spearman 2 | andalusia, castille, portugal |
 | 2 | Al-Andalus | Taifas | 68 | 29 | 1 | 1 | 1 | 0 | Militia 10, Skirmisher 9, Horseman 6, Archer 4, Berber Archer 2 | algeria, aragon, castille, leon, portugal |
 | 3 | Castile | Castile | 50 | 24 | 1 | 1 | 1 | 0 | Militia 8, Skirmisher 6, Horseman 3, Spearman 2 | andalusia, aragon, leon, navarre |
 | 4 | Navarre | Independent | 42 | 15 | 1 | 1 | 1 | 2 | Militia 5, Skirmisher 3, Horseman 1 | aquitaine, aragon, castille |
 | 5 | Eastern Iberia | Independent | 44 | 18 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 2, Almogavar 2 | andalusia, aquitaine, castille, navarre, toulouse |
-| 6 | Algeria | Independent | 38 | 17 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 5, Horseman 2 | andalusia, tunisia |
+| 6 | Maghreb | Independent | 38 | 17 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 5, Horseman 2 | andalusia, tunisia |
 | 7 | Tunisia | Independent | 32 | 16 | 1 | 1 | 1 | 0 | Militia 3, Skirmisher 3, Horseman 2 | algeria, sicily |
 | 8 | Toulouse | France | 40 | 18 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 3 | aquitaine, aragon, burgundy |
 | 9 | Aquitaine | France | 46 | 25 | 1 | 1 | 1 | 0 | Militia 8, Skirmisher 6, Horseman 3, Spearman 2 | aragon, brittany, burgundy, navarre, toulouse |
 | 10 | Brittany | Independent | 30 | 14 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 2, Archer 2 | aquitaine, burgundy, normandy |
 | 11 | Normandy | England | 38 | 14 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 2, Spearman 2 | brittany, burgundy, england |
-| 12 | Royal France | France | 48 | 27 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 5, Horseman 3, Spearman 3 | aquitaine, bavaria, brittany, frisia, lombardy, lorraine, normandy, toulouse |
-| 13 | Frisia | Imperials | 34 | 16 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 2 | burgundy, lorraine, saxony |
-| 14 | Northern Italy | Imperials | 42 | 19 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 2, Horseman 3 | bavaria, burgundy, carinthia, croatia, latium |
-| 15 | Papal-Lombard Lands | Independent | 40 | 12 | 1 | 1 | 1 | 0 | Horseman 6, Spearman 5, Archer 3, Pikeman 3 | apulia, croatia, lombardy |
+| 12 | Royal France | France | 48 | 27 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 5, Horseman 3, Spearman 3 | aquitaine, bavaria, brittany, frisia, lorraine, normandy, toulouse |
+| 13 | Frisia | Imperials | 34 | 16 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 2 | burgundy, england, lorraine, saxony |
+| 14 | Northern Italy | Imperials | 47 | 19 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 2, Horseman 3 | bavaria, carinthia, croatia, latium |
+| 15 | Papal-Lombard Lands | Independent | 40 | 12 | 1 | 1 | 1 | 0 | Horseman 6, Spearman 5, Archer 3, Pikeman 3 | apulia, lombardy |
 | 16 | Apulia | Independent | 44 | 16 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3, Spearman 1 | croatia, latium, sicily |
 | 17 | Sicily | Independent | 38 | 15 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 2, Berber Archer 2 | apulia, tunisia |
 | 18 | Wales | Independent | 36 | 19 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 1 | england, ireland |
-| 19 | England | England | 50 | 25 | 1 | 1 | 1 | 0 | Militia 9, Skirmisher 6, Horseman 4, Spearman 2 | normandy, scotland, wales |
+| 19 | England | England | 50 | 25 | 1 | 1 | 1 | 0 | Militia 9, Skirmisher 6, Horseman 4, Spearman 2 | frisia, normandy, scotland, wales |
 | 20 | Scotland | Independent | 38 | 16 | 1 | 1 | 1 | 0 | Militia 3, Skirmisher 3, Horseman 2, Highland Mercenary 1 | england, ireland |
 | 21 | Ireland | Independent | 32 | 15 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 2, Highland Mercenary 2 | scotland, wales |
 | 22 | Lorraine | Imperials | 42 | 19 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 2 | bavaria, burgundy, frisia, saxony |
@@ -326,13 +326,13 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 24 | Denmark | Independent | 38 | 16 | 1 | 1 | 1 | 0 | Militia 6, Horseman 3, Swordsman 3, Viking Mercenary 2 | norway, saxony, sweden |
 | 25 | Saxony | Imperials | 42 | 22 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 5, Horseman 2 | bavaria, bohemia, denmark, frisia, lorraine, poland, pomerania |
 | 26 | Pomerania | Independent | 32 | 18 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 3 | poland, saxony |
-| 27 | Poland | Independent | 38 | 19 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 3, Mercenary Druzhina 2 | bohemia, hungary, pomerania, saxony, sweden |
+| 27 | Poland | Independent | 38 | 19 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 3, Mercenary Druzhina 2 | bohemia, hungary, pomerania, portugal, saxony, sweden |
 | 28 | Bohemia | Imperials | 30 | 17 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 2 | bavaria, carinthia, hungary, poland, saxony |
 | 29 | Carinthia | Imperials | 32 | 16 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 3 | bavaria, bohemia, croatia, hungary, lombardy |
 | 30 | Hungary | Independent | 48 | 17 | 1 | 1 | 1 | 0 | Militia 4, Spearman 3, Horse Archer 4, Mercenary Druzhina 3 | bohemia, carinthia, croatia, poland |
-| 31 | Croatia | Independent | 28 | 15 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3, Horse Archer 2 | apulia, carinthia, hungary, latium, lombardy |
+| 31 | Croatia | Independent | 28 | 15 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3, Horse Archer 2 | apulia, carinthia, hungary, lombardy |
 | 32 | Norway | Independent | 24 | 12 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 2, Swordsman 2, Viking Mercenary 2 | denmark, sweden |
-| 33 | Sweden | Independent | 32 | 14 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Swordsman 3, Viking Raider 2, Viking Mercenary 3 | denmark, norway, poland |
+| 33 | Sweden | Independent | 32 | 14 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Swordsman 3, Viking Raider 2, Viking Mercenary 3 | denmark, norway, poland, portugal |
 
 </details>
 
@@ -340,23 +340,23 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 
 | # | Region | Owner | Gold | Food | City | Farm | Castle | Threat | Garrison | Connections |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 0 | Al-Andalus | Independent | 60 | 24 | 1 | 1 | 1 | 2 | Militia 7, Skirmisher 4, Horseman 3 | algeria, aragon, castille, leon, morocco, portugal |
+| 0 | Al-Andalus | Independent | 60 | 24 | 1 | 1 | 1 | 2 | Militia 7, Skirmisher 4, Horseman 3 | aragon, castille, leon, morocco, portugal |
 | 1 | Portucale | Independent | 40 | 14 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 6, Horseman 2 | andalusia, leon |
 | 2 | Leon-Galicia | Independent | 40 | 20 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 3 | andalusia, castille, portugal |
 | 3 | Castile | Castile | 50 | 22 | 1 | 1 | 1 | 0 | Militia 9, Skirmisher 5, Horseman 4 | andalusia, aquitaine, aragon, leon |
 | 4 | Eastern Iberia | Independent | 40 | 13 | 1 | 1 | 1 | 0 | Militia 4, Horseman 2, Almogavar 2 | andalusia, aquitaine, castille |
 | 5 | Aquitaine | France | 54 | 26 | 1 | 1 | 1 | 0 | Militia 10, Skirmisher 6, Horseman 3 | aragon, burgundy, castille, n_italy |
 | 6 | Normandy | England | 34 | 12 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3 | burgundy, england |
-| 7 | Frisia | Imperials | 30 | 12 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 2 | bavaria, burgundy, saxony |
+| 7 | Frisia | Imperials | 30 | 12 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 2 | bavaria, burgundy, england, saxony |
 | 8 | Royal France | France | 46 | 24 | 1 | 1 | 1 | 4 | Militia 5, Skirmisher 6, Horseman 3 | aquitaine, bavaria, frisia, n_italy, normandy |
 | 9 | Saxony | Imperials | 54 | 25 | 1 | 1 | 1 | 3 | Militia 4, Skirmisher 5, Horseman 3 | bavaria, bohemia, denmark, frisia, poland |
 | 10 | Bavaria | Imperials | 58 | 26 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 6, Horseman 4 | austria, bohemia, burgundy, frisia, n_italy, saxony |
 | 11 | Northern Italy | Imperials | 50 | 12 | 1 | 1 | 1 | 0 | Militia 3, Skirmisher 3, Horseman 3, Pikeman 2 | aquitaine, austria, bavaria, burgundy, s_italy |
-| 12 | Southern Italy | Independent | 40 | 14 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3, Spearman 1 | n_italy, tunisia |
+| 12 | Southern Italy | Independent | 40 | 14 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3, Spearman 1 | n_italy, serbia, tunisia |
 | 13 | Ireland | Independent | 24 | 9 | 1 | 1 | 1 | 0 | Militia 2, Skirmisher 4, Horseman 2, Highland Mercenary 2 | scotland, wales |
 | 14 | Scotland | Independent | 30 | 14 | 1 | 1 | 1 | 0 | Militia 3, Skirmisher 3, Horseman 2, Highland Mercenary 1.5 | england, ireland |
 | 15 | Wales | Independent | 26 | 17 | 1 | 1 | 1 | 0 | Militia 3, Skirmisher 2, Archer 2 | england, ireland |
-| 16 | England | England | 48 | 24 | 1 | 1 | 1 | 0 | Militia 8, Skirmisher 6, Horseman 4 | normandy, scotland, wales |
+| 16 | England | England | 48 | 24 | 1 | 1 | 1 | 0 | Militia 8, Skirmisher 6, Horseman 4 | frisia, normandy, scotland, wales |
 | 17 | Denmark | Denmark | 38 | 18 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 2 | norway, saxony, sweden |
 | 18 | Norway | Independent | 30 | 13 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 1, Viking Mercenary 1.5 | denmark, finland, sweden |
 | 19 | Sweden | Independent | 36 | 21 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 4, Spearman 2 | denmark, finland, latvia, lithuania, norway, poland, prussia |
@@ -364,7 +364,7 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 21 | Bohemia | Imperials | 34 | 14 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3 | austria, bavaria, hungary, poland, saxony |
 | 22 | Alpine Marches | Imperials | 44 | 15 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 4, Swordsman 2 | bavaria, bohemia, hungary, n_italy, serbia |
 | 23 | Poland | Independent | 40 | 16 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3, Horse Archer 2, Mercenary Druzhina 2 | bohemia, hungary, lithuania, prussia, saxony, sweden, volhynia |
-| 24 | Adriatic Lands | Independent | 30 | 10 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 2 | austria, bulgaria, greece, hungary |
+| 24 | Adriatic Lands | Independent | 30 | 10 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 2 | austria, bulgaria, greece, hungary, s_italy |
 | 25 | Hungary | Independent | 50 | 18 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 5, Horseman 3, Horse Archer 2, Mercenary Druzhina 2 | austria, bohemia, bulgaria, galicia, poland, serbia, volhynia |
 | 26 | Hellas-Thrace | Byzantium | 60 | 22 | 1 | 1 | 1 | 0 | Militia 10, Skirmisher 6, Horseman 4 | anatolia, bulgaria, serbia |
 | 27 | Bulgaria | Byzantium | 40 | 18 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 3, Archer 3 | galicia, greece, hungary, serbia |
@@ -392,19 +392,19 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 49 | Armenia | Seljuks | 40 | 18 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 6, Horseman 6 | azerbaijan, celicia, georgia, mosul, trabzon |
 | 50 | Mosul | Seljuks | 32 | 13 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3 | armenia, azerbaijan, celicia, iraq, syria |
 | 51 | Syria | Independent | 30 | 9 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 3 | arabia, celicia, iraq, judea, mosul |
-| 52 | Judea | Fatimids | 44 | 9 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 3, Spearman 4 | arabia, nile_delta, sinai, syria |
+| 52 | Judea | Fatimids | 44 | 9 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 3, Spearman 4 | arabia, sinai, syria |
 | 53 | Anatolia | Byzantium | 70 | 26 | 1 | 1 | 1 | 2 | Militia 6, Skirmisher 5, Horseman 3 | celicia, greece, trabzon |
 | 54 | Cilicia | Byzantium | 30 | 10 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 4 | anatolia, armenia, mosul, syria, trabzon |
 | 55 | Trabzon | Byzantium | 30 | 18 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 3, Horse Archer 4 | anatolia, armenia, celicia, georgia |
 | 56 | Sinai | Fatimids | 20 | 7 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 2 | judea, nile_delta |
-| 57 | Nile Delta | Fatimids | 60 | 26 | 1 | 1 | 1 | 0 | Militia 8, Skirmisher 8, Horseman 3 | cyrenaica, judea, sinai, upper_egypt |
-| 58 | Upper Egypt | Fatimids | 40 | 22 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 4 | cyrenaica, libya, nile_delta |
-| 59 | Libya | Independent | 24 | 12 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 5, Horseman 2 | cyrenaica, sahara, tripolitania, upper_egypt |
-| 60 | Cyrenaica | Independent | 36 | 10 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 4 | libya, nile_delta, upper_egypt |
+| 57 | Nile Delta | Fatimids | 60 | 26 | 1 | 1 | 1 | 0 | Militia 8, Skirmisher 8, Horseman 3 | libya, sinai, upper_egypt |
+| 58 | Upper Egypt | Fatimids | 40 | 22 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 4 | libya, nile_delta |
+| 59 | Libya | Independent | 24 | 12 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 5, Horseman 2 | cyrenaica, nile_delta, sahara, tripolitania, upper_egypt |
+| 60 | Cyrenaica | Independent | 36 | 10 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 4 | libya |
 | 61 | Tripolitania | Independent | 30 | 10 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 3 | libya, sahara, tunisia |
 | 62 | Sahara | Independent | 20 | 8 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 6, Horseman 4 | algeria, libya, mauretania, morocco, tripolitania, tunisia |
 | 63 | Tunisia | Independent | 30 | 12 | 1 | 1 | 1 | 0 | Militia 2, Skirmisher 3, Horseman 4 | algeria, s_italy, sahara, tripolitania |
-| 64 | Algeria | Independent | 34 | 13 | 1 | 1 | 1 | 0 | Militia 3, Skirmisher 6, Horseman 3 | andalusia, morocco, sahara, tunisia |
+| 64 | Algeria | Independent | 34 | 13 | 1 | 1 | 1 | 0 | Militia 3, Skirmisher 6, Horseman 3 | morocco, sahara, tunisia |
 | 65 | Morocco | Almoravids | 40 | 21 | 1 | 1 | 1 | 0 | Militia 9, Skirmisher 6, Horseman 4 | algeria, andalusia, mauretania, sahara |
 | 66 | Western Sahara | Almoravids | 24 | 12 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 3, Horseman 3 | morocco, sahara |
 
@@ -414,24 +414,24 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 
 | # | Region | Owner | Gold | Food | City | Farm | Castle | Threat | Garrison | Connections |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 0 | Saxon Lands | Independent | 120 | 43 | 1 | 1 | 1 | 0 | Militia 12, Skirmisher 7, Horseman 7, Spearman 8, Swordsman 5 | friesland, lorraine, south_denmark |
-| 1 | Norway | Norway | 40 | 22 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 3, Swordsman 4 | highlands, north_denmark |
-| 2 | North Denmark | Independent | 40 | 18 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 2, Swordsman 3 | anglia, norway, south_denmark |
+| 0 | Saxon Lands | Independent | 120 | 43 | 1 | 1 | 1 | 0 | Militia 12, Skirmisher 7, Horseman 7, Spearman 8, Swordsman 5 | friesland, lorraine, north_denmark, norway, south_denmark |
+| 1 | Norway | Norway | 40 | 22 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 3, Swordsman 4 | highlands, north_denmark, saxony |
+| 2 | North Denmark | Independent | 40 | 18 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 2, Swordsman 3 | anglia, norway, saxony, south_denmark |
 | 3 | South Denmark | Independent | 30 | 18 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 3, Swordsman 2 | friesland, north_denmark, saxony |
 | 4 | Friesland | Independent | 40 | 17 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 5, Horseman 4 | flanders, lorraine, saxony, south_denmark |
 | 5 | French-Imperial Interior | Independent | 80 | 42 | 1 | 1 | 1 | 0 | Militia 12, Skirmisher 6, Horseman 6, Spearman 9, Archer 5 | brittany, flanders, friesland, lower_normandy, saxony, upper_normandy |
-| 6 | Flanders | Independent | 50 | 20 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 5, Spearman 4, Archer 3 | friesland, lorraine, upper_normandy |
+| 6 | Flanders | Independent | 50 | 20 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 5, Spearman 4, Archer 3 | friesland, kent, lorraine, upper_normandy |
 | 7 | Upper Normandy | Normans | 70 | 25 | 2 | 1 | 2 | 8 | Militia 7, Skirmisher 6, Horseman 2, Spearman 4, Archer 4, Lancer 3 | flanders, kent, lorraine, lower_normandy |
 | 8 | Lower Normandy | Normans | 60 | 25 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 2 | brittany, lorraine, upper_normandy |
 | 9 | Brittany | Independent | 35 | 13 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 2, Horseman 3, Archer 2 | lorraine, lower_normandy |
-| 10 | Munster | Independent | 25 | 13 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 2.5 | connacht, leinster |
+| 10 | Munster | Independent | 25 | 13 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 2.5 | connacht, dyfed, leinster |
 | 11 | Connacht | Independent | 20 | 12 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 3, Kern 3 | leinster, munster, ulster |
 | 12 | Leinster | Independent | 24 | 15 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 4, Horseman 3, Kern 4 | connacht, gwynedd, munster, ulster |
-| 13 | Ulster | Independent | 30 | 14 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 2, Spearman 2 | connacht, galloway, leinster |
+| 13 | Ulster | Independent | 30 | 14 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 2, Spearman 2 | connacht, galloway, leinster, lorne |
 | 14 | Highlands | Scots | 24 | 16 | 1 | 1 | 1 | 6 | Militia 6, Skirmisher 4, Horseman 2, Swordsman 2 | aberdeen, lorne, norway, perth |
 | 15 | Aberdeen | Scots | 34 | 15 | 1 | 1 | 1 | 6 | Militia 7, Skirmisher 4, Horseman 3 | highlands, perth |
 | 16 | Perth | Scots | 30 | 16 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 5, Horseman 3 | aberdeen, galloway, highlands, lorne, lothian |
-| 17 | Lorne | Scots | 24 | 16 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 4 | galloway, highlands, perth |
+| 17 | Lorne | Scots | 24 | 16 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 4 | galloway, highlands, perth, ulster |
 | 18 | Galloway | Independent | 34 | 18 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 7, Horseman 4 | cumbria, lorne, lothian, perth, ulster |
 | 19 | Lothian | Scots | 30 | 14 | 1 | 1 | 1 | 3 | Militia 6, Skirmisher 5, Horseman 4 | cumbria, durham, galloway, perth |
 | 20 | Northern Earldom | English | 30 | 16 | 1 | 1 | 1 | 3 | Militia 6, Skirmisher 4, Horseman 3 | cumbria, lothian, northumbria |
@@ -439,12 +439,12 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 22 | Yorkshire | English | 44 | 17 | 1 | 1 | 1 | 6 | Militia 7, Skirmisher 5, Horseman 4 | cumbria, derby, durham, lincoln |
 | 23 | Derby | English | 24 | 16 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 5, Horseman 3 | cumbria, gwynedd, lincoln, midlands, northumbria |
 | 24 | Gwynedd | Independent | 30 | 15 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 5, Horseman 4 | derby, dyfed, leinster, midlands, powys |
-| 25 | Dyfed | Independent | 30 | 12 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 4 | gwynedd, powys |
+| 25 | Dyfed | Independent | 30 | 12 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 4 | gwynedd, munster, powys |
 | 26 | Powys | Independent | 24 | 13 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 3, Archer 3 | dyfed, gwynedd, midlands, wessex |
 | 27 | Lincoln | English | 34 | 16 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 5, Horseman 4 | anglia, derby, midlands, northumbria |
 | 28 | Midlands | English | 40 | 18 | 1 | 1 | 1 | 0 | Militia 5 | anglia, derby, gwynedd, kent, lincoln, powys, wessex |
 | 29 | Anglia | English | 34 | 17 | 1 | 1 | 1 | 8 | Militia 7, Skirmisher 4, Horseman 3 | kent, lincoln, midlands, north_denmark |
-| 30 | Kent | English | 30 | 14 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 4, Archer 2 | anglia, midlands, upper_normandy, wessex |
+| 30 | Kent | English | 30 | 14 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 4, Archer 2 | anglia, flanders, midlands, upper_normandy, wessex |
 | 31 | Wessex | English | 44 | 20 | 1 | 1 | 2 | 0 | Militia 4, Skirmisher 4, Horseman 2, Archer 2 | cornwall, kent, midlands, powys |
 | 32 | Cornwall | English | 30 | 16 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 6, Horseman 4 | wessex |
 
@@ -460,7 +460,7 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 3 | Limerick | Norse Towns | 60 | 16 | 2 | 2 | 1 | 0 | Militia 5, Skirmisher 2, Horseman 2, Swordsman 4 | arann, cork, kerry, thomond |
 | 4 | Thomond | Dalcassians | 40 | 18 | 1 | 2 | 1 | 0 | Militia 6, Skirmisher 5, Horseman 2 | arann, galway, limerick |
 | 5 | East Munster | Dalcassians | 32 | 22 | 1 | 2 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 3 | cork, galway, kilkenny, laoighis, limerick, thomond, waterford |
-| 6 | Wexford | Norse Towns | 46 | 11 | 2 | 2 | 1 | 0 | Militia 3, Horseman 3, Swordsman 2 | kilkenny, waterford, wicklow |
+| 6 | Wexford | Norse Towns | 46 | 11 | 2 | 2 | 1 | 0 | Militia 3, Horseman 3, Swordsman 2 | dyfed, kilkenny, waterford, wicklow |
 | 7 | Kilkenny | Leinster | 40 | 18 | 1 | 2 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 3 | arann, kildare, laoighis, waterford, wexford, wicklow |
 | 8 | Wicklow | Leinster | 40 | 11 | 2 | 2 | 1 | 0 | Militia 5, Skirmisher 2, Horseman 3 | dublin, kildare, kilkenny, wexford |
 | 9 | Dublin | Norse Towns | 70 | 17 | 2 | 3 | 1 | 0 | Militia 5, Horseman 4, Swordsman 3, Viking Raider 3 | gwynedd, kildare, meath, wicklow |
@@ -477,7 +477,7 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 20 | Ulaid | Ulaid | 40 | 13 | 1 | 2 | 1 | 0 | Militia 6, Skirmisher 6, Horseman 4, Spearman 2 | armagh, strathclyde, tyrone |
 | 21 | Tyrone | Independent | 44 | 15 | 1 | 2 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 3 | armagh, breifne, donegal, fermanagh, ulidia |
 | 22 | Donegal | Independent | 40 | 19 | 1 | 2 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 3 | breifne, fermanagh, tyrone |
-| 23 | Dyfed | Independent | 50 | 14 | 1 | 2 | 1 | 0 | Militia 9, Skirmisher 6, Horseman 6, Archer 3 | gwynedd, waterford |
+| 23 | Dyfed | Independent | 50 | 14 | 1 | 2 | 1 | 0 | Militia 9, Skirmisher 6, Horseman 6, Archer 3 | gwynedd, waterford, wexford |
 | 24 | Gwynedd | Independent | 60 | 15 | 1 | 2 | 1 | 0 | Militia 6, Skirmisher 5, Horseman 5, Spearman 3, Archer 5 | dublin, dyfed |
 | 25 | Strathclyde | Independent | 80 | 19 | 1 | 2 | 1 | 0 | Militia 10, Skirmisher 5, Horseman 7, Swordsman 6 | ulidia |
 
@@ -487,8 +487,8 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 
 | # | Region | Owner | Gold | Food | City | Farm | Castle | Threat | Garrison | Connections |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 0 | Huelva-Algarve | Almohads | 50 | 16 | 1 | 2 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 3 | alentejo, badajos, estremadura, seville, tangier |
-| 1 | Seville | Almohads | 46 | 16 | 2 | 2 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 3 | badajos, cordoba, huelva, malaga |
+| 0 | Huelva-Algarve | Almohads | 50 | 16 | 1 | 2 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 3 | alentejo, algeria, badajos, estremadura, fes, france, seville, tangier |
+| 1 | Seville | Almohads | 46 | 16 | 2 | 2 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 3 | badajos, cordoba, huelva, malaga, tangier |
 | 2 | Malaga | Almohads | 44 | 15 | 1 | 2 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 3.5 | cordoba, granada, seville |
 | 3 | Granada | Almohads | 42 | 14 | 2 | 2 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 3 | almeria, cordoba, malaga, murcia, toledo |
 | 4 | Almeria | Almohads | 40 | 13 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 6, Horseman 4 | granada, morocco, murcia |
@@ -512,11 +512,11 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 22 | Catalonia | Aragon | 52 | 20 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 7, Horseman 3 | aragon, balearic_isles, france, valencia, zaragoza |
 | 23 | Aragon | Aragon | 64 | 19 | 1 | 1 | 1 | 3 | Militia 6, Skirmisher 6, Horseman 3 | catalonia, france, navarre, zaragoza |
 | 24 | Navarre | Independent | 50 | 14 | 1 | 1 | 1 | 0 | Militia 3, Skirmisher 5, Horseman 3 | aragon, castille, france, zaragoza |
-| 25 | France | Independent | 200 | 60 | 1 | 1 | 1 | 0 | Militia 13, Skirmisher 6, Horseman 9, Spearman 6, Archer 5 | aragon, catalonia, navarre |
-| 26 | Tangier | Almohads | 40 | 18 | 2 | 1 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 3 | fes, huelva, morocco |
-| 27 | Fes | Almohads | 32 | 14 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 5, Horseman 2 | morocco, tangier |
+| 25 | France | Independent | 200 | 60 | 1 | 1 | 1 | 0 | Militia 13, Skirmisher 6, Horseman 9, Spearman 6, Archer 5 | aragon, catalonia, huelva, navarre |
+| 26 | Tangier | Almohads | 40 | 18 | 2 | 1 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 3 | fes, huelva, morocco, seville |
+| 27 | Fes | Almohads | 32 | 14 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 5, Horseman 2 | huelva, morocco, tangier |
 | 28 | Morocco | Almohads | 50 | 22 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 5, Horseman 3 | algeria, almeria, fes, tangier |
-| 29 | Algeria | Almohads | 70 | 19 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 4, Horseman 3 | morocco |
+| 29 | Algeria | Almohads | 70 | 19 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 4, Horseman 3 | huelva, morocco |
 
 </details>
 
@@ -524,15 +524,15 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 
 | # | Region | Owner | Gold | Food | City | Farm | Castle | Threat | Garrison | Connections |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 0 | Tunisia | Independent | 80 | 18 | 1 | 1 | 1 | 0 | Militia 9, Skirmisher 6, Horseman 4, Archer 5 | palermo |
-| 1 | Sardinia | Independent | 50 | 16 | 1 | 1 | 1 | 0 | Militia 9, Skirmisher 6, Horseman 2 | corsica, tuscany |
-| 2 | Corsica | Independent | 40 | 14 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 6, Horseman 3 | sardinia, tuscany |
+| 0 | Tunisia | Independent | 80 | 18 | 1 | 1 | 1 | 0 | Militia 9, Skirmisher 6, Horseman 4, Archer 5 | croatia, genoa, lombardy, palermo, sardinia |
+| 1 | Sardinia | Independent | 50 | 16 | 1 | 1 | 1 | 0 | Militia 9, Skirmisher 6, Horseman 2 | corsica, tunisia, tuscany |
+| 2 | Corsica | Independent | 40 | 14 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 6, Horseman 3 | genoa, sardinia, tuscany |
 | 3 | Palermo | Sicily | 50 | 16 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 6, Horseman 3 | messina, syracuse, tunisia |
 | 4 | Messina | Sicily | 46 | 14 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 6, Horseman 4 | calabria, palermo, syracuse |
 | 5 | Syracuse | Sicily | 52 | 16 | 2 | 1 | 1 | 0 | Militia 8, Skirmisher 5, Horseman 4 | messina, palermo |
 | 6 | Calabria | Byzantium | 50 | 19 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 6, Horseman 3 | lucania, messina, salerno |
 | 7 | Norman Marches | Normans | 44 | 18 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 5, Horseman 3 | apulia, benevento, calabria, salerno |
-| 8 | Apulia | Byzantium | 50 | 18 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 5, Horseman 3, Archer 3 | abruzzo, benevento, lucania |
+| 8 | Apulia | Byzantium | 50 | 18 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 5, Horseman 3, Archer 3 | abruzzo, benevento, croatia, lucania |
 | 9 | Salerno | Independent | 50 | 17 | 2 | 1 | 1 | 0 | Militia 7, Skirmisher 6, Horseman 3 | benevento, calabria, lucania, naples |
 | 10 | Naples | Independent | 60 | 14 | 2 | 1 | 1 | 0 | Militia 7, Skirmisher 5, Horseman 3 | benevento, capua, salerno |
 | 11 | Benevento | Independent | 60 | 16 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 6, Horseman 4 | abruzzo, apulia, capua, lucania, naples, salerno |
@@ -544,11 +544,11 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 17 | Tuscany | Imperials | 70 | 24 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 4 | corsica, florence, genoa, latium, lombardy, romagna, sardinia, spoleto |
 | 18 | Romagna | Imperials | 60 | 21 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 5, Horseman 3 | florence, genoa, lombardy, tuscany, venice |
 | 19 | Florence | Imperials | 54 | 15 | 3 | 1 | 1 | 0 | Militia 6, Skirmisher 6, Horseman 4 | romagna, tuscany |
-| 20 | Genoa | Imperials | 60 | 16 | 3 | 1 | 1 | 0 | Militia 7, Skirmisher 6, Horseman 3 | lombardy, romagna, tuscany |
-| 21 | Northern Italy | Imperials | 90 | 27 | 1 | 1 | 1 | 0 | Militia 9, Skirmisher 7, Horseman 4 | carinthia, genoa, romagna, spoleto, tuscany, venice |
+| 20 | Genoa | Imperials | 60 | 16 | 3 | 1 | 1 | 0 | Militia 7, Skirmisher 6, Horseman 3 | corsica, lombardy, romagna, tunisia, tuscany |
+| 21 | Northern Italy | Imperials | 90 | 27 | 1 | 1 | 1 | 0 | Militia 9, Skirmisher 7, Horseman 4 | carinthia, genoa, romagna, spoleto, tunisia, tuscany, venice |
 | 22 | Venice | Independent | 70 | 18 | 3 | 1 | 1 | 0 | Militia 8, Skirmisher 7, Horseman 4 | carinthia, croatia, lombardy, romagna |
 | 23 | Carinthia | Imperials | 100 | 34 | 1 | 1 | 1 | 0 | Militia 10, Skirmisher 7, Horseman 5, Archer 3 | croatia, lombardy, venice |
-| 24 | Croatia | Independent | 120 | 40 | 1 | 1 | 1 | 0 | Militia 14, Skirmisher 8, Horseman 8, Archer 4 | carinthia, venice |
+| 24 | Croatia | Independent | 120 | 40 | 1 | 1 | 1 | 0 | Militia 14, Skirmisher 8, Horseman 8, Archer 4 | apulia, carinthia, tunisia, venice |
 
 </details>
 
@@ -556,26 +556,26 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 
 | # | Region | Owner | Gold | Food | City | Farm | Castle | Threat | Garrison | Connections |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 0 | Argos | Byzantium | 36 | 9 | 1 | 1 | 1 | 0 | — | corinth, crete |
+| 0 | Argos | Byzantium | 36 | 9 | 1 | 1 | 1 | 0 | — | caucasus, corinth, crete, dacia, iraq, servia, shahr_zor |
 | 1 | Corinth | Byzantium | 38 | 8 | 1 | 1 | 1 | 0 | — | argos, athens, nicopolis |
 | 2 | Athens | Byzantium | 48 | 8 | 1 | 1 | 1 | 0 | — | corinth, larissa, nicopolis |
 | 3 | Nicopolis | Byzantium | 38 | 8 | 1 | 1 | 1 | 0 | — | athens, bulgaria, corinth, larissa |
 | 4 | Larissa | Byzantium | 34 | 8 | 1 | 1 | 1 | 0 | — | athens, bulgaria, nicopolis, thessalonica |
 | 5 | Thessalonica | Byzantium | 28 | 9 | 1 | 1 | 1 | 0 | — | bulgaria, dardania, larissa, macedonia |
 | 6 | Western Bulgaria | Byzantium | 34 | 16 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 4, Mercenary Druzhina 3 | dardania, larissa, nicopolis, servia, thessalonica |
-| 7 | Servia | Independent | 32 | 13 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 6, Horseman 6, Mercenary Druzhina 4 | bulgaria, dacia, dardania |
-| 8 | Danubian Lands | Independent | 34 | 14 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 7, Horseman 4, Archer 3, Swordsman 4, Mercenary Druzhina 2 | dardania, macedonia, servia, thrace |
+| 7 | Servia | Independent | 32 | 13 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 6, Horseman 6, Mercenary Druzhina 4 | argos, bulgaria, dacia, dardania |
+| 8 | Danubian Lands | Independent | 34 | 14 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 7, Horseman 4, Archer 3, Swordsman 4, Mercenary Druzhina 2 | argos, dardania, macedonia, servia, thrace |
 | 9 | Balkan Interior | Byzantium | 32 | 16 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 6, Spearman 4 | bulgaria, dacia, macedonia, servia, thessalonica |
 | 10 | Thrace | Byzantium | 36 | 18 | 1 | 1 | 1 | 0 | — | constantinople, dacia, macedonia |
 | 11 | Macedonia | Byzantium | 40 | 18 | 1 | 1 | 1 | 0 | — | dacia, dardania, thessalonica, thrace |
 | 12 | Constantinople | Byzantium | 66 | 13 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 3, Spearman 3 | nicaea, optimaton, thrace |
 | 13 | Ephesus | Byzantium | 24 | 15 | 1 | 1 | 1 | 0 | — | anatolia, lycia, mysia |
 | 14 | Crete | Byzantium | 20 | 9 | 1 | 1 | 1 | 0 | Militia 3, Skirmisher 5 | argos, lycia |
-| 15 | Cyprus | Byzantium | 18 | 11 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 2, Horseman 3 | antioch, cilicia |
+| 15 | Cyprus | Byzantium | 18 | 11 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 2, Horseman 3 | antioch, cilicia, palestine, seleucia |
 | 16 | Nicaea | Byzantium | 26 | 8 | 1 | 1 | 1 | 0 | — | anatolia, ancyra, constantinople, mysia, optimaton |
 | 17 | Mysia | Byzantium | 28 | 13 | 1 | 1 | 1 | 0 | — | anatolia, ephesus, nicaea |
 | 18 | Lycia | Byzantium | 30 | 14 | 1 | 1 | 1 | 0 | — | anatolia, crete, ephesus, seleucia |
-| 19 | Seleucia | Byzantium | 24 | 12 | 1 | 1 | 1 | 8 | Militia 6, Skirmisher 5, Horseman 6 | anatolia, cappadocia, cilicia, lycia |
+| 19 | Seleucia | Byzantium | 24 | 12 | 1 | 1 | 1 | 8 | Militia 6, Skirmisher 5, Horseman 6 | anatolia, cappadocia, cilicia, cyprus, lycia |
 | 20 | Anatolia | Byzantium | 36 | 19 | 1 | 1 | 1 | 0 | — | ancyra, cappadocia, ephesus, lycia, mysia, nicaea, seleucia |
 | 21 | Optimaton | Byzantium | 28 | 12 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 2 | ancyra, constantinople, nicaea, paphlagonia |
 | 22 | Ancyra | Byzantium | 36 | 7 | 1 | 1 | 1 | 0 | — | anatolia, cappadocia, charsianon, nicaea, optimaton, paphlagonia |
@@ -589,19 +589,19 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 30 | Antioch | Byzantium | 40 | 10 | 1 | 1 | 1 | 0 | Horseman 8, Spearman 6, Archer 6, Swordsman 5 | arabia, cilicia, cyprus, damascus, edessa, syria |
 | 31 | Edessa | Byzantium | 38 | 11 | 1 | 1 | 1 | 0 | Skirmisher 6, Horseman 5, Spearman 8 | amida, antioch, cilicia, melitene, syria |
 | 32 | Georgia | Independent | 50 | 20 | 1 | 1 | 1 | 0 | Horseman 8, Archer 5, Horse Archer 6 | armenia, azerbaijan, caucasus |
-| 33 | Caucasus | Independent | 66 | 26 | 1 | 1 | 1 | 0 | Skirmisher 4, Horseman 6, Swordsman 5, Horse Archer 7 | azerbaijan, georgia |
+| 33 | Caucasus | Independent | 66 | 26 | 1 | 1 | 1 | 0 | Skirmisher 4, Horseman 6, Swordsman 5, Horse Archer 7 | argos, azerbaijan, georgia |
 | 34 | Amida | Seljuks | 48 | 13 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 4, Horseman 7, Archer 5 | edessa, kelat, kurdistan, melitene, sebastea, syria |
 | 35 | Kelat | Seljuks | 50 | 15 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 2, Horseman 2 | amida, armenia, chaldea, kurdistan, sebastea, tabriz |
 | 36 | Armenia | Seljuks | 110 | 41 | 1 | 1 | 1 | 0 | Militia 10, Skirmisher 5, Horseman 8, Horse Archer 9 | azerbaijan, chaldea, georgia, kelat, tabriz |
 | 37 | Tabriz | Seljuks | 66 | 14 | 1 | 1 | 1 | 0 | — | armenia, azerbaijan, kelat, kurdistan, shahr_zor |
 | 38 | Azerbaijan | Seljuks | 72 | 24 | 1 | 1 | 1 | 0 | — | armenia, caucasus, georgia, shahr_zor, tabriz |
 | 39 | Kurdistan | Seljuks | 90 | 32 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 3, Horseman 2 | amida, baghdad, kelat, mosul, shahr_zor, syria, tabriz |
-| 40 | Shahrizor | Seljuks | 70 | 20 | 1 | 1 | 1 | 0 | Militia 6, Horseman 5, Horse Archer 2 | azerbaijan, baghdad, iraq, kurdistan, mosul, tabriz |
+| 40 | Shahrizor | Seljuks | 70 | 20 | 1 | 1 | 1 | 0 | Militia 6, Horseman 5, Horse Archer 2 | argos, azerbaijan, baghdad, iraq, kurdistan, mosul, tabriz |
 | 41 | Mosul | Seljuks | 46 | 18 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 3, Spearman 2 | arabia, baghdad, kurdistan, shahr_zor, syria |
 | 42 | Syria | Independent | 52 | 15 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 2.5, Horseman 5, Archer 2.5 | amida, antioch, arabia, cilicia, edessa, kurdistan, mosul |
 | 43 | Baghdad | Seljuks | 48 | 12 | 1 | 1 | 1 | 0 | Horseman 6, Spearman 8, Archer 8, Swordsman 4 | arabia, iraq, kurdistan, mosul, shahr_zor |
-| 44 | Iraq | Seljuks | 54 | 22 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 6, Horseman 4, Archer 5 | arabia, baghdad, shahr_zor |
-| 45 | Palestine | Fatimids | 50 | 18 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 5, Spearman 5 | arabia, damascus, jerusalem |
+| 44 | Iraq | Seljuks | 54 | 22 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 6, Horseman 4, Archer 5 | arabia, argos, baghdad, shahr_zor |
+| 45 | Palestine | Fatimids | 50 | 18 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 5, Spearman 5 | arabia, cyprus, damascus, jerusalem |
 | 46 | Damascus | Fatimids | 40 | 10 | 1 | 1 | 1 | 0 | Militia 5, Skirmisher 2, Horseman 2, Spearman 5, Archer 3 | antioch, arabia, jerusalem, palestine |
 | 47 | Jerusalem | Fatimids | 48 | 12 | 1 | 1 | 1 | 0 | — | arabia, damascus, palestine, sinai |
 | 48 | Arabia | Independent | 120 | 50 | 1 | 1 | 1 | 0 | Militia 8, Skirmisher 3, Horseman 6 | antioch, baghdad, damascus, iraq, jerusalem, mosul, palestine, sinai, syria |

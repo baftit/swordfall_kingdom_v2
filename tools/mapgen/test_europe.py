@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import unittest
 
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Point, Polygon, box
 from shapely.ops import unary_union
 from europe import ROOT, SOURCE, build, project_land
 
@@ -16,6 +16,9 @@ class Europe1070Tests(unittest.TestCase):
             raise unittest.SkipTest('Regeneration tests need Natural Earth land in build/ne_50m_land.geojson')
         cls.m,cls.config,cls.shapes,cls.owners=build(coast,ROOT/'data/baseline/regions.Europe.json')
         cls.land,project=project_land(coast)
+        cls.land=Polygon()
+        for ring in cls.m['land']:
+            cls.land=cls.land.symmetric_difference(Polygon(list(zip(ring[::2],ring[1::2]))))
         cls.project=staticmethod(project)
         cls.names=[r['refName'] for r in cls.config['regions']]
 
@@ -73,6 +76,12 @@ class Europe1070Tests(unittest.TestCase):
         self.assertEqual(fs[10]['regions'],[3])
         self.assertEqual(fs[10]['startGeneral']['selfName'],'Sancho II')
         self.assertEqual(self.config['campaign']['startDate'],1070)
+
+    def test_gibraltar_has_no_false_land_bridge(self):
+        from shapely import transform
+        africa=transform(box(-13,23,10,36),self.project,interleaved=False)
+        self.assertLess(self.shapes['andalusia'].intersection(africa).area,.01)
+        self.assertIn(['andalusia','morocco'],[r['regions'] for r in self.m['seaRoutes']])
 
     def test_connections_are_symmetric_and_world_connected(self):
         graph={r['refName']:set(r['connectionNames']) for r in self.config['regions']}

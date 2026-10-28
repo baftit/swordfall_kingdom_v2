@@ -37,7 +37,7 @@
  {"worldClick": {"campaign": "Europe", "x": 809, "y": 667, "width": 2200, "height": 1600}},
  {"wait": 200},
  {"expect": "Europe territory selected: saxony"},
- {"worldClick": {"campaign": "Europe", "x": 768, "y": 788, "width": 2200, "height": 1600}},
+ {"worldClick": {"campaign": "Europe", "x": 758, "y": 779, "width": 2200, "height": 1600}},
  {"wait": 200},
  {"expect": "Europe territory selected: bavaria"},
  {"worldClick": {"campaign": "Europe", "x": 744, "y": 568, "width": 2200, "height": 1600}},

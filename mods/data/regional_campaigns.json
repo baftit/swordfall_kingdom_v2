@@ -2,8 +2,8 @@
   "West": {
     "campaign": {
       "startDate": 1070,
-      "dimX": 1800,
-      "dimY": 1900,
+      "dimX": 1600,
+      "dimY": 1550,
       "dscr": "Western Europe in 1070: England and Normandy, Capetian France, the Holy Roman Empire, Iberian taifas and Sancho II's Castile. Leon and Galicia remain separate. Approximate geographic provinces; grey lands are separate independent polities."
     },
     "regions": [
@@ -11,13 +11,15 @@
         "refName": "portugal",
         "selfName": "Portucale",
         "peopleName": "Portucale",
-        "armyLocX": 321,
-        "armyLocY": 1365,
+        "armyLocX": 285,
+        "armyLocY": 1195,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
           "andalusia",
-          "leon"
+          "leon",
+          "poland",
+          "sweden"
         ],
         "units": [
           4,
@@ -65,8 +67,8 @@
         "refName": "leon",
         "selfName": "Leon-Galicia",
         "peopleName": "Leon-Galicia",
-        "armyLocX": 412,
-        "armyLocY": 1292,
+        "armyLocX": 365,
+        "armyLocY": 1130,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -120,8 +122,8 @@
         "refName": "andalusia",
         "selfName": "Al-Andalus",
         "peopleName": "Al-Andalus",
-        "armyLocX": 453,
-        "armyLocY": 1562,
+        "armyLocX": 402,
+        "armyLocY": 1370,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -177,8 +179,8 @@
         "refName": "castille",
         "selfName": "Castile",
         "peopleName": "Castile",
-        "armyLocX": 472,
-        "armyLocY": 1325,
+        "armyLocX": 419,
+        "armyLocY": 1159,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -233,8 +235,8 @@
         "refName": "navarre",
         "selfName": "Navarre",
         "peopleName": "Navarre",
-        "armyLocX": 566,
-        "armyLocY": 1276,
+        "armyLocX": 487,
+        "armyLocY": 1116,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -288,8 +290,8 @@
         "refName": "aragon",
         "selfName": "Eastern Iberia",
         "peopleName": "Eastern Iberia",
-        "armyLocX": 637,
-        "armyLocY": 1332,
+        "armyLocX": 566,
+        "armyLocY": 1165,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -343,10 +345,10 @@
       },
       {
         "refName": "algeria",
-        "selfName": "Algeria",
-        "peopleName": "Algeria",
-        "armyLocX": 738,
-        "armyLocY": 1680,
+        "selfName": "Maghreb",
+        "peopleName": "Maghreb",
+        "armyLocX": 656,
+        "armyLocY": 1475,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -399,8 +401,8 @@
         "refName": "tunisia",
         "selfName": "Tunisia",
         "peopleName": "Tunisia",
-        "armyLocX": 1005,
-        "armyLocY": 1668,
+        "armyLocX": 894,
+        "armyLocY": 1465,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -453,8 +455,8 @@
         "refName": "toulouse",
         "selfName": "Toulouse",
         "peopleName": "Toulouse",
-        "armyLocX": 678,
-        "armyLocY": 1214,
+        "armyLocX": 602,
+        "armyLocY": 1060,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -508,8 +510,8 @@
         "refName": "aquitaine",
         "selfName": "Aquitaine",
         "peopleName": "Aquitaine",
-        "armyLocX": 637,
-        "armyLocY": 1163,
+        "armyLocX": 566,
+        "armyLocY": 1015,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -565,8 +567,8 @@
         "refName": "brittany",
         "selfName": "Brittany",
         "peopleName": "Brittany",
-        "armyLocX": 513,
-        "armyLocY": 967,
+        "armyLocX": 455,
+        "armyLocY": 840,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -620,8 +622,8 @@
         "refName": "normandy",
         "selfName": "Normandy",
         "peopleName": "Normandy",
-        "armyLocX": 650,
-        "armyLocY": 925,
+        "armyLocX": 578,
+        "armyLocY": 803,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -675,8 +677,8 @@
         "refName": "burgundy",
         "selfName": "Royal France",
         "peopleName": "Royal France",
-        "armyLocX": 731,
-        "armyLocY": 978,
+        "armyLocX": 649,
+        "armyLocY": 850,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -684,7 +686,6 @@
           "bavaria",
           "brittany",
           "frisia",
-          "lombardy",
           "lorraine",
           "normandy",
           "toulouse"
@@ -735,12 +736,13 @@
         "refName": "frisia",
         "selfName": "Frisia",
         "peopleName": "Frisia",
-        "armyLocX": 836,
-        "armyLocY": 731,
+        "armyLocX": 743,
+        "armyLocY": 630,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
           "burgundy",
+          "england",
           "lorraine",
           "saxony"
         ],
@@ -790,13 +792,12 @@
         "refName": "lombardy",
         "selfName": "Northern Italy",
         "peopleName": "Northern Italy",
-        "armyLocX": 1031,
-        "armyLocY": 1152,
+        "armyLocX": 917,
+        "armyLocY": 1005,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
           "bavaria",
-          "burgundy",
           "carinthia",
           "croatia",
           "latium"
@@ -841,19 +842,20 @@
           0,
           0
         ],
-        "regionUnit": 0
+        "regionUnit": 0,
+        "baseGold": 47,
+        "totalGold": 47
       },
       {
         "refName": "latium",
         "selfName": "Papal-Lombard Lands",
         "peopleName": "Papal-Lombard Lands",
-        "armyLocX": 1095,
-        "armyLocY": 1315,
+        "armyLocX": 987,
+        "armyLocY": 1126,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
           "apulia",
-          "croatia",
           "lombardy"
         ],
         "units": [
@@ -896,14 +898,14 @@
           0,
           0
         ],
-        "regionUnit": 7
+        "regionUnit": 35
       },
       {
         "refName": "apulia",
         "selfName": "Apulia",
         "peopleName": "Apulia",
-        "armyLocX": 1245,
-        "armyLocY": 1382,
+        "armyLocX": 1108,
+        "armyLocY": 1210,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -957,8 +959,8 @@
         "refName": "sicily",
         "selfName": "Sicily",
         "peopleName": "Sicily",
-        "armyLocX": 1151,
-        "armyLocY": 1567,
+        "armyLocX": 1024,
+        "armyLocY": 1375,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1011,8 +1013,8 @@
         "refName": "wales",
         "selfName": "Wales",
         "peopleName": "Wales",
-        "armyLocX": 490,
-        "armyLocY": 737,
+        "armyLocX": 435,
+        "armyLocY": 635,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1065,11 +1067,12 @@
         "refName": "england",
         "selfName": "England",
         "peopleName": "England",
-        "armyLocX": 581,
-        "armyLocY": 725,
+        "armyLocX": 515,
+        "armyLocY": 625,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
+          "frisia",
           "normandy",
           "scotland",
           "wales"
@@ -1120,8 +1123,8 @@
         "refName": "scotland",
         "selfName": "Scotland",
         "peopleName": "Scotland",
-        "armyLocX": 472,
-        "armyLocY": 484,
+        "armyLocX": 418,
+        "armyLocY": 410,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1174,8 +1177,8 @@
         "refName": "ireland",
         "selfName": "Ireland",
         "peopleName": "Ireland",
-        "armyLocX": 329,
-        "armyLocY": 686,
+        "armyLocX": 291,
+        "armyLocY": 590,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1228,8 +1231,8 @@
         "refName": "lorraine",
         "selfName": "Lorraine",
         "peopleName": "Lorraine",
-        "armyLocX": 870,
-        "armyLocY": 894,
+        "armyLocX": 773,
+        "armyLocY": 775,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1284,8 +1287,8 @@
         "refName": "bavaria",
         "selfName": "Bavaria",
         "peopleName": "Bavaria",
-        "armyLocX": 1061,
-        "armyLocY": 944,
+        "armyLocX": 944,
+        "armyLocY": 820,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1342,8 +1345,8 @@
         "refName": "denmark",
         "selfName": "Denmark",
         "peopleName": "Denmark",
-        "armyLocX": 975,
-        "armyLocY": 523,
+        "armyLocX": 867,
+        "armyLocY": 445,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1397,8 +1400,8 @@
         "refName": "saxony",
         "selfName": "Saxony",
         "peopleName": "Saxony",
-        "armyLocX": 1031,
-        "armyLocY": 742,
+        "armyLocX": 917,
+        "armyLocY": 640,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1456,8 +1459,8 @@
         "refName": "pomerania",
         "selfName": "Pomerania",
         "peopleName": "Pomerania",
-        "armyLocX": 1219,
-        "armyLocY": 664,
+        "armyLocX": 1084,
+        "armyLocY": 570,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1510,14 +1513,15 @@
         "refName": "poland",
         "selfName": "Poland",
         "peopleName": "Poland",
-        "armyLocX": 1377,
-        "armyLocY": 754,
+        "armyLocX": 1225,
+        "armyLocY": 650,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
           "bohemia",
           "hungary",
           "pomerania",
+          "portugal",
           "saxony",
           "sweden"
         ],
@@ -1567,8 +1571,8 @@
         "refName": "bohemia",
         "selfName": "Bohemia",
         "peopleName": "Bohemia",
-        "armyLocX": 1174,
-        "armyLocY": 877,
+        "armyLocX": 1044,
+        "armyLocY": 760,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1624,8 +1628,8 @@
         "refName": "carinthia",
         "selfName": "Carinthia",
         "peopleName": "Carinthia",
-        "armyLocX": 1166,
-        "armyLocY": 1051,
+        "armyLocX": 1037,
+        "armyLocY": 915,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1681,8 +1685,8 @@
         "refName": "hungary",
         "selfName": "Hungary",
         "peopleName": "Hungary",
-        "armyLocX": 1358,
-        "armyLocY": 1012,
+        "armyLocX": 1208,
+        "armyLocY": 880,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1737,15 +1741,14 @@
         "refName": "croatia",
         "selfName": "Croatia",
         "peopleName": "Croatia",
-        "armyLocX": 1245,
-        "armyLocY": 1191,
+        "armyLocX": 1108,
+        "armyLocY": 1040,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
           "apulia",
           "carinthia",
           "hungary",
-          "latium",
           "lombardy"
         ],
         "units": [
@@ -1794,8 +1797,8 @@
         "refName": "norway",
         "selfName": "Norway",
         "peopleName": "Norway",
-        "armyLocX": 982,
-        "armyLocY": 232,
+        "armyLocX": 873,
+        "armyLocY": 185,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -1848,14 +1851,15 @@
         "refName": "sweden",
         "selfName": "Sweden",
         "peopleName": "Sweden",
-        "armyLocX": 1200,
-        "armyLocY": 366,
+        "armyLocX": 1067,
+        "armyLocY": 305,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
           "denmark",
           "norway",
-          "poland"
+          "poland",
+          "portugal"
         ],
         "units": [
           5,
@@ -1983,8 +1987,8 @@
         "dscr": "William I rules England and Normandy after 1066. Wales and Scotland remain independent.",
         "uuIndex": 5,
         "uuName": "Swordsman",
-        "startX": -181,
-        "startY": -495,
+        "startX": -115,
+        "startY": -395,
         "hasUnits": [
           true,
           true,
@@ -2066,7 +2070,7 @@
           1
         ],
         "victoryMessage": "Kingdom of England prevails!",
-        "tutTargetRegion": "Scotland",
+        "tutTargetRegion": "Frisia",
         "startGeneral": {
           "selfName": "William I"
         }
@@ -2084,8 +2088,8 @@
         "dscr": "Philip I's realm groups the great southern fiefs under nominal Capetian sovereignty, without implying direct royal administration.",
         "uuIndex": 8,
         "uuName": "Lancer",
-        "startX": -331,
-        "startY": -748,
+        "startX": -249,
+        "startY": -620,
         "hasUnits": [
           true,
           true,
@@ -2189,8 +2193,8 @@
         "dscr": "Henry IV is King of the Romans, not yet emperor. Duchies and imperial Italy are grouped under one playable faction.",
         "uuIndex": 9,
         "uuName": "Man-at-Arms",
-        "startX": -631,
-        "startY": -512,
+        "startX": -517,
+        "startY": -410,
         "hasUnits": [
           true,
           true,
@@ -2286,10 +2290,10 @@
         ],
         "capitalRegion": "Al-Andalus",
         "dscr": "Separate Iberian taifas share a playable colour. Al-Mutamid rules Seville, not a united al-Andalus; the Almoravid intervention lies in the future.",
-        "uuIndex": 4,
-        "uuName": "Archer",
-        "startX": -53,
-        "startY": -1300,
+        "uuIndex": 14,
+        "uuName": "Berber Archer",
+        "startX": -2,
+        "startY": -950,
         "hasUnits": [
           true,
           true,
@@ -2305,7 +2309,7 @@
           false,
           false,
           false,
-          false,
+          true,
           false,
           false,
           false,
@@ -2335,17 +2339,17 @@
           1,
           1,
           1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           1.15,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
           1,
           1,
           1,
@@ -2371,7 +2375,7 @@
           1
         ],
         "victoryMessage": "Taifas of al-Andalus prevails!",
-        "tutTargetRegion": "Algeria",
+        "tutTargetRegion": "Maghreb",
         "startGeneral": {
           "selfName": "al-Mutamid of Seville"
         }
@@ -2387,8 +2391,8 @@
         "dscr": "Sancho II rules Castile in 1070. Leon and Galicia are separate crowns; Portucale is not an independent Portuguese kingdom.",
         "uuIndex": 10,
         "uuName": "Knight",
-        "startX": -72,
-        "startY": -1095,
+        "startX": -19,
+        "startY": -929,
         "hasUnits": [
           true,
           true,
@@ -2496,6 +2500,8 @@
         "connectionNames": [
           "friesland",
           "lorraine",
+          "north_denmark",
+          "norway",
           "south_denmark"
         ],
         "units": [
@@ -2550,7 +2556,8 @@
         "locY": 0,
         "connectionNames": [
           "highlands",
-          "north_denmark"
+          "north_denmark",
+          "saxony"
         ],
         "units": [
           6,
@@ -2605,6 +2612,7 @@
         "connectionNames": [
           "anglia",
           "norway",
+          "saxony",
           "south_denmark"
         ],
         "units": [
@@ -2828,6 +2836,7 @@
         "locY": 0,
         "connectionNames": [
           "friesland",
+          "kent",
           "lorraine",
           "upper_normandy"
         ],
@@ -3048,6 +3057,7 @@
         "locY": 0,
         "connectionNames": [
           "connacht",
+          "dyfed",
           "leinster"
         ],
         "units": [
@@ -3214,7 +3224,8 @@
         "connectionNames": [
           "connacht",
           "galloway",
-          "leinster"
+          "leinster",
+          "lorne"
         ],
         "units": [
           5,
@@ -3436,7 +3447,8 @@
         "connectionNames": [
           "galloway",
           "highlands",
-          "perth"
+          "perth",
+          "ulster"
         ],
         "units": [
           5,
@@ -3541,8 +3553,8 @@
         "refName": "lothian",
         "selfName": "Lothian",
         "peopleName": "Lothian",
-        "armyLocX": 608,
-        "armyLocY": 862,
+        "armyLocX": 607,
+        "armyLocY": 864,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -3885,6 +3897,7 @@
         "locY": 0,
         "connectionNames": [
           "gwynedd",
+          "munster",
           "powys"
         ],
         "units": [
@@ -4166,6 +4179,7 @@
         "locY": 0,
         "connectionNames": [
           "anglia",
+          "flanders",
           "midlands",
           "upper_normandy",
           "wessex"
@@ -5158,6 +5172,7 @@
         "locX": 0,
         "locY": 0,
         "connectionNames": [
+          "dyfed",
           "kilkenny",
           "waterford",
           "wicklow"
@@ -5266,8 +5281,8 @@
         "refName": "wicklow",
         "selfName": "Wicklow",
         "peopleName": "Wicklow",
-        "armyLocX": 780,
-        "armyLocY": 1056,
+        "armyLocX": 781,
+        "armyLocY": 1057,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -6119,7 +6134,8 @@
         "locY": 0,
         "connectionNames": [
           "gwynedd",
-          "waterford"
+          "waterford",
+          "wexford"
         ],
         "units": [
           9,
@@ -6221,8 +6237,8 @@
         "refName": "strathclyde",
         "selfName": "Strathclyde",
         "peopleName": "Strathclyde",
-        "armyLocX": 1155,
-        "armyLocY": 407,
+        "armyLocX": 1162,
+        "armyLocY": 404,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -6869,8 +6885,11 @@
         "locY": 0,
         "connectionNames": [
           "alentejo",
+          "algeria",
           "badajos",
           "estremadura",
+          "fes",
+          "france",
           "seville",
           "tangier"
         ],
@@ -6928,7 +6947,8 @@
           "badajos",
           "cordoba",
           "huelva",
-          "malaga"
+          "malaga",
+          "tangier"
         ],
         "units": [
           5,
@@ -8287,6 +8307,7 @@
         "connectionNames": [
           "aragon",
           "catalonia",
+          "huelva",
           "navarre"
         ],
         "units": [
@@ -8335,14 +8356,15 @@
         "refName": "tangier",
         "selfName": "Tangier",
         "peopleName": "Tangier",
-        "armyLocX": 500,
+        "armyLocX": 499,
         "armyLocY": 1220,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
           "fes",
           "huelva",
-          "morocco"
+          "morocco",
+          "seville"
         ],
         "units": [
           5,
@@ -8395,6 +8417,7 @@
         "locX": 0,
         "locY": 0,
         "connectionNames": [
+          "huelva",
           "morocco",
           "tangier"
         ],
@@ -8505,6 +8528,7 @@
         "locX": 0,
         "locY": 0,
         "connectionNames": [
+          "huelva",
           "morocco"
         ],
         "units": [
@@ -9157,7 +9181,11 @@
         "locX": 0,
         "locY": 0,
         "connectionNames": [
-          "palermo"
+          "croatia",
+          "genoa",
+          "lombardy",
+          "palermo",
+          "sardinia"
         ],
         "units": [
           9,
@@ -9211,6 +9239,7 @@
         "locY": 0,
         "connectionNames": [
           "corsica",
+          "tunisia",
           "tuscany"
         ],
         "units": [
@@ -9264,6 +9293,7 @@
         "locX": 0,
         "locY": 0,
         "connectionNames": [
+          "genoa",
           "sardinia",
           "tuscany"
         ],
@@ -9478,7 +9508,7 @@
         "selfName": "Calabria",
         "peopleName": "Calabria",
         "armyLocX": 1252,
-        "armyLocY": 1242,
+        "armyLocY": 1241,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -9595,6 +9625,7 @@
         "connectionNames": [
           "abruzzo",
           "benevento",
+          "croatia",
           "lucania"
         ],
         "units": [
@@ -9699,7 +9730,7 @@
         "refName": "naples",
         "selfName": "Naples",
         "peopleName": "Naples",
-        "armyLocX": 1026,
+        "armyLocX": 1025,
         "armyLocY": 1012,
         "locX": 0,
         "locY": 0,
@@ -10264,13 +10295,15 @@
         "refName": "genoa",
         "selfName": "Genoa",
         "peopleName": "Genoa",
-        "armyLocX": 266,
+        "armyLocX": 261,
         "armyLocY": 583,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
+          "corsica",
           "lombardy",
           "romagna",
+          "tunisia",
           "tuscany"
         ],
         "units": [
@@ -10328,6 +10361,7 @@
           "genoa",
           "romagna",
           "spoleto",
+          "tunisia",
           "tuscany",
           "venice"
         ],
@@ -10493,7 +10527,9 @@
         "locX": 0,
         "locY": 0,
         "connectionNames": [
+          "apulia",
           "carinthia",
+          "tunisia",
           "venice"
         ],
         "units": [
@@ -10710,7 +10746,7 @@
           1
         ],
         "victoryMessage": "Imperial Italy prevails!",
-        "tutTargetRegion": "Venice",
+        "tutTargetRegion": "Tunisia",
         "startGeneral": {
           "selfName": "Henry III"
         }
@@ -11134,8 +11170,13 @@
         "locX": 0,
         "locY": 0,
         "connectionNames": [
+          "caucasus",
           "corinth",
-          "crete"
+          "crete",
+          "dacia",
+          "iraq",
+          "servia",
+          "shahr_zor"
         ],
         "units": [
           0,
@@ -11184,7 +11225,7 @@
         "selfName": "Corinth",
         "peopleName": "Corinth",
         "armyLocX": 521,
-        "armyLocY": 666,
+        "armyLocY": 667,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -11238,7 +11279,7 @@
         "refName": "athens",
         "selfName": "Athens",
         "peopleName": "Athens",
-        "armyLocX": 556,
+        "armyLocX": 554,
         "armyLocY": 636,
         "locX": 0,
         "locY": 0,
@@ -11293,7 +11334,7 @@
         "refName": "nicopolis",
         "selfName": "Nicopolis",
         "peopleName": "Nicopolis",
-        "armyLocX": 426,
+        "armyLocX": 427,
         "armyLocY": 623,
         "locX": 0,
         "locY": 0,
@@ -11523,6 +11564,7 @@
         "locX": 0,
         "locY": 0,
         "connectionNames": [
+          "argos",
           "bulgaria",
           "dacia",
           "dardania"
@@ -11578,6 +11620,7 @@
         "locX": 0,
         "locY": 0,
         "connectionNames": [
+          "argos",
           "dardania",
           "macedonia",
           "servia",
@@ -11742,7 +11785,7 @@
         "selfName": "Macedonia",
         "peopleName": "Macedonia",
         "armyLocX": 590,
-        "armyLocY": 391,
+        "armyLocY": 392,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -11797,7 +11840,7 @@
         "refName": "constantinople",
         "selfName": "Constantinople",
         "peopleName": "Constantinople",
-        "armyLocX": 806,
+        "armyLocX": 807,
         "armyLocY": 447,
         "locX": 0,
         "locY": 0,
@@ -11967,7 +12010,9 @@
         "locY": 0,
         "connectionNames": [
           "antioch",
-          "cilicia"
+          "cilicia",
+          "palestine",
+          "seleucia"
         ],
         "units": [
           5,
@@ -12127,7 +12172,7 @@
         "refName": "lycia",
         "selfName": "Lycia",
         "peopleName": "Lycia",
-        "armyLocX": 906,
+        "armyLocX": 907,
         "armyLocY": 728,
         "locX": 0,
         "locY": 0,
@@ -12191,6 +12236,7 @@
           "anatolia",
           "cappadocia",
           "cilicia",
+          "cyprus",
           "lycia"
         ],
         "units": [
@@ -12702,7 +12748,7 @@
         "selfName": "Chaldia",
         "peopleName": "Chaldia",
         "armyLocX": 1220,
-        "armyLocY": 459,
+        "armyLocY": 460,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -12985,11 +13031,12 @@
         "refName": "caucasus",
         "selfName": "Caucasus",
         "peopleName": "Caucasus",
-        "armyLocX": 1740,
-        "armyLocY": 169,
+        "armyLocX": 1753,
+        "armyLocY": 159,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
+          "argos",
           "azerbaijan",
           "georgia"
         ],
@@ -13390,6 +13437,7 @@
         "locX": 0,
         "locY": 0,
         "connectionNames": [
+          "argos",
           "azerbaijan",
           "baghdad",
           "iraq",
@@ -13616,12 +13664,13 @@
         "refName": "iraq",
         "selfName": "Iraq",
         "peopleName": "Iraq",
-        "armyLocX": 1942,
-        "armyLocY": 1063,
+        "armyLocX": 1816,
+        "armyLocY": 1194,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
           "arabia",
+          "argos",
           "baghdad",
           "shahr_zor"
         ],
@@ -13677,6 +13726,7 @@
         "locY": 0,
         "connectionNames": [
           "arabia",
+          "cyprus",
           "damascus",
           "jerusalem"
         ],
@@ -14285,7 +14335,7 @@
         "dscr": "Before Manzikert in 1071, the empire retains most Anatolia, the Balkan imperial provinces and its eastern cities. Frontier control remains contested.",
         "uuIndex": 17,
         "uuName": "Varangian Guard",
-        "startX": -406,
+        "startX": -407,
         "startY": -217,
         "hasUnits": [
           true,

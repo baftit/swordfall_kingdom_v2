@@ -2,16 +2,16 @@
   "type": "FeatureCollection",
   "year": 1070,
   "size": [
-    1800,
-    1900
+    1600,
+    1550
   ],
   "center": [
     4,
     48
   ],
   "view": [
-    -13,
-    33,
+    -11.5,
+    35,
     25,
     64
   ],
@@ -24,7 +24,8 @@
     "burgundy": "Royal France",
     "latium": "Papal-Lombard Lands",
     "aragon": "Eastern Iberia",
-    "lombardy": "Northern Italy"
+    "lombardy": "Northern Italy",
+    "algeria": "Maghreb"
   },
   "features": [
     {
@@ -1834,7 +1835,7 @@
       "regions": [
         "andalusia"
       ],
-      "unit": 4,
+      "unit": 14,
       "description": "Separate Iberian taifas share a playable colour. Al-Mutamid rules Seville, not a united al-Andalus; the Almoravid intervention lies in the future."
     },
     {
@@ -1862,5 +1863,46 @@
       49
     ]
   },
-  "frontierGapNotes": "Enclosed land fragments are explicitly assigned by reviewed WGS84 probes in author_regional.py; no inland water is invented."
+  "frontierGapNotes": "Enclosed land fragments are explicitly assigned by reviewed WGS84 probes in author_regional.py; no inland water is invented.",
+  "mercenaryUnits": {
+    "latium": 35
+  },
+  "padding": 50,
+  "scopeCountries": [
+    "Italy",
+    "Morocco",
+    "Algeria",
+    "Tunisia"
+  ],
+  "scopeRegions": [
+    [
+      "France",
+      "Corse"
+    ]
+  ],
+  "incomeBonuses": {
+    "lombardy": 5
+  },
+  "seaGateways": {
+    "andalusia/algeria": {
+      "andalusia": [
+        -5.6,
+        36.02
+      ],
+      "algeria": [
+        -5.72,
+        35.9
+      ]
+    },
+    "apulia/croatia": {
+      "apulia": [
+        16.18,
+        41.9
+      ],
+      "croatia": [
+        16.95,
+        43.3
+      ]
+    }
+  }
 }

@@ -54,6 +54,7 @@ Intermediate SWFs go to `build/work/`; nothing outside `build/` and `game/SFK_v2
 | europe | `tools/verify/europe.json` | England view, nine province clicks, sea rejection, player control restored in 1071 and 1072, 0 errors |
 | europe east | `tools/verify/europe-east.json` | Byzantium view, seven province clicks, sea rejection, player control restored in 1071 and 1072, 0 errors |
 | regional campaigns | `tools/verify/{west,britain,ireland,spain,italy,east}.json` | geographic province clicks, sea rejection, two completed AI rounds, 0 errors |
+| Adriatic crossing | `tools/verify/adriatic.json` | Byzantine Apulia can open an invasion of Croatia across the sea, 0 errors |
 | Britain north | `tools/verify/britain-north.json` | Scots view, northern border selection, coast/sea click rejection, 0 errors |
 | check | live data dump | tables in the running game equal `mods/data`, 0 tech-effect mismatches |
 

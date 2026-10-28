@@ -74,7 +74,17 @@ def references():
 
 def preferred(ref,p):
  country,name,region=p['country'],p['name'],p.get('region')
+ if ref=='West' and country in ('Morocco','Algeria'):return 'algeria'
+ if ref=='West' and country=='Tunisia':return 'tunisia'
+ if ref in ('West','Italy') and country in ('Croatia','Bosnia and Herzegovina','Montenegro','Albania'):
+  return 'croatia'
+ if ref=='West' and country=='Italy':
+  if region in ('Sicily','Sardegna'):return 'sicily'
+  if region in ('Apulia','Basilicata','Calabria'):return 'apulia'
+  if region in ('Lazio','Campania','Abruzzo','Molise','Umbria','Marche'):return 'latium'
+  return 'lombardy'
  if country=='France':
+  if ref=='West' and region=='Corse':return 'lombardy'
   norman={'Manche','Calvados','Orne','Eure','Seine-Maritime'}
   if ref=='Britain':
    if name in ('Eure','Seine-Maritime'):return 'upper_normandy'
@@ -115,6 +125,50 @@ def preferred(ref,p):
  return None
 
 
+def complete_scope(land, context, project, centres, countries=(), regions=()):
+ """Finish outer envelopes along whole geographic guide areas, not box cuts.
+
+ Keep areas with a majority of their land in the authored scope, plus areas
+ containing authored cities. The real coastline and rectangular canvas clip the
+ result; modern guide boundaries only supply a coarse inland campaign frontier.
+ """
+ land=set_precision(land,0);context=set_precision(unary_union(parts(context)),0)
+ points=[Point(*map(float,project(*p))) for p in centres.values()]
+ selected=[];all_areas=[]
+ for properties,geo in references():
+  extent=transform(box(*geo.bounds),project,interleaved=False)
+  if not extent.intersects(context):continue
+  projected=set_precision(set_precision(transform(geo.simplify(.005),project,interleaved=False),1),0)
+  if projected.is_empty:continue
+  area=unary_union(parts(projected.intersection(context)))
+  if area.is_empty:continue
+  all_areas.append(area)
+  include=properties['country'] in countries or [properties['country'],properties.get('region')] in regions
+  if include or area.intersection(land).area>=area.area*.5 or any(area.covers(p) for p in points):
+   selected.append(area)
+ # Retain coastal/island slivers absent from the finer administrative reference.
+ shore=land.difference(unary_union(all_areas))
+ return set_precision(unary_union([*selected,shore]),1)
+
+
+def eligible(ref,p,names):
+ """Keep macro-provinces on their intended side of major sea crossings."""
+ if ref!='Europe':return names
+ country=p['country']
+ if country=='Spain' and p['name'] in ('Ceuta','Melilla'):return ['morocco']
+ allowed={
+  'Morocco':{'morocco','mauretania'},'Western Sahara':{'morocco','mauretania'},
+  'Algeria':{'algeria','morocco','sahara'},'Tunisia':{'tunisia','tripolitania'},
+  'Libya':{'libya','cyrenaica','tripolitania','sahara'},
+  'Egypt':{'nile_delta','upper_egypt','sinai'},
+  'Italy':{'n_italy','s_italy'},
+  'Croatia':{'serbia','austria','hungary'},
+  'Bosnia and Herzegovina':{'serbia','hungary'},
+  'Montenegro':{'serbia','greece'},'Albania':{'serbia','greece'},
+ }.get(country)
+ return [n for n in names if allowed is None or n in allowed]
+
+
 def geographic_frontiers(original,land,project,ref,centres):
  """Partition reference areas once, then generalize their shared inland edges."""
  original={n:set_precision(g,0) for n,g in original.items()}
@@ -134,11 +188,12 @@ def geographic_frontiers(original,land,project,ref,centres):
   if not extent.intersects(land):continue
   projected=set_precision(set_precision(transform(geo.simplify(.005).segmentize(.1),project,interleaved=False),1),0)
   candidate=projected.intersection(land).difference(covered)
+  choices=eligible(ref,properties,names)
   for cell in parts(candidate):
    if cell.area<2:continue
-   protected=[n for n,p in seeds.items() if cell.covers(p)]
+   protected=[n for n,p in seeds.items() if n in choices and cell.covers(p)]
    explicit=preferred(ref,properties)
-   if explicit not in original:explicit=None
+   if explicit not in choices:explicit=None
    # The Giza guide spans Lower and Upper Egypt; retain the campaign's
    # geographic division rather than moving Cairo into Upper Egypt.
    if ref=='Europe' and properties['country']=='Egypt' and properties['name']=='Al Jizah':
@@ -157,7 +212,10 @@ def geographic_frontiers(original,land,project,ref,centres):
      pieces[owner].append(fragment)
    else:
     owner=protected[0] if protected else explicit
-    if owner is None:owner=max(names,key=lambda n:cell.intersection(original[n]).area)
+    if owner is None:
+     owner=max(choices,key=lambda n:cell.intersection(original[n]).area)
+     if ref=='Europe' and not cell.intersection(original[owner]).area:
+      owner=min(choices,key=lambda n:cell.distance(original[n]))
     pieces[owner].append(cell)
    covered=covered.union(cell)
  # Resolve small coastline differences between the 10m guide and retained 50m land.

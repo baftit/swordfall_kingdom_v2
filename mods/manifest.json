@@ -142,6 +142,51 @@
         }
       ],
       "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "class_8",
+      "method": "addExperience",
+      "file": "pcode/general_experience.pcode",
+      "why": "Cumulative XP progression through level 15, including large awards and legacy XP floors."
+    },
+    {
+      "class": "class_8",
+      "method": "method_12",
+      "file": "pcode/general_veteran.prefix",
+      "mode": "prefix",
+      "why": "Guaranteed veteran stat growth at levels 10-15; ability and deployment costs stop inflating after level 9."
+    },
+    {
+      "class": "class_8",
+      "method": "initExperience",
+      "file": "pcode/general_experience_init.pcode",
+      "why": "Initialize XP consistently with the extended thresholds without erasing banked experience."
+    },
+    {
+      "class": "class_8",
+      "method": "setSelf",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "returnvoid",
+          "replace": "getlocal0\ngetlocal1\ngetproperty QName(PackageNamespace(\"\"),\"var_107\")\nsetproperty QName(PackageNamespace(\"\"),\"var_107\")\ngetlocal0\ngetlocal1\ngetproperty QName(PackageNamespace(\"\"),\"powerRating\")\nsetproperty QName(PackageNamespace(\"\"),\"powerRating\")\nreturnvoid"
+        }
+      ],
+      "why": "Keep general XP and veteran power when cloning commanders."
+    },
+    {
+      "class": "class_68",
+      "method": "method_278",
+      "file": "pcode/breakthrough_player.prefix",
+      "mode": "prefix",
+      "why": "A surviving breakthrough earns five deployment morale points, capped at the existing maximum."
+    },
+    {
+      "class": "class_68",
+      "method": "method_236",
+      "file": "pcode/breakthrough_enemy.prefix",
+      "mode": "prefix",
+      "why": "A surviving breakthrough earns five deployment morale points, capped at the existing maximum."
     }
   ],
   "as3": [],

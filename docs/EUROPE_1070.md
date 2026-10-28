@@ -46,6 +46,9 @@ Portugal. Lisbon and Toledo lie in the independent al-Andalus grouping in 1070.
   it does not end in a curved crop. Coasts are not warped to old army markers.
 - Authored envelopes define broad scope and province identity; inland frontiers are
   refined with the geographic guides described in [MAP_RECONSTRUCTION.md](MAP_RECONSTRUCTION.md).
+  Regional eligibility keeps Iberian provinces off the North African shore and Italian
+  provinces off the Balkan shore. The Gibraltar and Adriatic links are sea crossings,
+  rather than accidental land connections caused by overlapping coarse envelopes.
   Envelopes are clipped to land and resolved in source order. Small gaps and
   islands are assigned by boundary contact or nearest province, then all faces share one
   boundary mesh. These are deliberate coarse game provinces, not surveyed frontiers.

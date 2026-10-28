@@ -22,7 +22,7 @@
  {"shot": "italy_map"},
  {"expect": "Italy player turn ready: 1050"},
  {"countFromHere": true},
- {"worldClick": {"campaign": "Italy", "x": 420, "y": 248, "width": 1800, "height": 2200}},
+ {"worldClick": {"campaign": "Italy", "x": 467, "y": 255, "width": 1800, "height": 2200}},
  {"wait": 200},
  {"expect": "Italy territory selected: lombardy"},
  {"worldClick": {"campaign": "Italy", "x": 873, "y": 894, "width": 1800, "height": 2200}},

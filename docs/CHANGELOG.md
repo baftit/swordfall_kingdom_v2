@@ -1,5 +1,44 @@
 # Changelog — SFK_v2.swf
 
+## Taifa recruitment slot restored — 2026-10-28
+
+- Restored the Taifas' Berber Archer unique unit. Replacing it with the already
+  available ordinary Archer had removed the twelfth recruitment icon. Standard
+  research requirements remain, and reloading a save uses the restored roster.
+
+## Western Europe focus and playable Italian islands — 2026-10-28
+
+- Tightened Western Europe to a 1600×1550 canvas with less southern margin. The
+  Maghreb now includes the Moroccan coast; its Iberian crossing is anchored at
+  Gibraltar. The Croatia–Apulia lane uses mainland coastal gateways.
+- Made the full Italian peninsula playable, grouped Corsica with Northern Italy
+  and Sardinia with the neutral Sicily island province, preserving all 34 IDs.
+  Northern Italy receives +5 base gold (42→47). These are campaign aggregations,
+  not claims of unified historical government over the islands.
+- Scenario regeneration now accepts campaign names, allowing focused map edits to
+  use targeted geography, in-game selection/invasion and live-data verification.
+
+## Papal-Lombard mercenary restored — 2026-10-28
+
+- Restored the original Swiss Mercenary recruitment slot in Western Europe's
+  Papal-Lombard Lands (`latium`). This explicit regional exception overrides the
+  campaign's general unit replacement rule; global unit stats and existing armies
+  are unchanged. Reloading a save retains its mercenary stock and uses the restored unit.
+
+## Geographic campaign limits and sea routes — 2026-10-28
+
+- Completed outer playable frontiers along geographic guide areas, removing the
+  rectangular cuts through Croatia, Apulia and other map-edge provinces. Inland
+  campaign limits are dashed; only physical shorelines are solid coastlines.
+- Restored missing navigable crossings, including Croatia–Apulia, and visible cream
+  dashed sea lanes. Routes avoid both playable and background land; graph links are
+  symmetric and checked against the live game tables.
+- Removed foreign-shore fragments in the Adriatic and at Gibraltar that created false
+  land adjacency and suppressed the intended sea crossings.
+- Added frontier, coastline classification and over-water route regressions, plus a
+  real cross-Adriatic invasion scenario in Ruffle. Existing saved conquests are kept
+  when reloading with the corrected region library.
+
 ## Upright maps and clean canvas edges — 2026-10-28
 
 - Replaced the curved, tilted projection with a north-up equirectangular presentation

@@ -14,7 +14,7 @@ scripted historical chronology.
 
 | Campaign | Year | Stable provinces | Map size | Principal corrections |
 |---|---|---|---|---|
-| Western Europe | 1070 | 34 | 1800×1900 | England holds Normandy, not Wales; Sancho II holds Castile; Leon-Galicia is separate; Iberian taifas precede Almoravid intervention |
+| Western Europe | 1070 | 34 | 1600×1550 | England holds Normandy, not Wales; Sancho II holds Castile; Leon-Galicia is separate; Iberian taifas precede Almoravid intervention |
 | Invasion of Britain | 1050 | 33 | 1800×2000 | Edward's English earldoms and Macbeth's Alba; Norway does not own Denmark; Normandy remains outside England |
 | Isle of Kings | 965 | 26 | 1400×1600 | Mathgamain precedes Brian Boru; Fergal rules Connacht; Amlaib Cuaran replaces the later Sigtrygg; Ulaid is distinct from Northern Ui Neill lands |
 | Hispania | 1180 | 30 | 1600×1650 | Leon includes Galicia; Aragon includes Catalonia; Castile holds Cuenca; the Almohads hold Valencia and Badajoz; the Balearics remain independent |
@@ -61,8 +61,8 @@ reigning emperor, Constantine IX, rather than assigning him a local catepan's of
 Several later-era units are replaced in starting garrisons and removed from faction
 unique-unit choices. Global unit statistics and technology rules remain unchanged;
 the game is not a comprehensive reconstruction of medieval armies. Start a new
-campaign for the revised ownership, connections, rosters and map coordinates. Old
-save data does not migrate these values.
+campaign for revised historical starting ownership and rosters. Saved conquests,
+armies and progress remain; geometry and connections use the current library on reload.
 
 ## Sources
 
@@ -90,6 +90,17 @@ supply the authored province boundaries.
 
 ## Inland border style
 
+Outer playable frontiers are completed along whole geographic guide areas, selected
+by majority overlap with the authored scope and protected city anchors. They are
+then clipped to real land and the rectangular canvas. This removes the old stepped
+envelope cuts through Croatia, southern Italy and other edge provinces. These remain
+coarse geographic campaign limits, not assertions of modern or exact medieval borders.
+Only edges beside physical water receive solid coastline strokes. An exposed edge
+against unplayable inland context is dashed, like an inland frontier.
+Explicit Italian and Balkan guide assignments prevent an Italian province from
+acquiring a fragment on the opposite Adriatic shore and producing a false land
+adjacency. A regression rejects Balkan land in Apulia in both relevant campaigns.
+
 `tools/mapgen/frontiers.py` replaces the coarse envelope cuts with geographically
 shaped county/province aggregations. Ireland follows county and district outlines,
 including the Shannon-side divisions, rather than latitude/longitude rectangles.
@@ -115,6 +126,28 @@ consume the same final polygons. A regression check specifically rejects straigh
 between the Irish provinces visible in the reported screenshot.
 
 ## Authoring and regeneration
+
+Western Europe now uses a tighter 1600×1550 canvas and explicitly includes the full
+Italian peninsula and the Moroccan coast. Corsica shares Northern Italy's province
+and ownership, with +5 base gold (42→47); Sardinia shares the neutral Sicily island
+province. These are slot-limited gameplay aggregations. `scopeCountries`/`scopeRegions`
+complete the coast, `seaGateways` anchor Gibraltar and the mainland Adriatic ports,
+and `incomeBonuses` records the small Corsican income adjustment. All remain keyed
+by the original IDs, so saved conquests stay attached to their existing provinces.
+
+For a small Western Europe edit, regenerate and check only the affected campaign:
+
+```sh
+build/mapgen-venv/bin/python tools/mapgen/regional.py build/ne_50m_land.geojson West
+build/mapgen-venv/bin/python tools/mapgen/regional_scenarios.py West
+./patch.sh build
+node tools/verify/verify.mjs game/SFK_v2.swf --steps tools/verify/west-focus.json --out build/verify/west-focus
+python3 -I tools/patch.py check
+```
+
+`west-focus.json` checks Corsica, Sardinia, Calabria and Morocco and attempts a real
+Gibraltar invasion. The broader `west.json` adds two AI rounds. Full `./patch.sh`
+remains available for changes affecting multiple campaigns or shared game logic.
 
 `tools/mapgen/author_regional.py` contains the reviewed envelope coordinates, anchors,
 sea links, names and faction starting positions. It materializes
@@ -148,6 +181,21 @@ for archival editing and validation; they are no longer the release map's source
 `coastline.py` preserves the old warped pipeline as an archive.
 
 ## Runtime verification
+
+`tools/mapgen/routes.py` adds reviewed sea crossings to each campaign's authored
+links, including Croatia–Apulia in Western Europe and Italy and the corresponding
+Adriatic crossing in Grand Europe. Other repairs cover the Channel, Irish Sea,
+Corsica/Genoa, Sardinia/Tunisia, Gibraltar and Cyprus. Every route is bidirectional in
+the actual movement graph. Cream dashed sea lanes show those crossings in gameplay
+and previews. When a straight line would cross land, ocean routing bends it around
+the coast; route validation also considers unplayable background land.
+
+The original save loader restores ownership, troops and campaign progress into a
+fresh region library. It retains the library's connections and map coordinates;
+reloading a save therefore picks up these route and geometry fixes without resetting
+its conquests. Historical starting ownership and roster changes still require a new
+campaign. A separate `adriatic.json` Ruffle scenario attempts an actual Apulia-to-Croatia
+invasion, while the live dump checks the complete movement tables.
 
 Every generated map uses the same polygons for ownership art, preview borders and
 selector hit areas. Original rectangular selector timelines are removed. Labels,

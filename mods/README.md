@@ -42,7 +42,9 @@ irregular geographic frontiers by `tools/mapgen/frontiers.py` and the pinned
 North-up presentation is shared through `tools/mapgen/projection.py`; geographic
 backgrounds fill both the rectangular game canvas and the wider preview panel. The
 matching polygon hit areas replace the old invisible rectangular click surfaces.
-Shared borders have continuous dash phases; coastlines remain bold black. Army
+Shared borders have continuous dash phases; real coastlines remain bold black and
+inland campaign limits stay dashed. Outer envelopes finish along geographic guides.
+`tools/mapgen/routes.py` supplies reviewed sea crossings and visible over-water lanes. Army
 positions, labels, movement connections and faction camera positions use the same
 coordinates. Previews use the modified starting ownership. Missing recovered-map art
 keeps that campaign locked; incomplete or incorrectly ordered art stops the build.
@@ -71,7 +73,8 @@ build/mapgen-venv/bin/python -m unittest discover -s tools/mapgen -p 'test_*.py'
 See [regional sources and limitations](../docs/MAP_RECONSTRUCTION.md) and
 [Grand Europe sources and limitations](../docs/EUROPE_1070.md). These are coarse strategy
 reconstructions with explicit political and unit abstractions. Use a new campaign for
-updated starting positions; existing saves do not migrate their stored state.
+revised historical starting ownership and rosters. Reloading an existing save keeps
+its conquests and armies while using the corrected map geometry and connections.
 
 The old Britain SVG compiler remains available with an explicit `--source`; its
 archived asset validation tests still run. The release Britain map now uses the same
