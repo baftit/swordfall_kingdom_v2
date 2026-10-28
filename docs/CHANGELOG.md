@@ -1,5 +1,19 @@
 # Changelog — SFK_v2.swf
 
+## Britain authored territories — 2026-10-28
+
+- Replaced Britain's equal-distance cells with 33 authored vector territories in
+  `tools/mapgen/assets/britain.svg`. Borders now follow deliberate natural sweeps around
+  the existing regions instead of straight cell edges. The coastline and game data remain.
+- SVG compilation validates territory IDs, markers, overlaps, interior gaps and campaign
+  land neighbours, accounting for sea crossings. The existing map JSON format is preserved.
+- Britain's original rectangular selectors now use invisible polygon hit areas derived from
+  the visible territory art. Existing labels, army positions and selector event handlers remain.
+- Shared curved borders maintain a continuous dash phase. Other campaigns retain their
+  existing geometry and hit areas.
+- Added asset validation tests and southern/northern border-click checks to the full suite,
+  including sea probes inside the former Kent and Aberdeen rectangles.
+
 ## Domain and map borders — 2026-10-28
 
 - Replaced all five publisher-domain text labels with `btabaku.com`, all four outbound

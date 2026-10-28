@@ -34,7 +34,8 @@ What `build` does (`tools/patch.py`):
 3. **Data tables** — every `mods/data/*.json` that differs from `data/baseline/` is compiled
    into generated AS3 / P-code (unit library, tech library, difficulty, tech effects). Unchanged
    tables keep the original bytecode. `--force-data` regenerates all of them.
-4. **Maps** — `mods/maps/*.json` → generated territory clips, map clips, and previews. Each
+4. **Maps** — `mods/maps/*.json` → generated territory clips, map clips, and previews. Britain
+   is compiled from an authored SVG (`tools/mapgen/britain.py`) and uses matching polygon hit areas. Each
    store campaign is unlocked only when its art is present and valid.
 5. **Text** — `mods/text/*.txt` replace static text tags (menu version label).
 
@@ -50,6 +51,7 @@ Intermediate SWFs go to `build/work/`; nothing outside `build/` and `game/SFK_v2
 | speed | `tools/verify/speed.json` | F key gives x2 / x3 / x1 / x2, reset to x1 after retreat |
 | europe | `tools/verify/europe.json` | Grand Europe select, start, two AI turns, 0 errors |
 | restored campaigns | `tools/verify/{britain,ireland,spain,italy,east}.json` | each map select, preview switching, start, two AI turns, 0 errors |
+| Britain north | `tools/verify/britain-north.json` | Scots view, northern border selection, coast/sea click rejection, 0 errors |
 | check | live data dump | tables in the running game equal `mods/data`, 0 tech-effect mismatches |
 
 Screenshots and console logs: `build/verify/<scenario>/`. Run a single smoke test against any

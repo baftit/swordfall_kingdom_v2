@@ -410,10 +410,9 @@ MAP_TEXTURE = r"""
          return tex;
       }
 
-      // Shared borders use 6px black dashes / 4px gaps, matching the original map.
+      // Keep a single 6px dash / 4px gap phase across each shared polyline.
       internal static function drawEdges(g:Graphics, data:String, ox:Number, oy:Number, sc:Number, dashed:Boolean) : void
       {
-         var segments:Array = data.split("|");
          var p:Array;
          var x:Number;
          var y:Number;
@@ -422,35 +421,53 @@ MAP_TEXTURE = r"""
          var length:Number;
          var at:Number;
          var end:Number;
-         for each(var segment:String in segments)
+         var travelled:Number;
+         var phase:Number;
+         var step:Number;
+         var j:int;
+         for each(var segment:String in data.split("|"))
          {
             p = segment.split(",");
-            if(p.length != 4)
+            if(p.length < 4 || p.length % 2 != 0)
             {
                continue;
             }
-            x = Number(p[0]) + ox;
-            y = Number(p[1]) + oy;
-            dx = Number(p[2]) - Number(p[0]);
-            dy = Number(p[3]) - Number(p[1]);
-            length = Math.sqrt(dx * dx + dy * dy);
-            if(length == 0)
+            travelled = 0;
+            j = 2;
+            while(j < p.length)
             {
-               continue;
-            }
-            if(!dashed)
-            {
-               g.moveTo(x * sc,y * sc);
-               g.lineTo((x + dx) * sc,(y + dy) * sc);
-               continue;
-            }
-            at = 0;
-            while(at < length)
-            {
-               end = Math.min(at + 6,length);
-               g.moveTo((x + dx * at / length) * sc,(y + dy * at / length) * sc);
-               g.lineTo((x + dx * end / length) * sc,(y + dy * end / length) * sc);
-               at += 10;
+               x = Number(p[j - 2]) + ox;
+               y = Number(p[j - 1]) + oy;
+               dx = Number(p[j]) - Number(p[j - 2]);
+               dy = Number(p[j + 1]) - Number(p[j - 1]);
+               length = Math.sqrt(dx * dx + dy * dy);
+               if(length > 0)
+               {
+                  if(!dashed)
+                  {
+                     g.moveTo(x * sc,y * sc);
+                     g.lineTo((x + dx) * sc,(y + dy) * sc);
+                  }
+                  else
+                  {
+                     at = 0;
+                     while(at < length)
+                     {
+                        phase = (travelled + at) % 10;
+                        step = phase < 6 ? 6 - phase : 10 - phase;
+                        end = Math.min(at + step,length);
+                        if(phase < 6)
+                        {
+                           g.moveTo((x + dx * at / length) * sc,(y + dy * at / length) * sc);
+                           g.lineTo((x + dx * end / length) * sc,(y + dy * end / length) * sc);
+                        }
+                        // Guard against sub-pixel floating point stalls at dash joins.
+                        at = end > at ? end : at + 0.000001;
+                     }
+                  }
+                  travelled += length;
+               }
+               j += 2;
             }
          }
       }
@@ -485,7 +502,7 @@ def _rings(rings):
     return "|".join(",".join(map(str, r)) for r in rings)
 
 
-def territory_edges(map_regions, origins):
+def territory_edges(map_regions, origins, continuous=False):
     """Separate shared territory edges from coastlines without geometry dependencies.
 
     Canonical endpoint order gives both neighbouring clips the same dash phase.
@@ -499,6 +516,41 @@ def territory_edges(map_regions, origins):
                 if a != b:
                     local.append(tuple(sorted((a, b))))
         edges.append(local)
+    if continuous:
+        # Chain by owner pair so each curved shared border has one dash phase.
+        owners = {}
+        for i, local in enumerate(edges):
+            for edge in set(local):
+                owners.setdefault(edge, []).append(i)
+        groups = {}
+        for edge, indices in owners.items():
+            groups.setdefault(tuple(indices), set()).add(edge)
+        coasts, borders = [[] for _ in origins], [[] for _ in origins]
+        for indices, remaining in sorted(groups.items()):
+            while remaining:
+                adjacency = {}
+                for a, b in remaining:
+                    adjacency.setdefault(a, set()).add(b)
+                    adjacency.setdefault(b, set()).add(a)
+                ends = [v for v, neighbours in adjacency.items() if len(neighbours) != 2]
+                at = min(ends or adjacency)
+                path = [at]
+                while True:
+                    candidates = sorted(v for v in adjacency.get(at, ())
+                                        if tuple(sorted((at, v))) in remaining)
+                    if not candidates:
+                        break
+                    nxt = candidates[0]
+                    remaining.remove(tuple(sorted((at, nxt))))
+                    path.append(nxt)
+                    at = nxt
+                    if len(adjacency[at]) != 2:
+                        break
+                for i in indices:
+                    ox, oy = origins[i]
+                    target = borders if len(indices) > 1 else coasts
+                    target[i].append([v for x, y in path for v in (x - ox, y - oy)])
+        return [_rings(paths) for paths in coasts], [_rings(paths) for paths in borders]
     counts = Counter(edge for local in edges for edge in set(local))
     coasts, borders = [], []
     for local, (ox, oy) in zip(edges, origins):
@@ -702,14 +754,67 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, coasts, 
 """
 
 
-def gen_map_clip(cls, region_cls, land):
+def gen_map_clip(cls, region_cls, land, selector_names=None):
     """Campaign map class (class_98 layout) with a neutral land layer under the regions."""
+    hit_declarations = hit_setup = hit_handler = ""
+    if selector_names is not None:
+        hit_declarations = "internal static const SELECTOR_NAMES:Array = " + json.dumps(selector_names) + ";"
+        hit_setup = f"""
+         // Keep original selector instances/handlers, replacing their rectangular
+         // hit areas with the same map-space polygons used for the territory art.
+         var i:int = 0;
+         var selector:MovieClip;
+         var hit:Sprite;
+         while(i < SELECTOR_NAMES.length)
+         {{
+            selector = selectorContainer.getChildByName(SELECTOR_NAMES[i]) as MovieClip;
+            if(selector == null)
+            {{
+               throw new Error("Missing Britain selector: " + SELECTOR_NAMES[i]);
+            }}
+            // The original class_120 timeline contains only an invisible
+            // rectangle (labels are separate map children). Remove it so
+            // renderers cannot retain its obsolete rectangular click surface.
+            selector.stop();
+            while(selector.numChildren > 0)
+            {{
+               selector.removeChildAt(0);
+            }}
+            selector.graphics.clear();
+            hit = new Sprite();
+            hit.graphics.beginFill(0);
+            {region_cls}.drawRings(hit.graphics,{region_cls}.SHAPES[i],{region_cls}.ORIGINS[i][0],{region_cls}.ORIGINS[i][1]);
+            hit.graphics.endFill();
+            hit.mouseEnabled = false;
+            hit.alpha = 0;
+            // A child hit sprite also expands the selector's broad-phase bounds.
+            // Cancel its original per-marker scale/translation so paths stay in
+            // the shared selector-container/map coordinate system.
+            var inverse:Matrix = selector.transform.matrix.clone();
+            inverse.invert();
+            hit.transform.matrix = inverse;
+            selector.addChild(hit);
+            selector.hitArea = hit;
+            selector.mouseChildren = false;
+            selector.addEventListener(MouseEvent.CLICK,traceSelection,false,0,true);
+            i++;
+         }}
+"""
+        hit_handler = """
+      internal function traceSelection(event:MouseEvent) : void
+      {
+         trace("Britain territory selected: " + event.currentTarget.name);
+      }
+"""
     return f"""package
 {{
    // GENERATED by tools/patch.py from mods/maps - do not edit by hand.
    import flash.display.BitmapData;
    import flash.display.MovieClip;
    import flash.display.Shape;
+   import flash.display.Sprite;
+   import flash.events.MouseEvent;
+   import flash.geom.Matrix;
    import flash.geom.ColorTransform;
 
    public class {cls} extends MovieClip
@@ -718,6 +823,7 @@ def gen_map_clip(cls, region_cls, land):
       public var armyContainer:MovieClip;
       public var regionContainer:MovieClip;
 
+      {hit_declarations}
       internal static const LAND:String = {json.dumps(_rings(land))};
 
       public function {cls}()
@@ -739,7 +845,9 @@ def gen_map_clip(cls, region_cls, land):
          s.graphics.endFill();
          s.transform.colorTransform = new ColorTransform(0.72,0.72,0.72,1,0,0,0,0);
          addChildAt(s,regionContainer != null ? getChildIndex(regionContainer) : 1);
+{hit_setup}
       }}
+{hit_handler}
    }}
 }}
 """
@@ -776,14 +884,15 @@ def map_changes():
             for i in fac["regions"]:
                 owners[i] = fac["colorIndex"]
         origins = [[r["locX"], r["locY"]] for r in regions]
-        coasts, borders = territory_edges(m["regions"], origins)
+        coasts, borders = territory_edges(m["regions"], origins, continuous=name == "britain")
         clip = gen_region_clip(region_cls, [_rings(r["rings"]) for r in m["regions"]], origins, owners,
                                m["land"], (frame, *PREVIEW_SIZE, m["width"], m["height"]), coasts, borders,
                                [v[0] for k, v in MAP_CLASSES.items()
                                 if k != "europe" and (MODS / "maps" / f"{k}.json").exists()]
                                if name == "europe" else ())
         for cls, src in ((region_cls, clip),
-                         (map_cls, gen_map_clip(map_cls, region_cls, m["land"]))):
+                         (map_cls, gen_map_clip(map_cls, region_cls, m["land"],
+                                                [r["refName"] for r in regions] if name == "britain" else None))):
             path = gen_dir / f"{cls}.as"
             path.write_text(src, encoding="utf-8")
             log(f"map    {f.relative_to(ROOT)} -> {path.relative_to(ROOT)}")
@@ -1020,6 +1129,9 @@ def main(argv):
             if name != "europe" and (MODS / "maps" / f"{name}.json").exists():
                 if run_verify(OUTPUT, steps=VERIFY / f"{name}.json", out=BUILD / f"verify/{name}") != 0:
                     sys.exit(f"{ref} campaign test failed")
+                if name == "britain":
+                    if run_verify(OUTPUT, steps=VERIFY / "britain-north.json", out=BUILD / "verify/britain-north") != 0:
+                        sys.exit("Britain northern border test failed")
         sys.exit(0 if check_mods(OUTPUT) else 1)
     else:
         sys.exit(__doc__)

@@ -4,7 +4,8 @@
 //
 // Loads the SWF in headless Chromium + self-hosted Ruffle, runs an optional
 // list of steps ({"click":[x,y]} | {"wait":ms} | {"shot":"name"} | {"key":"Enter"} |
-// {"expect":"trace text"}),
+// {"expect":"trace text"} | {"countFromHere":true} |
+// {"expectCount":{"text":"trace text","count":2}}),
 // and exits non-zero if Ruffle logged an AVM2 error / panic.
 import http from "node:http";
 import fs from "node:fs";
@@ -69,12 +70,20 @@ try {
   await tab.waitForTimeout(initialWait);
   await tab.screenshot({ path: path.join(outDir, "00_loaded.png") });
   let n = 1;
+  let countFrom = 0;
   for (const s of steps) {
+    if (s.countFromHere) countFrom = log.length;
     if (s.click) await tab.mouse.click(s.click[0], s.click[1]);
     if (s.key) await tab.keyboard.press(s.key);
     if (s.wait) await tab.waitForTimeout(s.wait);
     if (s.shot) await tab.screenshot({ path: path.join(outDir, `${String(n++).padStart(2, "0")}_${s.shot}.png`) });
     if (s.eval) log.push(`[eval] ${JSON.stringify(await tab.evaluate(s.eval))}`);
+    if (s.expectCount) {
+      const { text, count } = s.expectCount;
+      const actual = log.slice(countFrom).filter((line) => line.includes(text)).length;
+      console.log(`  expect count ${JSON.stringify(text)}: ${actual}/${count}`);
+      if (actual !== count) errors.push(`expected ${count} traces matching ${JSON.stringify(text)}, saw ${actual}`);
+    }
     if (s.expect) {
       const hit = log.some((l) => l.includes(s.expect));
       console.log(`  expect ${JSON.stringify(s.expect)}: ${hit ? "ok" : "MISSING"}`);

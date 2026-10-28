@@ -111,6 +111,8 @@ def compile_svg(source, regions):
     territories = root.find('svg:g[@id="territories"]', NS)
     if land_node is None or territories is None:
         raise ValueError('SVG needs land and territories groups')
+    if any(node.get('transform') for node in (root, land_node, territories)):
+        raise ValueError('SVG transforms must be applied before export')
     land = geometry(land_node)
     groups = list(territories)
     names = [g.get('id') for g in groups]
