@@ -17,6 +17,7 @@ Order of operations in build:
      generated data classes for every mods/data table that differs from
      data/baseline (or all of them with --force-data)
 """
+from collections import Counter
 import hashlib
 import json
 import re
@@ -409,6 +410,51 @@ MAP_TEXTURE = r"""
          return tex;
       }
 
+      // Shared borders use 6px black dashes / 4px gaps, matching the original map.
+      internal static function drawEdges(g:Graphics, data:String, ox:Number, oy:Number, sc:Number, dashed:Boolean) : void
+      {
+         var segments:Array = data.split("|");
+         var p:Array;
+         var x:Number;
+         var y:Number;
+         var dx:Number;
+         var dy:Number;
+         var length:Number;
+         var at:Number;
+         var end:Number;
+         for each(var segment:String in segments)
+         {
+            p = segment.split(",");
+            if(p.length != 4)
+            {
+               continue;
+            }
+            x = Number(p[0]) + ox;
+            y = Number(p[1]) + oy;
+            dx = Number(p[2]) - Number(p[0]);
+            dy = Number(p[3]) - Number(p[1]);
+            length = Math.sqrt(dx * dx + dy * dy);
+            if(length == 0)
+            {
+               continue;
+            }
+            if(!dashed)
+            {
+               g.moveTo(x * sc,y * sc);
+               g.lineTo((x + dx) * sc,(y + dy) * sc);
+               continue;
+            }
+            at = 0;
+            while(at < length)
+            {
+               end = Math.min(at + 6,length);
+               g.moveTo((x + dx * at / length) * sc,(y + dy * at / length) * sc);
+               g.lineTo((x + dx * end / length) * sc,(y + dy * end / length) * sc);
+               at += 10;
+            }
+         }
+      }
+
       internal static function drawRings(g:Graphics, data:String, ox:Number, oy:Number, sc:Number = 1) : void
       {
          var rings:Array = data.split("|");
@@ -439,7 +485,33 @@ def _rings(rings):
     return "|".join(",".join(map(str, r)) for r in rings)
 
 
-def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, preview_peers=()):
+def territory_edges(map_regions, origins):
+    """Separate shared territory edges from coastlines without geometry dependencies.
+
+    Canonical endpoint order gives both neighbouring clips the same dash phase.
+    """
+    edges = []
+    for region, (ox, oy) in zip(map_regions, origins):
+        local = []
+        for ring in region["rings"]:
+            points = [(ring[i] + ox, ring[i + 1] + oy) for i in range(0, len(ring), 2)]
+            for a, b in zip(points, points[1:] + points[:1]):
+                if a != b:
+                    local.append(tuple(sorted((a, b))))
+        edges.append(local)
+    counts = Counter(edge for local in edges for edge in set(local))
+    coasts, borders = [], []
+    for local, (ox, oy) in zip(edges, origins):
+        coast, border = [], []
+        for a, b in local:
+            segment = [a[0] - ox, a[1] - oy, b[0] - ox, b[1] - oy]
+            (border if counts[(a, b)] > 1 else coast).append(segment)
+        coasts.append(_rings(coast))
+        borders.append(_rings(border))
+    return coasts, borders
+
+
+def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, coasts, borders, preview_peers=()):
     """Region clip class (class_113 layout) that draws its territory on gotoAndStop,
     plus a static syncPreview() that paints the map-select / kingdom-select thumbnail."""
     data = ",\n         ".join(json.dumps(s) for s in symbol_shapes)
@@ -477,6 +549,8 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, preview_
       internal static const SHAPES:Array = [
          {data}
       ];
+      internal static const COASTS:Array = {json.dumps(coasts)};
+      internal static const BORDERS:Array = {json.dumps(borders)};
       internal static const ORIGINS:Array = {json.dumps(origins)};
       internal static const OWNER_COLORS:Array = {json.dumps(owners)};
       internal static const PREVIEW_LAND:String = {json.dumps(_rings(land))};
@@ -525,10 +599,18 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, preview_
          while(i < SHAPES.length)
          {{
             ci = int(OWNER_COLORS[i]);
-            s.graphics.lineStyle(0.5,0x1E1C1A,0.5);
+            s.graphics.lineStyle();
             s.graphics.beginFill(tint(c.var_49[ci],c.var_50[ci],c.var_51[ci]));
             drawRings(s.graphics,SHAPES[i],ORIGINS[i][0] + ox / sc,ORIGINS[i][1] + oy / sc,sc);
             s.graphics.endFill();
+            i++;
+         }}
+         i = 0;
+         s.graphics.lineStyle(0.6,0x000000,1);
+         while(i < SHAPES.length)
+         {{
+            drawEdges(s.graphics,COASTS[i],ORIGINS[i][0] + ox / sc,ORIGINS[i][1] + oy / sc,sc,false);
+            drawEdges(s.graphics,BORDERS[i],ORIGINS[i][0] + ox / sc,ORIGINS[i][1] + oy / sc,sc,true);
             i++;
          }}
          clip.addChild(s);
@@ -563,7 +645,7 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, preview_
             return;
          }}
          t = texture();
-         graphics.lineStyle(1,0x1E1C1A,0.6);
+         graphics.lineStyle();
          if(t != null)
          {{
             graphics.beginBitmapFill(t,null,true,false);
@@ -574,6 +656,9 @@ def gen_region_clip(cls, symbol_shapes, origins, owners, land, preview, preview_
          }}
          drawRings(graphics,SHAPES[index],0,0);
          graphics.endFill();
+         graphics.lineStyle(2,0x000000,1,false,"normal","none","round");
+         drawEdges(graphics,COASTS[index],0,0,1,false);
+         drawEdges(graphics,BORDERS[index],0,0,1,true);
       }}
 
       public function setTargetColor(param1:int) : void
@@ -691,8 +776,9 @@ def map_changes():
             for i in fac["regions"]:
                 owners[i] = fac["colorIndex"]
         origins = [[r["locX"], r["locY"]] for r in regions]
+        coasts, borders = territory_edges(m["regions"], origins)
         clip = gen_region_clip(region_cls, [_rings(r["rings"]) for r in m["regions"]], origins, owners,
-                               m["land"], (frame, *PREVIEW_SIZE, m["width"], m["height"]),
+                               m["land"], (frame, *PREVIEW_SIZE, m["width"], m["height"]), coasts, borders,
                                [v[0] for k, v in MAP_CLASSES.items()
                                 if k != "europe" and (MODS / "maps" / f"{k}.json").exists()]
                                if name == "europe" else ())

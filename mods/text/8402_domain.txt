@@ -1,0 +1,60 @@
+[
+xmin 413
+ymin 35
+xmax 4698
+ymax 1245
+][
+font 7
+height 340
+letterspacing 19
+color #ffffff
+x 500
+y 340
+spacing "d" 1
+spacing " " 1
+spacing "m" 1
+spacing "a" 1
+spacingpair "F" "i" 1
+spacingpair "i" "n" 1
+spacingpair "o" "r" 1
+spacingpair "r" "e" 1
+spacingpair "e" " " 1
+spacingpair "p" "s" 1
+spacingpair "s" " " 1
+]Find more maps and [
+letterspacing 0
+x 380
+y 780
+spacing "l" 20
+spacing "a" 20
+spacing " " 20
+spacingpair "p" "l" 20
+spacingpair "y" "a" 20
+spacingpair "b" "l" 20
+spacingpair "e" " " 20
+spacingpair "k" "i" 20
+spacingpair "i" "n" 20
+spacingpair "n" "g" 19
+spacingpair "g" "d" 20
+spacingpair "d" "o" 20
+spacingpair "o" "m" 20
+spacingpair "m" "s" 20
+spacingpair "s" " " 20
+spacingpair "t" " " 20
+]playable kingdoms at [
+x 620
+y 1220
+spacing "o" 20
+spacing "r" 20
+spacing "l" 20
+spacingpair "v" "e" 19
+spacingpair "e" "r" 20
+spacingpair "w" "o" 20
+spacingpair "d" "l" 20
+spacingpair "a" "b" 20
+spacingpair "b" "s" 20
+spacingpair "s" "." 20
+spacingpair "." "c" 20
+spacingpair "c" "o" 20
+spacingpair "m" "" 20
+]btabaku.com

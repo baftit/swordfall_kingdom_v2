@@ -1,33 +1,173 @@
 #!/usr/bin/env python3
-"""Generate Invasion of Britain using the Grand Europe coastline/Voronoi pipeline.
+"""Compile Britain's authored SVG territories into the existing map JSON format.
 
-Usage: britain.py <ne_50m_land.geojson> <regions.Britain.json> <out.json>
-Coordinates are approximate historical region centres, pinned to the game's markers.
-The view includes Ireland, northern France, the Low Countries, Denmark and Norway.
+Usage: britain.py [--source assets/britain.svg] <regions.Britain.json> <out.json>
+The former <coastline.geojson> <regions.json> <out.json> command remains accepted;
+coastlines now come from the SVG's retained land layer, not a new geographic warp.
+Requires shapely; normal SWF builds still use the checked-in JSON and stdlib only.
 """
+import argparse
+import json
+from pathlib import Path
+import re
 import sys
-from europe import main
+import xml.etree.ElementTree as ET
 
-LONLAT = {
-    'saxony': (9.5, 52.0), 'norway': (7.5, 60.5),
-    'north_denmark': (9.3, 57.0), 'south_denmark': (9.3, 55.5),
-    'friesland': (5.8, 53.1), 'lorraine': (6.1, 49.2),
-    'flanders': (3.0, 51.0), 'upper_normandy': (1.1, 49.3),
-    'lower_normandy': (-1.0, 49.0), 'brittany': (-3.0, 48.2),
-    'munster': (-9.0, 52.1), 'connacht': (-9.0, 53.8),
-    'leinster': (-6.8, 53.0), 'ulster': (-6.7, 54.8),
-    'highlands': (-4.8, 57.3), 'aberdeen': (-2.3, 57.2),
-    'perth': (-3.6, 56.5), 'lorne': (-5.3, 56.4),
-    'galloway': (-4.5, 55.0), 'lothian': (-3.0, 55.9),
-    'durham': (-1.7, 54.8), 'cumbria': (-3.0, 54.5),
-    'northumbria': (-1.5, 54.0), 'derby': (-1.7, 53.2),
-    'gwynedd': (-4.0, 53.0), 'dyfed': (-4.5, 51.9),
-    'powys': (-3.3, 52.3), 'lincoln': (-0.4, 53.2),
-    'midlands': (-1.5, 52.3), 'anglia': (0.9, 52.3),
-    'kent': (0.7, 51.2), 'wessex': (-2.0, 51.0),
-    'cornwall': (-4.7, 50.5),
-}
+from shapely import set_precision
+from shapely.geometry import Point, Polygon
+from shapely.ops import unary_union
+
+SOURCE = Path(__file__).with_name('assets') / 'britain.svg'
+NS = {'svg': 'http://www.w3.org/2000/svg'}
+# Existing gameplay links crossing water in the retained coastline. In particular,
+# Lorne/Galloway and Friesland/South Denmark cross small coastal channels: do not
+# invent land bridges or change campaign movement to force a physical border.
+SEA_CONNECTIONS = {tuple(sorted(pair)) for pair in [
+    ('norway', 'north_denmark'), ('norway', 'aberdeen'), ('norway', 'highlands'),
+    ('north_denmark', 'northumbria'), ('north_denmark', 'anglia'),
+    ('upper_normandy', 'kent'), ('leinster', 'gwynedd'),
+    ('ulster', 'galloway'), ('ulster', 'lorne'),
+    ('lorne', 'galloway'), ('friesland', 'south_denmark'),
+]}
+
+
+def path_rings(data):
+    """Read the SVG asset's deliberately simple absolute M/L/Z polygon paths."""
+    if re.sub(r'[MLZ\s,0-9.eE+\-]', '', data):
+        raise ValueError('SVG paths support absolute M/L/Z only; flatten curves before export')
+    tokens = re.findall(r'[MLZ]|[+-]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][+-]?\d+)?', data)
+    rings, ring, i = [], None, 0
+    while i < len(tokens):
+        token = tokens[i]
+        if token == 'M':
+            if ring is not None:
+                raise ValueError('SVG path rings must close with Z')
+            ring = []
+            i += 1
+        elif token == 'L':
+            if ring is None:
+                raise ValueError('SVG path must start with M')
+            i += 1
+        elif token == 'Z':
+            if ring is None or len(ring) < 3:
+                raise ValueError('SVG ring needs at least three points')
+            rings.append(ring)
+            ring = None
+            i += 1
+        else:
+            if ring is None or i + 1 >= len(tokens) or tokens[i + 1] in 'MLZ':
+                raise ValueError('Invalid SVG coordinate pair')
+            ring.append((float(token), float(tokens[i + 1])))
+            i += 2
+    if ring is not None:
+        raise ValueError('SVG path rings must close with Z')
+    return rings
+
+
+def geometry(group):
+    result = Polygon()
+    for node in group:
+        tag = node.tag.rsplit('}', 1)[-1]
+        if node.get('transform'):
+            raise ValueError('SVG coordinates must be in map space; apply transforms before export')
+        if tag == 'polygon':
+            nums = [float(n) for n in re.split(r'[\s,]+', node.attrib['points'].strip())]
+            if len(nums) < 6 or len(nums) % 2:
+                raise ValueError('Invalid SVG polygon points')
+            rings = [list(zip(nums[::2], nums[1::2]))]
+        elif tag == 'path':
+            rings = path_rings(node.attrib['d'])
+        else:
+            raise ValueError(f'Unsupported geometry element: {tag}')
+        # Even-odd rings preserve islands and holes in the source SVG.
+        shape = Polygon()
+        for ring in rings:
+            poly = Polygon(ring)
+            if not poly.is_valid or poly.area <= 0:
+                raise ValueError('Invalid or empty SVG polygon')
+            shape = shape.symmetric_difference(poly)
+        if result.intersection(shape).area > 0.01:
+            raise ValueError('Overlapping pieces within an SVG territory')
+        result = result.union(shape)
+    if result.is_empty or not result.is_valid:
+        raise ValueError('Missing or invalid SVG geometry')
+    return result
+
+
+def rings_of(geom, ox=0, oy=0):
+    rings = []
+    for poly in getattr(geom, 'geoms', [geom]):
+        for ring in [poly.exterior, *poly.interiors]:
+            rings.append([v for x, y in list(ring.coords)[:-1]
+                          for v in (int(round(x - ox)), int(round(y - oy)))])
+    return rings
+
+
+def compile_svg(source, regions):
+    root = ET.parse(source).getroot()
+    if root.get('viewBox', '').split() != ['0', '0', '1239', '963']:
+        raise ValueError('Britain SVG must use viewBox="0 0 1239 963"')
+    land_node = root.find('svg:g[@id="land"]', NS)
+    territories = root.find('svg:g[@id="territories"]', NS)
+    if land_node is None or territories is None:
+        raise ValueError('SVG needs land and territories groups')
+    land = geometry(land_node)
+    groups = list(territories)
+    names = [g.get('id') for g in groups]
+    expected = [r['refName'] for r in regions]
+    if len(names) != len(set(names)) or set(names) != set(expected):
+        raise ValueError(f'SVG must contain exactly the baseline territory IDs: missing={set(expected)-set(names)}, extra={set(names)-set(expected)}')
+    shapes = {}
+    for group in groups:
+        if group.get('transform'):
+            raise ValueError('Territory group transforms must be applied before export')
+        shape = geometry(group)
+        if shape.difference(land.buffer(1)).area > 0.01:
+            raise ValueError(f'{group.get("id")}: territory extends outside the coastline')
+        shapes[group.attrib['id']] = set_precision(shape.intersection(land), 1)
+    for r in regions:
+        shape = shapes[r['refName']]
+        if shape.is_empty or not shape.is_valid or not shape.contains(Point(r['armyLocX'], r['armyLocY'])):
+            raise ValueError(f'{r["refName"]}: invalid territory or army marker outside its polygon')
+    union = unary_union(list(shapes.values()))
+    # Integer game coordinates can round intersections at the coastline by <1px.
+    # Internal gaps and overlaps are forbidden; coast-only rounding is covered by
+    # the existing 2px coastline stroke and does not change the land background.
+    if union.symmetric_difference(land).difference(land.boundary.buffer(1)).area > 0.01:
+        raise ValueError('Territory coverage has a gap inside the land')
+    actual = set()
+    for i, a in enumerate(expected):
+        for b in expected[i + 1:]:
+            if shapes[a].intersection(shapes[b]).area > 0.01:
+                raise ValueError(f'Overlapping territories: {a}, {b}')
+            if shapes[a].boundary.intersection(shapes[b].boundary).length > 2:
+                actual.add(tuple(sorted((a, b))))
+    connections = {tuple(sorted((r['refName'], other))) for r in regions for other in r['connectionNames']}
+    intended_land = connections - SEA_CONNECTIONS
+    if actual != intended_land:
+        raise ValueError(f'Land neighbours differ from campaign: missing={intended_land-actual}, extra={actual-intended_land}')
+    return {'width': 1239, 'height': 963, 'land': rings_of(land),
+            'regions': [{'refName': r['refName'], 'rings': rings_of(shapes[r['refName']], r['locX'], r['locY'])}
+                        for r in regions]}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--source', type=Path, default=SOURCE)
+    parser.add_argument('paths', nargs='+', metavar='PATH')
+    args = parser.parse_args()
+    if len(args.paths) not in (2, 3):
+        parser.error('provide regions.json and out.json (or the legacy coastline, regions, out arguments)')
+    regions_file, out_file = args.paths[-2:]
+    if len(args.paths) == 3:
+        print('Britain uses its authored SVG coastline; the legacy GeoJSON argument is ignored.', file=sys.stderr)
+    try:
+        result = compile_svg(args.source, json.loads(Path(regions_file).read_text()))
+    except (ValueError, ET.ParseError, KeyError) as exc:
+        parser.exit(1, f'{args.source}: {exc}\n')
+    Path(out_file).write_text(json.dumps(result, separators=(',', ':')) + '\n')
+    print(f'33 authored territories; army markers, land neighbours, shared coverage and coastlines verified')
+
 
 if __name__ == '__main__':
-    main(*sys.argv[1:4], lonlat=LONLAT, width=1239, height=963,
-         view_bounds=(-11, 48, 12, 62), smoothing=0.0, snap_coordinates=True)
+    main()

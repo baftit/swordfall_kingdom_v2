@@ -1,5 +1,13 @@
 # Changelog — SFK_v2.swf
 
+## Domain and map borders — 2026-10-28
+
+- Replaced all five publisher-domain text labels with `btabaku.com`, all four outbound
+  publisher links with `https://btabaku.com`, and the old whitelist entry with `btabaku.com`.
+- Generated maps now use bold black coastlines and dashed black territory separations,
+  following the original Western Europe style. Shared edges have matching dash positions
+  in both neighbouring clips so the gaps remain visible.
+
 ## Store campaign map restoration — 2026-10-28
 
 - Invasion of Britain is playable: generated coastline and 33 territory polygons reuse the

@@ -63,25 +63,33 @@ tab.on("pageerror", (e) => { log.push(`[pageerror] ${e.message}`); errors.push(e
 tab.on("requestfailed", (r) => log.push(`[netfail] ${r.url()}`));
 tab.on("response", (r) => { if (r.status() >= 400) log.push(`[http ${r.status()}] ${r.url()}`); });
 
-await tab.goto(`http://127.0.0.1:${port}/`);
-await tab.waitForTimeout(initialWait);
-await tab.screenshot({ path: path.join(outDir, "00_loaded.png") });
-let n = 1;
-for (const s of steps) {
-  if (s.click) await tab.mouse.click(s.click[0], s.click[1]);
-  if (s.key) await tab.keyboard.press(s.key);
-  if (s.wait) await tab.waitForTimeout(s.wait);
-  if (s.shot) await tab.screenshot({ path: path.join(outDir, `${String(n++).padStart(2, "0")}_${s.shot}.png`) });
-  if (s.eval) log.push(`[eval] ${JSON.stringify(await tab.evaluate(s.eval))}`);
-  if (s.expect) {
-    const hit = log.some((l) => l.includes(s.expect));
-    console.log(`  expect ${JSON.stringify(s.expect)}: ${hit ? "ok" : "MISSING"}`);
-    if (!hit) errors.push(`expected trace not seen: ${s.expect}`);
+tab.on("crash", () => log.push("[browser] page crashed"));
+try {
+  await tab.goto(`http://127.0.0.1:${port}/`);
+  await tab.waitForTimeout(initialWait);
+  await tab.screenshot({ path: path.join(outDir, "00_loaded.png") });
+  let n = 1;
+  for (const s of steps) {
+    if (s.click) await tab.mouse.click(s.click[0], s.click[1]);
+    if (s.key) await tab.keyboard.press(s.key);
+    if (s.wait) await tab.waitForTimeout(s.wait);
+    if (s.shot) await tab.screenshot({ path: path.join(outDir, `${String(n++).padStart(2, "0")}_${s.shot}.png`) });
+    if (s.eval) log.push(`[eval] ${JSON.stringify(await tab.evaluate(s.eval))}`);
+    if (s.expect) {
+      const hit = log.some((l) => l.includes(s.expect));
+      console.log(`  expect ${JSON.stringify(s.expect)}: ${hit ? "ok" : "MISSING"}`);
+      if (!hit) errors.push(`expected trace not seen: ${s.expect}`);
+    }
   }
+} catch (e) {
+  const message = `[verifier] ${e.message}`;
+  log.push(message);
+  errors.push(message);
+} finally {
+  fs.writeFileSync(path.join(outDir, "console.log"), log.join("\n") + "\n");
+  await browser.close();
+  server.close();
 }
-fs.writeFileSync(path.join(outDir, "console.log"), log.join("\n") + "\n");
-await browser.close();
-server.close();
 
 console.log(`swf: ${swf}`);
 console.log(`console lines: ${log.length}, errors: ${errors.length}, screenshots: ${outDir}`);

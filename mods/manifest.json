@@ -82,6 +82,66 @@
         }
       ],
       "why": "v2.1: the victory / defeat results button goes to Select a Map (start another campaign) instead of the bare title screen"
+    },
+    {
+      "class": "class_149",
+      "method": "method_195",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"http://www.overworldlabs.com\"",
+          "replace": "pushstring \"https://btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "class_149",
+      "method": "method_359",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"http://www.overworldlabs.com\"",
+          "replace": "pushstring \"https://btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "class_149",
+      "method": "method_274",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"http://www.overworldlabs.com/sfk.html\"",
+          "replace": "pushstring \"https://btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "class_94",
+      "method": "method_324",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"http://www.overworldlabs.com\"",
+          "replace": "pushstring \"https://btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "package_1.class_139",
+      "method": "method_84",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"www.overworldlabs.com\"",
+          "replace": "pushstring \"btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
     }
   ],
   "as3": [],
@@ -90,6 +150,31 @@
       "id": 8501,
       "file": "text/8501_version.txt",
       "why": "main-menu version label v1.067k -> v2.1"
+    },
+    {
+      "id": 8502,
+      "file": "text/8502_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    },
+    {
+      "id": 8503,
+      "file": "text/8503_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    },
+    {
+      "id": 8504,
+      "file": "text/8504_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    },
+    {
+      "id": 8402,
+      "file": "text/8402_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    },
+    {
+      "id": 8403,
+      "file": "text/8403_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
     }
   ]
 }
