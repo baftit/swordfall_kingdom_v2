@@ -30,7 +30,8 @@
         "armyCenter": [
           2.9,
           39.6
-        ]
+        ],
+        "landmass": "Balearics"
       },
       "geometry": {
         "type": "Polygon",
@@ -1145,7 +1146,8 @@
         "armyCenter": [
           -5.8,
           35.7
-        ]
+        ],
+        "landmass": "Africa"
       },
       "geometry": {
         "type": "Polygon",
@@ -1182,7 +1184,8 @@
         "armyCenter": [
           -5.0,
           34.0
-        ]
+        ],
+        "landmass": "Africa"
       },
       "geometry": {
         "type": "Polygon",
@@ -1219,7 +1222,8 @@
         "armyCenter": [
           -2.5,
           34.4
-        ]
+        ],
+        "landmass": "Africa"
       },
       "geometry": {
         "type": "Polygon",
@@ -1256,7 +1260,8 @@
         "armyCenter": [
           2.0,
           35.4
-        ]
+        ],
+        "landmass": "Africa"
       },
       "geometry": {
         "type": "Polygon",

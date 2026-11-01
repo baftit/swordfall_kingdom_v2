@@ -94,7 +94,7 @@
     </div>
     <main>
         <div id="player-container">
-            <ruffle-embed id="ruffle-player" src="game/SFK_v2.swf" width="800" height="600"></ruffle-embed>
+            <ruffle-embed id="ruffle-player" src="game/SFK_v2.swf?v=norse-pixels-2" width="800" height="600"></ruffle-embed>
         </div>
     </main>
     <footer>
@@ -126,7 +126,7 @@
                 if (player) player.remove();
                 const embed = document.createElement("ruffle-embed");
                 embed.id = "ruffle-player";
-                embed.setAttribute("src", src);
+                embed.setAttribute("src", src + "?build=" + Date.now());
                 embed.setAttribute("width", "800");
                 embed.setAttribute("height", "600");
                 container.appendChild(embed);

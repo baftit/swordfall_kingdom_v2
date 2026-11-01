@@ -1217,6 +1217,14 @@
       "description": "Amlaib Cuaran rules Dublin. Limerick, Waterford and Wexford are separate Norse centres grouped for play, not a single unified kingdom."
     }
   ],
+  "garrisonBonuses": {
+    "dublin": {
+      "31": 1
+    }
+  },
+  "mercenaryUnits": {
+    "dublin": 31
+  },
   "landmasses": {
     "Ireland": [
       -7.5,

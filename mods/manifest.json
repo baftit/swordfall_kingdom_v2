@@ -187,9 +187,97 @@
       "file": "pcode/breakthrough_enemy.prefix",
       "mode": "prefix",
       "why": "A surviving breakthrough earns five deployment morale points, capped at the existing maximum."
+    },
+    {
+      "class": "class_79",
+      "method": "displayData",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "callpropvoid QName(PackageNamespace(\"\"),\"setFrame\"), 1",
+          "replace": "callpropvoid QName(PackageNamespace(\"\"),\"setFrame\"), 1\ngetlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlex QName(PackageNamespace(\"\"),\"var_169\")\ngetlocal1\ncallpropvoid QName(PackageNamespace(\"\"),\"syncPreview\"), 2"
+        }
+      ],
+      "why": "Display the custom Norse Gael mercenary render in the recruit and unit preview, with the current faction tint."
+    },
+    {
+      "class": "class_131",
+      "method": "setNum",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "callpropvoid QName(PackageNamespace(\"\"),\"gotoAndStop\"), 1",
+          "replace": "callpropvoid QName(PackageNamespace(\"\"),\"gotoAndStop\"), 1\ngetlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlocal0\ngetlocal1\ncallpropvoid QName(PackageNamespace(\"\"),\"syncRecruitIcon\"), 2",
+          "occurrence": 3
+        }
+      ],
+      "why": "Use the Norse Gael render in the Viking Mercenary card icon as well as its large preview."
+    },
+    {
+      "class": "class_79",
+      "method": "method_35",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "callpropvoid QName(PackageNamespace(\"\"),\"method_120\"), 2",
+          "replace": "callpropvoid QName(PackageNamespace(\"\"),\"method_120\"), 2\ngetlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlex QName(PackageNamespace(\"\"),\"var_169\")\npushbyte -1\ncallpropvoid QName(PackageNamespace(\"\"),\"syncPreview\"), 2"
+        }
+      ],
+      "why": "Restore the general portrait when switching away from the custom mercenary preview."
+    },
+    {
+      "class": "class_68",
+      "method": "method_66",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "findpropstrict QName(PackageNamespace(\"\"),\"class_263\")",
+          "replace": "findpropstrict QName(PackageNamespace(\"\"),\"class_258\")"
+        },
+        {
+          "find": "constructprop QName(PackageNamespace(\"\"),\"class_263\"), 0",
+          "replace": "constructprop QName(PackageNamespace(\"\"),\"class_258\"), 0"
+        }
+      ],
+      "why": "Use the native animated spear-and-shield actor for the Norse-Gael mercenary, preserving combat movement and ground registration."
+    },
+    {
+      "class": "class_68",
+      "method": "method_46",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "findpropstrict QName(PackageNamespace(\"\"),\"class_263\")",
+          "replace": "findpropstrict QName(PackageNamespace(\"\"),\"class_258\")"
+        },
+        {
+          "find": "constructprop QName(PackageNamespace(\"\"),\"class_263\"), 0",
+          "replace": "constructprop QName(PackageNamespace(\"\"),\"class_258\"), 0"
+        }
+      ],
+      "why": "Use the native animated spear-and-shield actor for the Norse-Gael mercenary, preserving combat movement and ground registration."
+    },
+    {
+      "class": "class_95",
+      "method": "method_111",
+      "mode": "prefix",
+      "file": "pcode/norse_gael_replenishment.prefix",
+      "why": "Repair Dublin mercenary replenishment for existing saves before the normal stock update; +1 per turn up to five."
     }
   ],
-  "as3": [],
+  "as3": [
+    {
+      "class": "class_263",
+      "file": "as3/class_263.as",
+      "embedded_pngs": {
+        "RENDER_PNG": "resources/norse_gael_mercenary_render.png",
+        "TINT_PNG": "resources/norse_gael_mercenary_tunic_mask.png"
+      }
+    }
+  ],
   "text": [
     {
       "id": 8501,

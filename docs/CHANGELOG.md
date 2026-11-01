@@ -1,5 +1,49 @@
 # Changelog — SFK_v2.swf
 
+## Dublin mercenary replenishment — 2026-11-01
+
+- Set Dublin's mercenary replenishment rate to one per completed turn. The existing
+  stock system caps the pool at five. Repair a zero rate before replenishment for
+  existing saves, preserving current stock and the conquering faction's access.
+- Keep the rate in campaign authoring data so regenerating Ireland preserves it.
+
+## Mercenary card framing and combat animation — 2026-11-01
+
+- Cropped generated unit cards to head and torso, clipped them to their card bounds,
+  covered the old artwork and kept quantity labels above the portrait.
+- Both battle factories now instantiate the native animated spear-and-shield actor
+  for unit 31. Generated art remains in recruitment previews and cards; combat uses
+  the game's existing movement, attack timing, lane origin and faction color layer.
+
+## Mercenary bitmap loading repaired — 2026-11-01
+
+- Replaced asynchronous PNG Loader decoding with compressed ARGB pixels embedded
+  in the SWF and synchronous BitmapData creation for previews, cards and troops.
+- Dublin starts with three mercenaries available for hire in new Ireland campaigns.
+  The campaign generator preserves this stock. Browser reload bypasses cached SWFs.
+
+## Spain campaign movement links — 2026-11-01
+
+- Prevented province fragments on separate landmasses from creating automatic
+  land movement connections. Huelva–Algarve retains its reviewed Tangier sea route
+  but no longer connects directly to Fes, Morocco or Algeria.
+- Added regression coverage requiring cross-landmass routes to be explicitly reviewed.
+
+## Norse-Gael mercenary prototype — 2026-11-01
+
+- Added one Viking Mercenary to Dublin's starting garrison in the Isle of Kings
+  campaign and made the unit recruitable there as a campaign-specific gameplay
+  prototype for the Norse-Gael hireling.
+- Embedded a transparent full-body soldier render and tunic tint mask in the Viking
+  Mercenary's battlefield class. The battlefield unit and recruit preview now use
+  the new artwork, with the tunic color following the current faction owner.
+- The render is shared by the existing Viking Mercenary type in every campaign;
+  Dublin remains the new Norse-Gael recruitment test site. Battle positioning and
+  combat still use the existing unit logic. This prototype uses a static full-body
+  sprite rather than separate limb animation frames.
+- Packed the PNG bytes into the rebuilt SWF and cached decoded bitmap data. Updated
+  the recruitment card and army strip thumbnail to match the large preview.
+
 ## Breakthrough morale and veteran generals — 2026-10-28
 
 - A living troop reaching the opposing edge earns its side +5 deployment morale

@@ -18,10 +18,13 @@ Order of operations in build:
      data/baseline (or all of them with --force-data)
 """
 from collections import Counter
+import base64
 import copy
 import hashlib
 import json
 import re
+import struct
+import zlib
 import shutil
 import subprocess
 import sys
@@ -1169,6 +1172,81 @@ def data_changes(force):
     return pcode, as3
 
 
+def png_argb(path):
+    """Decode an 8-bit RGBA PNG into Flash's straight-alpha ARGB pixel format."""
+    data = Path(path).read_bytes()
+    if data[:8] != b'\x89PNG\r\n\x1a\n':
+        raise ValueError(f'{path}: expected PNG')
+    position, compressed = 8, bytearray()
+    while position < len(data):
+        length = struct.unpack_from('>I', data, position)[0]
+        kind = data[position + 4:position + 8]
+        chunk = data[position + 8:position + 8 + length]
+        if kind == b'IHDR':
+            width, height, depth, color, compression, filtering, interlace = struct.unpack('>IIBBBBB', chunk)
+            if (depth, color, compression, filtering, interlace) != (8, 6, 0, 0, 0):
+                raise ValueError(f'{path}: expected noninterlaced 8-bit RGBA PNG')
+        elif kind == b'IDAT':
+            compressed.extend(chunk)
+        position += length + 12
+    raw = zlib.decompress(compressed)
+    stride = width * 4
+    if len(raw) != height * (stride + 1):
+        raise ValueError(f'{path}: invalid PNG pixel length')
+    previous = bytearray(stride)
+    pixels = bytearray()
+    for y in range(height):
+        start = y * (stride + 1)
+        mode = raw[start]
+        row = bytearray(raw[start + 1:start + 1 + stride])
+        for x in range(stride):
+            left = row[x - 4] if x >= 4 else 0
+            up = previous[x]
+            corner = previous[x - 4] if x >= 4 else 0
+            if mode == 0:
+                predictor = 0
+            elif mode == 1:
+                predictor = left
+            elif mode == 2:
+                predictor = up
+            elif mode == 3:
+                predictor = (left + up) // 2
+            elif mode == 4:
+                p = left + up - corner
+                distances = (abs(p - left), abs(p - up), abs(p - corner))
+                predictor = (left, up, corner)[distances.index(min(distances))]
+            else:
+                raise ValueError(f'{path}: invalid PNG filter {mode}')
+            row[x] = (row[x] + predictor) & 255
+        argb = bytearray(stride)
+        argb[0::4], argb[1::4], argb[2::4], argb[3::4] = row[3::4], row[0::4], row[1::4], row[2::4]
+        pixels.extend(argb)
+        previous = row
+    return width, height, zlib.compress(pixels, 9)
+
+
+def embedded_as3_source(entry):
+    """Inline generated PNG bytes as short AS3 string chunks for FFDec's compiler."""
+    source = MODS / entry["file"]
+    text = source.read_text(encoding="utf-8")
+    for name, relative_path in entry["embedded_pngs"].items():
+        marker = f"__{name}__"
+        if marker not in text:
+            sys.exit(f"{source}: missing embedded asset marker {marker}")
+        width, height, pixels = png_argb(ROOT / relative_path)
+        text = text.replace(f"__{name}_WIDTH__", str(width)).replace(f"__{name}_HEIGHT__", str(height))
+        payload = base64.b64encode(pixels).decode("ascii")
+        chunks = [payload[i:i + 16000] for i in range(0, len(payload), 16000)]
+        array = "[\n" + ",\n".join("         " + json.dumps(chunk) for chunk in chunks) + "\n      ]"
+        text = text.replace(marker, array)
+    if re.search(r"__[A-Z0-9_]+__", text):
+        sys.exit(f"{source}: unresolved embedded asset marker")
+    generated = BUILD / "gen" / f"{entry['class']}.as"
+    generated.parent.mkdir(parents=True, exist_ok=True)
+    generated.write_text(text, encoding="utf-8")
+    return generated
+
+
 def _normalise(name, data):
     if name in ("units", "techs"):
         derived = {"commandCost"} if name == "units" else {"costOriginal"}
@@ -1182,7 +1260,12 @@ def build(force_data=False):
     manifest = load_json(MODS / "manifest.json")
     swf = clean_base()
     pcode = [{**p, "path": MODS / p["file"]} if "file" in p else dict(p) for p in manifest.get("pcode", [])]
-    as3 = [{**p, "path": MODS / p["file"]} for p in manifest.get("as3", [])]
+    as3 = []
+    for entry in manifest.get("as3", []):
+        replacement = {**entry, "path": MODS / entry["file"]}
+        if "embedded_pngs" in entry:
+            replacement["path"] = embedded_as3_source(entry)
+        as3.append(replacement)
     gen_pcode, gen_as3 = data_changes(force_data)
     pcode += gen_pcode + campaign_patches()
     as3 += gen_as3 + map_changes()

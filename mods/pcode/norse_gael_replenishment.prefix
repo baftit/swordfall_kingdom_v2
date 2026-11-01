@@ -1,0 +1,6 @@
+; maxstack 3
+getlex QName(PackageNamespace(""),"class_263")
+getlocal0
+getproperty QName(PackageNamespace(""),"var_2")
+getproperty QName(PackageNamespace(""),"regions")
+callpropvoid QName(PackageNamespace(""),"repairMercenaryReplenishment"), 1

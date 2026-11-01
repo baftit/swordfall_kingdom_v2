@@ -5379,7 +5379,7 @@
           0,
           0,
           0,
-          0,
+          1,
           0,
           0,
           0,
@@ -5387,7 +5387,9 @@
           0,
           0
         ],
-        "regionUnit": 0
+        "regionUnit": 31,
+        "regionUnitNum": 3,
+        "regionUnitCharge": 1
       },
       {
         "refName": "kildare",
@@ -6885,11 +6887,8 @@
         "locY": 0,
         "connectionNames": [
           "alentejo",
-          "algeria",
           "badajos",
           "estremadura",
-          "fes",
-          "france",
           "seville",
           "tangier"
         ],
@@ -8307,7 +8306,6 @@
         "connectionNames": [
           "aragon",
           "catalonia",
-          "huelva",
           "navarre"
         ],
         "units": [
@@ -8357,7 +8355,7 @@
         "selfName": "Tangier",
         "peopleName": "Tangier",
         "armyLocX": 499,
-        "armyLocY": 1220,
+        "armyLocY": 1219,
         "locX": 0,
         "locY": 0,
         "connectionNames": [
@@ -8417,7 +8415,6 @@
         "locX": 0,
         "locY": 0,
         "connectionNames": [
-          "huelva",
           "morocco",
           "tangier"
         ],
@@ -8528,7 +8525,6 @@
         "locX": 0,
         "locY": 0,
         "connectionNames": [
-          "huelva",
           "morocco"
         ],
         "units": [

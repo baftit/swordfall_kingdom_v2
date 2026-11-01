@@ -41,6 +41,12 @@ What `build` does (`tools/patch.py`):
    with matching polygon hit areas. Recovered campaigns unlock only with valid art.
 5. **Text** — `mods/text/*.txt` replace static text tags (menu version label).
 
+AS3 manifest entries may declare `embedded_pngs`. The build converts those PNGs to compressed ARGB pixels and packs them into
+chunked Base64 constants in `build/gen/`, avoiding FFDec's empty bitmap Embed output.
+The mercenary class creates each bitmap synchronously with `BitmapData.setPixels`
+and shares its bitmap data across instances. It needs no asynchronous image loader.
+Edit the source PNGs in `resources/` and rebuild to update the in-game artwork.
+
 Intermediate SWFs go to `build/work/`; nothing outside `build/` and `game/SFK_v2.swf` is written.
 
 ## 3. Verify

@@ -31,6 +31,36 @@ class RegionalTests(unittest.TestCase):
     self.assertTrue(m==json.loads((ROOT/f'mods/maps/{ref.lower()}.json').read_text()),f'{ref}: generated map differs')
     self.assertTrue(c==configs[ref],f'{ref}: generated campaign differs')
 
+ def test_ireland_dublin_norse_mercenary_prototype(self):
+  ireland=self.results['Ireland'][1]
+  dublin=next(r for r in ireland['regions'] if r['refName']=='dublin')
+  self.assertEqual(dublin['units'][31],1,'Dublin should start with one Viking Mercenary')
+  self.assertEqual(dublin['regionUnit'],31,'Dublin should offer the Viking Mercenary for recruitment')
+  for name in ('waterford','limerick','wexford'):
+   region=next(r for r in ireland['regions'] if r['refName']==name)
+   self.assertEqual(region['units'][31],0,f'{name} should remain unchanged in the prototype')
+   self.assertNotEqual(region['regionUnit'],31,f'{name} should not offer the Dublin mercenary slot')
+
+ def test_spain_african_coast_has_no_huelva_bypass(self):
+  spain=self.results['Spain'][1]
+  regions={r['refName']:set(r['connectionNames']) for r in spain['regions']}
+  self.assertIn('tangier',regions['huelva'],'the reviewed Huelva–Tangier crossing should remain')
+  for name in ('fes','morocco','algeria'):
+   self.assertNotIn(name,regions['huelva'],f'Huelva must not connect directly to {name}')
+
+ def test_landmass_routes_are_explicit_crossings(self):
+  configs=json.loads((ROOT/'mods/data/regional_campaigns.json').read_text())
+  for ref in REFS:
+   spec=json.loads((ROOT/f'tools/mapgen/assets/{ref.lower()}_geographic.geojson').read_text())
+   landmass={f['properties']['refName']:f['properties'].get('landmass') for f in spec['features']}
+   explicit={tuple(sorted(pair)) for pair in [*spec.get('seaLinks',[]),*EXTRA.get(ref,[])]}
+   for region in configs[ref]['regions']:
+    a=region['refName']
+    for b in region['connectionNames']:
+     if a>=b or not landmass.get(a) or not landmass.get(b) or landmass[a]==landmass[b]:continue
+     self.assertIn(tuple(sorted((a,b))),explicit,
+       f'{ref}: {a}/{b} connects separate landmasses without a reviewed crossing')
+
  def test_partition_and_markers(self):
   for ref,(_,c,gs,_,land,_) in self.results.items():
    with self.subTest(ref=ref):

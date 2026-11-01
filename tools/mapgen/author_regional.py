@@ -111,6 +111,10 @@ f(s,'Leinster','Kingdom of Leinster','Cellach mac Faelain','kilkenny kildare lao
 f(s,'Connacht','Kingdom of Connacht','Fergal mac Airt Ua Ruairc','roscommon mayo sligo galway breifne',5,'Connacht is represented as a provincial kingdom under Fergal mac Airt Ua Ruairc, before the later Ua Conchobair succession.')
 f(s,'Ulaid','Kingdom of Ulaid','Ardgal mac Matudain','ulidia armagh',9,'Ulaid is the eastern kingdom, not all modern Ulster. Northern Ui Neill lands in Tyrone and Donegal remain separate.')
 f(s,'Norse Towns','Norse Towns of Ireland','Amlaib Cuaran','dublin waterford limerick wexford',12,'Amlaib Cuaran rules Dublin. Limerick, Waterford and Wexford are separate Norse centres grouped for play, not a single unified kingdom.')
+s['garrisonBonuses']={'dublin':{31:1}}  # Ireland-only first-playtest Norse-Gael mercenary.
+s['mercenaryUnits']={'dublin':31}  # Recruitable in Dublin; other Norse towns have no slot.
+s['mercenaryStock']={'dublin':3}
+s['mercenaryCharge']={'dublin':1}
 
 s=begin('Italy',1050,[1800,2200],[13,41],[7,33,19.5,47.5],
         'Italy in 1050: Henry III\'s imperial sphere, Norman newcomers, Pope Leo IX, divided Sicily and Byzantine southern Italy. Papal and Norman possessions are represented before their later expansion.')
@@ -328,7 +332,10 @@ for ref in ('West','Ireland','Britain'):
         elif ref=='West' and name=='andalusia':feat['properties']['landmass']='Europe'
 spec=SPECS['Spain'];spec['landmasses']={'Europe':[-3,40]}
 for feat in spec['features']:
-    if feat['properties']['refName'] not in ('balearic_isles','tangier','fes','morocco','algeria'):feat['properties']['landmass']='Europe'
+    name=feat['properties']['refName']
+    if name in ('tangier','fes','morocco','algeria'):feat['properties']['landmass']='Africa'
+    elif name=='balearic_isles':feat['properties']['landmass']='Balearics'
+    else:feat['properties']['landmass']='Europe'
 spec=SPECS['Britain'];irish=[f for f in spec['features'] if f['properties']['refName'] in ('munster','connacht','leinster','ulster')]
 spec['features']=irish+[f for f in spec['features'] if f not in irish]
 spec=SPECS['Italy'];spec['landmasses']={'Sicily':[14,37.5],'Corsica':[9,42],'Sardinia':[9,40]}

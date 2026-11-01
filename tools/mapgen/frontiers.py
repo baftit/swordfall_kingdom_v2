@@ -153,8 +153,14 @@ def complete_scope(land, context, project, centres, countries=(), regions=()):
 
 def eligible(ref,p,names):
  """Keep macro-provinces on their intended side of major sea crossings."""
- if ref!='Europe':return names
  country=p['country']
+ if ref=='Spain':
+  if country=='Spain':return [n for n in names if n not in {'tangier','fes','morocco','algeria'}]
+  if country=='Portugal':return [n for n in names if n in {'beira','estremadura','alentejo','huelva'}]
+  if country=='France':return ['france']
+  if country=='Morocco':return [n for n in names if n in {'tangier','fes','morocco'}]
+  if country=='Algeria':return ['algeria']
+ if ref!='Europe':return names
  if country=='Spain' and p['name'] in ('Ceuta','Melilla'):return ['morocco']
  allowed={
   'Morocco':{'morocco','mauretania'},'Western Sahara':{'morocco','mauretania'},

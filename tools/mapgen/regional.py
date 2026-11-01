@@ -98,8 +98,15 @@ def build(coastline, ref):
         r.update(selfName=title,peopleName=title,locX=0,locY=0,armyLocX=x,armyLocY=y)
         roster=[0]*38
         for i,count in enumerate(r['units']):roster[replacements.get(i,i)]+=count
+        for i,count in spec.get('garrisonBonuses',{}).get(name,{}).items():
+            if not 0<=int(i)<len(roster) or count<0:raise ValueError(f'{ref}/{name}: invalid garrison bonus {i}={count}')
+            roster[int(i)]+=count
         r['units']=roster
         r['regionUnit']=spec.get('mercenaryUnits',{}).get(name,replacements.get(r['regionUnit'],r['regionUnit']))
+        if name in spec.get('mercenaryStock',{}):
+            r['regionUnitNum']=spec['mercenaryStock'][name]
+        if name in spec.get('mercenaryCharge',{}):
+            r['regionUnitCharge']=spec['mercenaryCharge'][name]
         if name in spec.get('incomeBonuses',{}):
             r['baseGold']+=spec['incomeBonuses'][name]
             r['totalGold']+=spec['incomeBonuses'][name]
@@ -112,10 +119,12 @@ def build(coastline, ref):
         _,b,ox,oy=min(options,key=lambda z:z[0]);boxes.append(b)
         labels.append(dict(text=title,x=round(x+ox-width/2),y=y+oy,width=width,size=12));rows.append(r)
     neighbours={n:set() for n in expected}
+    landmasses={f['properties']['refName']:f['properties'].get('landmass') for f in features}
     for i,a in enumerate(expected):
         for b in expected[i+1:]:
             if shapes[a].intersection(shapes[b]).area>.01:raise ValueError(f'{ref}: overlap {a}/{b}')
-            if shapes[a].boundary.intersection(shapes[b].boundary).length>3:
+            same_landmass=not landmasses.get(a) or not landmasses.get(b) or landmasses[a]==landmasses[b]
+            if same_landmass and shapes[a].boundary.intersection(shapes[b].boundary).length>3:
                 neighbours[a].add(b);neighbours[b].add(a)
     links=crossings(ref,spec['seaLinks'])
     for a,b in links:
@@ -144,7 +153,7 @@ def build(coastline, ref):
     rf=['refName','selfName','peopleName','armyLocX','armyLocY','locX','locY','connectionNames','units','regionUnit']
     ff=['selfIndex','selfName','longName','regions','capitalRegion','dscr','uuIndex','uuName','startX','startY','hasUnits','unitPrefs','victoryMessage','tutTargetRegion']
     config={'campaign':dict(startDate=spec['year'],dimX=w,dimY=h,dscr=spec['description']),
-            'regions':[{k:r[k] for k in rf+(['baseGold','totalGold'] if r['refName'] in spec.get('incomeBonuses',{}) else [])} for r in rows],
+            'regions':[{k:r[k] for k in rf+(['regionUnitNum'] if r['refName'] in spec.get('mercenaryStock',{}) else [])+(['regionUnitCharge'] if r['refName'] in spec.get('mercenaryCharge',{}) else [])+(['baseGold','totalGold'] if r['refName'] in spec.get('incomeBonuses',{}) else [])} for r in rows],
             'factions':[{**{k:f[k] for k in ff},'startGeneral':{'selfName':f['startGeneral']['selfName']}} for f in fs]}
     gateways={tuple(sorted(pair.split('/'))):[project(*ports[n]) for n in sorted(pair.split('/'))] for pair,ports in spec.get('seaGateways',{}).items()}
     m=dict(width=w,height=h,land=rings(land),contextLand=rings(context),previewLand=rings(preview),seaRoutes=sea_lanes(shapes,context,links,gateways),regions=[dict(refName=n,rings=rings(shapes[n])) for n in expected],

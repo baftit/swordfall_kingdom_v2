@@ -1849,21 +1849,6 @@
       "description": "Sancho II rules Castile in 1070. Leon and Galicia are separate crowns; Portucale is not an independent Portuguese kingdom."
     }
   ],
-  "landmasses": {
-    "Ireland": [
-      -7.5,
-      53
-    ],
-    "Britain": [
-      -2,
-      53
-    ],
-    "Europe": [
-      4,
-      49
-    ]
-  },
-  "frontierGapNotes": "Enclosed land fragments are explicitly assigned by reviewed WGS84 probes in author_regional.py; no inland water is invented.",
   "mercenaryUnits": {
     "latium": 35
   },
@@ -1904,5 +1889,20 @@
         43.3
       ]
     }
-  }
+  },
+  "landmasses": {
+    "Ireland": [
+      -7.5,
+      53
+    ],
+    "Britain": [
+      -2,
+      53
+    ],
+    "Europe": [
+      4,
+      49
+    ]
+  },
+  "frontierGapNotes": "Enclosed land fragments are explicitly assigned by reviewed WGS84 probes in author_regional.py; no inland water is invented."
 }
