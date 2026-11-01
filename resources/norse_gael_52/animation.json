@@ -1,0 +1,501 @@
+{
+  "character": "Norse-Gael Mercenary",
+  "unitId": 22,
+  "uniqueVikingUnitId": 31,
+  "frameCount": 52,
+  "columns": 8,
+  "rows": 7,
+  "unusedCells": [
+    52,
+    53,
+    54,
+    55
+  ],
+  "facing": "right",
+  "frameOrder": "row-major",
+  "clips": {
+    "walk": {
+      "start": 0,
+      "count": 16,
+      "fps": 30,
+      "loop": true
+    },
+    "run": {
+      "start": 16,
+      "count": 8,
+      "fps": 30,
+      "loop": true
+    },
+    "attack": {
+      "start": 24,
+      "count": 16,
+      "fps": 30,
+      "loop": false
+    },
+    "idle": {
+      "start": 40,
+      "count": 4,
+      "fps": 10,
+      "loop": true
+    },
+    "hit": {
+      "start": 44,
+      "count": 2,
+      "fps": 12,
+      "loop": false
+    },
+    "death": {
+      "start": 46,
+      "count": 6,
+      "fps": 15,
+      "loop": false
+    }
+  },
+  "frames": [
+    {
+      "index": 0,
+      "clip": "walk",
+      "clipFrame": 0,
+      "row": 0,
+      "column": 0,
+      "suggestedOutput": "frames/00_walk_00.png"
+    },
+    {
+      "index": 1,
+      "clip": "walk",
+      "clipFrame": 1,
+      "row": 0,
+      "column": 1,
+      "suggestedOutput": "frames/01_walk_01.png"
+    },
+    {
+      "index": 2,
+      "clip": "walk",
+      "clipFrame": 2,
+      "row": 0,
+      "column": 2,
+      "suggestedOutput": "frames/02_walk_02.png"
+    },
+    {
+      "index": 3,
+      "clip": "walk",
+      "clipFrame": 3,
+      "row": 0,
+      "column": 3,
+      "suggestedOutput": "frames/03_walk_03.png"
+    },
+    {
+      "index": 4,
+      "clip": "walk",
+      "clipFrame": 4,
+      "row": 0,
+      "column": 4,
+      "suggestedOutput": "frames/04_walk_04.png"
+    },
+    {
+      "index": 5,
+      "clip": "walk",
+      "clipFrame": 5,
+      "row": 0,
+      "column": 5,
+      "suggestedOutput": "frames/05_walk_05.png"
+    },
+    {
+      "index": 6,
+      "clip": "walk",
+      "clipFrame": 6,
+      "row": 0,
+      "column": 6,
+      "suggestedOutput": "frames/06_walk_06.png"
+    },
+    {
+      "index": 7,
+      "clip": "walk",
+      "clipFrame": 7,
+      "row": 0,
+      "column": 7,
+      "suggestedOutput": "frames/07_walk_07.png"
+    },
+    {
+      "index": 8,
+      "clip": "walk",
+      "clipFrame": 8,
+      "row": 1,
+      "column": 0,
+      "suggestedOutput": "frames/08_walk_08.png"
+    },
+    {
+      "index": 9,
+      "clip": "walk",
+      "clipFrame": 9,
+      "row": 1,
+      "column": 1,
+      "suggestedOutput": "frames/09_walk_09.png"
+    },
+    {
+      "index": 10,
+      "clip": "walk",
+      "clipFrame": 10,
+      "row": 1,
+      "column": 2,
+      "suggestedOutput": "frames/10_walk_10.png"
+    },
+    {
+      "index": 11,
+      "clip": "walk",
+      "clipFrame": 11,
+      "row": 1,
+      "column": 3,
+      "suggestedOutput": "frames/11_walk_11.png"
+    },
+    {
+      "index": 12,
+      "clip": "walk",
+      "clipFrame": 12,
+      "row": 1,
+      "column": 4,
+      "suggestedOutput": "frames/12_walk_12.png"
+    },
+    {
+      "index": 13,
+      "clip": "walk",
+      "clipFrame": 13,
+      "row": 1,
+      "column": 5,
+      "suggestedOutput": "frames/13_walk_13.png"
+    },
+    {
+      "index": 14,
+      "clip": "walk",
+      "clipFrame": 14,
+      "row": 1,
+      "column": 6,
+      "suggestedOutput": "frames/14_walk_14.png"
+    },
+    {
+      "index": 15,
+      "clip": "walk",
+      "clipFrame": 15,
+      "row": 1,
+      "column": 7,
+      "suggestedOutput": "frames/15_walk_15.png"
+    },
+    {
+      "index": 16,
+      "clip": "run",
+      "clipFrame": 0,
+      "row": 2,
+      "column": 0,
+      "suggestedOutput": "frames/16_run_00.png"
+    },
+    {
+      "index": 17,
+      "clip": "run",
+      "clipFrame": 1,
+      "row": 2,
+      "column": 1,
+      "suggestedOutput": "frames/17_run_01.png"
+    },
+    {
+      "index": 18,
+      "clip": "run",
+      "clipFrame": 2,
+      "row": 2,
+      "column": 2,
+      "suggestedOutput": "frames/18_run_02.png"
+    },
+    {
+      "index": 19,
+      "clip": "run",
+      "clipFrame": 3,
+      "row": 2,
+      "column": 3,
+      "suggestedOutput": "frames/19_run_03.png"
+    },
+    {
+      "index": 20,
+      "clip": "run",
+      "clipFrame": 4,
+      "row": 2,
+      "column": 4,
+      "suggestedOutput": "frames/20_run_04.png"
+    },
+    {
+      "index": 21,
+      "clip": "run",
+      "clipFrame": 5,
+      "row": 2,
+      "column": 5,
+      "suggestedOutput": "frames/21_run_05.png"
+    },
+    {
+      "index": 22,
+      "clip": "run",
+      "clipFrame": 6,
+      "row": 2,
+      "column": 6,
+      "suggestedOutput": "frames/22_run_06.png"
+    },
+    {
+      "index": 23,
+      "clip": "run",
+      "clipFrame": 7,
+      "row": 2,
+      "column": 7,
+      "suggestedOutput": "frames/23_run_07.png"
+    },
+    {
+      "index": 24,
+      "clip": "attack",
+      "clipFrame": 0,
+      "row": 3,
+      "column": 0,
+      "suggestedOutput": "frames/24_attack_00.png"
+    },
+    {
+      "index": 25,
+      "clip": "attack",
+      "clipFrame": 1,
+      "row": 3,
+      "column": 1,
+      "suggestedOutput": "frames/25_attack_01.png"
+    },
+    {
+      "index": 26,
+      "clip": "attack",
+      "clipFrame": 2,
+      "row": 3,
+      "column": 2,
+      "suggestedOutput": "frames/26_attack_02.png"
+    },
+    {
+      "index": 27,
+      "clip": "attack",
+      "clipFrame": 3,
+      "row": 3,
+      "column": 3,
+      "suggestedOutput": "frames/27_attack_03.png"
+    },
+    {
+      "index": 28,
+      "clip": "attack",
+      "clipFrame": 4,
+      "row": 3,
+      "column": 4,
+      "suggestedOutput": "frames/28_attack_04.png"
+    },
+    {
+      "index": 29,
+      "clip": "attack",
+      "clipFrame": 5,
+      "row": 3,
+      "column": 5,
+      "suggestedOutput": "frames/29_attack_05.png"
+    },
+    {
+      "index": 30,
+      "clip": "attack",
+      "clipFrame": 6,
+      "row": 3,
+      "column": 6,
+      "suggestedOutput": "frames/30_attack_06.png"
+    },
+    {
+      "index": 31,
+      "clip": "attack",
+      "clipFrame": 7,
+      "row": 3,
+      "column": 7,
+      "suggestedOutput": "frames/31_attack_07.png"
+    },
+    {
+      "index": 32,
+      "clip": "attack",
+      "clipFrame": 8,
+      "row": 4,
+      "column": 0,
+      "suggestedOutput": "frames/32_attack_08.png"
+    },
+    {
+      "index": 33,
+      "clip": "attack",
+      "clipFrame": 9,
+      "row": 4,
+      "column": 1,
+      "suggestedOutput": "frames/33_attack_09.png"
+    },
+    {
+      "index": 34,
+      "clip": "attack",
+      "clipFrame": 10,
+      "row": 4,
+      "column": 2,
+      "suggestedOutput": "frames/34_attack_10.png"
+    },
+    {
+      "index": 35,
+      "clip": "attack",
+      "clipFrame": 11,
+      "row": 4,
+      "column": 3,
+      "suggestedOutput": "frames/35_attack_11.png"
+    },
+    {
+      "index": 36,
+      "clip": "attack",
+      "clipFrame": 12,
+      "row": 4,
+      "column": 4,
+      "suggestedOutput": "frames/36_attack_12.png"
+    },
+    {
+      "index": 37,
+      "clip": "attack",
+      "clipFrame": 13,
+      "row": 4,
+      "column": 5,
+      "suggestedOutput": "frames/37_attack_13.png"
+    },
+    {
+      "index": 38,
+      "clip": "attack",
+      "clipFrame": 14,
+      "row": 4,
+      "column": 6,
+      "suggestedOutput": "frames/38_attack_14.png"
+    },
+    {
+      "index": 39,
+      "clip": "attack",
+      "clipFrame": 15,
+      "row": 4,
+      "column": 7,
+      "suggestedOutput": "frames/39_attack_15.png"
+    },
+    {
+      "index": 40,
+      "clip": "idle",
+      "clipFrame": 0,
+      "row": 5,
+      "column": 0,
+      "suggestedOutput": "frames/40_idle_00.png"
+    },
+    {
+      "index": 41,
+      "clip": "idle",
+      "clipFrame": 1,
+      "row": 5,
+      "column": 1,
+      "suggestedOutput": "frames/41_idle_01.png"
+    },
+    {
+      "index": 42,
+      "clip": "idle",
+      "clipFrame": 2,
+      "row": 5,
+      "column": 2,
+      "suggestedOutput": "frames/42_idle_02.png"
+    },
+    {
+      "index": 43,
+      "clip": "idle",
+      "clipFrame": 3,
+      "row": 5,
+      "column": 3,
+      "suggestedOutput": "frames/43_idle_03.png"
+    },
+    {
+      "index": 44,
+      "clip": "hit",
+      "clipFrame": 0,
+      "row": 5,
+      "column": 4,
+      "suggestedOutput": "frames/44_hit_00.png"
+    },
+    {
+      "index": 45,
+      "clip": "hit",
+      "clipFrame": 1,
+      "row": 5,
+      "column": 5,
+      "suggestedOutput": "frames/45_hit_01.png"
+    },
+    {
+      "index": 46,
+      "clip": "death",
+      "clipFrame": 0,
+      "row": 5,
+      "column": 6,
+      "suggestedOutput": "frames/46_death_00.png"
+    },
+    {
+      "index": 47,
+      "clip": "death",
+      "clipFrame": 1,
+      "row": 5,
+      "column": 7,
+      "suggestedOutput": "frames/47_death_01.png"
+    },
+    {
+      "index": 48,
+      "clip": "death",
+      "clipFrame": 2,
+      "row": 6,
+      "column": 0,
+      "suggestedOutput": "frames/48_death_02.png"
+    },
+    {
+      "index": 49,
+      "clip": "death",
+      "clipFrame": 3,
+      "row": 6,
+      "column": 1,
+      "suggestedOutput": "frames/49_death_03.png"
+    },
+    {
+      "index": 50,
+      "clip": "death",
+      "clipFrame": 4,
+      "row": 6,
+      "column": 2,
+      "suggestedOutput": "frames/50_death_04.png"
+    },
+    {
+      "index": 51,
+      "clip": "death",
+      "clipFrame": 5,
+      "row": 6,
+      "column": 3,
+      "suggestedOutput": "frames/51_death_05.png"
+    }
+  ],
+  "status": "Generated 52-pose art sheet; requires frame extraction, overlap repair and temporal validation before implementation.",
+  "notes": [
+    "FPS are starting values; synchronize attacks to native damage events rather than elapsed time alone.",
+    "Do not replace unit 31 or change kingdom unique rosters.",
+    "Preserve generated alpha; inspect cell boundaries, scale and feet alignment before integration.",
+    "Grid is nominal: generated rows are not perfectly uniform and some spear tips cross cell edges. Do not use blind equal-cell crops.",
+    "Contact sheet is resized to meet 200,000-byte image budget; full-resolution original is retained in build/norse-gael-52/source_sheet.png for careful extraction."
+  ],
+  "sheet": "contact_sheet.png",
+  "losslessMaster": "../../build/norse-gael-52/source_sheet.png",
+  "sourceSize": {
+    "width": 1355,
+    "height": 1161
+  },
+  "sourceRowBoundariesApprox": [
+    0,
+    180,
+    355,
+    539,
+    710,
+    878,
+    1040,
+    1161
+  ],
+  "sheetSize": {
+    "width": 384,
+    "height": 329
+  },
+  "sheetBytes": 196402
+}

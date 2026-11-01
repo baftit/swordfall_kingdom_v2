@@ -5,7 +5,9 @@
 // Loads the SWF in headless Chromium + self-hosted Ruffle, runs an optional
 // list of steps ({"click":[x,y]} | {"wait":ms} | {"shot":"name"} | {"key":"Enter","duration":ms} |
 // {"expect":"trace text"} | {"countFromHere":true} |
-// {"expectCount":{"text":"trace text","count":2}}),
+// {"expectCount":{"text":"trace text","count":2}} | {"waitFor":"trace text","timeout":ms} |
+// {"clickTrace":"LABEL"} clicks the stage point a fixture last traced as "LABEL x y" |
+// {"burst":{"name":"motion","count":40,"interval":66}} rapid screenshots),
 // and exits non-zero if Ruffle logged an AVM2 error / panic.
 import http from "node:http";
 import fs from "node:fs";
@@ -114,6 +116,26 @@ try {
   let countFrom = 0;
   for (const s of steps) {
     if (s.countFromHere) countFrom = log.length;
+    if (s.waitFor) {
+      const deadline = Date.now() + (s.timeout ?? 20000);
+      while (!log.some((l) => l.includes(s.waitFor)) && Date.now() < deadline) await tab.waitForTimeout(100);
+      const hit = log.some((l) => l.includes(s.waitFor));
+      console.log(`  waitFor ${JSON.stringify(s.waitFor)}: ${hit ? "ok" : "TIMEOUT"}`);
+      if (!hit) throw new Error(`trace not seen: ${s.waitFor}`);
+    }
+    if (s.clickTrace) {
+      const pattern = new RegExp(`${s.clickTrace} (-?[\\d.]+) (-?[\\d.]+)`);
+      const line = log.findLast((l) => pattern.test(l));
+      if (!line) throw new Error(`no click target traced for ${s.clickTrace}`);
+      const [, x, y] = line.match(pattern);
+      await tab.mouse.click(Number(x), Number(y));
+    }
+    if (s.burst) {
+      for (let i = 0; i < s.burst.count; i++) {
+        await tab.screenshot({ path: path.join(outDir, `${s.burst.name}_${String(i).padStart(3, "0")}.png`) });
+        await tab.waitForTimeout(s.burst.interval ?? 66);
+      }
+    }
     if (s.click) await tab.mouse.click(s.click[0], s.click[1]);
     if (s.key) await tab.keyboard.press(s.key, { delay: s.duration ?? 0 });
     if (s.worldClick) {

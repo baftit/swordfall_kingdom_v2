@@ -138,16 +138,79 @@
     "shot": "battle_start"
   },
   {
+    "waitFor": "SFKCLICK lane3"
+  },
+  {
+    "clickTrace": "SFKCLICK card22"
+  },
+  {
+    "waitFor": "SFKUI selected22"
+  },
+  {
+    "shot": "norse_card_selected"
+  },
+  {
+    "clickTrace": "SFKCLICK card22"
+  },
+  {
+    "waitFor": "SFKUI reselect22 stable"
+  },
+  {
+    "clickTrace": "SFKCLICK lane3"
+  },
+  {
+    "waitFor": "SFKUI deployed22"
+  },
+  {
+    "wait": 600
+  },
+  {
+    "shot": "norse_deployed"
+  },
+  {
+    "waitFor": "SFKUI empty22 ready"
+  },
+  {
+    "clickTrace": "SFKCLICK card22"
+  },
+  {
+    "wait": 200
+  },
+  {
+    "clickTrace": "SFKCLICK lane3"
+  },
+  {
+    "waitFor": "SFKUI empty22 rejected"
+  },
+  {
+    "clickTrace": "SFKCLICK card12edge"
+  },
+  {
+    "waitFor": "SFKUI selected12"
+  },
+  {
+    "clickTrace": "SFKCLICK lane3"
+  },
+  {
+    "waitFor": "SFKUI COMPLETE"
+  },
+  {
+    "shot": "raider_deployed"
+  },
+  {
     "wait": 14000
   },
   {
     "shot": "custom_mercenary_duel"
   },
   {
-    "wait": 51000
+    "wait": 75000
   },
   {
     "shot": "all_mercenaries_battle"
+  },
+  {
+    "expect": "SFKUI COMPLETE"
   },
   {
     "expect": "SFKMERC COMBAT COMPLETE 14 types both sides"

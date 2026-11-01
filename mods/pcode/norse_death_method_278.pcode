@@ -1213,6 +1213,11 @@ getlocal1
 getproperty QName(PackageNamespace(""),"target")
 getproperty Multiname("headIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
 callpropvoid Multiname("initSelf",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")]), 4
+getlex QName(PackageNamespace(""),"class_263")
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+callpropvoid QName(PackageNamespace(""),"decorateDeath"), 1
 getlocal 44
 dup
 iftrue ofs0940
