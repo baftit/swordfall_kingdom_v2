@@ -239,10 +239,11 @@
         },
         {
           "find": "constructprop QName(PackageNamespace(\"\"),\"class_263\"), 0",
-          "replace": "constructprop QName(PackageNamespace(\"\"),\"class_258\"), 0"
+          "replace": "constructprop QName(PackageNamespace(\"\"),\"class_258\"), 0\ngetlex QName(PackageNamespace(\"\"),\"class_263\")\nswap\ncallproperty QName(PackageNamespace(\"\"),\"decorateCombat\"), 1"
         }
       ],
-      "why": "Use the native animated spear-and-shield actor for the Norse-Gael mercenary, preserving combat movement and ground registration."
+      "why": "Keep the native spear combat controller and effects; render the custom Norse-Gael animation atlas on that actor.",
+      "maxstack": 64
     },
     {
       "class": "class_68",
@@ -255,17 +256,56 @@
         },
         {
           "find": "constructprop QName(PackageNamespace(\"\"),\"class_263\"), 0",
-          "replace": "constructprop QName(PackageNamespace(\"\"),\"class_258\"), 0"
+          "replace": "constructprop QName(PackageNamespace(\"\"),\"class_258\"), 0\ngetlex QName(PackageNamespace(\"\"),\"class_263\")\nswap\ncallproperty QName(PackageNamespace(\"\"),\"decorateCombat\"), 1"
         }
       ],
-      "why": "Use the native animated spear-and-shield actor for the Norse-Gael mercenary, preserving combat movement and ground registration."
+      "why": "Keep the native spear combat controller and effects; render the custom Norse-Gael animation atlas on that actor.",
+      "maxstack": 64
     },
     {
       "class": "class_95",
       "method": "method_111",
-      "mode": "prefix",
-      "file": "pcode/norse_gael_replenishment.prefix",
-      "why": "Repair Dublin mercenary replenishment for existing saves before the normal stock update; +1 per turn up to five."
+      "file": "pcode/mercenary_replenishment.pcode",
+      "why": "Replenish all regional mercenary pools, repairing zero rates and clamping stock to five turns of supply."
+    },
+    {
+      "class": "class_129",
+      "method": "class_129",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "returnvoid",
+          "replace": "getlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlocal0\ngetlocal1\ncallpropvoid QName(PackageNamespace(\"\"),\"decorateCorpse\"), 2\nreturnvoid"
+        }
+      ],
+      "why": "Use the generated Norse-Gael death pose while retaining native death effects and cleanup."
+    },
+    {
+      "class": "class_79",
+      "method": "method_125",
+      "mode": "edit",
+      "maxstack": 8,
+      "edits": [
+        {
+          "find": "callpropvoid Multiname(\"setNum\",[PrivateNamespace(\"\",\"39\"),PackageInternalNs(\"\"),PackageNamespace(\"\"),PrivateNamespace(\"\",\"44\"),Namespace(\"http://adobe.com/AS3/2006/builtin\"),ProtectedNamespace(\"_-Gd\"),StaticProtectedNs(\"_-Gd\"),StaticProtectedNs(\"flash.display:MovieClip\"),StaticProtectedNs(\"flash.display:Sprite\"),StaticProtectedNs(\"flash.display:DisplayObjectContainer\"),StaticProtectedNs(\"flash.display:InteractiveObject\"),StaticProtectedNs(\"flash.display:DisplayObject\"),StaticProtectedNs(\"flash.events:EventDispatcher\"),StaticProtectedNs(\"Object\")]), 2",
+          "replace": "callpropvoid Multiname(\"setNum\",[PrivateNamespace(\"\",\"39\"),PackageInternalNs(\"\"),PackageNamespace(\"\"),PrivateNamespace(\"\",\"44\"),Namespace(\"http://adobe.com/AS3/2006/builtin\"),ProtectedNamespace(\"_-Gd\"),StaticProtectedNs(\"_-Gd\"),StaticProtectedNs(\"flash.display:MovieClip\"),StaticProtectedNs(\"flash.display:Sprite\"),StaticProtectedNs(\"flash.display:DisplayObjectContainer\"),StaticProtectedNs(\"flash.display:InteractiveObject\"),StaticProtectedNs(\"flash.display:DisplayObject\"),StaticProtectedNs(\"flash.events:EventDispatcher\"),StaticProtectedNs(\"Object\")]), 2\ngetlocal2\npushbyte 0\ngetproperty MultinameL([PackageNamespace(\"\")])\ngetlex QName(PackageInternalNs(\"\"),\"factions\")\ngetlex QName(PackageInternalNs(\"\"),\"playerFactionIndex\")\ngetproperty MultinameL([PackageNamespace(\"\")])\ngetproperty QName(PackageNamespace(\"\"),\"colorIndex\")\ncallpropvoid QName(PackageNamespace(\"\"),\"setTargetColor\"), 1"
+        }
+      ],
+      "why": "Tint the regional mercenary card with the current recruiting faction color."
+    },
+    {
+      "class": "class_131",
+      "method": "setTargetColor",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "returnvoid",
+          "replace": "getlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlocal0\ngetlocal0\ngetproperty QName(PackageNamespace(\"\"),\"unitIndex\")\ncallpropvoid QName(PackageNamespace(\"\"),\"syncRecruitIcon\"), 2\nreturnvoid"
+        }
+      ],
+      "why": "Refresh custom mercenary card tint when its owning faction changes."
     }
   ],
   "as3": [
@@ -274,7 +314,12 @@
       "file": "as3/class_263.as",
       "embedded_pngs": {
         "RENDER_PNG": "resources/norse_gael_mercenary_render.png",
-        "TINT_PNG": "resources/norse_gael_mercenary_tunic_mask.png"
+        "TINT_PNG": "resources/norse_gael_mercenary_tunic_mask.png",
+        "COMBAT_PNG": "resources/norse_gael_combat_sheet.png",
+        "COMBAT_TINT": {
+          "path": "resources/norse_gael_combat_sheet.png",
+          "cloth_mask": true
+        }
       }
     }
   ],

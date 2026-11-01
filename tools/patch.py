@@ -105,7 +105,10 @@ def method_pcode(swf, cls, method):
     """Original P-code block ("method" ... "end ; method") of cls.method."""
     lines = [l.strip() for l in _export(swf, cls, "pcode").splitlines()]
     pat = re.compile(r'trait (?:method|getter|setter) QName\([^)]*\),"%s"\)$' % re.escape(method))
-    start = next(i for i, l in enumerate(lines) if pat.search(l))
+    if method == cls.split('.')[-1]:
+        start = next(i for i, l in enumerate(lines) if re.search(r'\bfunction\s+' + re.escape(method) + r'\(', l))
+    else:
+        start = next(i for i, l in enumerate(lines) if pat.search(l))
     begin = lines.index("method", start)
     return "\n".join(lines[begin:lines.index("end ; method", begin) + 1]) + "\n"
 
@@ -1172,7 +1175,7 @@ def data_changes(force):
     return pcode, as3
 
 
-def png_argb(path):
+def png_argb(path, cloth_mask=False):
     """Decode an 8-bit RGBA PNG into Flash's straight-alpha ARGB pixel format."""
     data = Path(path).read_bytes()
     if data[:8] != b'\x89PNG\r\n\x1a\n':
@@ -1222,6 +1225,11 @@ def png_argb(path):
         argb[0::4], argb[1::4], argb[2::4], argb[3::4] = row[3::4], row[0::4], row[1::4], row[2::4]
         pixels.extend(argb)
         previous = row
+    if cloth_mask:
+        for i in range(0, len(pixels), 4):
+            alpha, red, green, blue = pixels[i:i + 4]
+            cloth = alpha > 0 and red > 145 and green > 135 and blue > 110 and 12 <= red - blue <= 60 and green - blue > 5 and red >= green
+            pixels[i:i + 4] = bytes((alpha, 255, 255, 255)) if cloth else b'\0\0\0\0'
     return width, height, zlib.compress(pixels, 9)
 
 
@@ -1233,7 +1241,8 @@ def embedded_as3_source(entry):
         marker = f"__{name}__"
         if marker not in text:
             sys.exit(f"{source}: missing embedded asset marker {marker}")
-        width, height, pixels = png_argb(ROOT / relative_path)
+        options = relative_path if isinstance(relative_path, dict) else {'path': relative_path}
+        width, height, pixels = png_argb(ROOT / options['path'], options.get('cloth_mask', False))
         text = text.replace(f"__{name}_WIDTH__", str(width)).replace(f"__{name}_HEIGHT__", str(height))
         payload = base64.b64encode(pixels).decode("ascii")
         chunks = [payload[i:i + 16000] for i in range(0, len(payload), 16000)]

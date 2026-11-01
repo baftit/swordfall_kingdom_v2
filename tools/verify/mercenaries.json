@@ -1,0 +1,158 @@
+[
+  {
+    "click": [
+      390,
+      225
+    ]
+  },
+  {
+    "wait": 2500
+  },
+  {
+    "click": [
+      180,
+      206
+    ]
+  },
+  {
+    "wait": 1000
+  },
+  {
+    "click": [
+      700,
+      560
+    ]
+  },
+  {
+    "wait": 2500
+  },
+  {
+    "click": [
+      180,
+      273
+    ]
+  },
+  {
+    "wait": 500
+  },
+  {
+    "click": [
+      700,
+      560
+    ]
+  },
+  {
+    "wait": 6000
+  },
+  {
+    "click": [
+      550,
+      461
+    ]
+  },
+  {
+    "wait": 800
+  },
+  {
+    "click": [
+      550,
+      461
+    ]
+  },
+  {
+    "wait": 800
+  },
+  {
+    "click": [
+      550,
+      461
+    ]
+  },
+  {
+    "wait": 800
+  },
+  {
+    "click": [
+      550,
+      461
+    ]
+  },
+  {
+    "wait": 800
+  },
+  {
+    "click": [
+      400,
+      461
+    ]
+  },
+  {
+    "wait": 1500
+  },
+  {
+    "shot": "norse_towns_map"
+  },
+  {
+    "worldClick": {
+      "campaign": "Ireland",
+      "x": 784,
+      "y": 967,
+      "width": 1400,
+      "height": 1600
+    }
+  },
+  {
+    "wait": 500
+  },
+  {
+    "click": [
+      776,
+      575
+    ]
+  },
+  {
+    "worldClick": {
+      "campaign": "Ireland",
+      "x": 711,
+      "y": 988,
+      "width": 1400,
+      "height": 1600
+    }
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "attack_dialog"
+  },
+  {
+    "click": [
+      400,
+      434
+    ]
+  },
+  {
+    "wait": 3000
+  },
+  {
+    "shot": "battle_start"
+  },
+  {
+    "wait": 14000
+  },
+  {
+    "shot": "custom_mercenary_duel"
+  },
+  {
+    "wait": 41000
+  },
+  {
+    "shot": "all_mercenaries_battle"
+  },
+  {
+    "expect": "SFKMERC COMBAT COMPLETE 13 types both sides"
+  },
+  {
+    "expect": "SFKMERC STOCK COMPLETE 39 slots across seven campaigns"
+  }
+]

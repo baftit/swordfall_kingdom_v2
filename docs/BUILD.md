@@ -46,6 +46,12 @@ chunked Base64 constants in `build/gen/`, avoiding FFDec's empty bitmap Embed ou
 The mercenary class creates each bitmap synchronously with `BitmapData.setPixels`
 and shares its bitmap data across instances. It needs no asynchronous image loader.
 Edit the source PNGs in `resources/` and rebuild to update the in-game artwork.
+`embedded_pngs` also accepts a `{ "path": "...", "cloth_mask": true }` entry to
+derive the neutral-cloth tint layer for an animation atlas. Constructor P-code
+patches use the class name as their method name.
+
+Run `python3 -I tools/verify/mercenaries.py` for mercenary pool and combat checks;
+see [MERCENARIES.md](MERCENARIES.md) for the covered cases.
 
 Intermediate SWFs go to `build/work/`; nothing outside `build/` and `game/SFK_v2.swf` is written.
 

@@ -1,5 +1,17 @@
 # Changelog — SFK_v2.swf
 
+## Mercenary audit and custom combat atlas — 2026-11-01
+
+- Checked 39 regional pools across seven campaigns. Repaired zero replenishment
+  rates for existing saves and clamped partial refills to the normal stock cap.
+- Added a generated Norse-Gael combat atlas for Viking Mercenary walk, thrust,
+  hit, falling and corpse visuals. Both battle factories retain native movement,
+  damage, abilities, audio, blood/effect handlers and health bars.
+- Match custom sprite size and ground pivot to the native body hitbox. Keep
+  recruitment cards cropped to head and torso and tint them for their recruiter.
+- Added a non-shipping regression fixture covering 13 types on both sides of a
+  real battle, plus pool refill/cap/legacy-save checks. See MERCENARIES.md.
+
 ## Dublin mercenary replenishment — 2026-11-01
 
 - Set Dublin's mercenary replenishment rate to one per completed turn. The existing
