@@ -106,13 +106,13 @@ add(s,'gwynedd',[-5.8,52.35,-3.2,53.6])
 add(s,'strathclyde',[-6,54.7,-3.5,56.3])
 s['names']={'arann':'East Munster','ulidia':'Ulaid','laoighis':'Laois'}
 links(s,'dyfed/waterford','gwynedd/dublin','strathclyde/ulidia')
-f(s,'Dalcassians','Dalcassian Munster','Mathgamain mac Cennetig','thomond arann',5,'Mathgamain, Brian Boru\'s elder brother, leads the Dalcassians in 965. Southern Munster remains separately governed.')
-f(s,'Leinster','Kingdom of Leinster','Cellach mac Faelain','kilkenny kildare laoighis wicklow',5,'Leinster is divided among dynastic branches. These provinces are a coarse playable grouping.')
-f(s,'Connacht','Kingdom of Connacht','Fergal mac Airt Ua Ruairc','roscommon mayo sligo galway breifne',5,'Connacht is represented as a provincial kingdom under Fergal mac Airt Ua Ruairc, before the later Ua Conchobair succession.')
-f(s,'Ulaid','Kingdom of Ulaid','Ardgal mac Matudain','ulidia armagh',9,'Ulaid is the eastern kingdom, not all modern Ulster. Northern Ui Neill lands in Tyrone and Donegal remain separate.')
+f(s,'Dalcassians','Dalcassian Munster','Mathgamain mac Cennetig','thomond arann',15,'Mathgamain, Brian Boru\'s elder brother, leads the Dalcassians in 965. Southern Munster remains separately governed.')
+f(s,'Leinster','Kingdom of Leinster','Cellach mac Faelain','kilkenny kildare laoighis wicklow',31,'Leinster is divided among dynastic branches. These provinces are a coarse playable grouping.')
+f(s,'Connacht','Kingdom of Connacht','Fergal mac Airt Ua Ruairc','roscommon mayo sligo galway breifne',29,'Connacht is represented as a provincial kingdom under Fergal mac Airt Ua Ruairc, before the later Ua Conchobair succession.')
+f(s,'Ulaid','Kingdom of Ulaid','Ardgal mac Matudain','ulidia armagh',30,'Ulaid is the eastern kingdom, not all modern Ulster. Northern Ui Neill lands in Tyrone and Donegal remain separate.')
 f(s,'Norse Towns','Norse Towns of Ireland','Amlaib Cuaran','dublin waterford limerick wexford',12,'Amlaib Cuaran rules Dublin. Limerick, Waterford and Wexford are separate Norse centres grouped for play, not a single unified kingdom.')
-s['garrisonBonuses']={'dublin':{31:1}}  # Ireland-only first-playtest Norse-Gael mercenary.
-s['mercenaryUnits']={'dublin':31}  # Recruitable in Dublin; other Norse towns have no slot.
+s['garrisonBonuses']={'dublin':{22:1}}  # Ireland-only first-playtest Norse-Gael mercenary.
+s['mercenaryUnits']={'dublin':22}  # Recruitable in Dublin; other Norse towns have no slot.
 s['mercenaryStock']={'dublin':3}
 s['mercenaryCharge']={'dublin':1}
 

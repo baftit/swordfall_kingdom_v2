@@ -1162,7 +1162,7 @@
         "thomond",
         "arann"
       ],
-      "unit": 5,
+      "unit": 15,
       "description": "Mathgamain, Brian Boru's elder brother, leads the Dalcassians in 965. Southern Munster remains separately governed."
     },
     {
@@ -1175,7 +1175,7 @@
         "laoighis",
         "wicklow"
       ],
-      "unit": 5,
+      "unit": 31,
       "description": "Leinster is divided among dynastic branches. These provinces are a coarse playable grouping."
     },
     {
@@ -1189,7 +1189,7 @@
         "galway",
         "breifne"
       ],
-      "unit": 5,
+      "unit": 29,
       "description": "Connacht is represented as a provincial kingdom under Fergal mac Airt Ua Ruairc, before the later Ua Conchobair succession."
     },
     {
@@ -1200,7 +1200,7 @@
         "ulidia",
         "armagh"
       ],
-      "unit": 9,
+      "unit": 30,
       "description": "Ulaid is the eastern kingdom, not all modern Ulster. Northern Ui Neill lands in Tyrone and Donegal remain separate."
     },
     {
@@ -1219,11 +1219,11 @@
   ],
   "garrisonBonuses": {
     "dublin": {
-      "31": 1
+      "22": 1
     }
   },
   "mercenaryUnits": {
-    "dublin": 31
+    "dublin": 22
   },
   "landmasses": {
     "Ireland": [
@@ -1239,5 +1239,11 @@
       49
     ]
   },
-  "frontierGapNotes": "Enclosed land fragments are explicitly assigned by reviewed WGS84 probes in author_regional.py; no inland water is invented."
+  "frontierGapNotes": "Enclosed land fragments are explicitly assigned by reviewed WGS84 probes in author_regional.py; no inland water is invented.",
+  "mercenaryStock": {
+    "dublin": 3
+  },
+  "mercenaryCharge": {
+    "dublin": 1
+  }
 }

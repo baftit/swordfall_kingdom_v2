@@ -34,8 +34,12 @@ class RegionalTests(unittest.TestCase):
  def test_ireland_dublin_norse_mercenary_prototype(self):
   ireland=self.results['Ireland'][1]
   dublin=next(r for r in ireland['regions'] if r['refName']=='dublin')
-  self.assertEqual(dublin['units'][31],1,'Dublin should start with one Viking Mercenary')
-  self.assertEqual(dublin['regionUnit'],31,'Dublin should offer the Viking Mercenary for recruitment')
+  self.assertEqual(dublin['units'][22],1,'Dublin should start with one separate Norse-Gael Mercenary')
+  self.assertEqual(dublin['regionUnit'],22,'Dublin should offer the separate Norse-Gael Mercenary')
+  for faction,unique in zip(ireland['factions'][1:],[15,31,29,30,12]):
+   self.assertEqual(faction['uuIndex'],unique)
+   self.assertTrue(faction['hasUnits'][unique])
+   self.assertFalse(faction['hasUnits'][22],'Regional mercenary must not replace the kingdom unique')
   for name in ('waterford','limerick','wexford'):
    region=next(r for r in ireland['regions'] if r['refName']==name)
    self.assertEqual(region['units'][31],0,f'{name} should remain unchanged in the prototype')
@@ -201,7 +205,8 @@ class RegionalTests(unittest.TestCase):
    for r in c['regions']:
     self.assertFalse(any(r['units'][i] for i in banned),(ref,r['refName']))
    for f in c['factions'][1:]:
-    self.assertEqual(len(f['hasUnits']),38);self.assertNotIn(f['uuIndex'],banned)
+    self.assertEqual(len(f['hasUnits']),38)
+    if ref!='Ireland':self.assertNotIn(f['uuIndex'],banned)
 
  def test_cross_strait_landmasses(self):
   for ref,name,lon,lat in [('Ireland','ulidia',-5.65,55.3),('Italy','messina',15.7,38.15)]:

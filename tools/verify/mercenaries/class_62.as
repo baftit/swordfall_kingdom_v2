@@ -3,11 +3,9 @@ package {
  import flash.display.DisplayObjectContainer;
  import flash.events.Event;
  import flash.display.MovieClip;
- import flash.display.Bitmap;
- import flash.display.BitmapData;
  public class class_62 extends Sprite {
   private static var rootSprite:Sprite;
-  private static var ids:Array=[15,29,30,31,32,33,34,35,36,37,5,7,10];
+  private static var ids:Array=[15,29,30,22,31,32,33,34,35,36,37,5,7,10];
   private static var pair:int=0;
   private static var clock:int=0;
   private static var player:Unit;
@@ -17,7 +15,9 @@ package {
   private static var ph:int;
   private static var eh:int;
   private static var before:Array;
-  private static var firstFrame:BitmapData;
+  private static var firstFrame:int;
+  private static var walkFrames:Object;
+  private static var attackFrames:Object;
   private static function check(ok:Boolean,name:String):void {
    if(!ok){rootSprite.removeEventListener(Event.ENTER_FRAME,tick);throw new Error('SFKMERC FAIL '+name);}
    trace('SFKMERC PASS '+name);
@@ -26,6 +26,14 @@ package {
    rootSprite=root;
    var libraries:Array=[new class_21(),new class_20(),new class_28(),new class_17(),new class_22(),new class_16(),new class_24()];
    var names:Array=['West','Europe','Britain','Ireland','Spain','Italy','East'];
+   var irish:Array = new class_15().factions;
+   var expectedUniques:Array = [0,15,31,29,30,12];
+   for(var f:int=1;f<irish.length;f++) {
+    check(irish[f].uuIndex==expectedUniques[f] && irish[f].hasUnits[expectedUniques[f]],'Irish kingdom unique '+irish[f].selfName);
+    check(!irish[f].hasUnits[22],'regional mercenary outside unique roster '+irish[f].selfName);
+   }
+   var dublin:class_4 = libraries[3].regions[9];
+   check(dublin.regionUnit==22 && dublin.units[22]==1 && dublin.units[31]==0,'Dublin distinct mercenary identity');
    var slots:int=0;
    for(var c:int=0;c<libraries.length;c++) {
     var rows:Array=libraries[c].regions;
@@ -54,6 +62,20 @@ package {
    if(node is Unit)result.push(node);
    for(var i:int=0;i<node.numChildren;i++)if(node.getChildAt(i) is DisplayObjectContainer)troops(node.getChildAt(i) as DisplayObjectContainer,result);
   }
+  private static function nativeDeaths(node:DisplayObjectContainer):int {
+   var count:int=0;
+   if(node is class_152 && class_152(node).unitIndex==22){
+    check(node is class_227,'matching native spear death actor');count++;
+   }
+   for(var i:int=0;i<node.numChildren;i++)if(node.getChildAt(i) is DisplayObjectContainer)count+=nativeDeaths(node.getChildAt(i) as DisplayObjectContainer);
+   return count;
+  }
+  private static function spearCorpses(node:DisplayObjectContainer):int {
+   var count:int=0;
+   if(node is class_129 && MovieClip(node).currentFrame==4)count++;
+   for(var i:int=0;i<node.numChildren;i++)if(node.getChildAt(i) is DisplayObjectContainer)count+=spearCorpses(node.getChildAt(i) as DisplayObjectContainer);
+   return count;
+  }
   private static function tick(event:Event):void {
    var g:class_149=gameIn(rootSprite);if(g==null)return;
    var b:class_68=g.battlefield;if(b==null || b.selfMode!='on')return;
@@ -70,22 +92,36 @@ package {
     check(player!=null && enemy!=null,'spawn both sides '+id);
     check(player.ud.selfIndex==id && enemy.ud.selfIndex==id && player.hp>0 && enemy.hp>0,'stats '+id);
     player.x=120;enemy.x=650;px=player.x;ex=enemy.x;ph=player.hp;eh=enemy.hp;
-    if(id==31){
-     var art:MovieClip=player.getChildByName('norseGaelAnimated') as MovieClip;
-     check(art!=null && art.height>20 && art.height<65,'custom sprite normal scale');
-     firstFrame=Bitmap(art.getChildAt(0)).bitmapData;
+    if(id==31)check(player.getChildByName('norseGaelAnimated')==null && enemy.getChildByName('norseGaelAnimated')==null,'native Leinster unique preserved');
+    if(id==22){
+     check(player is class_258 && enemy is class_258,'full native spear actors both sides');
+     check(player.getChildByName('norseGaelAnimated')==null,'no bitmap pose overlay');
+     check(player.totalFrames==54 && enemy.totalFrames==54,'complete 54-frame native timeline');
+     firstFrame=player.currentFrame;walkFrames={};attackFrames={};
     }
    }
-   if(clock==11 && id==31){
-    var animated:MovieClip=player.getChildByName('norseGaelAnimated') as MovieClip;
-    check(Bitmap(animated.getChildAt(0)).bitmapData!=firstFrame,'custom walk frames advance');
+   if(id==22 && clock<15)walkFrames[player.currentFrame]=true;
+   if(id==22 && player.animMode=='attack')attackFrames[player.currentFrame]=true;
+   if(clock==11 && id==22){
+    check(player.currentFrame!=firstFrame,'native walk timeline advances');
     player.takeDamage(1);ph=player.hp;
     check(player.var_147.parent==player && player.var_147.visible,'native health bar shown after hit');
    }
    if(clock==15){check(player.x!=px && enemy.x!=ex,'movement '+id);if(player.ud.attackType=='Archer'){player.x=280;enemy.x=520;}else{player.x=350;enemy.x=420;}}
-   if(clock==100){check(player.hp<ph || enemy.hp<eh,'combat damage '+id);}
+   if(clock==100){
+    check(player.hp<ph || enemy.hp<eh,'combat damage '+id);
+    if(id==22){
+     var count:int=0;for(var key:String in walkFrames)count++;
+     check(count>=10,'continuous native walk uses at least ten frames');
+     count=0;for(key in attackFrames)count++;
+     check(count>=6,'continuous native attack uses at least six frames');
+    }
+   }
    if(clock==115){if(player.selfStatus!='dead')player.method_1(false);if(enemy.selfStatus!='dead')enemy.method_1(false);}
-   if(clock==120){check(player.selfStatus=='dead' && enemy.selfStatus=='dead','death cleanup '+id);pair++;clock=0;return;}
+   if(clock==120 && id==22)check(nativeDeaths(b)>=2,'native deaths on both sides retain mercenary identity');
+   if(clock==180 && id==22)check(spearCorpses(b)>=2,'matching native corpses created on both sides');
+   if(clock==(id==22?180:120)){check(player.selfStatus=='dead' && enemy.selfStatus=='dead','death cleanup '+id);pair++;clock=0;return;}
+
    clock++;
   }
  }

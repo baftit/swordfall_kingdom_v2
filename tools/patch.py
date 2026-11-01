@@ -1242,7 +1242,12 @@ def embedded_as3_source(entry):
         if marker not in text:
             sys.exit(f"{source}: missing embedded asset marker {marker}")
         options = relative_path if isinstance(relative_path, dict) else {'path': relative_path}
+        limit = entry.get('max_png_bytes')
+        if limit and (ROOT / options['path']).stat().st_size >= limit:
+            sys.exit(f"{options['path']}: image must be below {limit} bytes")
         width, height, pixels = png_argb(ROOT / options['path'], options.get('cloth_mask', False))
+        if limit and len(pixels) >= limit:
+            sys.exit(f"{options['path']}: embedded pixels must be below {limit} compressed bytes")
         text = text.replace(f"__{name}_WIDTH__", str(width)).replace(f"__{name}_HEIGHT__", str(height))
         payload = base64.b64encode(pixels).decode("ascii")
         chunks = [payload[i:i + 16000] for i in range(0, len(payload), 16000)]
@@ -1318,6 +1323,10 @@ def build(force_data=False):
             args += [p["class"], p["path"]]
         ffdec("-replace", stage, work / "stage_as3.swf", *args)
         stage = work / "stage_as3.swf"
+    post = [{**p, 'path': MODS / p['file']} for p in manifest.get('post_as3_pcode', [])]
+    if post:
+        apply_pcode(stage, work / 'stage_post_as3.swf', post)
+        stage = work / 'stage_post_as3.swf'
     texts = manifest.get("text", [])
     if texts:
         args = []

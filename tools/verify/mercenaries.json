@@ -144,13 +144,13 @@
     "shot": "custom_mercenary_duel"
   },
   {
-    "wait": 41000
+    "wait": 51000
   },
   {
     "shot": "all_mercenaries_battle"
   },
   {
-    "expect": "SFKMERC COMBAT COMPLETE 13 types both sides"
+    "expect": "SFKMERC COMBAT COMPLETE 14 types both sides"
   },
   {
     "expect": "SFKMERC STOCK COMPLETE 39 slots across seven campaigns"

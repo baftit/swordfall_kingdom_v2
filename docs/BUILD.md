@@ -120,3 +120,14 @@ python3 -I tools/patch.py extract                # re-dump data/baseline/ from t
 python3 -I tools/patch.py export [as3|pcode] [out_dir]
 python3 -I tools/patch.py check [swf]            # live data check only
 ```
+
+### Mercenary images and unique-unit compatibility
+
+The custom regional mercenary uses unit slot 22; native Viking Mercenary 31 keeps
+its original behavior. `post_as3_pcode` restores the original native tick body
+after compiling the shared helper class. Separate factory and death patches
+recognize slot 22 without redirecting the kingdom unique.
+
+The `max_png_bytes` manifest setting enforces a strict 200,000-byte ceiling for
+both source PNG files and embedded compressed pixel data. Resize oversized
+mercenary art with `python3 -I tools/optimize_mercenary_images.py` before building.

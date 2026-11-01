@@ -1,0 +1,1550 @@
+method
+name null
+param QName(PackageNamespace(""),"class_36")
+returns QName(PackageNamespace(""),"void")
+
+body
+maxstack 8
+localcount 45
+initscopedepth 10
+maxscopedepth 11
+
+code
+getlocal0
+getproperty QName(PackageInternalNs(""),"selfMode")
+pushstring "on"
+ifne breakthrough_original
+getlocal1
+getproperty QName(PackageNamespace(""),"var_347")
+iffalse breakthrough_original
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty QName(PackageNamespace(""),"selfStatus")
+pushstring "alive"
+ifne breakthrough_original
+getlocal0
+getlex QName(PackageNamespace(""),"Math")
+getlocal0
+getproperty QName(PackageInternalNs(""),"var_332")
+getlocal0
+getproperty QName(PackageInternalNs(""),"var_68")
+pushbyte 5
+add
+callproperty QName(PackageNamespace(""),"min"), 2
+convert_i
+setproperty QName(PackageInternalNs(""),"var_68")
+getlocal0
+callpropvoid QName(PackageInternalNs(""),"updateDisplay"), 0
+findpropstrict QName(PackageNamespace(""),"trace")
+pushstring "SFKBREAKTHROUGH player +5"
+callpropvoid QName(PackageNamespace(""),"trace"), 1
+breakthrough_original:
+pushfalse
+pushtrue
+swap
+jump ofs000d
+dup
+getlocal1
+convert_s
+bitxor
+swap
+setlocal1
+ofs000d:
+setlocal 43
+setlocal 44
+getlocal0
+pushscope
+pushnull
+coerce QName(PackageNamespace(""),"Array")
+setlocal2
+pushbyte 0
+setlocal3
+pushnull
+coerce QName(PackageNamespace(""),"class_1")
+setlocal 4
+pushnan
+setlocal 5
+pushnan
+setlocal 6
+pushnan
+setlocal 7
+pushnull
+coerce QName(PackageNamespace(""),"Array")
+setlocal 8
+pushnull
+coerce QName(PackageNamespace("flash.geom"),"ColorTransform")
+setlocal 9
+pushnull
+coerce QName(PackageNamespace(""),"class_221")
+setlocal 10
+pushnull
+coerce QName(PackageNamespace(""),"class_226")
+setlocal 11
+pushnull
+coerce QName(PackageNamespace(""),"class_213")
+setlocal 12
+pushnull
+coerce QName(PackageNamespace(""),"class_227")
+setlocal 13
+pushnull
+coerce QName(PackageNamespace(""),"class_203")
+setlocal 14
+pushnull
+coerce QName(PackageNamespace(""),"class_228")
+setlocal 15
+pushnull
+coerce QName(PackageNamespace(""),"class_207")
+setlocal 16
+pushnull
+coerce QName(PackageNamespace(""),"class_224")
+setlocal 17
+pushnull
+coerce QName(PackageNamespace(""),"class_217")
+setlocal 18
+pushnull
+coerce QName(PackageNamespace(""),"class_219")
+setlocal 19
+pushnull
+coerce QName(PackageNamespace(""),"class_216")
+setlocal 20
+pushnull
+coerce QName(PackageNamespace(""),"class_218")
+setlocal 21
+pushnull
+coerce QName(PackageNamespace(""),"class_232")
+setlocal 22
+pushnull
+coerce QName(PackageNamespace(""),"class_212")
+setlocal 23
+pushnull
+coerce QName(PackageNamespace(""),"class_205")
+setlocal 24
+pushnull
+coerce QName(PackageNamespace(""),"class_211")
+setlocal 25
+pushnull
+coerce QName(PackageNamespace(""),"class_222")
+setlocal 26
+pushnull
+coerce QName(PackageNamespace(""),"class_230")
+setlocal 27
+pushnull
+coerce QName(PackageNamespace(""),"class_229")
+setlocal 28
+pushnull
+coerce QName(PackageNamespace(""),"class_220")
+setlocal 29
+pushnull
+coerce QName(PackageNamespace(""),"class_206")
+setlocal 30
+pushnull
+coerce QName(PackageNamespace(""),"class_210")
+setlocal 31
+pushnull
+coerce QName(PackageNamespace(""),"class_215")
+setlocal 32
+pushnull
+coerce QName(PackageNamespace(""),"class_209")
+setlocal 33
+pushnull
+coerce QName(PackageNamespace(""),"class_231")
+setlocal 34
+pushnull
+coerce QName(PackageNamespace(""),"class_202")
+setlocal 35
+pushnull
+coerce QName(PackageNamespace(""),"class_225")
+setlocal 36
+pushnull
+coerce QName(PackageNamespace(""),"class_214")
+setlocal 37
+pushnull
+coerce QName(PackageNamespace(""),"class_223")
+setlocal 38
+pushnull
+coerce QName(PackageNamespace(""),"class_204")
+setlocal 39
+pushnull
+coerce QName(PackageNamespace(""),"class_208")
+setlocal 40
+pushnull
+coerce_s
+setlocal 41
+pushnull
+coerce QName(PackageNamespace("flash.geom"),"ColorTransform")
+setlocal 42
+findpropstrict QName(PackageNamespace(""),"Array")
+constructprop QName(PackageNamespace(""),"Array"), 0
+coerce QName(PackageNamespace(""),"Array")
+setlocal2
+getlocal 44
+iffalse ofs0159
+pushbyte 0
+getlocal 43
+iftrue ofs0147
+setlocal3
+getlocal1
+getproperty QName(PackageNamespace(""),"var_347")
+getlocal 43
+iftrue ofs022e
+iffalse ofs01ec
+getlocal 43
+dup
+iffalse ofs0125
+pop
+getlocal1
+convert_b
+ofs0125:
+iftrue ofs018f
+getlex QName(PackageNamespace(""),"var_322")
+pushbyte 15
+callpropvoid QName(PackageNamespace(""),"method_128"), 1
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("iconIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+convert_i
+getlocal 44
+dup
+iftrue ofs0143
+pop
+getlocal3
+convert_b
+ofs0143:
+iffalse ofs0203
+ofs0147:
+setlocal3
+getlocal 44
+iffalse ofs024e
+getlocal2
+pushbyte 0
+getlex QName(PackageNamespace(""),"var_10")
+getlocal3
+callproperty QName(PackageNamespace(""),"getChildAt"), 1
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0159:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("spawnType",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushstring "unit"
+ifne ofs01af
+getlex QName(PackageInternalNs(""),"var_72")
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getlex QName(PackageInternalNs(""),"var_72")
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+pushbyte 1
+add
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+getlocal 44
+dup
+iftrue ofs018b
+pop
+getlocal0
+convert_b
+ofs018b:
+iffalse ofs0204
+ofs018f:
+getlocal2
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getlex QName(PackageInternalNs(""),"var_72")
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+callpropvoid Multiname("setNum",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")]), 2
+jump ofs01e8
+ofs01af:
+getlex QName(PackageNamespace(""),"generals")
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("generalIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+pushtrue
+setproperty Multiname("isPresent",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getlocal 43
+dup
+iffalse ofs01c7
+pop
+getlocal0
+convert_b
+ofs01c7:
+iftrue ofs0255
+findpropstrict QName(PackageInternalNs(""),"method_65")
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("generalIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushtrue
+pushtrue
+callpropvoid QName(PackageInternalNs(""),"method_65"), 3
+getlocal 44
+dup
+iftrue ofs01e4
+pop
+getlocal3
+convert_b
+ofs01e4:
+iffalse ofs022b
+ofs01e8:
+jump ofs0bd4
+ofs01ec:
+findproperty QName(PackageInternalNs(""),"var_67")
+getlex QName(PackageInternalNs(""),"var_67")
+getlex QName(PackageNamespace(""),"var_190")
+pushbyte 2
+multiply
+add
+initproperty QName(PackageInternalNs(""),"var_67")
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("iconIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+convert_i
+ofs0203:
+setlocal3
+ofs0204:
+getlocal2
+pushbyte 0
+getlex QName(PackageNamespace(""),"var_10")
+getlocal3
+callproperty QName(PackageNamespace(""),"getChildAt"), 1
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+findproperty QName(PackageInternalNs(""),"var_109")
+getlex QName(PackageInternalNs(""),"var_109")
+decrement
+initproperty QName(PackageInternalNs(""),"var_109")
+findproperty QName(PackageInternalNs(""),"var_129")
+getlex QName(PackageInternalNs(""),"var_129")
+pushbyte 1
+add
+initproperty QName(PackageInternalNs(""),"var_129")
+getlocal 43
+iftrue ofs024e
+ofs022b:
+getlex QName(PackageInternalNs(""),"var_203")
+ofs022e:
+iffalse ofs024e
+getlocal 43
+dup
+iffalse ofs023c
+pop
+getlocal3
+convert_b
+ofs023c:
+iftrue ofs024e
+findpropstrict QName(PackageNamespace("flash.display"),"MovieClip")
+getlex QName(PackageNamespace(""),"parent")
+callproperty QName(PackageNamespace("flash.display"),"MovieClip"), 1
+getproperty Multiname("audioController",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+callpropvoid Multiname("playDeathSound",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")]), 0
+ofs024e:
+findpropstrict QName(PackageInternalNs(""),"updateDisplay")
+callpropvoid QName(PackageInternalNs(""),"updateDisplay"), 0
+ofs0255:
+findpropstrict QName(PackageNamespace(""),"class_1")
+constructprop QName(PackageNamespace(""),"class_1"), 0
+coerce QName(PackageNamespace(""),"class_1")
+dup
+setlocal 4
+getproperty QName(PackageNamespace(""),"var_47")
+getlex QName(PackageInternalNs(""),"var_100")
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+convert_d
+getlocal 43
+dup
+iffalse ofs0275
+pop
+getlocal3
+convert_b
+ofs0275:
+iftrue ofs02b5
+setlocal 5
+getlocal 43
+dup
+iffalse ofs0285
+pop
+getlocal0
+convert_b
+ofs0285:
+iftrue ofs02b7
+getlocal 4
+getproperty QName(PackageNamespace(""),"var_46")
+getlex QName(PackageInternalNs(""),"var_100")
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+convert_d
+getlocal 43
+dup
+iffalse ofs029e
+pop
+getlocal0
+convert_b
+ofs029e:
+iftrue ofs02b5
+setlocal 6
+getlocal 43
+iftrue ofs02b7
+getlocal 4
+getproperty QName(PackageNamespace(""),"var_44")
+getlex QName(PackageInternalNs(""),"var_100")
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+convert_d
+ofs02b5:
+setlocal 7
+ofs02b7:
+findpropstrict QName(PackageNamespace(""),"Array")
+constructprop QName(PackageNamespace(""),"Array"), 0
+coerce QName(PackageNamespace(""),"Array")
+setlocal 8
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 0
+ifne ofs02e5
+findpropstrict QName(PackageNamespace(""),"class_221")
+constructprop QName(PackageNamespace(""),"class_221"), 0
+coerce QName(PackageNamespace(""),"class_221")
+setlocal 10
+getlocal 8
+pushbyte 0
+getlocal 10
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+jump ofs0913
+ofs02e5:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 1
+ifne ofs031e
+getlocal 44
+dup
+iftrue ofs02fc
+pop
+getlocal2
+convert_b
+ofs02fc:
+iffalse ofs060b
+findpropstrict QName(PackageNamespace(""),"class_226")
+constructprop QName(PackageNamespace(""),"class_226"), 0
+coerce QName(PackageNamespace(""),"class_226")
+setlocal 11
+getlocal 43
+iftrue ofs031a
+getlocal 8
+pushbyte 0
+getlocal 11
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs031a:
+jump ofs0913
+ofs031e:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 2
+ifne ofs0349
+findpropstrict QName(PackageNamespace(""),"class_213")
+constructprop QName(PackageNamespace(""),"class_213"), 0
+coerce QName(PackageNamespace(""),"class_213")
+setlocal 12
+getlocal 43
+iftrue ofs0345
+getlocal 8
+pushbyte 0
+getlocal 12
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0345:
+jump ofs0913
+ofs0349:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+dup
+pushbyte 22
+ifne sfkNativeDeath
+pop
+pushbyte 3
+sfkNativeDeath:
+pushbyte 3
+ifne ofs037c
+findpropstrict QName(PackageNamespace(""),"class_227")
+constructprop QName(PackageNamespace(""),"class_227"), 0
+coerce QName(PackageNamespace(""),"class_227")
+setlocal 13
+getlocal 43
+dup
+iffalse ofs036c
+pop
+getlocal3
+convert_b
+ofs036c:
+iftrue ofs0378
+getlocal 8
+pushbyte 0
+getlocal 13
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0378:
+jump ofs0913
+ofs037c:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 4
+ifne ofs03ad
+getlocal 43
+iftrue ofs04cb
+findpropstrict QName(PackageNamespace(""),"class_203")
+constructprop QName(PackageNamespace(""),"class_203"), 0
+coerce QName(PackageNamespace(""),"class_203")
+setlocal 14
+getlocal 43
+iftrue ofs03a9
+getlocal 8
+pushbyte 0
+getlocal 14
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs03a9:
+jump ofs0913
+ofs03ad:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 5
+ifne ofs03e0
+findpropstrict QName(PackageNamespace(""),"class_228")
+constructprop QName(PackageNamespace(""),"class_228"), 0
+coerce QName(PackageNamespace(""),"class_228")
+setlocal 15
+getlocal 44
+dup
+iftrue ofs03d0
+pop
+getlocal3
+convert_b
+ofs03d0:
+iffalse ofs03dc
+getlocal 8
+pushbyte 0
+getlocal 15
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs03dc:
+jump ofs0913
+ofs03e0:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 6
+ifne ofs0419
+getlocal 44
+iffalse ofs077a
+findpropstrict QName(PackageNamespace(""),"class_207")
+constructprop QName(PackageNamespace(""),"class_207"), 0
+coerce QName(PackageNamespace(""),"class_207")
+setlocal 16
+getlocal 44
+dup
+iftrue ofs0409
+pop
+getlocal1
+convert_b
+ofs0409:
+iffalse ofs0415
+getlocal 8
+pushbyte 0
+getlocal 16
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0415:
+jump ofs0913
+ofs0419:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 7
+ifne ofs044c
+findpropstrict QName(PackageNamespace(""),"class_224")
+constructprop QName(PackageNamespace(""),"class_224"), 0
+coerce QName(PackageNamespace(""),"class_224")
+setlocal 17
+getlocal 44
+dup
+iftrue ofs043c
+pop
+getlocal1
+convert_b
+ofs043c:
+iffalse ofs0448
+getlocal 8
+pushbyte 0
+getlocal 17
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0448:
+jump ofs0913
+ofs044c:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 8
+ifne ofs0477
+findpropstrict QName(PackageNamespace(""),"class_217")
+constructprop QName(PackageNamespace(""),"class_217"), 0
+coerce QName(PackageNamespace(""),"class_217")
+setlocal 18
+getlocal 44
+iffalse ofs0473
+getlocal 8
+pushbyte 0
+getlocal 18
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0473:
+jump ofs0913
+ofs0477:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 9
+ifne ofs04b0
+getlocal 43
+dup
+iffalse ofs048e
+pop
+getlocal0
+convert_b
+ofs048e:
+iftrue ofs06b0
+findpropstrict QName(PackageNamespace(""),"class_219")
+constructprop QName(PackageNamespace(""),"class_219"), 0
+coerce QName(PackageNamespace(""),"class_219")
+setlocal 19
+getlocal 43
+iftrue ofs04ac
+getlocal 8
+pushbyte 0
+getlocal 19
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs04ac:
+jump ofs0913
+ofs04b0:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 10
+ifne ofs04f1
+getlocal 44
+dup
+iftrue ofs04c7
+pop
+getlocal3
+convert_b
+ofs04c7:
+iffalse ofs070e
+ofs04cb:
+findpropstrict QName(PackageNamespace(""),"class_216")
+constructprop QName(PackageNamespace(""),"class_216"), 0
+coerce QName(PackageNamespace(""),"class_216")
+setlocal 20
+getlocal 44
+dup
+iftrue ofs04e1
+pop
+getlocal3
+convert_b
+ofs04e1:
+iffalse ofs04ed
+getlocal 8
+pushbyte 0
+getlocal 20
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs04ed:
+jump ofs0913
+ofs04f1:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 11
+ifne ofs051c
+findpropstrict QName(PackageNamespace(""),"class_218")
+constructprop QName(PackageNamespace(""),"class_218"), 0
+coerce QName(PackageNamespace(""),"class_218")
+setlocal 21
+getlocal 44
+iffalse ofs0518
+getlocal 8
+pushbyte 0
+getlocal 21
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0518:
+jump ofs0913
+ofs051c:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 12
+ifne ofs054f
+findpropstrict QName(PackageNamespace(""),"class_232")
+constructprop QName(PackageNamespace(""),"class_232"), 0
+coerce QName(PackageNamespace(""),"class_232")
+setlocal 22
+getlocal 44
+dup
+iftrue ofs053f
+pop
+getlocal3
+convert_b
+ofs053f:
+iffalse ofs054b
+getlocal 8
+pushbyte 0
+getlocal 22
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs054b:
+jump ofs0913
+ofs054f:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 13
+ifne ofs0588
+getlocal 44
+dup
+iftrue ofs0566
+pop
+getlocal3
+convert_b
+ofs0566:
+iffalse ofs066f
+findpropstrict QName(PackageNamespace(""),"class_212")
+constructprop QName(PackageNamespace(""),"class_212"), 0
+coerce QName(PackageNamespace(""),"class_212")
+setlocal 23
+getlocal 44
+iffalse ofs0584
+getlocal 8
+pushbyte 0
+getlocal 23
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0584:
+jump ofs0913
+ofs0588:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 14
+ifne ofs05c1
+getlocal 43
+iftrue ofs070e
+findpropstrict QName(PackageNamespace(""),"class_205")
+constructprop QName(PackageNamespace(""),"class_205"), 0
+coerce QName(PackageNamespace(""),"class_205")
+setlocal 24
+getlocal 44
+dup
+iftrue ofs05b1
+pop
+getlocal1
+convert_b
+ofs05b1:
+iffalse ofs05bd
+getlocal 8
+pushbyte 0
+getlocal 24
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs05bd:
+jump ofs0913
+ofs05c1:
+getlocal1
+jump ofs05cc
+pushnan
+setlocal2
+convert_o
+divide
+strictequals
+pushtrue
+ofs05cc:
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 15
+ifne ofs05fe
+findpropstrict QName(PackageNamespace(""),"class_211")
+constructprop QName(PackageNamespace(""),"class_211"), 0
+coerce QName(PackageNamespace(""),"class_211")
+setlocal 25
+getlocal 43
+dup
+iffalse ofs05ee
+pop
+getlocal3
+convert_b
+ofs05ee:
+iftrue ofs05fa
+getlocal 8
+pushbyte 0
+getlocal 25
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs05fa:
+jump ofs0913
+ofs05fe:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 16
+ifne ofs0629
+ofs060b:
+findpropstrict QName(PackageNamespace(""),"class_222")
+constructprop QName(PackageNamespace(""),"class_222"), 0
+coerce QName(PackageNamespace(""),"class_222")
+setlocal 26
+getlocal 44
+iffalse ofs0625
+getlocal 8
+pushbyte 0
+getlocal 26
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0625:
+jump ofs0913
+ofs0629:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 17
+ifne ofs065c
+findpropstrict QName(PackageNamespace(""),"class_230")
+constructprop QName(PackageNamespace(""),"class_230"), 0
+coerce QName(PackageNamespace(""),"class_230")
+setlocal 27
+getlocal 44
+dup
+iftrue ofs064c
+pop
+getlocal0
+convert_b
+ofs064c:
+iffalse ofs0658
+getlocal 8
+pushbyte 0
+getlocal 27
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0658:
+jump ofs0913
+ofs065c:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 18
+ifne ofs0695
+getlocal 43
+iftrue ofs07b3
+ofs066f:
+findpropstrict QName(PackageNamespace(""),"class_229")
+constructprop QName(PackageNamespace(""),"class_229"), 0
+coerce QName(PackageNamespace(""),"class_229")
+setlocal 28
+getlocal 43
+dup
+iffalse ofs0685
+pop
+getlocal3
+convert_b
+ofs0685:
+iftrue ofs0691
+getlocal 8
+pushbyte 0
+getlocal 28
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0691:
+jump ofs0913
+ofs0695:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 19
+ifne ofs06d6
+getlocal 43
+dup
+iffalse ofs06ac
+pop
+getlocal0
+convert_b
+ofs06ac:
+iftrue ofs081f
+ofs06b0:
+findpropstrict QName(PackageNamespace(""),"class_220")
+constructprop QName(PackageNamespace(""),"class_220"), 0
+coerce QName(PackageNamespace(""),"class_220")
+setlocal 29
+getlocal 43
+dup
+iffalse ofs06c6
+pop
+getlocal2
+convert_b
+ofs06c6:
+iftrue ofs06d2
+getlocal 8
+pushbyte 0
+getlocal 29
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs06d2:
+jump ofs0913
+ofs06d6:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 20
+ifne ofs0701
+findpropstrict QName(PackageNamespace(""),"class_206")
+constructprop QName(PackageNamespace(""),"class_206"), 0
+coerce QName(PackageNamespace(""),"class_206")
+setlocal 30
+getlocal 43
+iftrue ofs06fd
+getlocal 8
+pushbyte 0
+getlocal 30
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs06fd:
+jump ofs0913
+ofs0701:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 21
+ifne ofs0734
+ofs070e:
+findpropstrict QName(PackageNamespace(""),"class_210")
+constructprop QName(PackageNamespace(""),"class_210"), 0
+coerce QName(PackageNamespace(""),"class_210")
+setlocal 31
+getlocal 43
+dup
+iffalse ofs0724
+pop
+getlocal0
+convert_b
+ofs0724:
+iftrue ofs0730
+getlocal 8
+pushbyte 0
+getlocal 31
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0730:
+jump ofs0913
+ofs0734:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 29
+ifne ofs0767
+findpropstrict QName(PackageNamespace(""),"class_215")
+constructprop QName(PackageNamespace(""),"class_215"), 0
+coerce QName(PackageNamespace(""),"class_215")
+setlocal 32
+getlocal 43
+dup
+iffalse ofs0757
+pop
+getlocal2
+convert_b
+ofs0757:
+iftrue ofs0763
+getlocal 8
+pushbyte 0
+getlocal 32
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0763:
+jump ofs0913
+ofs0767:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 30
+ifne ofs0798
+getlocal 43
+iftrue ofs08be
+ofs077a:
+findpropstrict QName(PackageNamespace(""),"class_209")
+constructprop QName(PackageNamespace(""),"class_209"), 0
+coerce QName(PackageNamespace(""),"class_209")
+setlocal 33
+getlocal 43
+iftrue ofs0794
+getlocal 8
+pushbyte 0
+getlocal 33
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0794:
+jump ofs0913
+ofs0798:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 31
+ifne ofs07d1
+getlocal 43
+dup
+iffalse ofs07af
+pop
+getlocal1
+convert_b
+ofs07af:
+iftrue ofs07ec
+ofs07b3:
+findpropstrict QName(PackageNamespace(""),"class_231")
+constructprop QName(PackageNamespace(""),"class_231"), 0
+coerce QName(PackageNamespace(""),"class_231")
+setlocal 34
+getlocal 43
+iftrue ofs07cd
+getlocal 8
+pushbyte 0
+getlocal 34
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs07cd:
+jump ofs0913
+ofs07d1:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 32
+ifne ofs0812
+getlocal 43
+dup
+iffalse ofs07e8
+pop
+getlocal2
+convert_b
+ofs07e8:
+iftrue ofs08f1
+ofs07ec:
+findpropstrict QName(PackageNamespace(""),"class_202")
+constructprop QName(PackageNamespace(""),"class_202"), 0
+coerce QName(PackageNamespace(""),"class_202")
+setlocal 35
+getlocal 43
+dup
+iffalse ofs0802
+pop
+getlocal1
+convert_b
+ofs0802:
+iftrue ofs080e
+getlocal 8
+pushbyte 0
+getlocal 35
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs080e:
+jump ofs0913
+ofs0812:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 33
+ifne ofs0845
+ofs081f:
+findpropstrict QName(PackageNamespace(""),"class_225")
+constructprop QName(PackageNamespace(""),"class_225"), 0
+coerce QName(PackageNamespace(""),"class_225")
+setlocal 36
+getlocal 43
+dup
+iffalse ofs0835
+pop
+getlocal3
+convert_b
+ofs0835:
+iftrue ofs0841
+getlocal 8
+pushbyte 0
+getlocal 36
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0841:
+jump ofs0913
+ofs0845:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 34
+ifne ofs0886
+getlocal 44
+dup
+iftrue ofs085c
+pop
+getlocal0
+convert_b
+ofs085c:
+iffalse ofs08f1
+findpropstrict QName(PackageNamespace(""),"class_214")
+constructprop QName(PackageNamespace(""),"class_214"), 0
+coerce QName(PackageNamespace(""),"class_214")
+setlocal 37
+getlocal 43
+dup
+iffalse ofs0876
+pop
+getlocal2
+convert_b
+ofs0876:
+iftrue ofs0882
+getlocal 8
+pushbyte 0
+getlocal 37
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0882:
+jump ofs0913
+ofs0886:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 35
+ifne ofs08b1
+findpropstrict QName(PackageNamespace(""),"class_223")
+constructprop QName(PackageNamespace(""),"class_223"), 0
+coerce QName(PackageNamespace(""),"class_223")
+setlocal 38
+getlocal 44
+iffalse ofs08ad
+getlocal 8
+pushbyte 0
+getlocal 38
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs08ad:
+jump ofs0913
+ofs08b1:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 36
+ifne ofs08e4
+ofs08be:
+findpropstrict QName(PackageNamespace(""),"class_204")
+constructprop QName(PackageNamespace(""),"class_204"), 0
+coerce QName(PackageNamespace(""),"class_204")
+setlocal 39
+getlocal 44
+dup
+iftrue ofs08d4
+pop
+getlocal2
+convert_b
+ofs08d4:
+iffalse ofs08e0
+getlocal 8
+pushbyte 0
+getlocal 39
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs08e0:
+jump ofs0913
+ofs08e4:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 37
+ifne ofs0913
+ofs08f1:
+findpropstrict QName(PackageNamespace(""),"class_208")
+constructprop QName(PackageNamespace(""),"class_208"), 0
+coerce QName(PackageNamespace(""),"class_208")
+setlocal 40
+getlocal 43
+dup
+iffalse ofs0907
+pop
+getlocal1
+convert_b
+ofs0907:
+iftrue ofs0913
+getlocal 8
+pushbyte 0
+getlocal 40
+setproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+ofs0913:
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfName",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getlocal1
+getproperty QName(PackageNamespace(""),"laneIndex")
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("ud",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("selfIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("headIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+callpropvoid Multiname("initSelf",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")]), 4
+getlocal 44
+dup
+iftrue ofs0940
+pop
+getlocal0
+convert_b
+ofs0940:
+iffalse ofs0961
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+getlex QName(PackageNamespace(""),"class_36")
+getproperty QName(PackageNamespace(""),"const_1")
+getlex QName(PackageInternalNs(""),"method_272")
+pushfalse
+pushbyte 0
+pushtrue
+callpropvoid Multiname("addEventListener",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")]), 5
+getlocal 43
+iftrue ofs098f
+ofs0961:
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("spawnType",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushstring "general"
+ifne ofs0a54
+getlocal 43
+dup
+iffalse ofs0978
+pop
+getlocal0
+convert_b
+ofs0978:
+iftrue ofs09bb
+getlex QName(PackageNamespace(""),"generals")
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("generalIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+getproperty Multiname("selfName",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushstring " has fallen!"
+add
+setlocal 41
+ofs098f:
+getlex QName(PackageNamespace(""),"var_337")
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("x",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 60
+add
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("y",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushbyte 38
+add
+getlocal 41
+pushstring "white"
+callpropvoid QName(PackageNamespace(""),"method_136"), 4
+getlocal 43
+dup
+iffalse ofs09b7
+pop
+getlocal2
+convert_b
+ofs09b7:
+iftrue ofs09df
+ofs09bb:
+getlex QName(PackageNamespace(""),"generals")
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("generalIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+pushfalse
+setproperty Multiname("isAlive",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getlocal 44
+iffalse ofs09df
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("headIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+callpropvoid Multiname("setHead",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")]), 1
+ofs09df:
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+getproperty Multiname("head",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("colorLayer",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("transform",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("colorTransform",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+coerce QName(PackageNamespace("flash.geom"),"ColorTransform")
+dup
+setlocal 42
+getlocal 5
+setproperty QName(PackageNamespace(""),"redMultiplier")
+getlocal 44
+iffalse ofs0a23
+getlocal 42
+getlocal 6
+setproperty QName(PackageNamespace(""),"greenMultiplier")
+getlocal 44
+dup
+iftrue ofs0a12
+pop
+getlocal2
+convert_b
+ofs0a12:
+iffalse ofs0a54
+getlocal 42
+getlocal 7
+setproperty QName(PackageNamespace(""),"blueMultiplier")
+getlocal 43
+iftrue ofs0a54
+ofs0a23:
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+getproperty Multiname("head",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("colorLayer",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("transform",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getlocal 42
+setproperty Multiname("colorTransform",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getlocal 44
+dup
+iftrue ofs0a41
+pop
+getlocal1
+convert_b
+ofs0a41:
+iffalse ofs0a54
+findpropstrict QName(PackageInternalNs(""),"method_65")
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("generalIndex",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+pushtrue
+pushfalse
+callpropvoid QName(PackageInternalNs(""),"method_65"), 3
+ofs0a54:
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+getproperty Multiname("colorLayer",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("transform",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("colorTransform",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+coerce QName(PackageNamespace("flash.geom"),"ColorTransform")
+dup
+setlocal 9
+getlocal 5
+setproperty QName(PackageNamespace(""),"redMultiplier")
+getlocal 9
+getlocal 6
+setproperty QName(PackageNamespace(""),"greenMultiplier")
+getlocal 9
+getlocal 7
+setproperty QName(PackageNamespace(""),"blueMultiplier")
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+getproperty Multiname("colorLayer",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getproperty Multiname("transform",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getlocal 9
+setproperty Multiname("colorTransform",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getlocal 44
+dup
+iftrue ofs0a96
+pop
+getlocal3
+convert_b
+ofs0a96:
+iffalse ofs0adc
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("x",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+setproperty Multiname("x",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getlocal 44
+iffalse ofs0ae8
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+getlocal1
+getproperty QName(PackageNamespace(""),"target")
+getproperty Multiname("y",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+setproperty Multiname("y",[PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PrivateNamespace("","11"),Namespace("http://adobe.com/AS3/2006/builtin")])
+getlocal1
+getproperty QName(PackageNamespace(""),"laneIndex")
+getlocal 44
+iffalse ofs0bc2
+pushbyte 1
+getlocal 43
+dup
+iffalse ofs0ad4
+pop
+getlocal3
+convert_b
+ofs0ad4:
+iftrue ofs0bc4
+ifne ofs0aec
+ofs0adc:
+getlex QName(PackageNamespace(""),"var_316")
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+callpropvoid QName(PackageNamespace(""),"addChild"), 1
+ofs0ae8:
+jump ofs0bd4
+ofs0aec:
+getlocal1
+getproperty QName(PackageNamespace(""),"laneIndex")
+getlocal 44
+iffalse ofs0b7c
+pushbyte 2
+getlocal 44
+dup
+iftrue ofs0b02
+pop
+getlocal3
+convert_b
+ofs0b02:
+iffalse ofs0b8c
+ifne ofs0b28
+getlocal 44
+dup
+iftrue ofs0b14
+pop
+getlocal3
+convert_b
+ofs0b14:
+iffalse ofs0b6e
+getlex QName(PackageNamespace(""),"var_312")
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+callpropvoid QName(PackageNamespace(""),"addChild"), 1
+jump ofs0bd4
+ofs0b28:
+getlocal1
+getproperty QName(PackageNamespace(""),"laneIndex")
+getlocal 43
+dup
+iffalse ofs0b36
+pop
+getlocal2
+convert_b
+ofs0b36:
+iftrue ofs0bc2
+pushbyte 3
+getlocal 44
+dup
+iftrue ofs0b46
+pop
+getlocal1
+convert_b
+ofs0b46:
+iffalse ofs0b8c
+ifne ofs0b72
+getlocal 43
+iftrue ofs0b6e
+getlex QName(PackageNamespace(""),"var_340")
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+callpropvoid QName(PackageNamespace(""),"addChild"), 1
+getlocal 44
+dup
+iftrue ofs0b6a
+pop
+getlocal0
+convert_b
+ofs0b6a:
+iffalse ofs0bd4
+ofs0b6e:
+jump ofs0bd4
+ofs0b72:
+getlocal1
+getproperty QName(PackageNamespace(""),"laneIndex")
+getlocal 44
+iffalse ofs0bc2
+ofs0b7c:
+pushbyte 4
+getlocal 44
+dup
+iftrue ofs0b88
+pop
+getlocal3
+convert_b
+ofs0b88:
+iffalse ofs0bc4
+ofs0b8c:
+ifne ofs0bbe
+getlocal 44
+iffalse ofs0bb0
+getlex QName(PackageNamespace(""),"var_318")
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+callpropvoid QName(PackageNamespace(""),"addChild"), 1
+getlocal 43
+dup
+iffalse ofs0bac
+pop
+getlocal2
+convert_b
+ofs0bac:
+iftrue ofs0bd4
+ofs0bb0:
+jump ofs0bd4
+jump ofs0bb8
+ofs0bb8:
+negate_i
+convert_i
+negate_i
+lessequals
+increment_i
+convert_d
+ofs0bbe:
+getlocal1
+getproperty QName(PackageNamespace(""),"laneIndex")
+ofs0bc2:
+pushbyte 5
+ofs0bc4:
+ifne ofs0bd4
+getlex QName(PackageNamespace(""),"var_320")
+getlocal 8
+pushbyte 0
+getproperty MultinameL([PrivateNamespace("","3"),PackageNamespace(""),PackageInternalNs(""),ProtectedNamespace("_-2x"),StaticProtectedNs("_-2x"),StaticProtectedNs("flash.display:MovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),Namespace("flash.display:IBitmapDrawable"),Namespace("flash.events:IEventDispatcher")])
+callpropvoid QName(PackageNamespace(""),"addChild"), 1
+ofs0bd4:
+returnvoid
+end ; code
+end ; body
+end ; method

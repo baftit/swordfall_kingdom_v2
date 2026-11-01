@@ -63,16 +63,11 @@ Per faction: starting gold, starting regions (ownership is assigned from the fac
 
 | Faction | Gold | Start regions | Income | Start garrison | Unique unit | Starting general | AI unit prefs |
 |---|---|---|---|---|---|---|---|
-| Dalcassians | 100 | Thomond, East Munster | 72 | Militia 11, Skirmisher 10, Horseman 5 | Swordsman | Mathgamain mac Cennetig (Lv4; Assault Tactics 2, Great Warrior 1, Leadership 1) | Swordsman ×1.15 |
-| Leinster | 120 | Kilkenny, Kildare, Laois, Wicklow | 160 | Militia 19, Skirmisher 17, Horseman 10 | Swordsman | Cellach mac Faelain (Lv3; Inspiring Presence 1, Royal Blood 1, Iron Discipline 1) | Swordsman ×1.15 |
-| Connacht | 80 | Roscommon, Mayo, Sligo, Galway, Breifne | 198 | Militia 20, Skirmisher 20, Horseman 10 | Swordsman | Fergal mac Airt Ua Ruairc (Lv4; Great Warrior 2, Warlord 1, Royal Blood 1) | Swordsman ×1.15 |
-| Ulaid | 100 | Ulaid, Armagh | 84 | Militia 12, Skirmisher 11, Horseman 6, Spearman 2 | Man-at-Arms | Ardgal mac Matudain (Lv4; Iron Discipline 2, Cavalry Tactics 1, Royal Blood 1) | Man-at-Arms ×1.15 |
-| Norse Towns | 150 | Dublin, Waterford, Limerick, Wexford | 234 | Militia 18, Horseman 11, Swordsman 12, Viking Raider 3, Viking Mercenary 1, Skirmisher 5 | Viking Raider | Amlaib Cuaran (Lv4; Brutal Strength 1, Great Warrior 2, Assault Tactics 1) | Viking Raider ×1.15 |
-
-Dublin's Viking Mercenary is stocked as a Norse-Gael visual prototype. Its transparent
-render and tunic-color mask are embedded from `resources/norse_gael_mercenary_render.png`
-and `resources/norse_gael_mercenary_tunic_mask.png`; the owning faction supplies the
-tint in both the battlefield unit and recruit preview.
+| Dalcassians | 100 | Thomond, East Munster | 72 | Militia 11, Skirmisher 10, Horseman 5 | Highland Mercenary | Mathgamain mac Cennetig (Lv4; Assault Tactics 2, Great Warrior 1, Leadership 1) | Highland Mercenary ×1.15 |
+| Leinster | 120 | Kilkenny, Kildare, Laois, Wicklow | 160 | Militia 19, Skirmisher 17, Horseman 10 | Viking Mercenary | Cellach mac Faelain (Lv3; Inspiring Presence 1, Royal Blood 1, Iron Discipline 1) | Viking Mercenary ×1.15 |
+| Connacht | 80 | Roscommon, Mayo, Sligo, Galway, Breifne | 198 | Militia 20, Skirmisher 20, Horseman 10 | Kern | Fergal mac Airt Ua Ruairc (Lv4; Great Warrior 2, Warlord 1, Royal Blood 1) | Kern ×1.15 |
+| Ulaid | 100 | Ulaid, Armagh | 84 | Militia 12, Skirmisher 11, Horseman 6, Spearman 2 | Gallowglass | Ardgal mac Matudain (Lv4; Iron Discipline 2, Cavalry Tactics 1, Royal Blood 1) | Gallowglass ×1.15 |
+| Norse Towns | 150 | Dublin, Waterford, Limerick, Wexford | 234 | Militia 18, Horseman 11, Swordsman 12, Viking Raider 3, Norse-Gael Mercenary 1, Skirmisher 5 | Viking Raider | Amlaib Cuaran (Lv4; Brutal Strength 1, Great Warrior 2, Assault Tactics 1) | Viking Raider ×1.15 |
 
 ### Hispania (`Spain`)
 
@@ -130,7 +125,7 @@ Indices 0–2 are always recruitable and mercenaries need no tech; every other u
 | 19 | Mameluke | Cavalry | Melee | 14 | 110 | 5 | 0 | 0 | 10 | 1 | 16 | 50 | 2 | 0 | 4 | Destrier Horses (14) | Deadly Charge, Devotion | charge+16 charges×1 devotion elite | 165 |
 | 20 | Cossack | Cavalry | Archer | 6 | 75 | 0 | 0 | 0 | 10 | 8 | 12 | 28 | 2 | 0 | 3 | Destrier Horses (14) | Bow Weapon, Armor Piercing, Expert Hunter | vsCav+2 vsInf+1 AP elite | 80 |
 | 21 | General | Cavalry | Melee | 14 | 140 | 5 | 0 | 0 | 8 | 1 | 24 | 60 | 2 | 0 | 4 | Archery Training (0) | — | elite royal | 200 |
-| 22 | *(unused slot)* |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 22 | Norse-Gael Mercenary | Infantry | Melee | 14 | 70 | 2 | 0 | 0 | 4 | 1 | 10 | 20 | 1 | 0 | 2 | Swordsmithy (18) | Heavy Weapon, Berserk | vsInf+2 berserk+2 elite | 80 |
 | 23 | *(unused slot)* |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | 24 | *(unused slot)* |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | 25 | *(unused slot)* |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
@@ -173,7 +168,7 @@ Effects below are the **runtime** rules from `tech_effects.json` (compiled into 
 | 15 | Trade Caravans | 600 | Trade Routes | income ×1.15 | +15% empire income. |
 | 16 | Royal Grain Silo | 500 | Royal Granary | supply +35 | +35 army supply. |
 | 17 | Langets | 600 | Spear Training | units: if cavBonus >= 4: attack +2 | All units with a Spear or Pike weapon ability gain +2 attack. |
-| 18 | Swordsmithy | 800 | Sword Training | units: if has Heavy Weapon / Great Weapon: attack +2<br>unlocks Viking Mercenary | All units with a Heavy or Great weapon ability gain +2 attack. |
+| 18 | Swordsmithy | 800 | Sword Training | units: if has Heavy Weapon / Great Weapon: attack +2<br>unlocks Norse-Gael Mercenary, Viking Mercenary | All units with a Heavy or Great weapon ability gain +2 attack. |
 | 19 | Knighthood | 1400 | Feudal Retinues + Destrier Horses | unlocks Knight, Paladin, Teutonic Knight, Knight of Santiago | Unlocks the Knight unit. |
 | 20 | Trade Fleets | 1200 | Trade Caravans | income ×1.2 | +20% empire income. |
 | 21 | University | 1000 | Trade Caravans | research costs ×0.75 (`techMenu.reduceTechCost`) | All research costs reduced by 25%. |
@@ -468,7 +463,7 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 6 | Wexford | Norse Towns | 46 | 11 | 2 | 2 | 1 | 0 | Militia 3, Horseman 3, Swordsman 2 | dyfed, kilkenny, waterford, wicklow |
 | 7 | Kilkenny | Leinster | 40 | 18 | 1 | 2 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 3 | arann, kildare, laoighis, waterford, wexford, wicklow |
 | 8 | Wicklow | Leinster | 40 | 11 | 2 | 2 | 1 | 0 | Militia 5, Skirmisher 2, Horseman 3 | dublin, kildare, kilkenny, wexford |
-| 9 | Dublin | Norse Towns | 70 | 17 | 2 | 3 | 1 | 0 | Militia 5, Horseman 4, Swordsman 3, Viking Raider 3, Viking Mercenary 1 | gwynedd, kildare, meath, wicklow |
+| 9 | Dublin | Norse Towns | 70 | 17 | 2 | 3 | 1 | 0 | Militia 5, Horseman 4, Swordsman 3, Viking Raider 3, Norse-Gael Mercenary 1 | gwynedd, kildare, meath, wicklow |
 | 10 | Kildare | Leinster | 40 | 19 | 1 | 2 | 1 | 0 | Militia 6, Skirmisher 6, Horseman 2 | dublin, kilkenny, laoighis, meath, wicklow |
 | 11 | Laois | Leinster | 40 | 15 | 1 | 2 | 1 | 0 | Militia 4, Skirmisher 5, Horseman 2 | arann, galway, kildare, kilkenny, meath, roscommon |
 | 12 | Galway | Connacht | 40 | 14 | 1 | 2 | 1 | 0 | Militia 4, Skirmisher 4, Horseman 3 | arann, laoighis, mayo, roscommon, thomond |
@@ -492,7 +487,7 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 
 | # | Region | Owner | Gold | Food | City | Farm | Castle | Threat | Garrison | Connections |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 0 | Huelva-Algarve | Almohads | 50 | 16 | 1 | 2 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 3 | alentejo, algeria, badajos, estremadura, fes, france, seville, tangier |
+| 0 | Huelva-Algarve | Almohads | 50 | 16 | 1 | 2 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 3 | alentejo, badajos, estremadura, seville, tangier |
 | 1 | Seville | Almohads | 46 | 16 | 2 | 2 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 3 | badajos, cordoba, huelva, malaga, tangier |
 | 2 | Malaga | Almohads | 44 | 15 | 1 | 2 | 1 | 0 | Militia 6, Skirmisher 4, Horseman 3.5 | cordoba, granada, seville |
 | 3 | Granada | Almohads | 42 | 14 | 2 | 2 | 1 | 0 | Militia 5, Skirmisher 6, Horseman 3 | almeria, cordoba, malaga, murcia, toledo |
@@ -517,11 +512,11 @@ frameRate/30 per tick). The rate snaps back to 30 as soon as no battle is runnin
 | 22 | Catalonia | Aragon | 52 | 20 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 7, Horseman 3 | aragon, balearic_isles, france, valencia, zaragoza |
 | 23 | Aragon | Aragon | 64 | 19 | 1 | 1 | 1 | 3 | Militia 6, Skirmisher 6, Horseman 3 | catalonia, france, navarre, zaragoza |
 | 24 | Navarre | Independent | 50 | 14 | 1 | 1 | 1 | 0 | Militia 3, Skirmisher 5, Horseman 3 | aragon, castille, france, zaragoza |
-| 25 | France | Independent | 200 | 60 | 1 | 1 | 1 | 0 | Militia 13, Skirmisher 6, Horseman 9, Spearman 6, Archer 5 | aragon, catalonia, huelva, navarre |
+| 25 | France | Independent | 200 | 60 | 1 | 1 | 1 | 0 | Militia 13, Skirmisher 6, Horseman 9, Spearman 6, Archer 5 | aragon, catalonia, navarre |
 | 26 | Tangier | Almohads | 40 | 18 | 2 | 1 | 1 | 0 | Militia 5, Skirmisher 5, Horseman 3 | fes, huelva, morocco, seville |
-| 27 | Fes | Almohads | 32 | 14 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 5, Horseman 2 | huelva, morocco, tangier |
+| 27 | Fes | Almohads | 32 | 14 | 1 | 1 | 1 | 0 | Militia 4, Skirmisher 5, Horseman 2 | morocco, tangier |
 | 28 | Morocco | Almohads | 50 | 22 | 1 | 1 | 1 | 0 | Militia 6, Skirmisher 5, Horseman 3 | algeria, almeria, fes, tangier |
-| 29 | Algeria | Almohads | 70 | 19 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 4, Horseman 3 | huelva, morocco |
+| 29 | Algeria | Almohads | 70 | 19 | 1 | 1 | 1 | 0 | Militia 7, Skirmisher 4, Horseman 3 | morocco |
 
 </details>
 

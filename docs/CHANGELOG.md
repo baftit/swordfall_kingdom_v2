@@ -1,5 +1,33 @@
 # Changelog — SFK_v2.swf
 
+## Smooth mercenary combat motion — 2026-11-01
+
+- Replace the custom four-pose combat overlay with the complete 54-frame native
+  spear timeline for slot 22. Preserve native limb/weapon occlusion, ground pivot,
+  faction tint, combat effects and stats, with matching death/corpse visuals.
+- Keep generated portraits/cards and distinct recruitment identities. Stop
+  embedding the experimental combat atlas in the shipping SWF.
+- Verify walk/attack frame coverage and both sides' matching death/corpse actors.
+
+## Viking Mercenary portrait mapping — 2026-11-01
+
+- Apply the requested Norse-Gael portrait and cropped card to existing Viking
+  Mercenary stacks (31) as well as Dublin hirelings (22), including unit details.
+  Keep their separate recruitment identities and native Viking combat behavior.
+- Check the updated Viking portrait and card in the live recruitment screen.
+
+## Separate Irish uniques and regional mercenaries — 2026-11-01
+
+- Restored original Isle of Kings unique assignments: Dalcassians/Highland,
+  Leinster/Viking Mercenary, Connacht/Kern, Ulaid/Gallowglass, Norse Towns/Viking Raider.
+- Moved the custom Norse-Gael hireling into unused unit slot 22. It is available
+  through Dublin’s regional pool and is excluded from each kingdom’s unique roster.
+  Restored native unit 31’s original animation controller and death behavior.
+- Added separate combat/death dispatch for the custom identity and migration of
+  legacy Dublin pools. Engine arrays retain their original 38-entry size.
+- Reduced every mercenary PNG to less than 200,000 bytes and enforce the same
+  budget on embedded compressed pixels. Portrait crops use optimized dimensions.
+
 ## Mercenary audit and custom combat atlas — 2026-11-01
 
 - Checked 39 regional pools across seven campaigns. Repaired zero replenishment

@@ -177,16 +177,14 @@
     {
       "class": "class_68",
       "method": "method_278",
-      "file": "pcode/breakthrough_player.prefix",
-      "mode": "prefix",
-      "why": "A surviving breakthrough earns five deployment morale points, capped at the existing maximum."
+      "file": "pcode/norse_death_method_278.pcode",
+      "why": "Preserve breakthrough rewards and route slot 22 through the full native spear death timeline, retaining its separate unit metadata."
     },
     {
       "class": "class_68",
       "method": "method_236",
-      "file": "pcode/breakthrough_enemy.prefix",
-      "mode": "prefix",
-      "why": "A surviving breakthrough earns five deployment morale points, capped at the existing maximum."
+      "file": "pcode/norse_death_method_236.pcode",
+      "why": "Preserve breakthrough rewards and route slot 22 through the full native spear death timeline, retaining its separate unit metadata."
     },
     {
       "class": "class_79",
@@ -234,15 +232,19 @@
       "mode": "edit",
       "edits": [
         {
+          "find": "pushbyte 31",
+          "replace": "dup\npushbyte 22\nifne sfkNotNorse\npop\njump sfkNorseFactory\nsfkNotNorse:\npushbyte 31"
+        },
+        {
           "find": "findpropstrict QName(PackageNamespace(\"\"),\"class_263\")",
-          "replace": "findpropstrict QName(PackageNamespace(\"\"),\"class_258\")"
+          "replace": "sfkNorseFactory:\ngetlex QName(PackageNamespace(\"\"),\"class_263\")"
         },
         {
           "find": "constructprop QName(PackageNamespace(\"\"),\"class_263\"), 0",
-          "replace": "constructprop QName(PackageNamespace(\"\"),\"class_258\"), 0\ngetlex QName(PackageNamespace(\"\"),\"class_263\")\nswap\ncallproperty QName(PackageNamespace(\"\"),\"decorateCombat\"), 1"
+          "replace": "getlocal2\ncallproperty QName(PackageNamespace(\"\"),\"makeCombat\"), 1"
         }
       ],
-      "why": "Keep the native spear combat controller and effects; render the custom Norse-Gael animation atlas on that actor.",
+      "why": "Create the separate Norse-Gael mercenary in slot 22; preserve the original Viking Mercenary/Leinster unique in slot 31.",
       "maxstack": 64
     },
     {
@@ -251,15 +253,19 @@
       "mode": "edit",
       "edits": [
         {
+          "find": "pushbyte 31",
+          "replace": "dup\npushbyte 22\nifne sfkNotNorse\npop\njump sfkNorseFactory\nsfkNotNorse:\npushbyte 31"
+        },
+        {
           "find": "findpropstrict QName(PackageNamespace(\"\"),\"class_263\")",
-          "replace": "findpropstrict QName(PackageNamespace(\"\"),\"class_258\")"
+          "replace": "sfkNorseFactory:\ngetlex QName(PackageNamespace(\"\"),\"class_263\")"
         },
         {
           "find": "constructprop QName(PackageNamespace(\"\"),\"class_263\"), 0",
-          "replace": "constructprop QName(PackageNamespace(\"\"),\"class_258\"), 0\ngetlex QName(PackageNamespace(\"\"),\"class_263\")\nswap\ncallproperty QName(PackageNamespace(\"\"),\"decorateCombat\"), 1"
+          "replace": "getlex QName(PackageInternalNs(\"\"),\"var_23\")\ncallproperty QName(PackageNamespace(\"\"),\"makeCombat\"), 1"
         }
       ],
-      "why": "Keep the native spear combat controller and effects; render the custom Norse-Gael animation atlas on that actor.",
+      "why": "Create the separate Norse-Gael mercenary in slot 22; preserve the original Viking Mercenary/Leinster unique in slot 31.",
       "maxstack": 64
     },
     {
@@ -279,7 +285,7 @@
           "replace": "getlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlocal0\ngetlocal1\ncallpropvoid QName(PackageNamespace(\"\"),\"decorateCorpse\"), 2\nreturnvoid"
         }
       ],
-      "why": "Use the generated Norse-Gael death pose while retaining native death effects and cleanup."
+      "why": "Use the matching native spear corpse for slot 22 with native blood, owner tint and cleanup."
     },
     {
       "class": "class_79",
@@ -314,13 +320,9 @@
       "file": "as3/class_263.as",
       "embedded_pngs": {
         "RENDER_PNG": "resources/norse_gael_mercenary_render.png",
-        "TINT_PNG": "resources/norse_gael_mercenary_tunic_mask.png",
-        "COMBAT_PNG": "resources/norse_gael_combat_sheet.png",
-        "COMBAT_TINT": {
-          "path": "resources/norse_gael_combat_sheet.png",
-          "cloth_mask": true
-        }
-      }
+        "TINT_PNG": "resources/norse_gael_mercenary_tunic_mask.png"
+      },
+      "max_png_bytes": 200000
     }
   ],
   "text": [
@@ -353,6 +355,14 @@
       "id": 8403,
       "file": "text/8403_domain.txt",
       "why": "Display btabaku.com in the existing domain label"
+    }
+  ],
+  "post_as3_pcode": [
+    {
+      "class": "class_263",
+      "method": "method_3",
+      "file": "pcode/viking_native_tick.pcode",
+      "why": "Preserve original Viking Mercenary animation after installing separate custom mercenary helpers."
     }
   ]
 }
