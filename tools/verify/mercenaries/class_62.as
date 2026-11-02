@@ -268,7 +268,7 @@ package {
     if(f==44||f==45)hitFrames[f]=true;
     if(clock==1){enemy.run();enemy.vx=enemy.var_7;}
     if(clock<15 && enemy.animMode=='run' && frameOf(enemy)>=16 && frameOf(enemy)<24)runFrames[frameOf(enemy)]=true;
-    if(clock==15)check(size(runFrames)>=6,'enemy run uses the 8-pose run cycle facing left ('+size(runFrames)+')');
+    if(clock==15)check(size(runFrames)>=5,'native-timed enemy run advances during the short approach ('+size(runFrames)+')');
     if(clock>0 && clock<100){customActor(player,'player tick');if(enemy.parent!=null)check(nativeHidden(enemy),'enemy native art hidden');}
     if(clock==2)check(Bitmap(art(player).getChildAt(0)).bitmapData!=Bitmap(art(enemy).getChildAt(0)).bitmapData,'owner tint differs between sides');
    }

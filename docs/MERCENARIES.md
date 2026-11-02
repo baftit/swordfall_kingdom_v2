@@ -169,3 +169,28 @@ Every mercenary PNG under `resources/` and `concepts/` is below 200,000 bytes. T
 cloth masks 4-8 KB. The 384x329 contact sheet is 196,402 bytes. The embedded
 compressed ARGB payloads also stay below the limit. `max_png_bytes` in the manifest
 makes the build reject any oversized image or payload.
+
+### Pose registration stability (2026-11-02)
+
+The custom figure now targets a 44-pixel upright body rather than 40 pixels.
+Each locomotion pose is normalized individually to avoid generated scale drift.
+Attack heights retain a gradual crouch but are filtered across the clip; adjacent
+registered heights differ by less than one stage pixel. Walk phase survives idle
+and engagement transitions instead of repeatedly restarting the first stride.
+Idle holds a single registered guard because the separately generated breathing
+poses caused visible wobble. These registration fixes do not turn the generated
+pose sheet into a physically coherent 3D rig; differing limb/weapon geometry in
+source poses still limits how closely motion can match the original rendered units.
+
+### Native animation reference
+
+`python3 tools/audit_native_animation.py` reads the original SWF's sprite tags.
+The Spearman (symbol 7045) and Viking (7800) contain 54 frames:
+attack 1–20, idle 21–34, walk 35–54. Horseman symbol 4602 has 50 frames,
+with the same attack/idle ranges and walk 35–50. Shape placements reference
+pre-rendered imagery; the shipped SWF does not contain the original character
+meshes/rigs. The native controller advances the labelled timelines, including run
+speed. The custom walk and run now follow that controller's actual frame rather
+than an additional velocity-based animation clock. The 16 custom walk poses map
+to the native 20-frame walk range; the eight run poses map to the same range.
+This matches playback structure, not the geometric continuity of the original art.

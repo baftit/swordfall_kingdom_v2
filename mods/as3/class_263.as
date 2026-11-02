@@ -92,6 +92,7 @@ package
          state.hit = -1;
          state.hold = 0;
          state.cool = 0;
+         state.gait = 0;
          unit.addEventListener(Event.ENTER_FRAME, combatTick, false, 0, true);
          // Never render a frame of the native Spearman, even on the spawn frame.
          hideNative(unit);
@@ -230,18 +231,19 @@ package
          }
          else if (want == "walk")
          {
-            state.t = (state.t + Math.max(0.3, Math.min(1.6, speed * 0.4))) % 16;
-            index = WALK + int(state.t);
+            // Use exactly the native walkStart (35) .. walkEnd (54) timeline.
+            // The native controller already advances it faster for running;
+            // a second velocity-driven clock made foot motion drift from movement.
+            index = WALK + Math.min(15, int(Math.max(0, unit.currentFrame - 35) * 16 / 20));
          }
          else if (want == "run")
          {
-            state.t = (state.t + Math.max(0.4, Math.min(1.2, speed * 0.2))) % 8;
-            index = RUN + int(state.t);
+            index = RUN + Math.min(7, int(Math.max(0, unit.currentFrame - 35) * 8 / 20));
          }
          else if (want == "idle")
          {
             state.t = (state.t + 1 / 3) % IDLE_ORDER.length;
-            index = IDLE + IDLE_ORDER[int(state.t)];
+            index = IDLE; // Independently generated idle poses wobble; hold the registered guard.
          }
          else
          {

@@ -31,7 +31,7 @@ LIMIT = 200_000
 
 # Native class_258 frames are 120x120 with feet at y=86 and the body centred on x=60;
 # the native figure is about 44 px from helmet to sole.
-NATIVE_BODY = 40.0
+NATIVE_BODY = 44.0
 DENSITY = 2            # texture pixels per stage pixel; drawn at 0.5 scale in game
 CELL_W, CELL_H = 110, 64   # stage pixels per uniform cell
 PIVOT_X, PIVOT_Y = 44, 58  # stage pixels: ground contact point inside a cell
@@ -225,6 +225,17 @@ def placements(meta):
     # Generated poses are not registered to each other. Hip or foot estimates swing by
     # 1-9 stage px between consecutive frames, which reads as vibration. The helmet/head is
     # the steadiest feature, so locomotion, idle and hit poses hold it at one offset.
+    # Generated walk/run figures have inconsistent camera scale. Normalize each
+    # upright body, not just the median of a whole row; otherwise the helmet
+    # jumps vertically even when the feet share a baseline.
+    for i in list(range(24)) + list(range(40, 44)):
+        scales[i] = NATIVE_BODY * DENSITY / metrics[i]['height']
+    # Preserve a gradual attack crouch/lunge, but remove the generated row's
+    # abrupt body-height changes (notably the recovery jump at poses 35 -> 36).
+    attack_heights = np.array([metrics[i]['height'] * scales[i] / DENSITY for i in range(24, 40)])
+    attack_heights = ndimage.gaussian_filter1d(attack_heights, 1.4, mode='nearest')
+    for k, i in enumerate(range(24, 40)):
+        scales[i] = attack_heights[k] * DENSITY / metrics[i]['height']
     stage = [s / DENSITY for s in scales]
     hip_head = [(m['head'] - m['hip']) * k for m, k in zip(metrics, stage)]
     steady = float(np.median(hip_head[0:16]))
