@@ -194,3 +194,22 @@ speed. The custom walk and run now follow that controller's actual frame rather
 than an additional velocity-based animation clock. The 16 custom walk poses map
 to the native 20-frame walk range; the eight run poses map to the same range.
 This matches playback structure, not the geometric continuity of the original art.
+
+### Revision 2 artwork integration (2026-11-02)
+
+The revised 52-pose source sheet now supplies all combat artwork. Extraction uses
+connected silhouettes rather than rectangular grid cuts; every extracted frame
+and runtime atlas is below 200,000 bytes. Native timing, ground registration,
+health bars, cloth tint, blood and death events remain in place. Idle uses the
+four newly registered guard poses on a slow two-second breathing loop.
+
+Source pose 31 showed an early return to guard amid the thrust frames. It is now
+last in the attack sequence, after the extended thrust and withdrawal, avoiding
+an extra guard-to-thrust jump. Source spear pixels are preserved rather than
+trimmed using measurements designed for revision 1. The frame map records the
+source permutation and revision; the extracted PNGs are tracked so `pack` does
+not require the ignored high-resolution generation under `build/`.
+
+Art review sheets and walk/run/attack/death previews are under
+`build/verify/mercenary-v2-art/`. This is sprite artwork, not a rigged 3D model;
+continuity of generated poses must still be judged visually in real gameplay.

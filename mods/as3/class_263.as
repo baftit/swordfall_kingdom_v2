@@ -242,8 +242,8 @@ package
          }
          else if (want == "idle")
          {
-            state.t = (state.t + 1 / 3) % IDLE_ORDER.length;
-            index = IDLE; // Independently generated idle poses wobble; hold the registered guard.
+            state.t = (state.t + 1 / 10) % IDLE_ORDER.length;
+            index = IDLE + IDLE_ORDER[int(state.t)]; // Slow two-second breathing loop using the registered revision-2 poses.
          }
          else
          {

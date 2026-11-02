@@ -51,7 +51,7 @@ def disk(r):
 
 def extract():
     meta = manifest()
-    rgba = np.array(Image.open(SOURCE).convert('RGBA'))
+    rgba = np.array(Image.open(ROOT / meta.get('sourcePath', str(SOURCE))).convert('RGBA'))
     alpha = rgba[..., 3].astype(int)
     rgba[alpha < 8] = 0          # diffuse generator haze, invisible but costly
     solid = alpha > 40
@@ -76,6 +76,7 @@ def extract():
     if [len(r) for r in rows] != expected:
         sys.exit(f'unexpected row occupancy {[len(r) for r in rows]}')
     order = [f for r in rows for f in sorted(r, key=lambda f: slices[f - 1][1].start + slices[f - 1][1].stop)]
+    order = [order[i] for i in meta.get('sourcePoseOrder', range(len(order)))]
     FRAMES.mkdir(parents=True, exist_ok=True)
     report = []
     for frame, f in zip(meta['frames'], order):
@@ -212,8 +213,9 @@ def placements(meta):
     # generated about 20% longer. Their butt end is exposed at lower left, so trim it there.
     reference = float(np.median([(lambda s: s[3] - s[2])(spear(frames[i])) for i in range(0, 16)]))
     repairs = {}
-    for i in DIAGONAL_SPEAR:
-        frames[i], repairs[i] = trim_spear(frames[i], reference)
+    if meta.get('sourceRevision', 1) < 2:
+        for i in DIAGONAL_SPEAR:
+            frames[i], repairs[i] = trim_spear(frames[i], reference)
     metrics = [body_metrics(f) for f in frames]
     walk = float(np.median([metrics[i]['height'] for i in range(0, 16)]))
     idle = float(np.median([metrics[i]['height'] for i in range(40, 44)]))
