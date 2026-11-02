@@ -8,6 +8,7 @@ package {
  import flash.events.MouseEvent;
  import flash.display.MovieClip;
  import flash.geom.Rectangle;
+ import flash.utils.Dictionary;
  public class class_62 extends Sprite {
   private static var rootSprite:Sprite;
   private static var ids:Array=[15,29,30,22,31,32,33,34,35,36,37,5,7,10];
@@ -23,8 +24,11 @@ package {
   private static var walkFrames:Object;
   private static var attackFrames:Object;
   private static var hitFrames:Object;
+  private static var runFrames:Object;
   private static var deathFrames:Object;
+  private static var deathActors:Dictionary;
   private static var ui:int=0;
+  private static var cardsChecked:Boolean=false;
   private static var uiClock:int=0;
   private static var cardClicks:int=0;
   private static var laneClicks:int=0;
@@ -65,8 +69,6 @@ package {
    check(zero.regionUnitCharge==1 && zero.regionUnitNum==1,'legacy zero-rate save repaired');
    check(cap.regionUnitNum==10,'partial stock clamps to cap');
    trace('SFKMERC STOCK COMPLETE '+slots+' slots across seven campaigns');
-   check(class_263.frameCount()==52,'all 52 custom poses decode with cloth masks');
-   checkCards();
    root.addEventListener(Event.ENTER_FRAME,tick);return null;
   }
   // Cards are reused across units and states: the custom layer must follow them.
@@ -190,7 +192,11 @@ package {
     trace('SFKUI deployed22');ui=4;uiClock=0;return;
    }
    if(ui==4){
-    if(art(player)!=null && uiClock<40){if(frameOf(player)>=0)walkFrames=walkFrames||{};return;}
+    if(uiClock==1)walkFrames={};
+    var wf:int=frameOf(player);
+    if(player.animMode=='walk' && wf>=0 && wf<16)walkFrames[wf]=true;
+    if(uiClock<90 && player.parent!=null)return;
+    check(size(walkFrames)>=14,'deployed soldier walks through the 16-pose cycle ('+size(walkFrames)+')');
     trace('SFKUI empty22 ready');ui=5;uiClock=0;lastMorale=b.var_68;return;
    }
    if(ui==5){
@@ -214,7 +220,7 @@ package {
    var list:Array=[];find(node,class_152,list);var count:int=0;
    for each(var d:class_152 in list)if(d.unitIndex==22){
     check(d is class_227 && art(d)!=null && nativeHidden(d),'custom death poses replace native spear death');
-    deathFrames[frameOf(d)]=true;count++;
+    deathFrames[frameOf(d)]=true;deathActors[d]=true;count++;
    }
    return count;
   }
@@ -229,6 +235,7 @@ package {
   private static function size(o:Object):int {var n:int=0;for(var k:String in o)n++;return n;}
   private static function tick(event:Event):void {
    var g:class_149=gameIn(rootSprite);if(g==null)return;
+   if(!cardsChecked){cardsChecked=true;check(class_263.frameCount()==52,'all 52 custom poses decode with cloth masks');checkCards();}
    var b:class_68=g.battlefield;if(b==null || b.selfMode!='on')return;
    if(ui<8){uiTick(b);return;}
    b.var_210.var_419.stop();b.var_68=150;b.var_67=150;
@@ -238,7 +245,7 @@ package {
     b.var_76='unit';b.var_23=id;
     for(var k:int=0;k<38;k++){b.var_43[k]=99;b.var_72[k]=99;}
     before=[];troops(b,before);
-    b.method_46(3);b.method_66(3,id,0);
+    b.method_46(1);b.method_66(1,id,0);
     var after:Array=[];troops(b,after);player=null;enemy=null;
     for each(var u:Unit in after)if(before.indexOf(u)<0){if(u.isEnemy)enemy=u;else player=u;}
     check(player!=null && enemy!=null,'spawn both sides '+id);
@@ -249,7 +256,8 @@ package {
     if(id==22){
      customActor(player,'player');customActor(enemy,'enemy');
      check(enemy.scaleX<0 && player.scaleX>0,'enemy mirrored like native soldiers');
-     walkFrames={};attackFrames={};hitFrames={};deathFrames={};
+     walkFrames={};attackFrames={};hitFrames={};deathFrames={};deathActors=new Dictionary();
+     runFrames={};trace('SFKMOTION start');
     }
    }
    if(id==31 && clock==10)check(player.currentFrame!=1 || enemy.currentFrame!=1,'native Viking Mercenary timeline advances');
@@ -258,6 +266,9 @@ package {
     if(player.animMode=='walk' && f>=0 && f<16)walkFrames[f]=true;
     if(player.animMode=='attack')attackFrames[f]=true;
     if(f==44||f==45)hitFrames[f]=true;
+    if(clock==1){enemy.run();enemy.vx=enemy.var_7;}
+    if(clock<15 && enemy.animMode=='run' && frameOf(enemy)>=16 && frameOf(enemy)<24)runFrames[frameOf(enemy)]=true;
+    if(clock==15)check(size(runFrames)>=6,'enemy run uses the 8-pose run cycle facing left ('+size(runFrames)+')');
     if(clock>0 && clock<100){customActor(player,'player tick');if(enemy.parent!=null)check(nativeHidden(enemy),'enemy native art hidden');}
     if(clock==2)check(Bitmap(art(player).getChildAt(0)).bitmapData!=Bitmap(art(enemy).getChildAt(0)).bitmapData,'owner tint differs between sides');
    }
@@ -272,14 +283,14 @@ package {
    if(clock==100){
     check(player.hp<ph || enemy.hp<eh,'combat damage '+id);
     if(id==22){
-     check(size(walkFrames)>=10,'walk uses at least ten of 16 custom poses ('+size(walkFrames)+')');
+     check(size(walkFrames)>=6,'duel approach walks through custom poses ('+size(walkFrames)+')');
      check(size(attackFrames)>=12,'attack uses at least twelve of 16 custom poses ('+size(attackFrames)+')');
      for(var key:String in attackFrames)check(int(key)>=24 && int(key)<40,'attack pose index '+key);
     }
    }
    if(clock==115){if(player.selfStatus!='dead')player.method_1(false);if(enemy.selfStatus!='dead')enemy.method_1(false);}
-   if(id==22 && clock>115 && clock<140)deaths(b);
-   if(clock==120 && id==22)check(deaths(b)>=2,'custom deaths on both sides retain mercenary identity');
+   if(id==22 && clock>=1 && clock<140)deaths(b);
+   if(clock==140 && id==22){var seen:int=0;for(var d:Object in deathActors)seen++;check(seen>=2,'custom deaths on both sides retain mercenary identity ('+seen+')');}
    if(clock==140 && id==22)check(size(deathFrames)>=5,'death progresses through custom poses 46-51 ('+size(deathFrames)+')');
    if(clock==180 && id==22)check(corpses(b)>=2,'custom corpses created on both sides');
    if(clock==(id==22?180:120)){check(player.selfStatus=='dead' && enemy.selfStatus=='dead','death cleanup '+id);pair++;clock=0;return;}

@@ -38,10 +38,10 @@ package
       public static const COMBAT_ART:String = "norseGaelCombatArt";
       public static const CARD_ART:String = "norseGaelCardArt";
 
-      // Uniform 2x-density cells from tools/norse_gael_frames.py (resources/norse_gael_52/runtime/layout.json).
-      private static const CELL_W:int = 200;
+      // Uniform 2x-density cells (ground shadow baked in) from tools/norse_gael_frames.py (resources/norse_gael_52/runtime/layout.json).
+      private static const CELL_W:int = 220;
       private static const CELL_H:int = 128;
-      private static const PIVOT_X:Number = 68;
+      private static const PIVOT_X:Number = 88;
       private static const PIVOT_Y:Number = 116;
       // Native class_258/class_227/class_129 frames are 120x120 with the feet at (60, 86).
       private static const NATIVE_X:Number = 60;
@@ -85,7 +85,7 @@ package
          // class_258 stays the logic controller (stats, hitbox, damage timing, events);
          // only its timeline soldier artwork is replaced by the custom poses.
          var unit:class_258 = new class_258();
-         var state:Object = attachArt(unit, true);
+         var state:Object = attachArt(unit);
          state.clip = "walk";
          state.t = 0;
          state.hp = -1;
@@ -93,6 +93,10 @@ package
          state.hold = 0;
          state.cool = 0;
          unit.addEventListener(Event.ENTER_FRAME, combatTick, false, 0, true);
+         // Never render a frame of the native Spearman, even on the spawn frame.
+         hideNative(unit);
+         drawFrame(unit, IDLE);
+         state.key = "";
          return unit;
       }
 
@@ -100,10 +104,11 @@ package
       public static function decorateDeath(actor:class_152):void
       {
          if (actor == null || actor.unitIndex != 22) return;
-         attachArt(actor, false);
+         attachArt(actor);
          actor.addEventListener(Event.ENTER_FRAME, deathTick, false, 0, true);
          hideNative(actor);
          drawFrame(actor, DEATH);
+         actors[actor].key = "";
       }
 
       // Slot 22 corpses use the spear corpse frame for blood placement and cleanup,
@@ -113,9 +118,10 @@ package
          if (unitFrame != 23) return;
          target.gotoAndStop(4);
          target.colorLayer.gotoAndStop(4);
-         attachArt(target, false);
+         attachArt(target);
          hideNative(target);
          drawFrame(target, CORPSE);
+         actors[target].key = "";
          target.addEventListener(Event.ENTER_FRAME, corpseTick, false, 0, true);
       }
 
@@ -124,27 +130,29 @@ package
          return actors[host];
       }
 
-      private static function attachArt(host:MovieClip, shadow:Boolean):Object
+      private static function attachArt(host:MovieClip):Object
       {
          var holder:Sprite = new Sprite();
          holder.name = COMBAT_ART;
          holder.mouseEnabled = false;
          holder.mouseChildren = false;
-         if (shadow)
-         {
-            holder.graphics.beginFill(0, 0.28);
-            holder.graphics.drawEllipse(NATIVE_X - 14, NATIVE_Y - 3, 28, 6);
-            holder.graphics.endFill();
-         }
          var art:Bitmap = new Bitmap();
          art.smoothing = true;
          art.scaleX = art.scaleY = 0.5;
          holder.addChild(art);
          var layer:DisplayObject = host["colorLayer"] as DisplayObject;
          host.addChildAt(holder, layer != null && layer.parent == host ? host.getChildIndex(layer) + 1 : 0);
+         host.addEventListener(Event.ADDED, nativeAdded, false, 0, true);
          var state:Object = {art: art, holder: holder, index: -1, key: "", ticks: 0};
          actors[host] = state;
          return state;
+      }
+
+      // A timeline frame change (from any caller) places a new soldier Shape: hide it at once.
+      private static function nativeAdded(event:Event):void
+      {
+         var child:DisplayObject = event.target as DisplayObject;
+         if (child is Shape && child.parent == event.currentTarget) child.visible = false;
       }
 
       // Timeline frame changes recreate the soldier Shape; keep only that artwork hidden.

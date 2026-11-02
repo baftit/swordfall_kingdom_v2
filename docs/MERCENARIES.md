@@ -45,26 +45,82 @@ None of these faction rosters includes slot 22. Existing saved Dublin regional
 pools using the earlier experimental slot 31 are retagged to 22 on their next
 stock update. Previously saved armies retain their recorded unit types.
 
-Slot 22 uses the existing `class_258` spear soldier's complete 54-frame native
-animation timeline. Walk, run, idle and attack transitions follow the same
-controller and frame labels as the game's regular soldiers. No generated bitmap
-poses cover its limbs or weapon. Native ground placement, body scale, weapon
-occlusion, owner tint, damage flashes, health bars, sound and blood remain intact.
-Its stats and army/recruitment identity remain slot 22 rather than the regular
-Spearman's slot 3.
+### Combat sprites
 
-Both death dispatchers use the matching `class_227` native spear death animation
-for slot 22 while preserving its identity in death events. Its corpse uses the
-matching spear corpse frame (4), including the native blood/effect layer and
-cleanup. Slot 31 keeps its original Viking controller and matching death assets.
+Slot 22 is drawn with the 52 generated sprite poses in `resources/norse_gael_52/`
+(rendered images, not a 3D model or rig). `class_258` remains the logic controller,
+so stats, hitbox, damage timing, events, health bar, sound, blood and replenishment
+are native. Only its timeline soldier Shape and `colorLayer` are hidden (also when the
+timeline places a new Shape); the custom layer sits under the hitbox and health bar.
 
-The generated portrait and cropped cards remain in unit details and recruitment.
-The old four-pose combat atlas is retained as an experimental source asset and is
-no longer embedded or displayed in combat. A small atlas cannot reproduce the
-continuous rendered limb motion and occlusion of the native animation.
+| Clip | Poses | Runtime behaviour |
+|---|---:|---|
+| Walk | 0-15 | Loops; cadence follows actual speed (0.8 poses/tick at native walk speed) |
+| Run | 16-23 | Loops; cadence follows speed |
+| Attack | 24-39 | Driven by the native attack timeline; contact pose 33 at native damage frame 16 |
+| Idle | 40-43 | Ping-pong breathing loop; entered below 0.3 px/tick, left above 0.9 |
+| Hit | 44-45 | 5 ticks when damaged while not engaged, then resumes; 45-tick cooldown |
+| Death | 46-51 | Played on the native `class_227` death actor; 51 holds as the corpse |
 
-Portrait PNGs are converted losslessly to compressed ARGB at build time and
-cached after decoding, avoiding asynchronous PNG Loader failures.
+Each clip keeps its own clock and resets on entry. Ticks follow the game's frame
+rate, so battle speed changes and enemy mirroring (`scaleX = -1`) behave like native
+soldiers. Between consecutive attacks the recovered guard pose is held instead of a
+one-tick stride.
+
+Both death dispatchers call `class_263.decorateDeath` after `initSelf`, keeping the
+native actor's timing, events, lane placement and cleanup. The corpse keeps native
+spear corpse frame 4 for its blood layer and fade, with pose 51 replacing the body.
+
+Owner colour multiplies only a neutral-cloth mask (tunic and sleeves); skin, wood
+and metal are untouched. Tinted frames are cached per owner colour. Atlases are
+decoded once per clip on first use; nothing is decoded per actor or per tick.
+
+### Art pipeline
+
+`tools/norse_gael_frames.py` (Pillow, numpy and scipy) produces the frames from the
+lossless generation `build/norse-gael-52/source_sheet.png`, which is ignored by Git:
+
+1. `extract` isolates the 52 figures by connected alpha components, not equal grid
+   cells, because rows are uneven and thrusting spears cross column edges. Faint
+   generator haze (alpha < 8) is removed; edge pixels go to the nearest figure.
+   Complete figures are written to `resources/norse_gael_52/frames/NN_clip_MM.png`.
+2. `pack` repairs, normalizes and packs:
+   - The idle, hit and death rows were generated about 8% smaller and are rescaled
+     to the walk scale.
+   - Diagonal run and guard spears (16-25, 38-39) were about 20% longer than the
+     walk spear; their exposed butt ends are trimmed by 8-41 source px.
+   - Poses are registered on the helmet/head, leaving under 0.5 stage px of
+     frame-to-frame wobble in walk and run. The attack lunge is smoothed.
+   - Colours are graded toward the native pre-rendered soldiers (lower saturation,
+     deeper shadows). The body is scaled to the native 40 px height and given a
+     baked ground shadow.
+   - Uniform 110x64 stage-px cells (2x texture density) with one ground pivot are
+     packed into six atlases plus cloth masks under
+     `resources/norse_gael_52/runtime/`; `layout.json` records the result.
+
+### Cards and previews
+
+Battle roster, recruitment, army-bar and details cards show a head/torso crop of the
+reference render, in the native art slot. It sits below the card frame, hotkey,
+green selection border and quantity, and is noninteractive, so the card's native
+background keeps the hit area. It follows owner tint and enabled, disabled, hidden
+and revealed states. A card reused for another unit restores its native layers.
+
+The earlier full-body card overlay drew over the selection border and extended past
+the card (64x94 bounds on a 41x48 card). That hid the green border and let it catch
+clicks meant for the neighbouring card. Selection itself worked, but appeared broken.
+
+The recruit preview (`class_79`) and the army unit details window (`class_132`) show
+the full reference render.
+
+### Visual limitations
+
+The poses are generated images, not renders of one rigid 3D model. Small details
+(shield emblem, folds, hand shapes) vary between frames, so motion is less coherent
+than the native soldiers'. The generation also uses a more frontal camera with the
+spear carried upright while walking, whereas native soldiers walk in a forward
+three-quarter profile with the spear lowered. Matching that would need newly
+generated or rendered art. Pose 45 reads more as a knee buckle than a recoil.
 
 ## Verification
 
@@ -72,28 +128,44 @@ Run `python3 -I tools/verify/mercenaries.py` after `./patch.sh build`.
 The runner creates `build/mercenaries-test.swf`; the fixture is never inserted into
 `game/SFK_v2.swf`.
 
-The fixture checks all 39 pool definitions across seven campaigns, saved zero-rate
-repair, capacity clamping and both player/enemy battle factories. It exercises
-14 types: Highland Mercenary, Kern, Gallowglass, Norse-Gael Mercenary, Viking Mercenary, Almogavar,
+The fixture first drives the real mouse path in the Norse Towns attack on Kildare
+from Dublin, whose army holds one Norse-Gael Mercenary. The verifier clicks
+coordinates the fixture traces from live display bounds (`clickTrace` steps):
+
+- The ID-22 card is selected (`var_23`, name and cost text, green border above the art).
+- A repeat click neither spends nor spawns.
+- A lane click deploys exactly one custom ID-22 unit (never Spearman 3), spending
+  the morale cost once and consuming one troop.
+- With no stock left, a further lane click is rejected without spending.
+- A click on the right edge of the Viking Raider card selects ID 12, which deploys
+  with native animation.
+
+Standalone card checks cover layering, bounds, owner tint (as for a conquered
+Dublin), and the disabled, hidden and reused states.
+
+It then checks all 39 pool definitions across seven campaigns, saved zero-rate
+repair, capacity clamping and both battle factories for 14 types: Highland
+Mercenary, Kern, Gallowglass, Norse-Gael Mercenary, Viking Mercenary, Almogavar,
 Knight of Santiago, Jinete, Swiss Mercenary, Nizari Assassin, Mercenary Druzhina,
 plus Swordsman, Pikeman and Knight used in regional mercenary slots. Each pair is
-checked for positive stats, actual movement, combat damage and death cleanup.
-The fixture checks the full native timeline, at least ten distinct walk frames,
-at least six attack frames, health bars, matching death actors and corpse frames.
+checked for stats, movement, damage and death cleanup. For slot 22 it also checks:
 
-The seven campaign UI scenarios in `tools/verify/` also complete two AI rounds
-each. Screenshots and logs are under `build/verify/mercenary-campaign-*`,
-`build/verify/mercenaries` and `build/verify/norse-gael-live-final`.
+- All 52 poses decode.
+- The native art stays hidden on both sides; the enemy is mirrored and tinted differently.
+- The full 16-pose walk, 8-pose run (facing left) and at least 12 attack poses play.
+- The hit reaction plays.
+- Deaths progress through poses 46-51 on both sides, ending in custom corpses over the native blood layer.
+
+Slot 31 is checked as the native class_263 Viking with an advancing timeline.
+
+Screenshots, including a 50-frame motion burst of the slot-22 duel, are under
+`build/verify/mercenaries`. The seven campaign UI scenarios in `tools/verify/` also
+complete two AI rounds each.
 
 ## Image budget
 
-Every mercenary PNG under `resources/` and `concepts/` is below 200,000 bytes.
-Runtime assets are 148,081 bytes for the portrait, 33,848 for its tint mask and
-189,578 for the experimental 416-by-416 combat atlas (not embedded). Embedded compressed ARGB payloads also
-stay below that limit. `max_png_bytes` in the manifest makes the build reject
-oversized source images or compressed pixel payloads.
-
-`python3 -I tools/optimize_mercenary_images.py` resizes oversized PNGs with macOS
-`sips`. Originals are backed up under ignored `build/image-sources/`. Render
-sizes and portrait crops use the actual optimized dimensions rather than the
-former full-resolution constants.
+Every mercenary PNG under `resources/` and `concepts/` is below 200,000 bytes. The
+52 extracted frames are 16-34 KB each; the six runtime atlases are 81-118 KB and their
+cloth masks 4-8 KB. The 384x329 contact sheet is 196,402 bytes. The embedded
+compressed ARGB payloads also stay below the limit. `max_png_bytes` in the manifest
+makes the build reject any oversized image or payload.

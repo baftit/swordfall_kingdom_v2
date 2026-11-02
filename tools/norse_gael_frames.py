@@ -31,10 +31,10 @@ LIMIT = 200_000
 
 # Native class_258 frames are 120x120 with feet at y=86 and the body centred on x=60;
 # the native figure is about 44 px from helmet to sole.
-NATIVE_BODY = 44.0
+NATIVE_BODY = 40.0
 DENSITY = 2            # texture pixels per stage pixel; drawn at 0.5 scale in game
-CELL_W, CELL_H = 100, 64   # stage pixels per uniform cell
-PIVOT_X, PIVOT_Y = 34, 58  # stage pixels: ground contact point inside a cell
+CELL_W, CELL_H = 110, 64   # stage pixels per uniform cell
+PIVOT_X, PIVOT_Y = 44, 58  # stage pixels: ground contact point inside a cell
 DIAGONAL_SPEAR = list(range(16, 26)) + [38, 39]
 ATLASES = {'walk_a': range(0, 8), 'walk_b': range(8, 16), 'run': range(16, 24), 'attack_a': range(24, 32),
            'attack_b': range(32, 40), 'misc': range(40, 52)}
@@ -160,6 +160,37 @@ def cloth_mask(rgba):
     return np.clip(ndimage.gaussian_filter(core.astype(float), 0.7), 0, 1) * (a / 255)
 
 
+def grade(rgba):
+    """Match the native pre-rendered soldiers: they are less saturated (0.21 vs 0.37 mean)
+    and have deeper shadows (10th-percentile value 0.13 vs 0.22)."""
+    rgb = rgba[..., :3].astype(float) / 255
+    grey = rgb @ np.array([0.299, 0.587, 0.114])
+    rgb = grey[..., None] + (rgb - grey[..., None]) * 0.62
+    rgb = np.clip((rgb - 0.09) / 0.97, 0, 1) ** 1.08
+    out = rgba.copy()
+    out[..., :3] = (rgb * 255).round().astype(np.uint8)
+    return out
+
+
+def cast_shadow(cell, ground):
+    """Ground shadow like the native soldiers': the silhouette projected down and to the
+    left onto the ground plane, softened and translucent."""
+    alpha = cell[..., 3].astype(float) / 255
+    shadow = np.zeros_like(alpha)
+    ys, xs = np.nonzero(alpha > 0.1)
+    height = np.maximum(0, ground - ys)
+    sx = np.round(xs - 0.55 * height).astype(int)
+    sy = np.round(ground - 1 + 0.10 * height).astype(int)
+    ok = (sx >= 0) & (sx < alpha.shape[1]) & (sy >= 0) & (sy < alpha.shape[0])
+    np.maximum.at(shadow, (sy[ok], sx[ok]), alpha[ys[ok], xs[ok]])
+    shadow = np.clip(ndimage.gaussian_filter(shadow, 1.6) * 1.6, 0, 1) * 0.42
+    a = alpha + shadow * (1 - alpha)
+    out = cell.astype(float)
+    out[..., :3] = np.where(a[..., None] > 0, out[..., :3] * (alpha / np.maximum(a, 1e-6))[..., None], 0)
+    out[..., 3] = a * 255
+    return out.round().astype(np.uint8)
+
+
 def premultiplied_resize(rgba, scale):
     """Downscale without dark fringes: resample premultiplied colour, then restore."""
     h, w = rgba.shape[:2]
@@ -229,8 +260,8 @@ def pack():
     cells, masks, report = [], [], []
     for i, (rgba, place) in enumerate(zip(frames, places)):
         s = place['scale']
-        small = premultiplied_resize(rgba, s)
         mask = cloth_mask(rgba)
+        small = premultiplied_resize(grade(rgba), s)
         mask_rgba = np.dstack([np.full(mask.shape, 255.0)] * 3 + [mask * 255]).astype(np.uint8)
         small_mask = premultiplied_resize(mask_rgba, s)
         sy, sx = small.shape[0] / rgba.shape[0], small.shape[1] / rgba.shape[1]
@@ -242,6 +273,7 @@ def pack():
         if ox < 0 or oy < 0 or ox + w > cw or oy + h > ch:
             sys.exit(f'frame {i}: {w}x{h} at {ox},{oy} clips the {cw}x{ch} cell')
         cell[oy:oy + h, ox:ox + w] = small
+        cell = cast_shadow(cell, py)
         cell_mask[oy:oy + h, ox:ox + w] = small_mask
         cells.append(cell)
         masks.append(cell_mask)

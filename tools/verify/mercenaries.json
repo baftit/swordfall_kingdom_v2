@@ -198,7 +198,15 @@
     "shot": "raider_deployed"
   },
   {
-    "wait": 14000
+    "waitFor": "SFKMOTION start",
+    "timeout": 60000
+  },
+  {
+    "burst": {
+      "name": "motion",
+      "count": 50,
+      "interval": 50
+    }
   },
   {
     "shot": "custom_mercenary_duel"
