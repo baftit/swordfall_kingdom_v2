@@ -1,0 +1,39 @@
+{
+  "image": "norse_gael_combat_sheet.png",
+  "columns": 4,
+  "rows": 4,
+  "facing": "right",
+  "walk": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "attack": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "hit": [
+    8
+  ],
+  "death": [
+    9,
+    10,
+    11
+  ],
+  "idle": [
+    12,
+    13
+  ],
+  "shield": [
+    14
+  ],
+  "berserk": [
+    15
+  ],
+  "controller": "native class_258; movement, hitboxes, damage timing, abilities and events retained",
+  "status": "Experimental source only; not embedded or used in the game.",
+  "runtime_replacement": "Slot 22 uses the full native class_258 timeline, class_227 death and corpse frame 4."
+}

@@ -1,0 +1,53 @@
+; Prefix for class_83.updateDisplay (the in-game Kingdoms list: VP / Wealth columns).
+; The name/colour rows are built once by setFactions, but updateDisplay only writes a
+; stats line for *enabled* factions. When an AI conquers another faction's last region
+; (class_95.method_89) the list was not rebuilt, so the dead kingdom stayed listed and
+; every stats line below it shifted up one row. Rebuild the rows whenever the number of
+; enabled factions no longer matches what is displayed; the selector follows isPlayer.
+; maxstack 5
+pushbyte 0
+setlocal2
+pushbyte 1
+setlocal3
+pushbyte -1
+setlocal 4
+kl_loop:
+label
+getlocal3
+getlocal1
+getproperty QName(PackageNamespace(""),"length")
+ifnlt kl_count
+getlocal1
+getlocal3
+getproperty MultinameL([PackageNamespace("")])
+getproperty QName(PackageNamespace(""),"isEnabled")
+iffalse kl_next
+getlocal2
+increment_i
+setlocal2
+getlocal1
+getlocal3
+getproperty MultinameL([PackageNamespace("")])
+getproperty QName(PackageNamespace(""),"isPlayer")
+iffalse kl_next
+getlocal3
+setlocal 4
+kl_next:
+getlocal3
+increment_i
+setlocal3
+jump kl_loop
+kl_count:
+getlocal0
+getproperty QName(PackageInternalNs(""),"numFactions")
+pushbyte 0
+ifle kl_done
+getlocal2
+getlocal0
+getproperty QName(PackageInternalNs(""),"numFactions")
+ifeq kl_done
+getlocal0
+getlocal1
+getlocal 4
+callpropvoid QName(PackageNamespace(""),"setFactions"), 2
+kl_done:

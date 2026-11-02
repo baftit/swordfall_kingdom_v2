@@ -1,0 +1,25 @@
+[
+xmin 117
+ymin 40
+xmax 4855
+ymax 355
+][
+font 7
+height 340
+color #73c4f9
+x 1320
+y 340
+spacing "w" 20
+spacing "." 20
+spacing "o" 20
+spacing "r" 20
+spacing "l" 20
+spacingpair "v" "e" 19
+spacingpair "e" "r" 20
+spacingpair "d" "l" 20
+spacingpair "a" "b" 20
+spacingpair "b" "s" 20
+spacingpair "s" "." 20
+spacingpair "c" "o" 20
+spacingpair "m" "" 20
+]btabaku.com

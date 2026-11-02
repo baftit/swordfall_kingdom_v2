@@ -1,0 +1,1701 @@
+{
+  "type": "FeatureCollection",
+  "year": 1050,
+  "size": [
+    1800,
+    2000
+  ],
+  "center": [
+    0,
+    54
+  ],
+  "view": [
+    -11,
+    47,
+    13,
+    62
+  ],
+  "description": "Britain and the northern seas in 1050: Edward the Confessor, William of Normandy, Harald Hardrada and Macbeth. Denmark is independent of Norway. Approximate geographic provinces; grey lands are separate independent polities.",
+  "names": {
+    "northumbria": "Yorkshire",
+    "durham": "Northern Earldom",
+    "saxony": "Saxon Lands",
+    "lorraine": "French-Imperial Interior"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "munster",
+        "armyCenter": [
+          -8.9,
+          52.2
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -11,
+              51
+            ],
+            [
+              -7.4,
+              51
+            ],
+            [
+              -7.4,
+              53.05
+            ],
+            [
+              -11,
+              53.05
+            ],
+            [
+              -11,
+              51
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "connacht",
+        "armyCenter": [
+          -9,
+          53.7
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -11,
+              53.05
+            ],
+            [
+              -7.7,
+              53.05
+            ],
+            [
+              -7.7,
+              54.5
+            ],
+            [
+              -11,
+              54.5
+            ],
+            [
+              -11,
+              53.05
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "leinster",
+        "armyCenter": [
+          -6.8,
+          53
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.7,
+              51.8
+            ],
+            [
+              -5.5,
+              51.8
+            ],
+            [
+              -5.5,
+              53.9
+            ],
+            [
+              -7.7,
+              53.9
+            ],
+            [
+              -7.7,
+              51.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "ulster",
+        "armyCenter": [
+          -7.2,
+          54.7
+        ],
+        "landmass": "Ireland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9,
+              53.9
+            ],
+            [
+              -5,
+              53.9
+            ],
+            [
+              -5,
+              55.7
+            ],
+            [
+              -9,
+              55.7
+            ],
+            [
+              -9,
+              53.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "norway",
+        "armyCenter": [
+          8.6,
+          60.3
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                3,
+                57.85
+              ],
+              [
+                11.4,
+                57.85
+              ],
+              [
+                11.4,
+                59
+              ],
+              [
+                12,
+                60
+              ],
+              [
+                13,
+                61
+              ],
+              [
+                13,
+                62
+              ],
+              [
+                3,
+                62
+              ],
+              [
+                3,
+                57.85
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -4,
+                58.7
+              ],
+              [
+                -2,
+                58.7
+              ],
+              [
+                -2,
+                59.5
+              ],
+              [
+                -4,
+                59.5
+              ],
+              [
+                -4,
+                58.7
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -2.6,
+                59.6
+              ],
+              [
+                -0.5,
+                59.6
+              ],
+              [
+                -0.5,
+                61.2
+              ],
+              [
+                -2.6,
+                61.2
+              ],
+              [
+                -2.6,
+                59.6
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "cornwall",
+        "armyCenter": [
+          -4.8,
+          50.3
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7,
+              49.7
+            ],
+            [
+              -3.5,
+              49.7
+            ],
+            [
+              -3.5,
+              50.7
+            ],
+            [
+              -4.4,
+              51.2
+            ],
+            [
+              -7,
+              51.2
+            ],
+            [
+              -7,
+              49.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "wessex",
+        "armyCenter": [
+          -2.1,
+          51
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.4,
+              51.2
+            ],
+            [
+              -3.5,
+              50.7
+            ],
+            [
+              -3.5,
+              49.7
+            ],
+            [
+              0.5,
+              49.7
+            ],
+            [
+              0.5,
+              51.25
+            ],
+            [
+              -2.2,
+              51.25
+            ],
+            [
+              -2.8,
+              51.7
+            ],
+            [
+              -4.4,
+              51.7
+            ],
+            [
+              -4.4,
+              51.2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "kent",
+        "armyCenter": [
+          0.9,
+          51.25
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              0.5,
+              50
+            ],
+            [
+              2,
+              50
+            ],
+            [
+              2,
+              51.7
+            ],
+            [
+              0.5,
+              51.7
+            ],
+            [
+              0.5,
+              50
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "anglia",
+        "armyCenter": [
+          1,
+          52.4
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              0.5,
+              51.7
+            ],
+            [
+              2,
+              51.7
+            ],
+            [
+              2,
+              53.15
+            ],
+            [
+              0.25,
+              53.15
+            ],
+            [
+              -0.3,
+              52.3
+            ],
+            [
+              0.5,
+              52
+            ],
+            [
+              0.5,
+              51.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "dyfed",
+        "armyCenter": [
+          -4.5,
+          51.9
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6,
+              51.3
+            ],
+            [
+              -4,
+              51.3
+            ],
+            [
+              -3.65,
+              52.2
+            ],
+            [
+              -4.2,
+              52.5
+            ],
+            [
+              -6,
+              52.5
+            ],
+            [
+              -6,
+              51.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "powys",
+        "armyCenter": [
+          -3.3,
+          52.3
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4,
+              51.3
+            ],
+            [
+              -2.6,
+              51.3
+            ],
+            [
+              -2.6,
+              52.8
+            ],
+            [
+              -3.3,
+              52.8
+            ],
+            [
+              -4.2,
+              52.5
+            ],
+            [
+              -3.65,
+              52.2
+            ],
+            [
+              -4,
+              51.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "gwynedd",
+        "armyCenter": [
+          -4,
+          53.05
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6,
+              52.5
+            ],
+            [
+              -4.2,
+              52.5
+            ],
+            [
+              -3.3,
+              52.8
+            ],
+            [
+              -2.8,
+              53.5
+            ],
+            [
+              -6,
+              53.5
+            ],
+            [
+              -6,
+              52.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "midlands",
+        "armyCenter": [
+          -1.5,
+          52.4
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.8,
+              51.7
+            ],
+            [
+              -2.2,
+              51.25
+            ],
+            [
+              0.5,
+              51.25
+            ],
+            [
+              0.5,
+              52
+            ],
+            [
+              -0.3,
+              52.3
+            ],
+            [
+              -0.5,
+              52.8
+            ],
+            [
+              -2.6,
+              52.8
+            ],
+            [
+              -2.8,
+              51.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "lincoln",
+        "armyCenter": [
+          -0.2,
+          53.3
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.5,
+              52.8
+            ],
+            [
+              -0.3,
+              52.3
+            ],
+            [
+              0.25,
+              53.15
+            ],
+            [
+              1.5,
+              53.15
+            ],
+            [
+              1.5,
+              53.8
+            ],
+            [
+              -0.9,
+              53.8
+            ],
+            [
+              -0.5,
+              52.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "derby",
+        "armyCenter": [
+          -1.8,
+          53.3
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.9,
+              53.8
+            ],
+            [
+              -0.5,
+              52.8
+            ],
+            [
+              -3.3,
+              52.8
+            ],
+            [
+              -2.8,
+              53.5
+            ],
+            [
+              -3.054770701851448,
+              53.5
+            ],
+            [
+              -3.0646,
+              53.512842
+            ],
+            [
+              -3.059473,
+              53.58623
+            ],
+            [
+              -2.995703,
+              53.662549
+            ],
+            [
+              -2.925098,
+              53.732764
+            ],
+            [
+              -2.984326,
+              53.746729
+            ],
+            [
+              -3.031787,
+              53.773584
+            ],
+            [
+              -3.036890193441876,
+              53.8
+            ],
+            [
+              -2.8,
+              53.8
+            ],
+            [
+              -0.9,
+              53.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "northumbria",
+        "armyCenter": [
+          -1.5,
+          54.2
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.8,
+              53.8
+            ],
+            [
+              0.5,
+              53.8
+            ],
+            [
+              0.5,
+              54.65
+            ],
+            [
+              -2.8,
+              54.65
+            ],
+            [
+              -2.8,
+              53.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "cumbria",
+        "armyCenter": [
+          -3.2,
+          54.6
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4,
+              53.8
+            ],
+            [
+              -2.8,
+              53.8
+            ],
+            [
+              -2.8,
+              55
+            ],
+            [
+              -3.6,
+              55.2
+            ],
+            [
+              -4,
+              54.7
+            ],
+            [
+              -4,
+              53.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "durham",
+        "armyCenter": [
+          -1.7,
+          55.1
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.8,
+              54.65
+            ],
+            [
+              0.5,
+              54.65
+            ],
+            [
+              0.5,
+              55.8
+            ],
+            [
+              -2,
+              55.8
+            ],
+            [
+              -2.8,
+              55
+            ],
+            [
+              -2.8,
+              54.65
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "galloway",
+        "armyCenter": [
+          -4.6,
+          55.1
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -4.392285,
+                54.225391
+              ],
+              [
+                -4.412061,
+                54.185352
+              ],
+              [
+                -4.614258,
+                54.058691
+              ],
+              [
+                -4.696094,
+                54.081445
+              ],
+              [
+                -4.765771,
+                54.069434
+              ],
+              [
+                -4.785352,
+                54.073047
+              ],
+              [
+                -4.745557,
+                54.118799
+              ],
+              [
+                -4.69873,
+                54.224902
+              ],
+              [
+                -4.614844,
+                54.266943
+              ],
+              [
+                -4.508643,
+                54.376709
+              ],
+              [
+                -4.424707,
+                54.407178
+              ],
+              [
+                -4.395557,
+                54.40293
+              ],
+              [
+                -4.377197,
+                54.392578
+              ],
+              [
+                -4.337988,
+                54.269092
+              ],
+              [
+                -4.392285,
+                54.225391
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -4.928987332990382,
+                54.7
+              ],
+              [
+                -6.0,
+                54.7
+              ],
+              [
+                -5.7,
+                55.65
+              ],
+              [
+                -3.4,
+                55.65
+              ],
+              [
+                -3.6,
+                55.2
+              ],
+              [
+                -4.0,
+                54.7
+              ],
+              [
+                -4.908462738627993,
+                54.7
+              ],
+              [
+                -4.91123,
+                54.689453
+              ],
+              [
+                -4.928987332990382,
+                54.7
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "lothian",
+        "armyCenter": [
+          -3,
+          55.85
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.4,
+              55.65
+            ],
+            [
+              -3.6,
+              55.2
+            ],
+            [
+              -2.8,
+              55
+            ],
+            [
+              -2,
+              55.8
+            ],
+            [
+              -2.4,
+              56.2
+            ],
+            [
+              -3.4,
+              56.2
+            ],
+            [
+              -3.4,
+              55.65
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "lorne",
+        "armyCenter": [
+          -5.2,
+          56.3
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.5,
+              55.65
+            ],
+            [
+              -3.4,
+              55.65
+            ],
+            [
+              -3.4,
+              56.2
+            ],
+            [
+              -4.5,
+              56.9
+            ],
+            [
+              -7.5,
+              56.9
+            ],
+            [
+              -7.5,
+              55.65
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "perth",
+        "armyCenter": [
+          -3.6,
+          56.6
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.5,
+              56.9
+            ],
+            [
+              -3.4,
+              56.2
+            ],
+            [
+              -2.4,
+              56.2
+            ],
+            [
+              -2.5,
+              57.05
+            ],
+            [
+              -4.2,
+              57.05
+            ],
+            [
+              -4.5,
+              56.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "aberdeen",
+        "armyCenter": [
+          -2.5,
+          57.3
+        ],
+        "landmass": "Britain"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.4,
+              56.2
+            ],
+            [
+              0,
+              56.2
+            ],
+            [
+              0,
+              57.8
+            ],
+            [
+              -3.5,
+              57.8
+            ],
+            [
+              -3.5,
+              57.05
+            ],
+            [
+              -2.5,
+              57.05
+            ],
+            [
+              -2.4,
+              56.2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "highlands",
+        "armyCenter": [
+          -4.7,
+          57.7
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -8,
+              56.9
+            ],
+            [
+              -4.5,
+              56.9
+            ],
+            [
+              -4.2,
+              57.05
+            ],
+            [
+              -3.5,
+              57.05
+            ],
+            [
+              -3.5,
+              57.8
+            ],
+            [
+              0,
+              57.8
+            ],
+            [
+              0,
+              61
+            ],
+            [
+              -8,
+              61
+            ],
+            [
+              -8,
+              56.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "upper_normandy",
+        "armyCenter": [
+          1,
+          49.4
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.4,
+              48.3
+            ],
+            [
+              2.3,
+              48.3
+            ],
+            [
+              2.3,
+              50.2
+            ],
+            [
+              0.2,
+              50.2
+            ],
+            [
+              -0.4,
+              49.2
+            ],
+            [
+              -0.4,
+              48.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "lower_normandy",
+        "armyCenter": [
+          -1.2,
+          49.1
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.2,
+              48.3
+            ],
+            [
+              -0.4,
+              48.3
+            ],
+            [
+              -0.4,
+              49.2
+            ],
+            [
+              0.2,
+              50.2
+            ],
+            [
+              -2.2,
+              50.2
+            ],
+            [
+              -2.2,
+              48.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "brittany",
+        "armyCenter": [
+          -3,
+          48.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.3,
+              47
+            ],
+            [
+              -2.2,
+              47
+            ],
+            [
+              -2.2,
+              49
+            ],
+            [
+              -5.3,
+              49
+            ],
+            [
+              -5.3,
+              47
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "flanders",
+        "armyCenter": [
+          3.2,
+          50.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.3,
+              49.7
+            ],
+            [
+              4.5,
+              49.7
+            ],
+            [
+              4.5,
+              51.5
+            ],
+            [
+              2.3,
+              51.5
+            ],
+            [
+              2.3,
+              49.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "friesland",
+        "armyCenter": [
+          6.1,
+          53.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              4.5,
+              51.5
+            ],
+            [
+              7.2,
+              51.5
+            ],
+            [
+              8.4,
+              53.5
+            ],
+            [
+              8.4,
+              54.5
+            ],
+            [
+              4.5,
+              54.5
+            ],
+            [
+              4.5,
+              51.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "lorraine",
+        "armyCenter": [
+          6,
+          49.4
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.2,
+              47
+            ],
+            [
+              8,
+              47
+            ],
+            [
+              8,
+              51.5
+            ],
+            [
+              4.5,
+              51.5
+            ],
+            [
+              4.5,
+              49.7
+            ],
+            [
+              2.3,
+              49.7
+            ],
+            [
+              2.3,
+              48.3
+            ],
+            [
+              -2.2,
+              48.3
+            ],
+            [
+              -2.2,
+              47
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "saxony",
+        "armyCenter": [
+          10,
+          52
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8,
+              47
+            ],
+            [
+              13,
+              47
+            ],
+            [
+              13,
+              53.5
+            ],
+            [
+              7.2,
+              53.5
+            ],
+            [
+              7.2,
+              51.5
+            ],
+            [
+              8,
+              51.5
+            ],
+            [
+              8,
+              47
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "south_denmark",
+        "armyCenter": [
+          9.4,
+          55.6
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              7.2,
+              53.5
+            ],
+            [
+              13,
+              53.5
+            ],
+            [
+              13,
+              56.2
+            ],
+            [
+              7.2,
+              56.2
+            ],
+            [
+              7.2,
+              53.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "north_denmark",
+        "armyCenter": [
+          9.8,
+          57
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              7.2,
+              56.2
+            ],
+            [
+              13,
+              56.2
+            ],
+            [
+              13,
+              57.85
+            ],
+            [
+              7.2,
+              57.85
+            ],
+            [
+              7.2,
+              56.2
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "seaLinks": [
+    [
+      "upper_normandy",
+      "kent"
+    ],
+    [
+      "norway",
+      "highlands"
+    ],
+    [
+      "norway",
+      "north_denmark"
+    ],
+    [
+      "north_denmark",
+      "anglia"
+    ],
+    [
+      "ulster",
+      "galloway"
+    ],
+    [
+      "leinster",
+      "gwynedd"
+    ],
+    [
+      "lorne",
+      "galloway"
+    ],
+    [
+      "friesland",
+      "south_denmark"
+    ]
+  ],
+  "factions": [
+    {
+      "name": "English",
+      "longName": "Kingdom of England",
+      "ruler": "Edward the Confessor",
+      "regions": [
+        "wessex",
+        "midlands",
+        "anglia",
+        "kent",
+        "cornwall",
+        "derby",
+        "lincoln",
+        "northumbria",
+        "durham"
+      ],
+      "unit": 9,
+      "description": "Edward rules England before 1066. Wales and the Scottish kingdom remain outside English ownership; northern earldoms are grouped under the crown."
+    },
+    {
+      "name": "Normans",
+      "longName": "Duchy of Normandy",
+      "ruler": "William of Normandy",
+      "regions": [
+        "upper_normandy",
+        "lower_normandy"
+      ],
+      "unit": 10,
+      "description": "William rules Normandy before his conquest of England. The two provinces divide the duchy for strategy play."
+    },
+    {
+      "name": "Norway",
+      "longName": "Kingdom of Norway",
+      "ruler": "Harald Hardrada",
+      "regions": [
+        "norway"
+      ],
+      "unit": 12,
+      "description": "Harald rules Norway. Sweyn II's Denmark is separate and is not a Norwegian starting possession."
+    },
+    {
+      "name": "Scots",
+      "longName": "Kingdom of Alba",
+      "ruler": "Macbeth",
+      "regions": [
+        "perth",
+        "lothian",
+        "highlands",
+        "aberdeen",
+        "lorne"
+      ],
+      "unit": 9,
+      "description": "Macbeth rules Alba in 1050. Galloway and Cumbria remain separate frontier polities in this coarse reconstruction."
+    }
+  ],
+  "landmasses": {
+    "Ireland": [
+      -7.5,
+      53
+    ],
+    "Britain": [
+      -2,
+      53
+    ],
+    "Europe": [
+      4,
+      49
+    ]
+  },
+  "frontierGapNotes": "Enclosed land fragments are explicitly assigned by reviewed WGS84 probes in author_regional.py; no inland water is invented."
+}

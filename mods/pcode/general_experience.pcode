@@ -1,0 +1,93 @@
+method
+name null
+param QName(PackageNamespace(""),"int")
+returns QName(PackageNamespace(""),"void")
+
+body
+maxstack 16
+localcount 4
+initscopedepth 4
+maxscopedepth 5
+
+code
+getlocal0
+pushscope
+getlocal1
+pushbyte 0
+iflt xp_done
+pushshort 0
+pushshort 0
+pushshort 60
+pushshort 120
+pushshort 180
+pushshort 240
+pushshort 300
+pushshort 360
+pushshort 420
+pushshort 480
+pushshort 600
+pushshort 750
+pushshort 930
+pushshort 1140
+pushshort 1380
+pushshort 1650
+newarray 16
+setlocal2
+getlocal0
+getproperty QName(PackageNamespace(""),"selfLevel")
+pushbyte 15
+ifge xp_done
+getlocal2
+getlocal0
+getproperty QName(PackageNamespace(""),"selfLevel")
+getproperty MultinameL([PackageNamespace("")])
+convert_i
+setlocal3
+getlocal0
+getproperty QName(PackageNamespace(""),"var_107")
+getlocal3
+ifge xp_add
+getlocal0
+getlocal3
+setproperty QName(PackageNamespace(""),"var_107")
+xp_add:
+getlocal0
+getlocal0
+getproperty QName(PackageNamespace(""),"var_107")
+getlocal1
+getlocal0
+getproperty QName(PackageNamespace(""),"xpMultiplier")
+multiply
+add
+convert_i
+setproperty QName(PackageNamespace(""),"var_107")
+xp_loop:
+label
+getlocal0
+getproperty QName(PackageNamespace(""),"selfLevel")
+pushbyte 15
+ifge xp_done
+getlocal0
+getproperty QName(PackageNamespace(""),"var_107")
+getlocal2
+getlocal0
+getproperty QName(PackageNamespace(""),"selfLevel")
+pushbyte 1
+add
+getproperty MultinameL([PackageNamespace("")])
+iflt xp_done
+getlocal0
+callpropvoid QName(PackageInternalNs(""),"method_12"), 0
+findpropstrict QName(PackageNamespace(""),"trace")
+pushstring "SFKGENERAL level "
+getlocal0
+getproperty QName(PackageNamespace(""),"selfLevel")
+add
+callpropvoid QName(PackageNamespace(""),"trace"), 1
+jump xp_loop
+xp_done:
+returnvoid
+end ; code
+end ; body
+end ; method
+

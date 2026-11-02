@@ -1,0 +1,21 @@
+method
+name null
+returns QName(PackageNamespace(""),"void")
+
+body
+maxstack 2
+localcount 1
+initscopedepth 4
+maxscopedepth 5
+
+code
+getlocal0
+pushscope
+getlocal0
+pushbyte 0
+callpropvoid QName(PackageNamespace(""),"addExperience"), 1
+returnvoid
+end ; code
+end ; body
+end ; method
+

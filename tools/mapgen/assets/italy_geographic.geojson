@@ -1,0 +1,1270 @@
+{
+  "type": "FeatureCollection",
+  "year": 1050,
+  "size": [
+    1800,
+    2200
+  ],
+  "center": [
+    13,
+    41
+  ],
+  "view": [
+    7,
+    33,
+    19.5,
+    47.5
+  ],
+  "description": "Italy in 1050: Henry III's imperial sphere, Norman newcomers, Pope Leo IX, divided Sicily and Byzantine southern Italy. Papal and Norman possessions are represented before their later expansion. Approximate geographic provinces; grey lands are separate independent polities.",
+  "names": {
+    "lucania": "Norman Marches",
+    "lombardy": "Northern Italy",
+    "latium": "Tuscia-Latium",
+    "abruzzo": "Abruzzo-Molise"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "sardinia",
+        "armyCenter": [
+          9.0,
+          40.0
+        ],
+        "landmass": "Sardinia"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              7,
+              38.5
+            ],
+            [
+              10,
+              38.5
+            ],
+            [
+              10,
+              41.3
+            ],
+            [
+              7,
+              41.3
+            ],
+            [
+              7,
+              38.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "corsica",
+        "armyCenter": [
+          9.1,
+          42.1
+        ],
+        "landmass": "Corsica"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8,
+              41.3
+            ],
+            [
+              10.2,
+              41.3
+            ],
+            [
+              10.2,
+              43.3
+            ],
+            [
+              8,
+              43.3
+            ],
+            [
+              8,
+              41.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "palermo",
+        "armyCenter": [
+          13.4,
+          38.0
+        ],
+        "landmass": "Sicily"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              11.5,
+              36
+            ],
+            [
+              13.9,
+              36
+            ],
+            [
+              14.2,
+              37.4
+            ],
+            [
+              14.2,
+              38.5
+            ],
+            [
+              11.5,
+              38.5
+            ],
+            [
+              11.5,
+              36
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "messina",
+        "armyCenter": [
+          15.2,
+          37.9
+        ],
+        "landmass": "Sicily"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              14.2,
+              37.4
+            ],
+            [
+              15.7,
+              37.4
+            ],
+            [
+              15.7,
+              38.5
+            ],
+            [
+              14.2,
+              38.5
+            ],
+            [
+              14.2,
+              37.4
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "syracuse",
+        "armyCenter": [
+          15.1,
+          37.1
+        ],
+        "landmass": "Sicily"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.9,
+              36
+            ],
+            [
+              15.7,
+              36
+            ],
+            [
+              15.7,
+              37.4
+            ],
+            [
+              14.2,
+              37.4
+            ],
+            [
+              13.9,
+              36
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "calabria",
+        "armyCenter": [
+          16.3,
+          38.9
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              15,
+              37.8
+            ],
+            [
+              18,
+              37.8
+            ],
+            [
+              18,
+              40
+            ],
+            [
+              16.5,
+              40.3
+            ],
+            [
+              15.4,
+              39.9
+            ],
+            [
+              15,
+              37.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "salerno",
+        "armyCenter": [
+          15.1,
+          40.45
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              15.8,
+              40.3
+            ],
+            [
+              15.4,
+              39.9
+            ],
+            [
+              14.4,
+              39.9
+            ],
+            [
+              14.7,
+              40.8
+            ],
+            [
+              14.5,
+              41.0
+            ],
+            [
+              15.1,
+              40.9
+            ],
+            [
+              15.5,
+              40.7
+            ],
+            [
+              15.8,
+              40.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "naples",
+        "armyCenter": [
+          14.25,
+          40.83
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.8,
+              40.4
+            ],
+            [
+              14.7,
+              40.4
+            ],
+            [
+              14.7,
+              40.8
+            ],
+            [
+              14.5,
+              41
+            ],
+            [
+              13.8,
+              40.95
+            ],
+            [
+              13.8,
+              40.4
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "capua",
+        "armyCenter": [
+          14.15,
+          41.15
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.8,
+              40.95
+            ],
+            [
+              14.5,
+              41
+            ],
+            [
+              14.5,
+              41.4
+            ],
+            [
+              13.8,
+              41.4
+            ],
+            [
+              13.8,
+              40.95
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "benevento",
+        "armyCenter": [
+          14.8,
+          41.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              14.5,
+              41
+            ],
+            [
+              15.1,
+              40.9
+            ],
+            [
+              15.3,
+              41.2
+            ],
+            [
+              14.9,
+              41.5
+            ],
+            [
+              14.5,
+              41.4
+            ],
+            [
+              14.5,
+              41
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "lucania",
+        "armyCenter": [
+          15.65,
+          40.95
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              15.675562531212769,
+              40.00020455680464
+            ],
+            [
+              15.585156,
+              40.052832
+            ],
+            [
+              15.552717770296667,
+              40.05271777029667
+            ],
+            [
+              15.8,
+              40.3
+            ],
+            [
+              15.5,
+              40.7
+            ],
+            [
+              15.1,
+              40.9
+            ],
+            [
+              15.3,
+              41.2
+            ],
+            [
+              15.5,
+              41.5
+            ],
+            [
+              16.3,
+              41.3
+            ],
+            [
+              16.5,
+              40.3
+            ],
+            [
+              15.675562531212769,
+              40.00020455680464
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "apulia",
+        "armyCenter": [
+          16.7,
+          41.0
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              15.5,
+              41.5
+            ],
+            [
+              16.3,
+              41.3
+            ],
+            [
+              16.5,
+              40.3
+            ],
+            [
+              17.5,
+              39.5
+            ],
+            [
+              18.8,
+              39.5
+            ],
+            [
+              18.8,
+              40.3
+            ],
+            [
+              17.3,
+              42.5
+            ],
+            [
+              15.7,
+              42.5
+            ],
+            [
+              15.5,
+              41.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "rome",
+        "armyCenter": [
+          12.5,
+          41.9
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              11.8,
+              40.9
+            ],
+            [
+              13.4,
+              40.9
+            ],
+            [
+              13.8,
+              41.4
+            ],
+            [
+              13,
+              42.15
+            ],
+            [
+              12.2,
+              42.2
+            ],
+            [
+              11.8,
+              41.9
+            ],
+            [
+              11.8,
+              40.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "latium",
+        "armyCenter": [
+          12.1,
+          42.4
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.06282722513089,
+              42.09109947643979
+            ],
+            [
+              13.0,
+              42.15
+            ],
+            [
+              12.2,
+              42.2
+            ],
+            [
+              11.8,
+              41.9
+            ],
+            [
+              11.4,
+              41.9
+            ],
+            [
+              11.4,
+              42.5
+            ],
+            [
+              12.0,
+              42.7
+            ],
+            [
+              13.1,
+              42.5
+            ],
+            [
+              13.06282722513089,
+              42.09109947643979
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "abruzzo",
+        "armyCenter": [
+          13.8,
+          42.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              14.9,
+              41.5
+            ],
+            [
+              14.5,
+              41.4
+            ],
+            [
+              13.8,
+              41.4
+            ],
+            [
+              13.0,
+              41.4
+            ],
+            [
+              13.1,
+              42.5
+            ],
+            [
+              14.0,
+              43.0
+            ],
+            [
+              15.7,
+              42.5
+            ],
+            [
+              15.24206206280836,
+              41.92757757851045
+            ],
+            [
+              15.40498,
+              41.913232
+            ],
+            [
+              15.584328691191732,
+              41.921643455958666
+            ],
+            [
+              15.5,
+              41.5
+            ],
+            [
+              15.3,
+              41.2
+            ],
+            [
+              14.9,
+              41.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "spoleto",
+        "armyCenter": [
+          12.8,
+          42.95
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                14.0,
+                43.0
+              ],
+              [
+                13.1,
+                42.5
+              ],
+              [
+                12.0,
+                42.7
+              ],
+              [
+                12.1,
+                43.5
+              ],
+              [
+                13.4,
+                43.6
+              ],
+              [
+                14.0,
+                43.0
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                13.508203,
+                43.61167
+              ],
+              [
+                13.56416,
+                43.571289
+              ],
+              [
+                13.693262,
+                43.389893
+              ],
+              [
+                13.7,
+                43.37722307344785
+              ],
+              [
+                13.7,
+                43.300000000000004
+              ],
+              [
+                13.4,
+                43.6
+              ],
+              [
+                13.4,
+                43.64949149486589
+              ],
+              [
+                13.508203,
+                43.61167
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "florence",
+        "armyCenter": [
+          11.25,
+          43.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.7,
+              43.5
+            ],
+            [
+              12.1,
+              43.5
+            ],
+            [
+              12.1,
+              44.15
+            ],
+            [
+              10.7,
+              44.15
+            ],
+            [
+              10.7,
+              43.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "tuscany",
+        "armyCenter": [
+          10.9,
+          43.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.5,
+              42.2
+            ],
+            [
+              11.4,
+              42.2
+            ],
+            [
+              11.4,
+              42.5
+            ],
+            [
+              12,
+              42.7
+            ],
+            [
+              12.1,
+              43.5
+            ],
+            [
+              10.7,
+              43.5
+            ],
+            [
+              10.7,
+              44.15
+            ],
+            [
+              9.5,
+              44.15
+            ],
+            [
+              9.5,
+              42.2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "romagna",
+        "armyCenter": [
+          12,
+          44.25
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.7,
+              44.15
+            ],
+            [
+              12.1,
+              44.15
+            ],
+            [
+              12.1,
+              43.5
+            ],
+            [
+              13.4,
+              43.6
+            ],
+            [
+              13.4,
+              44.9
+            ],
+            [
+              10.7,
+              44.9
+            ],
+            [
+              10.7,
+              44.15
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "genoa",
+        "armyCenter": [
+          8.9,
+          44.4
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              7,
+              43.5
+            ],
+            [
+              9.5,
+              43.5
+            ],
+            [
+              9.5,
+              44.15
+            ],
+            [
+              10.7,
+              44.15
+            ],
+            [
+              10.7,
+              44.9
+            ],
+            [
+              7,
+              44.9
+            ],
+            [
+              7,
+              43.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "venice",
+        "armyCenter": [
+          12.1,
+          45.6
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              11.5,
+              44.9
+            ],
+            [
+              13.7,
+              44.9
+            ],
+            [
+              13.7,
+              46.5
+            ],
+            [
+              11.5,
+              46.5
+            ],
+            [
+              11.5,
+              44.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "lombardy",
+        "armyCenter": [
+          9.7,
+          45.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              7,
+              44.9
+            ],
+            [
+              11.5,
+              44.9
+            ],
+            [
+              11.5,
+              46.5
+            ],
+            [
+              13.7,
+              46.5
+            ],
+            [
+              13.7,
+              47.5
+            ],
+            [
+              7,
+              47.5
+            ],
+            [
+              7,
+              44.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "carinthia",
+        "armyCenter": [
+          14.2,
+          46.6
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.7,
+              45.6
+            ],
+            [
+              16,
+              45.6
+            ],
+            [
+              16,
+              47.5
+            ],
+            [
+              13.7,
+              47.5
+            ],
+            [
+              13.7,
+              45.6
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "croatia",
+        "armyCenter": [
+          16.0,
+          44.6
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.7,
+              43
+            ],
+            [
+              19.5,
+              43
+            ],
+            [
+              19.5,
+              47.5
+            ],
+            [
+              16,
+              47.5
+            ],
+            [
+              16,
+              45.6
+            ],
+            [
+              13.7,
+              45.6
+            ],
+            [
+              13.7,
+              43
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "refName": "tunisia",
+        "armyCenter": [
+          10.2,
+          36.6
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              7,
+              33
+            ],
+            [
+              12,
+              33
+            ],
+            [
+              12,
+              38
+            ],
+            [
+              7,
+              38
+            ],
+            [
+              7,
+              33
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "seaLinks": [
+    [
+      "sardinia",
+      "tuscany"
+    ],
+    [
+      "corsica",
+      "tuscany"
+    ],
+    [
+      "corsica",
+      "sardinia"
+    ],
+    [
+      "palermo",
+      "tunisia"
+    ],
+    [
+      "messina",
+      "calabria"
+    ]
+  ],
+  "factions": [
+    {
+      "name": "Imperials",
+      "longName": "Imperial Italy",
+      "ruler": "Henry III",
+      "regions": [
+        "lombardy",
+        "genoa",
+        "tuscany",
+        "florence",
+        "romagna",
+        "spoleto",
+        "carinthia"
+      ],
+      "unit": 9,
+      "description": "The imperial sphere groups northern Italy and its marches. Local bishops, margraves and cities retain substantial autonomy; Venice remains separate."
+    },
+    {
+      "name": "Normans",
+      "longName": "Norman Counties",
+      "ruler": "Drogo of Hauteville",
+      "regions": [
+        "lucania"
+      ],
+      "unit": 10,
+      "description": "Drogo leads the Norman county centred on Melfi. Capua and Benevento have not yet become Norman principalities; the Norman Marches aggregate scattered holdings."
+    },
+    {
+      "name": "Papacy",
+      "longName": "Papal Lands",
+      "ruler": "Pope Leo IX",
+      "regions": [
+        "rome",
+        "latium"
+      ],
+      "unit": 5,
+      "description": "Pope Leo IX holds the Roman core. Benevento and the later papal Romagna are not assigned as consolidated papal territory in 1050."
+    },
+    {
+      "name": "Sicily",
+      "longName": "Sicilian Emirates",
+      "ruler": "Hasan al-Samsam",
+      "regions": [
+        "palermo",
+        "messina",
+        "syracuse"
+      ],
+      "unit": 4,
+      "description": "Sicily is divided among Muslim rulers. A shared faction is an abstraction under the name of the late Kalbid emir, not a unified central administration."
+    },
+    {
+      "name": "Byzantium",
+      "longName": "Byzantine Italy",
+      "ruler": "Constantine IX Monomachos",
+      "regions": [
+        "apulia",
+        "calabria"
+      ],
+      "unit": 17,
+      "description": "Constantine IX is the imperial ruler; local catepans command in Italy. Byzantine Calabria and the remaining catepanate face Norman encroachment. The Norman-controlled inland marches are separate."
+    }
+  ],
+  "landmasses": {
+    "Sicily": [
+      14,
+      37.5
+    ],
+    "Corsica": [
+      9,
+      42
+    ],
+    "Sardinia": [
+      9,
+      40
+    ]
+  },
+  "frontierGapNotes": "Enclosed land fragments are explicitly assigned by reviewed WGS84 probes in author_regional.py; no inland water is invented."
+}

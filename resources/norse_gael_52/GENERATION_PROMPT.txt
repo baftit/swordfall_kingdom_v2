@@ -1,0 +1,22 @@
+Generated with the built-in imagegen tool on 2026-11-02.
+Reference: resources/norse_gael_mercenary_render.png
+Full-resolution source: build/norse-gael-52/source_sheet.png
+Production contact-sheet preview: resources/norse_gael_52/contact_sheet.png
+Generation produces art inputs; see animation.json and the handoff for known grid/weapon-boundary limitations.
+
+Use case: stylized-concept.
+Asset type: production 2D sprite animation contact sheet rendered with a consistent 3D medieval strategy game look.
+Reference image: the attached transparent Norse-Gael soldier is the exact character identity and equipment reference, NOT a pose sheet to copy.
+Generate ONE transparent sprite atlas with EXACTLY 52 distinct complete-body poses of THIS SAME soldier, arranged in a precise grid of 8 equal columns and 7 equal rows. Total 56 cells; the last FOUR cells of the last row must be completely transparent and empty. Read frames left to right, top to bottom. No text, numbers, grid lines, outlines, checkerboard artwork, background, scenery or ground plane. Genuine transparent alpha.
+Keep consistent proportions, face, gear, light direction, camera, scale, and projection throughout. He has a brown beard, pointed iron nasal helmet without horns, dark silver chainmail shirt, light neutral gray tunic skirt, brown belt/trousers/boots, wooden round shield with pale Celtic knotwork, silver rim and central steel boss, long brown spear with steel point. Cloth is neutral gray/ivory for later faction tinting, NEVER bright faction colors. Do not substitute any existing game soldier.
+Camera: side-on three-quarter strategy game camera, modest view from above, ALL living poses FACE RIGHT. Shield on camera-visible left arm, spear in right hand. Opaque solid anatomically coherent limbs with correct occlusion. Hands grip the same weapons throughout. Spear and shield stay rigid. Keep consistent head size and body height between frames. Allow horizontal space for the fully extended spear. NO cropping or overlaps between cells. Constant ground baseline around 88% of cell height for all standing poses, ample transparent margin. Figure should occupy about 66% cell height so spear fits.
+Pose sequence by EXACT grid row:
+ROW 1: walk cycle frames 1-8, consecutive smooth phases over first half of a full stride; grounded heel strike progressing through weight transfer, opposing leg and arm swing.
+ROW 2: walk cycle frames 9-16, completing the full stride with reversed legs, smoothly returning to row1 frame1. Each frame distinct, anatomically connected.
+ROW 3: eight run-cycle frames, full energetic stride loop, bent elbows and knees, shield steady, spear angled forward, coherent alternating legs.
+ROW 4: spear attack frames 1-8: guarded ready, weight shift back, drawing spear arm back, shoulder rotation, increasing forward lunge, extending spear toward enemy on right.
+ROW 5: spear attack frames 9-16: maximum horizontal thrust, brief contact follow-through, pull spear back, retreat torso, recover feet and shield, return to guard. Do not change spear length, shield emblem or hands.
+ROW 6: cells 1-4 are four subtle idle/breathing guard poses; cells 5-6 are two impact recoil/hit reactions; cells 7-8 are death frames 1-2 (knees buckling then body twisting down).
+ROW 7: cells 1-4 are death frames 3-6 (falling to ground, shoulder hitting, settling, final lying corpse with shield and spear naturally grounded). Cells 5-8 EMPTY TRANSPARENT.
+Prioritize precise grid, uncut silhouettes and consistent identity over fine detail. These are actual animation poses for a game, NOT a conceptual illustration. All 52 figures must be visible and distinct.
+

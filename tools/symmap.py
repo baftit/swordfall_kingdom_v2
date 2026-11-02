@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Build an obfuscated -> renamed identifier map.
 
-Token-aligns the decompiled sources of SFK.swf (extracted/scripts) against
-the -renameInvalidIdentifiers output (extracted_clean/scripts). Both exports
-come from the same bytecode, so they differ only in identifier spelling.
+Token-aligns the decompiled sources of game/SFK.swf against the
+-renameInvalidIdentifiers output (build/SFK_clean.swf). Both exports come from
+the same bytecode, so they differ only in identifier spelling.
 
 Usage: symmap.py <orig_scripts_dir> <clean_scripts_dir> <out.json>
+
+  java -jar tools/ffdec/ffdec-cli.jar -export script build/src_orig game/SFK.swf
+  python3 -I tools/patch.py export as3 build/src
+  python3 -I tools/symmap.py build/src_orig build/src data/symbol_map.json
 """
 import json
 import re

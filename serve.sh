@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Quick local HTTP server for testing SFK.swf with Ruffle
+# Quick local HTTP server for playing the game/ SWFs with Ruffle (open index.html)
 # Usage: ./serve.sh [port]
 PORT="${1:-8080}"
 echo ""

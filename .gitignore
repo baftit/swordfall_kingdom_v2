@@ -1,8 +1,6 @@
-.idea
+.DS_Store
+.idea/
+__pycache__/
+# everything generated: renamed base, stage SWFs, dumps, exported sources, test screenshots
 build/
 tools/verify/node_modules/
-tools/verify/out/
-.DS_Store
-tools/verify/out_speed/
-__pycache__/
-tools/verify/out_*/

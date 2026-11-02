@@ -63,14 +63,396 @@
       "file": "pcode/menu_preview_sync.prefix",
       "mode": "prefix",
       "why": "v2.1: draw generated map thumbnails (class_113.syncPreview) and hide the dead overworldlabs link on the kingdom list"
+    },
+    {
+      "class": "class_83",
+      "method": "updateDisplay",
+      "file": "pcode/kingdom_list_resync.prefix",
+      "mode": "prefix",
+      "why": "v2.1: rebuild the Kingdoms list when a faction is eliminated by an AI, so the dead kingdom disappears and stats stay aligned"
+    },
+    {
+      "class": "class_149",
+      "method": "method_243",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "callpropvoid QName(PackageInternalNs(\"\"),\"method_62\"), 0",
+          "replace": "callpropvoid QName(PackageInternalNs(\"\"),\"method_62\"), 0\ngetlex QName(PackageNamespace(\"\"),\"var_89\")\npushfalse\nsetproperty QName(PackageNamespace(\"\"),\"visible\")\ngetlex QName(PackageNamespace(\"\"),\"var_31\")\npushfalse\nsetproperty QName(PackageNamespace(\"\"),\"visible\")\ngetlex QName(PackageNamespace(\"\"),\"var_35\")\npushtrue\nsetproperty QName(PackageNamespace(\"\"),\"visible\")\ngetlex QName(PackageNamespace(\"\"),\"audioController\")\ncallpropvoid QName(PackageNamespace(\"\"),\"method_16\"), 0"
+        }
+      ],
+      "why": "v2.1: the victory / defeat results button goes to Select a Map (start another campaign) instead of the bare title screen"
+    },
+    {
+      "class": "class_149",
+      "method": "method_195",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"http://www.overworldlabs.com\"",
+          "replace": "pushstring \"https://btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "class_149",
+      "method": "method_359",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"http://www.overworldlabs.com\"",
+          "replace": "pushstring \"https://btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "class_149",
+      "method": "method_274",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"http://www.overworldlabs.com/sfk.html\"",
+          "replace": "pushstring \"https://btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "class_94",
+      "method": "method_324",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"http://www.overworldlabs.com\"",
+          "replace": "pushstring \"https://btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "package_1.class_139",
+      "method": "method_84",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushstring \"www.overworldlabs.com\"",
+          "replace": "pushstring \"btabaku.com\""
+        }
+      ],
+      "why": "Replace the retired publisher domain with btabaku.com"
+    },
+    {
+      "class": "class_8",
+      "method": "addExperience",
+      "file": "pcode/general_experience.pcode",
+      "why": "Cumulative XP progression through level 15, including large awards and legacy XP floors."
+    },
+    {
+      "class": "class_8",
+      "method": "method_12",
+      "file": "pcode/general_veteran.prefix",
+      "mode": "prefix",
+      "why": "Guaranteed veteran stat growth at levels 10-15; ability and deployment costs stop inflating after level 9."
+    },
+    {
+      "class": "class_8",
+      "method": "initExperience",
+      "file": "pcode/general_experience_init.pcode",
+      "why": "Initialize XP consistently with the extended thresholds without erasing banked experience."
+    },
+    {
+      "class": "class_8",
+      "method": "setSelf",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "returnvoid",
+          "replace": "getlocal0\ngetlocal1\ngetproperty QName(PackageNamespace(\"\"),\"var_107\")\nsetproperty QName(PackageNamespace(\"\"),\"var_107\")\ngetlocal0\ngetlocal1\ngetproperty QName(PackageNamespace(\"\"),\"powerRating\")\nsetproperty QName(PackageNamespace(\"\"),\"powerRating\")\nreturnvoid"
+        }
+      ],
+      "why": "Keep general XP and veteran power when cloning commanders."
+    },
+    {
+      "class": "class_68",
+      "method": "method_278",
+      "file": "pcode/norse_death_method_278.pcode",
+      "why": "Preserve breakthrough rewards; slot 22 keeps the native spear death actor for timing, events and cleanup, and class_263.decorateDeath replaces its visible body with custom death poses 46-51."
+    },
+    {
+      "class": "class_68",
+      "method": "method_236",
+      "file": "pcode/norse_death_method_236.pcode",
+      "why": "Preserve breakthrough rewards; slot 22 keeps the native spear death actor for timing, events and cleanup, and class_263.decorateDeath replaces its visible body with custom death poses 46-51."
+    },
+    {
+      "class": "class_79",
+      "method": "displayData",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "callpropvoid QName(PackageNamespace(\"\"),\"setFrame\"), 1",
+          "replace": "callpropvoid QName(PackageNamespace(\"\"),\"setFrame\"), 1\ngetlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlex QName(PackageNamespace(\"\"),\"var_169\")\ngetlocal1\ncallpropvoid QName(PackageNamespace(\"\"),\"syncPreview\"), 2"
+        }
+      ],
+      "why": "Display the custom Norse Gael mercenary render in the recruit and unit preview, with the current faction tint."
+    },
+    {
+      "class": "class_131",
+      "method": "setNum",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "callpropvoid QName(PackageNamespace(\"\"),\"gotoAndStop\"), 1",
+          "replace": "callpropvoid QName(PackageNamespace(\"\"),\"gotoAndStop\"), 1\ngetlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlocal0\ngetlocal1\ncallpropvoid QName(PackageNamespace(\"\"),\"syncRecruitIcon\"), 2",
+          "occurrence": 3
+        }
+      ],
+      "why": "Show the custom Norse-Gael head/torso card art under the native frame, hotkey, selection border and quantity."
+    },
+    {
+      "class": "class_79",
+      "method": "method_35",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "callpropvoid QName(PackageNamespace(\"\"),\"method_120\"), 2",
+          "replace": "callpropvoid QName(PackageNamespace(\"\"),\"method_120\"), 2\ngetlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlex QName(PackageNamespace(\"\"),\"var_169\")\npushbyte -1\ncallpropvoid QName(PackageNamespace(\"\"),\"syncPreview\"), 2"
+        }
+      ],
+      "why": "Restore the general portrait when switching away from the custom mercenary preview."
+    },
+    {
+      "class": "class_132",
+      "method": "displayData",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "callpropvoid QName(PackageNamespace(\"\"),\"setFrame\"), 1",
+          "replace": "callpropvoid QName(PackageNamespace(\"\"),\"setFrame\"), 1\ngetlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlex QName(PackageNamespace(\"\"),\"var_169\")\ngetlocal1\ncallpropvoid QName(PackageNamespace(\"\"),\"syncPreview\"), 2"
+        }
+      ],
+      "why": "Show the custom Norse-Gael render (not the empty native frame 23) in the army unit details / disband window."
+    },
+    {
+      "class": "class_132",
+      "method": "method_35",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "callpropvoid QName(PackageNamespace(\"\"),\"method_120\"), 2",
+          "replace": "callpropvoid QName(PackageNamespace(\"\"),\"method_120\"), 2\ngetlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlex QName(PackageNamespace(\"\"),\"var_169\")\npushbyte -1\ncallpropvoid QName(PackageNamespace(\"\"),\"syncPreview\"), 2"
+        }
+      ],
+      "why": "Restore the general portrait when the details window switches from the custom mercenary to a general."
+    },
+    {
+      "class": "class_68",
+      "method": "method_66",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushbyte 31",
+          "replace": "dup\npushbyte 22\nifne sfkNotNorse\npop\njump sfkNorseFactory\nsfkNotNorse:\npushbyte 31"
+        },
+        {
+          "find": "findpropstrict QName(PackageNamespace(\"\"),\"class_263\")",
+          "replace": "sfkNorseFactory:\ngetlex QName(PackageNamespace(\"\"),\"class_263\")"
+        },
+        {
+          "find": "constructprop QName(PackageNamespace(\"\"),\"class_263\"), 0",
+          "replace": "getlocal2\ncallproperty QName(PackageNamespace(\"\"),\"makeCombat\"), 1"
+        }
+      ],
+      "why": "Create the separate Norse-Gael mercenary in slot 22 (class_258 controller with the custom 52-pose sprite renderer); preserve the original Viking Mercenary/Leinster unique in slot 31.",
+      "maxstack": 64
+    },
+    {
+      "class": "class_68",
+      "method": "method_46",
+      "mode": "edit",
+      "edits": [
+        {
+          "find": "pushbyte 31",
+          "replace": "dup\npushbyte 22\nifne sfkNotNorse\npop\njump sfkNorseFactory\nsfkNotNorse:\npushbyte 31"
+        },
+        {
+          "find": "findpropstrict QName(PackageNamespace(\"\"),\"class_263\")",
+          "replace": "sfkNorseFactory:\ngetlex QName(PackageNamespace(\"\"),\"class_263\")"
+        },
+        {
+          "find": "constructprop QName(PackageNamespace(\"\"),\"class_263\"), 0",
+          "replace": "getlex QName(PackageInternalNs(\"\"),\"var_23\")\ncallproperty QName(PackageNamespace(\"\"),\"makeCombat\"), 1"
+        }
+      ],
+      "why": "Create the separate Norse-Gael mercenary in slot 22 (class_258 controller with the custom 52-pose sprite renderer); preserve the original Viking Mercenary/Leinster unique in slot 31.",
+      "maxstack": 64
+    },
+    {
+      "class": "class_95",
+      "method": "method_111",
+      "file": "pcode/mercenary_replenishment.pcode",
+      "why": "Replenish all regional mercenary pools, repairing zero rates and clamping stock to five turns of supply."
+    },
+    {
+      "class": "class_129",
+      "method": "class_129",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "returnvoid",
+          "replace": "getlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlocal0\ngetlocal1\ncallpropvoid QName(PackageNamespace(\"\"),\"decorateCorpse\"), 2\nreturnvoid"
+        }
+      ],
+      "why": "Slot 22 corpses keep the native spear corpse frame for blood, owner tint and cleanup, with the custom final death pose replacing the native body."
+    },
+    {
+      "class": "class_79",
+      "method": "method_125",
+      "mode": "edit",
+      "maxstack": 8,
+      "edits": [
+        {
+          "find": "callpropvoid Multiname(\"setNum\",[PrivateNamespace(\"\",\"39\"),PackageInternalNs(\"\"),PackageNamespace(\"\"),PrivateNamespace(\"\",\"44\"),Namespace(\"http://adobe.com/AS3/2006/builtin\"),ProtectedNamespace(\"_-Gd\"),StaticProtectedNs(\"_-Gd\"),StaticProtectedNs(\"flash.display:MovieClip\"),StaticProtectedNs(\"flash.display:Sprite\"),StaticProtectedNs(\"flash.display:DisplayObjectContainer\"),StaticProtectedNs(\"flash.display:InteractiveObject\"),StaticProtectedNs(\"flash.display:DisplayObject\"),StaticProtectedNs(\"flash.events:EventDispatcher\"),StaticProtectedNs(\"Object\")]), 2",
+          "replace": "callpropvoid Multiname(\"setNum\",[PrivateNamespace(\"\",\"39\"),PackageInternalNs(\"\"),PackageNamespace(\"\"),PrivateNamespace(\"\",\"44\"),Namespace(\"http://adobe.com/AS3/2006/builtin\"),ProtectedNamespace(\"_-Gd\"),StaticProtectedNs(\"_-Gd\"),StaticProtectedNs(\"flash.display:MovieClip\"),StaticProtectedNs(\"flash.display:Sprite\"),StaticProtectedNs(\"flash.display:DisplayObjectContainer\"),StaticProtectedNs(\"flash.display:InteractiveObject\"),StaticProtectedNs(\"flash.display:DisplayObject\"),StaticProtectedNs(\"flash.events:EventDispatcher\"),StaticProtectedNs(\"Object\")]), 2\ngetlocal2\npushbyte 0\ngetproperty MultinameL([PackageNamespace(\"\")])\ngetlex QName(PackageInternalNs(\"\"),\"factions\")\ngetlex QName(PackageInternalNs(\"\"),\"playerFactionIndex\")\ngetproperty MultinameL([PackageNamespace(\"\")])\ngetproperty QName(PackageNamespace(\"\"),\"colorIndex\")\ncallpropvoid QName(PackageNamespace(\"\"),\"setTargetColor\"), 1"
+        }
+      ],
+      "why": "Tint the regional mercenary card with the current recruiting faction color."
+    },
+    {
+      "class": "class_131",
+      "method": "setTargetColor",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "returnvoid",
+          "replace": "getlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlocal0\ngetlocal0\ngetproperty QName(PackageNamespace(\"\"),\"unitIndex\")\ncallpropvoid QName(PackageNamespace(\"\"),\"syncRecruitIcon\"), 2\nreturnvoid"
+        }
+      ],
+      "why": "Refresh custom mercenary card tint when its owning faction changes."
+    },
+    {
+      "class": "class_131",
+      "method": "disableSelf",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "returnvoid",
+          "replace": "getlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlocal0\ngetlocal0\ngetproperty QName(PackageNamespace(\"\"),\"unitIndex\")\ncallpropvoid QName(PackageNamespace(\"\"),\"syncRecruitIcon\"), 2\nreturnvoid"
+        }
+      ],
+      "why": "Keep the custom mercenary card layer in step with the card's enabled/hidden state."
+    },
+    {
+      "class": "class_131",
+      "method": "enableSelf",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "returnvoid",
+          "replace": "getlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlocal0\ngetlocal0\ngetproperty QName(PackageNamespace(\"\"),\"unitIndex\")\ncallpropvoid QName(PackageNamespace(\"\"),\"syncRecruitIcon\"), 2\nreturnvoid"
+        }
+      ],
+      "why": "Keep the custom mercenary card layer in step with the card's enabled/hidden state."
+    },
+    {
+      "class": "class_131",
+      "method": "method_14",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "returnvoid",
+          "replace": "getlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlocal0\ngetlocal0\ngetproperty QName(PackageNamespace(\"\"),\"unitIndex\")\ncallpropvoid QName(PackageNamespace(\"\"),\"syncRecruitIcon\"), 2\nreturnvoid"
+        }
+      ],
+      "why": "Keep the custom mercenary card layer in step with the card's enabled/hidden state."
+    },
+    {
+      "class": "class_131",
+      "method": "method_23",
+      "mode": "edit",
+      "maxstack": 6,
+      "edits": [
+        {
+          "find": "returnvoid",
+          "replace": "getlex QName(PackageNamespace(\"\"),\"class_263\")\ngetlocal0\ngetlocal0\ngetproperty QName(PackageNamespace(\"\"),\"unitIndex\")\ncallpropvoid QName(PackageNamespace(\"\"),\"syncRecruitIcon\"), 2\nreturnvoid"
+        }
+      ],
+      "why": "Keep the custom mercenary card layer in step with the card's enabled/hidden state."
     }
   ],
-  "as3": [],
+  "as3": [
+    {
+      "class": "class_263",
+      "file": "as3/class_263.as",
+      "embedded_pngs": {
+        "RENDER_PNG": "resources/norse_gael_mercenary_render.png",
+        "TINT_PNG": "resources/norse_gael_mercenary_tunic_mask.png",
+        "WALK_A": "resources/norse_gael_52/runtime/norse_gael_walk_a.png",
+        "WALK_A_CLOTH": "resources/norse_gael_52/runtime/norse_gael_walk_a_cloth.png",
+        "WALK_B": "resources/norse_gael_52/runtime/norse_gael_walk_b.png",
+        "WALK_B_CLOTH": "resources/norse_gael_52/runtime/norse_gael_walk_b_cloth.png",
+        "RUN": "resources/norse_gael_52/runtime/norse_gael_run.png",
+        "RUN_CLOTH": "resources/norse_gael_52/runtime/norse_gael_run_cloth.png",
+        "ATTACK_A": "resources/norse_gael_52/runtime/norse_gael_attack_a.png",
+        "ATTACK_A_CLOTH": "resources/norse_gael_52/runtime/norse_gael_attack_a_cloth.png",
+        "ATTACK_B": "resources/norse_gael_52/runtime/norse_gael_attack_b.png",
+        "ATTACK_B_CLOTH": "resources/norse_gael_52/runtime/norse_gael_attack_b_cloth.png",
+        "MISC": "resources/norse_gael_52/runtime/norse_gael_misc.png",
+        "MISC_CLOTH": "resources/norse_gael_52/runtime/norse_gael_misc_cloth.png"
+      },
+      "max_png_bytes": 200000
+    }
+  ],
   "text": [
     {
       "id": 8501,
       "file": "text/8501_version.txt",
       "why": "main-menu version label v1.067k -> v2.1"
+    },
+    {
+      "id": 8502,
+      "file": "text/8502_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    },
+    {
+      "id": 8503,
+      "file": "text/8503_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    },
+    {
+      "id": 8504,
+      "file": "text/8504_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    },
+    {
+      "id": 8402,
+      "file": "text/8402_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    },
+    {
+      "id": 8403,
+      "file": "text/8403_domain.txt",
+      "why": "Display btabaku.com in the existing domain label"
+    }
+  ],
+  "post_as3_pcode": [
+    {
+      "class": "class_263",
+      "method": "method_3",
+      "file": "pcode/viking_native_tick.pcode",
+      "why": "Preserve original Viking Mercenary animation after installing separate custom mercenary helpers."
     }
   ]
 }

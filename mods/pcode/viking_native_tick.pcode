@@ -1,0 +1,421 @@
+method
+name null
+param QName(PackageNamespace("flash.events"),"Event")
+returns QName(PackageNamespace(""),"void")
+
+body
+maxstack 6
+localcount 4
+initscopedepth 11
+maxscopedepth 12
+
+code
+pushfalse
+pushtrue
+swap
+jump ofs000d
+modulo
+setlocal2
+subtract_i
+equals
+negate_i
+pushnull
+ofs000d:
+setlocal2
+setlocal3
+getlocal0
+pushscope
+getlex QName(PackageNamespace(""),"selfStatus")
+pushstring "alive"
+equals
+getlocal2
+iftrue ofs002f
+dup
+iftrue ofs0037
+getlocal2
+dup
+iffalse ofs002b
+pop
+getlocal0
+convert_b
+ofs002b:
+iftrue ofs0037
+ofs002f:
+pop
+getlex QName(PackageNamespace(""),"selfStatus")
+pushstring "dying"
+equals
+ofs0037:
+iffalse ofs02f8
+getlocal2
+iftrue ofs006b
+findproperty QName(PackageNamespace(""),"x")
+getlex QName(PackageNamespace(""),"x")
+getlex QName(PackageNamespace(""),"vx")
+add
+initproperty QName(PackageNamespace(""),"x")
+getlex QName(PackageNamespace(""),"isEnemy")
+iffalse ofs005c
+findproperty QName(PackageNamespace(""),"ox")
+getlex QName(PackageNamespace(""),"x")
+pushbyte 61
+subtract
+initproperty QName(PackageNamespace(""),"ox")
+jump ofs0065
+ofs005c:
+findproperty QName(PackageNamespace(""),"ox")
+getlex QName(PackageNamespace(""),"x")
+pushbyte 61
+add
+initproperty QName(PackageNamespace(""),"ox")
+ofs0065:
+getlex QName(PackageNamespace(""),"isEnemy")
+iffalse ofs007d
+ofs006b:
+getlex QName(PackageNamespace(""),"ox")
+pushbyte -30
+ifnlt ofs0079
+findpropstrict QName(PackageInternalNs(""),"method_1")
+pushtrue
+callpropvoid QName(PackageInternalNs(""),"method_1"), 1
+ofs0079:
+jump ofs0091
+ofs007d:
+getlex QName(PackageNamespace(""),"ox")
+pushshort 830
+ifngt ofs0091
+getlocal3
+iffalse ofs02c2
+findpropstrict QName(PackageInternalNs(""),"method_1")
+pushtrue
+callpropvoid QName(PackageInternalNs(""),"method_1"), 1
+ofs0091:
+getlex QName(PackageNamespace(""),"isEnemy")
+iffalse ofs00f4
+getlex QName(PackageNamespace(""),"var_18")
+iffalse ofs00ca
+getlocal2
+dup
+iffalse ofs00a7
+pop
+getlocal1
+convert_b
+ofs00a7:
+iftrue ofs0252
+getlex QName(PackageNamespace(""),"vx")
+pushbyte -1
+ifnlt ofs00c0
+findproperty QName(PackageNamespace(""),"vx")
+getlex QName(PackageNamespace(""),"vx")
+pushdouble 0.5
+multiply
+initproperty QName(PackageNamespace(""),"vx")
+jump ofs00c6
+ofs00c0:
+findproperty QName(PackageNamespace(""),"vx")
+pushbyte 0
+initproperty QName(PackageNamespace(""),"vx")
+ofs00c6:
+jump ofs00f0
+ofs00ca:
+getlex QName(PackageNamespace(""),"vx")
+getlex QName(PackageNamespace(""),"var_7")
+ifngt ofs00f0
+getlocal3
+dup
+iftrue ofs00db
+pop
+getlocal1
+convert_b
+ofs00db:
+iffalse ofs022f
+findproperty QName(PackageNamespace(""),"vx")
+getlex QName(PackageNamespace(""),"vx")
+getlex QName(PackageNamespace(""),"var_7")
+pushbyte 12
+divide
+add
+initproperty QName(PackageNamespace(""),"vx")
+getlocal2
+iftrue ofs0185
+ofs00f0:
+jump ofs0145
+ofs00f4:
+getlex QName(PackageNamespace(""),"var_18")
+iffalse ofs0124
+getlex QName(PackageNamespace(""),"vx")
+pushbyte 1
+ifngt ofs0115
+findproperty QName(PackageNamespace(""),"vx")
+getlex QName(PackageNamespace(""),"vx")
+pushdouble 0.5
+multiply
+initproperty QName(PackageNamespace(""),"vx")
+getlocal2
+iftrue ofs01bd
+jump ofs0120
+ofs0115:
+findproperty QName(PackageNamespace(""),"vx")
+pushbyte 0
+initproperty QName(PackageNamespace(""),"vx")
+getlocal2
+iftrue ofs0208
+ofs0120:
+jump ofs0145
+ofs0124:
+getlex QName(PackageNamespace(""),"vx")
+getlex QName(PackageNamespace(""),"var_7")
+ifnlt ofs0145
+getlocal2
+dup
+iffalse ofs0135
+pop
+getlocal3
+convert_b
+ofs0135:
+iftrue ofs02c2
+findproperty QName(PackageNamespace(""),"vx")
+getlex QName(PackageNamespace(""),"vx")
+getlex QName(PackageNamespace(""),"var_7")
+pushbyte 12
+divide
+add
+initproperty QName(PackageNamespace(""),"vx")
+ofs0145:
+getlex QName(PackageNamespace(""),"animMode")
+pushstring "walk"
+ifne ofs019d
+getlocal0
+getproperty QName(PackageNamespace(""),"currentLabel")
+pushstring "walkStart"
+ifne ofs017f
+getlocal0
+callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+getlocal3
+dup
+iftrue ofs0163
+pop
+getlocal0
+convert_b
+ofs0163:
+iffalse ofs02ce
+getlex QName(PackageNamespace(""),"colorLayer")
+jump ofs0173
+pushnan
+getlocal3
+pushundefined
+lshift
+urshift
+pushscope
+ofs0173:
+callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+getlocal2
+iftrue ofs0212
+jump ofs0199
+ofs017f:
+getlocal0
+pushstring "walkStart"
+callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+ofs0185:
+getlex QName(PackageNamespace(""),"colorLayer")
+pushstring "walkStart"
+callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+getlocal3
+dup
+iftrue ofs0195
+pop
+getlocal2
+convert_b
+ofs0195:
+iffalse ofs02a5
+ofs0199:
+jump ofs02f8
+ofs019d:
+getlex QName(PackageNamespace(""),"animMode")
+pushstring "run"
+ifne ofs01e4
+getlocal0
+getproperty QName(PackageNamespace(""),"currentLabel")
+pushstring "walkStart"
+ifne ofs01c1
+getlocal0
+callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+getlocal3
+iffalse ofs0204
+getlex QName(PackageNamespace(""),"colorLayer")
+callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+ofs01bd:
+jump ofs01e0
+ofs01c1:
+getlocal0
+pushstring "walkStart"
+callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+getlocal2
+dup
+iffalse ofs01d0
+pop
+getlocal3
+convert_b
+ofs01d0:
+iftrue ofs0271
+getlex QName(PackageNamespace(""),"colorLayer")
+pushstring "walkStart"
+callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+getlocal2
+iftrue ofs0268
+ofs01e0:
+jump ofs02f8
+ofs01e4:
+getlex QName(PackageNamespace(""),"animMode")
+pushstring "idle"
+ifne ofs0233
+getlocal3
+dup
+iftrue ofs01f6
+pop
+getlocal3
+convert_b
+ofs01f6:
+iffalse ofs02f0
+getlocal0
+getproperty QName(PackageNamespace(""),"currentLabel")
+pushstring "idleStart"
+ifne ofs0216
+ofs0204:
+getlocal0
+callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+ofs0208:
+getlex QName(PackageNamespace(""),"colorLayer")
+callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+getlocal3
+iffalse ofs0271
+ofs0212:
+jump ofs022f
+ofs0216:
+getlocal0
+pushstring "idleStart"
+callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+getlocal2
+iftrue ofs02f0
+getlex QName(PackageNamespace(""),"colorLayer")
+pushstring "idleStart"
+callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+getlocal3
+iffalse ofs02ce
+ofs022f:
+jump ofs02f8
+ofs0233:
+getlex QName(PackageNamespace(""),"animMode")
+pushstring "attack"
+ifne ofs02f8
+getlocal3
+dup
+iftrue ofs0244
+pop
+getlocal3
+convert_b
+ofs0244:
+iffalse ofs02a5
+getlocal0
+getproperty QName(PackageNamespace(""),"currentLabel")
+pushstring "attackStart"
+ifne ofs02a9
+ofs0252:
+getlocal0
+callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+getlex QName(PackageNamespace(""),"colorLayer")
+callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+getlocal2
+dup
+iffalse ofs0264
+pop
+getlocal3
+convert_b
+ofs0264:
+iftrue ofs0271
+ofs0268:
+findproperty QName(PackageInternalNs(""),"var_5")
+getlex QName(PackageInternalNs(""),"var_5")
+pushbyte 1
+add
+initproperty QName(PackageInternalNs(""),"var_5")
+ofs0271:
+getlex QName(PackageInternalNs(""),"var_5")
+pushbyte 15
+ifnge ofs02a5
+getlocal2
+dup
+iffalse ofs0282
+pop
+getlocal0
+convert_b
+ofs0282:
+iftrue ofs02c2
+findpropstrict QName(PackageNamespace(""),"method_4")
+callpropvoid QName(PackageNamespace(""),"method_4"), 0
+getlocal2
+dup
+iffalse ofs0296
+pop
+getlocal1
+convert_b
+ofs0296:
+iftrue ofs02f8
+findproperty QName(PackageInternalNs(""),"var_5")
+pushbyte 0
+initproperty QName(PackageInternalNs(""),"var_5")
+findproperty QName(PackageNamespace(""),"isEngaged")
+pushfalse
+initproperty QName(PackageNamespace(""),"isEngaged")
+ofs02a5:
+jump ofs02f8
+ofs02a9:
+findproperty QName(PackageInternalNs(""),"var_5")
+pushbyte 0
+initproperty QName(PackageInternalNs(""),"var_5")
+getlocal2
+dup
+iffalse ofs02b8
+pop
+getlocal1
+convert_b
+ofs02b8:
+iftrue ofs02ce
+getlex QName(PackageNamespace(""),"isEngaged")
+iftrue ofs02d2
+ofs02c2:
+findpropstrict QName(PackageNamespace(""),"walk")
+callpropvoid QName(PackageNamespace(""),"walk"), 0
+getlocal3
+iffalse ofs02f0
+ofs02ce:
+jump ofs02f8
+ofs02d2:
+getlocal0
+pushstring "attackStart"
+callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+getlocal2
+jump ofs02e4
+lessequals
+negate_i
+pushnull
+pushfalse
+typeof
+lessequals
+ofs02e4:
+dup
+iffalse ofs02ec
+pop
+getlocal0
+convert_b
+ofs02ec:
+iftrue ofs02f8
+ofs02f0:
+getlex QName(PackageNamespace(""),"colorLayer")
+pushstring "attackStart"
+callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+ofs02f8:
+returnvoid
+end ; code
+end ; body
+end ; method
